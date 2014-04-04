@@ -1,14 +1,13 @@
-#Template TCC FGA-UnB
+#TCC1 de Vinícius Vieira Meneses FGA-UnB
 
-Template para Trabalhos de Conclusão de Cursos (TCC) na Faculdade do
-Gama (FGA) em Latex.
+Aluno: Vinícius Vieira Meneses  
+Orientador: Prof. Dr. Paulo Roberto Miranda Meirelles
 
-Licenciado em Creative Commons Atribuição 3.0:
-http://creativecommons.org/licenses/by/3.0/
+Título: Evolução Plataforma Mezuro: De Plugin a Aplicação Independente
 
-Desenvolvido e adaptado pelo professor Edson Alves <edsomjr@gmail.com>.
+Esse trabalho utiliza o template desenvolvido e adaptado pelo professor Edson Alves <edsomjr@gmail.com> disponível em [Template TCC FGA](https://github.com/fga-unb/template-latex-tcc)
 
-## Instalando o abnTeX2
+## Instruções de instalação do abnTeX2
 
 ### Ubuntu 12.10 ou superior
 
@@ -94,7 +93,7 @@ Informações para instalar o abnTeX2 no Mac OS X:
 
 https://code.google.com/p/abntex2/wiki/InstalacaoMac
 
-## Compilando
+## Instruções de compilação do texto
 
 Para compilar o texto através do Makefile digite:
 

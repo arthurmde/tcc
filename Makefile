@@ -1,4 +1,4 @@
-TARGET = TCC_Vinicius.pdf
+TARGET = TCC_Arthur.pdf
 
 BIBTEX = bibtex
 LATEX = latex
@@ -24,8 +24,8 @@ EDITAVEIS_SOURCES = informacoes.tex errata.tex dedicatoria.tex \
 EDITAVEIS_FILES = $(addprefix $(EDITAVEIS_DIR)/, $(EDITAVEIS_SOURCES))
 
 CHAPTERS_DIR = capitulos
-CHAPTERS_SOURCES = 1-introducao.tex 2-software_livre.tex \
-				   3-evolucao_software.tex 4-arquitetura.tex \
+CHAPTERS_SOURCES = 1-introducao.tex 2-metricas.tex \
+				   3-mezuro.tex 4-arquitetura.tex \
 				   5-mezuro.tex
 
 CHAPTERS_FILES = $(addprefix $(CHAPTERS_DIR)/, $(CHAPTERS_SOURCES))
@@ -55,7 +55,7 @@ $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 clean:
 	rm -f *~ *.dvi *.ps *.backup *.aux *.log
 	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx
-	rm -f tcc.pdf TCC_Vinicius.pdf
+	rm -f tcc.pdf TCC_Arthur.pdf
 	rm -f *.synctex.gz
 	
 dist: clean

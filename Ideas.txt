@@ -1,6 +1,10 @@
 Considerações sobre TCC
 
+16/06/2014 - Entrega texto impresso
+24, 25 e 27 do 06/2014 - Datas de apresentação
+
 ======== Reunião Terça-feira, 25/03/2014 ==========
+
 Possível Título: Cenários de Refatoração Orientadas a Métricas: Uma Evolução do Monitoramento de Código Fonte Realizada pelo Mezuro
 
 Estrutura:
@@ -14,6 +18,7 @@ Apresentações: Última semana de Junho
 Proposta de Banca: Antônio Soares Terceiro, Hilmer Rodrigues Neri
 
 
+
 ======== Reunião Terça-feira, 01/04/2014 ==========
 
 Passar pra Latex
@@ -23,8 +28,16 @@ Ver tese de Doutorado Paulo
 	Cap Métricas
 	Cap 4
 
+
+
 ======== Reunião Terça-feira, 08/04/2014 ==========
 
 Correlação de métricas de segurança X métricas de design OO
 Métricas prioritárias do NIST - Conversar com Charles e Athos
+
+
+
+======== Reunião Terça-feira, 15/04/2014 ==========
+
+Focar na escrita do capítulo teórico de métricas 
 

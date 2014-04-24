@@ -41,3 +41,7 @@ Métricas prioritárias do NIST - Conversar com Charles e Athos
 
 Focar na escrita do capítulo teórico de métricas 
 
+
+======== Reunião Terça-feira, 22/04/2014 ==========
+
+É mais interessante colocar um novo extrator no Analizo ou abaixo do Kalibro para realizar estudo de caso sobre outras linguagens tal como Ruby, Python? 

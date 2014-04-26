@@ -48,7 +48,7 @@ A segurança de software está relacionada com o contínuo processo de manter a 
 
 %
 
-Problemas de segurança são recorrentes em diversos tipos de softwares podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das coorporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Este estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Software está em fase intermediária de desenvolvimento (CITAR ONDE FALA ISSO). Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software. McGraw e colaboradores (\citeyear{mcgraw2004}) afirmam que 50\% dos problemas de segurança surgem no nível de design. Poucas ações são tomadas por Engenheiros de Software especificamente para manter a segurança no desenvolvimento de novas funcionalidades ou até mesmo na realização de \emph{refactorings}. Em outras palavras, muitas vezes o Desenvolvedor de software pode estar inserindo vulnerabilidades no código que podem ser exploradas por usuários maliciosos ou, acidentalmente, por usuários comuns. Mesmo os Engenheiros de Software que realizam testes unitários automatizados tendem a não exercitar estas vulnerabilidades, pois no geral testam principalmente as condições de uso padrão do software, enquanto deveriam explorar melhor o comportamento do software à interações indesejadas \cite{vries2006}.
+Problemas de segurança são recorrentes em diversos tipos de sistemas podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das coorporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Este estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Software está em fase intermediária de desenvolvimento (CITAR ONDE FALA ISSO). Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software. 
 
 %
 
@@ -56,13 +56,13 @@ Formalmente, uma vulnerabilidade pode ser definida como uma instância de uma fa
 
 %
 
-Vulnerabilidades podem existir em diferentes níveis de um sistema, podendo, portanto, gerar problemas com diferentes proporções. Os níveis mais comuns suscetíveis a existência de vulnerabilidades são
+Vulnerabilidades podem existir em diferentes níveis de um sistema, podendo, portanto, gerar problemas com diferentes proporções. Os níveis mais comuns suscetíveis a existência de vulnerabilidades são:
 
 %
 
 \begin{itemize}
 \item \textbf{Hardware} - Vulnerabilidades relacionadas ao hardware de sistemas que estão expostos a humidade, poeira, calor, locais inseguros, dentre outros fatores físicos relacionados ao local onde se encontra a infra-estrutura de TI.
-\item \textbf{Software} - Vulnerabilidades relacionadas às estruturas internas do software assim como aos dados que são acessados e processados. No geral, podem ser exercitados a partir de interações com o usuário não esperada ou validada.
+\item \textbf{Software} - Vulnerabilidades relacionadas às estruturas internas do software assim como aos dados que são acessados e processados. No geral, podem ser exercitados a partir de interações com o usuário não esperadas ou não validadas.
 \item \textbf{Rede} - Vulnerabilidades relacionadas aos componentes da rede, tanto físicos (cabos, \emph{switches}) quanto em software (protocolos, dados). Este tipo de vulnerabilidade também está relacionada à falhas na comunicação como linhas de comunicação não protegidas, compartilhamento de informações com não interessados.
 \item \textbf{Humana} - Vulnerabilidades relacionadas à processos que envolvem pessoas e níveis de acesso.
 \item \textbf{Organizacional} - Vulnerabilidades relacionadas problemas em nível organizacional, principalmente relacionado à falta de políticas, auditorias e planos adequados.
@@ -72,12 +72,32 @@ Vulnerabilidades podem existir em diferentes níveis de um sistema, podendo, por
 
 No presente trabalho, estamos interessados essencialmente em vulnerabilidades de software. Mais especificamente, procuramos uma abordagem que facilite o tratamento destas vulnerabilidades dada sua importância e suas consequências. Neste sentido, faz-se necessário compreender quais são as ocorrências conhecidas de falhas de segurança em software e com quais vulnerabilidades estas falhas se relacionam.
 
+%
+
+Vulnerabilidades de software são, na maior parte das vezes, causadas pela falta ou imprópria validação das entradas realizadas pelo usuário. Essas condições indesejáveis são usadas por usuários maliciosos para injetar falhas e códigos no sistema que os permitam executar seus próprios códigos e aplicações  \cite{jimenez2009}. McGraw e colaboradores (\citeyear{mcgraw2004}) afirmam que 50\% dos problemas de segurança surgem no nível de design. Poucas ações específicas são tomadas por Engenheiros de Software para manter a segurança no desenvolvimento de novas funcionalidades ou até mesmo na realização de \emph{refactorings}. Em outras palavras, muitas vezes o Desenvolvedor de software pode estar inserindo vulnerabilidades no código que podem ser exploradas por usuários maliciosos ou, acidentalmente, por usuários comuns. Mesmo os Engenheiros de Software que realizam testes unitários automatizados tendem a não exercitar estas vulnerabilidades, pois no geral testam principalmente as condições de uso padrão do software, enquanto deveriam explorar melhor o comportamento do software à interações indesejadas \cite{vries2006}.
+
+%
+
+O primeiro passo para que o Desenvolvedor consiga cuidar de vulnerabilidades no código-fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atacantes utilizam estas vulnerabilidades para falhar o sistema. Algumas das vulnerabilidades mais conhecidas e frequentes são:
+
+%
+
+\begin{itemize}
+\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em buffers de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema.Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
+%Podemos criar listagem de código 
+\item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para este processo. Como consequência, o sistema operacional pode realocar esta posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados incosistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente este endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de incosistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
+%informações importantes sobre esta vulnerabilidade: https://www.usenix.org/legacy/events/sec10/tech/full_papers/Akritidis.pdf
+%Seria interessante manter este footnote ou melhor referenciar como um Pattern do livro: http://www.informit.com/store/real-time-design-patterns-robust-scalable-architecture-9780201699562?w_ptgrevartcl=Real-Time+Design+Patterns%3a+Memory+Patterns_30309
+%Listagem do código 
+\item \textbf{\emph{Strings} formatadas não-controladas}: vulnerabilidade decorrida do tratamento inadequado das entradas do usuário sobre o software que, quando explorada, o dado submetido por uma \emph{string} de entrada é avaliado como um comando pela aplicação. Uma \emph{string} formatada pode conter dois tipos de dados: caracteres imprimíveis e diretivas de formatação de caracteres. Na linguagem C, funções de \emph{strings} formatadas tal como o \emph{printf} recebem um número variável de argumentos, dos quais uma \emph{string}  formatada é obrigatória. Para acessar o restante dos parâmetros que a chamada da função colocou na pilha, a função de \emph{string} formatada analiza a sequência de formatação e interpreta as diretrizes do formato a medida que realiza sua leitura \cite{lhee2002}.
+\item \textbf{\emph{SQL Injection}}: vulnerabilidade presente em aplicações que aceitam dados de uma fonte não confiável, não os validando adequadamente e os usando posteriormente para construção de \emph{queries} dinâmicas de SQL para comunicação com o banco de dados da aplicação. Todos os tipos de sistemas que incorporam SQL estam sujeitos a esta vulnerabilidade, apesar de serem mais comuns em aplicações WEB. Como consequência da exploração desta vulnerabilidade tem-se a perda de confiabilidade e quebra de integridade dos dados de uma base de dados. Em alguns casos, a eploração de \emph{SQL Injection} pode permitir ao atacante levar vantagens através da persistência de informações e geração de conteúdos dinâmicos em páginas web \cite{uscert2012}.
+\end{itemize}
+
+
+
 %http://en.wikipedia.org/wiki/Vulnerability_(computing)
 
-%Introduzir Vulnerabilidade
 
-%Listar Vulnerabilidades de Software
-%Falar de Vulnerabilidade e suas consequências
 %Relacionar design com vulnerabilidade, complexidade, etc.
 %Introduzir métricas
 %Propor uso

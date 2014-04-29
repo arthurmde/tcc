@@ -48,7 +48,7 @@ A segurança de software está relacionada com o contínuo processo de manter a 
 
 %
 
-Problemas de segurança são recorrentes em diversos tipos de sistemas podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das coorporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Este estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Software está em fase intermediária de desenvolvimento (CITAR ONDE FALA ISSO). Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software. 
+Problemas de segurança são recorrentes em diversos tipos de sistemas podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das coorporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Este estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Sistemas está em fase intermediária de desenvolvimento \cite{pascoa2002}. Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software. 
 
 %
 
@@ -113,9 +113,23 @@ Dentre os princípios de segurança que os Engenheiros de Software podem aplicar
 
 %
 
-O estudo sobre de conceituação de vulnerabilidades conhecidas, de princípios de design seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e design até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de desing seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros.
+O estudo sobre de conceituação de vulnerabilidades conhecidas, de princípios de design seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e design até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de desing seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
 
 %
+
+Como já mencionado, as decisões de design são fundamentais para a concepção de um software seguro. Khan \& Khan (\citeyear{khan2010}) enfatizam que a complexidade é o maior desafio para desenvolvedores de software ao projetarem um produto de qualidade que cubra ao máximo aspectos de segurança. Os mesmos autores ainda definem que a complexidade de software orientados a objetos está relacionada principalmente a quantidade de parâmetros de design de um objeto e as relações estabelecidas entre os objetos do projeto. Da mesma forma, a complexidade é um dos principais problemas que afetam a qualidade interna do software, dificultando principalmente a manutenção e evolução do software. Mesmo a complexidade sendo uma propriedade da essência do software e não acidental, conforme afirmado por Brooch (FAZER CITAÇÃO), é de suma importância que os desenvolvedores cuidem da complexidade de seus códigos, pois estes esforços reduzem os impactos negativos diretos sobre a estrutura interna do software assim como na segurança do mesmo. Para tanto, faz-se necessário a aplicação dos princípios de bom design e de princípios de design seguro através, por exemplo, da prática de \emph{refactorings} e aplicação de padrões de projeto. A seguir são listadas algumas características observáveis no design do software que podem indicar complexidade \cite{khan2010}:
+
+%
+
+\begin{itemize}
+\item Grande número de métodos específicos da aplicação de um objeto afeta a reusabilidade.
+\item Árvores de herança profundas.
+\item A grande quantidade de números de filhos de uma classe.
+\item Alto acoplamento entre objetos.
+\item Grande número de métodos públicos de um objeto.
+\item Baixa coesão de classes. 
+\end{itemize}
+
 
 A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram.
 

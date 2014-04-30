@@ -130,6 +130,23 @@ Como já mencionado, as decisões de design são fundamentais para a concepção
 \item Baixa coesão de classes. 
 \end{itemize}
 
+%
+
+O encapsulamento é uma das principais características de projetos orientados a objetos, sendo fundamental para estabelecer critérios de relação entre as classes de um projeto. Em termos de segurança, esta é outra característica fundamental que deve ser cuidadosamente pensada no design de códigos seguros, pois se relaciona diretamente com os princípios \emph{reduce attack surface} e \emph{mediate completely}.
+
+%
+
+O princípio \emph{reduce attack surface}, como já apresentado, se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de design, a diminuição de métodos públicos de classes assim como a diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. Há várias opções de \emph{refactorings} que o Engenheiro de Software pode aplicar durante o desenvolvimento para adequar o encapsulamento de suas classes de acordos com os objetivos de segurança do princípio \emph{reduce attack surface}: \emph{Encapsulate Collection}\footnote{\url{http://refactoring.com/catalog/encapsulateCollection.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}}; \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}};
+
+%
+
+O nível de encapsulamento também está extritamente relacionado com o princípio \emph{mediate completely}, uma vez que um baixo grau de encapsulamento provê diferentes formas de interações com o objeto que, segundo este princípio, devem ser verificadas sempre. Quando se tem diversos pontos de interação com um objeto as verificações necessárias para prover uma interação segura devem ser mais complexas para explorar os perigos inerentes a cada um desses tipos de interação. Portanto, restringir acessos à alguns métodos e atributos públicos podem beneficiar a aplicação do princípio de design seguro \emph{mediate completely}.
+
+%
+
+Os cuidados com o nível de encapsulamento das estruturas do software tem outros impactos sobre o design seguro. A maior parte das decisões de design afetam a complexidade do código-fonte, o que também é verdade para decisões relacionadas a encapsulamentos de classes. A redução dos métodos de acesso diminui as opções de interação com um objeto, tornando a API do objeto mais simples, sendo que o mesmo pode ser dito para a diminuição de parâmetros. Complementarmente, o encapsulamento auxilia na redução do acoplamento entre classes, promovendo maior independência entre os módulos do projeto, aumentando a extensibilidade, manutenibilidade e testabilidade do código. A redução do acoplamento entre classes apoia o design seguro, principalmente na detecção e tratamento de vulnerabilidades através de testes e aplicações dos princípios de design seguro cujos impactos são mais facilmente gerenciáveis.
+
+%
 
 A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram.
 

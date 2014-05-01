@@ -1,22 +1,17 @@
 \chapter{Design de Software e Métricas}
 \label{cap-metrics}
 
-\section{Design de Software}
-\label{sec-design-sw}
-
-Escrever Sub-seção
-
 \section{Métricas em Engenharia de Software}
 \label{sec-metrics-esw} 
-Uma métrica, no âmbito da Engenharia de Software, provê uma forma de medir quantitativamente atributos relacionados as entidades do software e do processo de desenvolvimento. Assim, métricas são importantes ferramentas para avaliação da qualidade do código-fonte produzido e acompanhamento do projeto. Meirelles (\citeyear{meirelles2013metrics}) destaca que, com métricas de software, propõe-se uma melhoria de processo de gestão com identificação, medição e controle dos parâmetros essenciais do software.
-
-%
-
 Tanto a existência de um bom design quanto a de testes automatizados que exercitem as funcionalidades são características desejáveis em projetos de software.	Boa parte das técnicas modernas da Engenharia de Software (CITAR TÉCNICAS) são voltadas para desenvolvimento com design que proporcione simplicidade, manutenibilidade e testabilidade. Mesmo que a maior parte dessas técnicas tenham sido disseminadas a partir do advento dos Métodos Ágeis e do Software Livre, cujo foco central está em atividades relacionadas ao código-fonte, elas são aplicáveis independentemente da metodologia de desenvolvimento utilizada \cite{meirelles2013metrics}. A valorização por softwares que atendam estes parâmetros de qualidade deve-se ao fato de sempre que o Engenheiro de Software está escrevendo novas linhas de código, um tempo significativo é gasto por ele na leitura e entendimento do código existente, muitas vezes desenvolvidos por outros Engenheiros. Martin (\citeyear{martin2008}) destaca que o código-fonte deve ser escrito para ser entendido principalmente por pessoas, e não pela máquina.
 
 %
 
 Neste sentido, o monitoramento da qualidade de código-fonte é fundamental e pode apoiar a utilização de técnicas de desenvolvimento que visam a melhoria contínua do código. Além disso, as métricas de código-fonte são muito importantes para projetos de software, pois estas podem ser utilizadas tanto como ferramenta para gestão do projeto quanto como referência técnica para tomada de decisões sobre o código-fonte.
+
+%
+
+Uma métrica, no âmbito da Engenharia de Software, provê uma forma de medir quantitativamente atributos relacionados as entidades do software e do processo de desenvolvimento. Assim, métricas são importantes ferramentas para avaliação da qualidade do código-fonte produzido e acompanhamento do projeto. Meirelles (\citeyear{meirelles2013metrics}) destaca que, com métricas de software, propõe-se uma melhoria de processo de gestão com identificação, medição e controle dos parâmetros essenciais do software.
 
 %
 
@@ -36,12 +31,23 @@ Entretanto, as definições de métricas adequadas para o acompanhamento do proj
 
 %
 
-\section{Métricas Orientadas à Objetos}
-\label{sec-metrics-oo}
+\section{Métricas e Design de Software}
+\label{sec-design-sw}
 
 Escrever Sub-seção
 
-\section{Métricas de Segurança}
+\section{Bad Smells}
+\label{sec-bad-smells}
+
+Escrever Sub-seção
+
+\section{Código Limpo}
+\label{sec-clean-code}
+
+Escrever Sub-seção
+
+
+\section{Métricas e Segurança de Software}
 \label{sec-metrics-security}
 
 A segurança de software está relacionada com o contínuo processo de manter a confiabilidade, integridade e disponibilidade nas diversas camadas que o compõe, sendo considerado parte dos requisitos não-funcionais do sistema. Independentemente da criticidade do sistema, a segurança em software deve ser tratada com prioridade dentro do ciclo de vida de desenvolvimento do software. Aggarwal e colaboradores (\citeyear{aggarwal2002}) cita que o custo e esforço gastos na segurança do software são bem altos, podendo chegar a 70\% to esforço total de desenvolvimento e suporte do software.
@@ -83,7 +89,7 @@ O primeiro passo para que o Desenvolvedor consiga cuidar de vulnerabilidades no 
 %
 
 \begin{itemize}
-\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em buffers de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema.Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
+\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em buffers de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
 %Podemos criar listagem de código 
 \item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para este processo. Como consequência, o sistema operacional pode realocar esta posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados incosistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente este endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de incosistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
 %informações importantes sobre esta vulnerabilidade: https://www.usenix.org/legacy/events/sec10/tech/full_papers/Akritidis.pdf
@@ -113,11 +119,11 @@ Dentre os princípios de segurança que os Engenheiros de Software podem aplicar
 
 %
 
-O estudo sobre de conceituação de vulnerabilidades conhecidas, de princípios de design seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e design até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de desing seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
+O estudo sobre conceituação de vulnerabilidades conhecidas, de princípios de design seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e design até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de desing seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
 
 %
 
-Como já mencionado, as decisões de design são fundamentais para a concepção de um software seguro. Khan \& Khan (\citeyear{khan2010}) enfatizam que a complexidade é o maior desafio para desenvolvedores de software ao projetarem um produto de qualidade que cubra ao máximo aspectos de segurança. Os mesmos autores ainda definem que a complexidade de software orientados a objetos está relacionada principalmente a quantidade de parâmetros de design de um objeto e as relações estabelecidas entre os objetos do projeto. Da mesma forma, a complexidade é um dos principais problemas que afetam a qualidade interna do software, dificultando principalmente a manutenção e evolução do software. Mesmo a complexidade sendo uma propriedade da essência do software e não acidental, conforme afirmado por Brooch (FAZER CITAÇÃO), é de suma importância que os desenvolvedores cuidem da complexidade de seus códigos, pois estes esforços reduzem os impactos negativos diretos sobre a estrutura interna do software assim como na segurança do mesmo. Para tanto, faz-se necessário a aplicação dos princípios de bom design e de princípios de design seguro através, por exemplo, da prática de \emph{refactorings} e aplicação de padrões de projeto. A seguir são listadas algumas características observáveis no design do software que podem indicar complexidade \cite{khan2010}:
+Como já mencionado, as decisões de design são fundamentais para a concepção de um software seguro. Khan \& Khan (\citeyear{khan2010}) enfatizam que a complexidade é o maior desafio para desenvolvedores de software ao projetarem um produto de qualidade que cubra ao máximo aspectos de segurança. Os mesmos autores ainda definem que a complexidade de software orientados a objetos está relacionada principalmente a quantidade de parâmetros de design de um objeto e as relações estabelecidas entre os objetos do projeto. Da mesma forma, a complexidade é um dos principais problemas que afetam a qualidade interna do software, dificultando principalmente a manutenção e evolução do software. Mesmo a complexidade sendo uma propriedade da essência do software e não acidental, conforme afirmado por Brook (FAZER CITAÇÃO), é de suma importância que os desenvolvedores cuidem da complexidade de seus códigos, pois estes esforços reduzem os impactos negativos diretos sobre a estrutura interna do software assim como na segurança do mesmo. Para tanto, faz-se necessário a aplicação dos princípios de bom design e de princípios de design seguro através, por exemplo, da prática de \emph{refactorings} e aplicação de padrões de projeto. A seguir são listadas algumas características observáveis no design do software que podem indicar complexidade \cite{khan2010}:
 
 %
 
@@ -148,32 +154,11 @@ Os cuidados com o nível de encapsulamento das estruturas do software tem outros
 
 %
 
-A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram.
+%Introduzir métricas
+%A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram.  
 
 %
 
-
-
-
-%http://en.wikipedia.org/wiki/Vulnerability_(computing)
-
-
-%Relacionar design com vulnerabilidade, complexidade, etc.
-%Introduzir métricas
-%Propor uso
-
-
-
-
-\section{Bad Smells}
-\label{sec-bad-smells}
-
-Escrever Sub-seção
-
-\section{Código Limpo}
-\label{sec-clean-code}
-
-Escrever Sub-seção
 
 
 

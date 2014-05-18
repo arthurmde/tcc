@@ -15,7 +15,9 @@ Estrutura:
 Data: Segunda semana de Junho, até dia 11 fechar o texto
 Apresentações: Última semana de Junho
 
-Proposta de Banca: Antônio Soares Terceiro, Hilmer Rodrigues Neri
+Proposta de Banca: 
+Antônio Soares Terceiro, Hilmer Rodrigues Neri, Diego Aranha, Maurício Aniche
+
 
 
 
@@ -45,3 +47,20 @@ Focar na escrita do capítulo teórico de métricas
 ======== Reunião Terça-feira, 22/04/2014 ==========
 
 É mais interessante colocar um novo extrator no Analizo ou abaixo do Kalibro para realizar estudo de caso sobre outras linguagens tal como Ruby, Python? 
+
+
+======== Reunião Terça-feira, 13/05/2014 ==========
+
+
+Juntar TCC com Carlos Filipe
+
+Título: Tomada de decisões orientadas a métricas de software: observações de métricas de produto e vulnerabilidades de software via DW e Plataforma de monitoramente de código-fonte.
+
+Pergunta de pesquisa Carlos: DW melhora as tomadas de decisão em relação aos ambientes web (outro ambiente de monitoramento de métricas)?
+	h1 = SIM
+
+Pergunta de pesquisa: Quão melhor é um DW como ambiente de tomada de decisões baseadas em métricas de software.
+
+Pergunta de pesquisa: Código mais complexo (métricas de produtos) são mais sujeitos à vulnerabilidades.
+
+

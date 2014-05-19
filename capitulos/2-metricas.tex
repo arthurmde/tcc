@@ -44,6 +44,7 @@ Escrever Sub-seção
 
 \section{Segurança de Software}
 \label{sec-metrics-security}
+%introdução
 
 A segurança de software está relacionada com o contínuo processo de manter a confiabilidade, integridade e disponibilidade nas diversas camadas que o compõe, sendo considerado parte dos requisitos não-funcionais do sistema. Independentemente da criticidade do sistema, a segurança em software deve ser tratada com prioridade dentro do ciclo de vida de desenvolvimento do software. Aggarwal e colaboradores (\citeyear{aggarwal2002}) cita que o custo e esforço gastos na segurança do software são bem altos, podendo chegar a 70\% to esforço total de desenvolvimento e suporte do software.
 
@@ -78,26 +79,90 @@ No presente trabalho, estamos interessados essencialmente em vulnerabilidades de
 Vulnerabilidades de software são, na maior parte das vezes, causadas pela falta ou imprópria validação das entradas realizadas pelo usuário. Essas condições indesejáveis são usadas por usuários maliciosos para injetar falhas e códigos no sistema que os permitam executar seus próprios códigos e aplicações  \cite{jimenez2009}. McGraw e colaboradores (\citeyear{mcgraw2004}) afirmam que 50\% dos problemas de segurança surgem no nível de design. Poucas ações específicas são tomadas por Engenheiros de Software para manter a segurança no desenvolvimento de novas funcionalidades ou até mesmo na realização de \emph{refactorings}. Em outras palavras, muitas vezes o Desenvolvedor de software pode estar inserindo vulnerabilidades no código que podem ser exploradas por usuários maliciosos ou, acidentalmente, por usuários comuns. Mesmo os Engenheiros de Software que realizam testes unitários automatizados tendem a não exercitar estas vulnerabilidades, pois no geral testam principalmente as condições de uso padrão do software, enquanto deveriam explorar melhor o comportamento do software à interações indesejadas \cite{vries2006}.
 
 %
+\subsection{Classificações e taxonomias de vunerabilidades}
+O primeiro passo para que o desenvolvedor consiga cuidar de vunerabilidades no código fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atancantes utilizam estas vunerabilidadespara falhar o sistema. Existem muitos tipos de vunerabilidades, e com o passar do tempo, novas vunerabilidades são descobertas e novos exploits são criados por atacantes. Em meio a essa diversidade, a classificação de vunerabilidades representa um grande desafio, porém, já houve vários avanços na área com o objetivo de enumerar e catalogar estas vunerabilidades.
 
-O primeiro passo para que o Desenvolvedor consiga cuidar de vulnerabilidades no código-fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atacantes utilizam estas vulnerabilidades para falhar o sistema. Algumas das vulnerabilidades mais conhecidas e frequentes são:
+%
+
+O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE com o objetivo de enumerar as vunerabilidades descoberdas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em MARTIN, antigamente cada organização nomeava de sua maneira uma vunerabilidade, de forma que uma mesma vunerabilidade era referenciada de maneira completamente distinta entra as organizações. 
+
+%
+
+A enumeração realizada pelo CVE é feita por uma junta de especialistas 	de segurança. Essa equipe nomeia, descreve e referencia cada nova ameaça. As novas ameaças são reportadas pela comunidade. Após estudo e aprovação, essa ameaça passa a incluir a lista da CVE, cujo o identificador é representado da seguinte forma : CVE-2014-0002. O valor 2014 significa que a CVE foi criada em 2014, e o numero 0002 se refere ao numero sequencial atribuído a essa CVE dentre todas que foram aprovadas nesse ano.
+
+%
+
+Surgiram propostas além do CVE para a classificação e agrupamento de vunerabilidades, que são chamadas de taxonomias. O trabalho de MALEBRA descreve as as primeiras propostas taxonômicas, como os trabalhos de Landwher em 1992(\emph{A toxonomy of Computer Security Flaws}) e Aslam em 1997 (\emph{Use of  a taxonomy of Security Faults}). Porém, consideramos mais relevante abordar mais detalhadamente sobre as taxonomias mais recentes, que são utilizadas no projeto CWE, iniciativa semelhante a CVE que será abordada mais adiante. As principais taxonomias são:
 
 %
 
 \begin{itemize}
-\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em buffers de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
-%Podemos criar listagem de código 
-\item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para este processo. Como consequência, o sistema operacional pode realocar esta posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados incosistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente este endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de incosistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
-%informações importantes sobre esta vulnerabilidade: https://www.usenix.org/legacy/events/sec10/tech/full_papers/Akritidis.pdf
-%Seria interessante manter este footnote ou melhor referenciar como um Pattern do livro: http://www.informit.com/store/real-time-design-patterns-robust-scalable-architecture-9780201699562?w_ptgrevartcl=Real-Time+Design+Patterns%3a+Memory+Patterns_30309
-%Listagem do código 
-\item \textbf{\emph{Strings} formatadas não-controladas}: vulnerabilidade decorrida do tratamento inadequado das entradas do usuário sobre o software que, quando explorada, o dado submetido por uma \emph{string} de entrada é avaliado como um comando pela aplicação. Uma \emph{string} formatada pode conter dois tipos de dados: caracteres imprimíveis e diretivas de formatação de caracteres. Na linguagem C, funções de \emph{strings} formatadas tal como o \emph{printf} recebem um número variável de argumentos, dos quais uma \emph{string}  formatada é obrigatória. Para acessar o restante dos parâmetros que a chamada da função colocou na pilha, a função de \emph{string} formatada analiza a sequência de formatação e interpreta as diretrizes do formato a medida que realiza sua leitura \cite{lhee2002}.
-\item \textbf{\emph{SQL Injection}}: vulnerabilidade presente em aplicações que aceitam dados de uma fonte não confiável, não os validando adequadamente e os usando posteriormente para construção de \emph{queries} dinâmicas de SQL para comunicação com o banco de dados da aplicação. Todos os tipos de sistemas que incorporam SQL estam sujeitos a esta vulnerabilidade, apesar de serem mais comuns em aplicações WEB. Como consequência da exploração desta vulnerabilidade tem-se a perda de confiabilidade e quebra de integridade dos dados de uma base de dados. Em alguns casos, a eploração de \emph{SQL Injection} pode permitir ao atacante levar vantagens através da persistência de informações e geração de conteúdos dinâmicos em páginas web \cite{uscert2012}.
+\item PLOVER (\emph{Preliminary List Of Vulnerability Examples for Researchers})
+\item CLASP (\emph{Comprehensive, Lightweight Application Security Process})
+\item \emph{Seven Pernicious Kingdom}
 \end{itemize}
 
-%Lista: https://cwe.mitre.org/top25/
-%http://nvd.nist.gov/cwe.cfm
+%
 
-Existem muitas outras vulnerabilidades de software que são passíveis de exploração por atacantes. Neste sentido, é de suma importância para o desenvolvimento de softwares mais seguros que os Engenheiros de Software construam códigos com qualidade suficiente que os permitam identificar, corrigir e evitar a inserção de vulnerabilidades. Tendo-se o conhecimento de quais são as principais vulnerabilidades existentes, os Engenheiros devem tratar essas vulnerabilidades desde as primeiras fases de design e desenvolvimento código-fonte, seguindo até o fim do ciclo de vida do desenvolvimento do software. Assim como os desenvolvedores programam aplicando ao código princípios de design, devem evoluir o código aplicando princípios de design seguro tais quais os apresentados por outros trabalhos \cite{saltzer1975} \cite{bishop2003} \cite{mcgraw2002} \cite{a1lshammari2009}.
+O PLOVER foi criado em 2005 pelo MITRE em parceria com o DHS(US. Departament of Homeland Secutity) e o NIST(National Institute of Technology). É um documento que lista mais de 1400 exemplos reais de vunerabilidades identificados pelo CVE. Trata-se de um framework conceitual que descreve as vunerabilidades em diversos níveis de detalhe. O PLOVER também fornece uma série de conceitos que podem ajudar na comunicação e discussões à respeitos de vunerabilidades.
+
+%
+
+Foram definidas 28 categorias de mais alto nivel para a categorização de vunerabilidades. Algumas dessas são:
+
+\begin{itemize}
+\item BUFF: inclui vunerabilidades de Buffer Overflow, formatação de strings, etc;
+\item CRIPTO: inclui vunerabilidades relacionadas a criptografia;
+\item SPECTS: inclui vunerabilidades que ocorrem e tecnologias específicas, como a injeção de SQL e XSS
+\end{itemize}
+
+A lista completa das categorias e mais detalhes sobre o PLOVER podem ser encontrados em (CHRISTEY,2006).
+
+%
+
+O CLASP não é apenas uma taxonomia de categorização de vunerabilidades, mas sim um processo que busca melhorar a segurança de softwares. No de diz respeito a classificação, o CLASP define 5 categorias alto nível que incluem 104 tipos de vunerabilidades, que são:
+
+\begin{itemize}
+\item Erros de tipo e de Range
+\item Problemas no ambiente 
+\item Erros de sincronização e de temporização
+\item Erros de protocolo
+\item Erros de lógica
+\item Malware
+\end{itemize}
+
+%
+Exemplificando, as vunerabilidades do tipo Buffer Overflow se encaixariam na categoria de erro de tipo e de range, pois nesse tipo de vunerabilidade é permitido a escrita de uma informação além o limite do buffer. A vunerabilidade do tipo  injeção de SQL também se encaixaria nessa categoria, pois esse tipo de vunerabilidade ocorre quando não há validação no tipo de informação fornecida pelo usuário. Mais detalhes podem ser vistos em http://cwe.mitre.org/about/sources.html (ARRUMAR REFERENCIA).
+
+%
+
+A taxonomia Seven Pernicious Kingdoms é a que possibilita melhor entendimento ao desenvolvedor, e é até utilizada como base em uma das visões das CWEs denominada \emph{Development View}(SITE CWE REFERENCIA). Utiliza os conceitos da biologia de Reino e Filo. Na taxonomia, o Reino é a classificação mais abrangente e o Filo é uma subdivisão do Reino. Essa taxonomia, embora o nome sugere sete, possui oito reinos sendo que sete reinos são dedicados a vunerabilidades de código fonte e um reino referente a aspectos de configuração e ambiente. São eles:
+
+\begin{itemize}
+\item \textbf{Validação e representação de entrada}: inclui erros de buffer overflow, injeção de SQL, XSS, etc;
+\item \textbf{Abuso de API}: Ocorre quando uma função que chama outra função assume certas condições que não estão garantidas pela rotina chamada.
+\item \textbf{\emph{Features} de segurança}: está relacionado ao uso correto de peças chaves em segurança de código como criptografia, autenticação, gerenciamento de privilégios, etc;
+\item \textbf{Tempo e estado}: está relacionado a erros de paralelismo, sincronização e uso de informação.
+\item \textbf{Erros}: está relacionado erros oriundo da falta de tratamento de erros da aplicação.
+\item \textbf{Qualidade de código}: são erros originados pela falta de qualidade no código fonte. Geralmente acontecem quando são utilizadas más praticas de programação que podem gerar colapso no sistema, como por exemplo não desalocar recursos não utilizados pode gerar \emph{Memory Leak};
+\item \textbf{Encapsulamento}: são erros relacionados ao não estebelecimento de limite de acesso aos componentes do sistema
+\item \textbf{Ambiente}: são erros que estão relacionados a fatores externos do software, que não estão no escopo deste trabalho.
+
+\end{itemize}
+
+A idéia desta taxonomia foi criar reinos bem amplos para que novos filos fossem inseridos em seu lugar correto, porém a taxonomia proposta está aberta para a inserção de novos reinos, caso necessário. Mais informações e detalhes a cerca dos filos que incluem cada reino pode ser encontrado em (TSIPENYUK K. et all)
+
+%
+Com este cenário apresentado acima, em que temos a CVE como projeto de enumerar as vunerabilidades encontradas e as taxonomias elaboradas por diversos trabralhos com o objetivo de classificar e dar mais informações sobre a vunerabilidade, ainda haviam a necessidade das empresas e organizações de utilizarem o uma terminologia padrão para listar e classificar vunerabilidades de software, gerando uma linguagem unificada e uma base para ferramentas e serviços de medição dessas vunerabilidades. Para essa necessidade foi elaborado o projeto CWE.
+
+%
+O CWE é uma lista formal de vunerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vunerabilidades de software no design, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vunerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vunerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vunerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados.
+(FALAR SOBRE O TOP 25 CWE)
+%
+
+\subsection{Princípios de segurança}
+
+Como visto no estudo sobre a classificação e taxonomias, existem muitas vulnerabilidades de software que são passíveis de exploração por atacantes. Neste sentido, é de suma importância para o desenvolvimento de softwares mais seguros que os Engenheiros de Software construam códigos com qualidade suficiente que os permitam identificar, corrigir e evitar a inserção de vulnerabilidades. Tendo-se o conhecimento de quais são as principais vulnerabilidades existentes, os Engenheiros devem tratar essas vulnerabilidades desde as primeiras fases de design e desenvolvimento código-fonte, seguindo até o fim do ciclo de vida do desenvolvimento do software. Assim como os desenvolvedores programam aplicando ao código princípios de design, devem evoluir o código aplicando princípios de design seguro tais quais os apresentados por outros trabalhos \cite{saltzer1975} \cite{bishop2003} \cite{mcgraw2002} \cite{a1lshammari2009}.
 
 %
 
@@ -112,6 +177,38 @@ Dentre os princípios de segurança que os Engenheiros de Software podem aplicar
 \item \textbf{\emph{Mediate completely}}: princípio que defende que todos os acessos a quaisquer objetos devem ser verificados para garantir se há permissões para realizar tal ação. Se em algum momento for solicitado a leitura de um objeto, o sistema deve verificar se o sujeito tem permissão de leitura. Caso tenha, deve prover somente os recursos necessários para realização das tarefas que interessa a este sujeito. Esta operação deve se repetir todas as vezes que a requisição ao objeto for feita, não somente na primeira vez \cite{bishop2003}.
 \item \textbf{\emph{Separation of duties}}: princípio relacionado a separação de interesses dentro dos métodos e mecanismos de segurança do software. A OWASP sugere a separação entre as entidades que aprovação a ação, entidades que realizam a ação e entidades que monitoram a ação \footnote{\url{https://www.owasp.org/index.php/Separation_of_duties}}. Este princípio está diretamente relacionado com os princípios de design orientado à objetos tais como coesão e separação de interesses. Por outro lado, também mantém forte relação com o princípio de design seguro \emph{Economy of mechanism}, pois proporciona código mais limpo e que podem ser mantidos separadamente.
 \end{itemize}
+
+
+Alguns módulos do software requerem mais atenção do que outros quanto riscos de vulnerabilidades. Neste sentido, principalmente em atividades de manutenção e evolução de um software existente, pode ser necessária a priorização do esforço para evolução da segurança do código-fonte voltados para módulos com maior risco. Pode-se, por exemplo, priorizar a redução da superfície de ataque em módulos mais expostos. Howard (\citeyear{howard2006}) propôs, dentre outras, as seguintes heurísticas para priorização da revisão de segurança de códigos:
+
+%
+
+\begin{itemize}
+\item \textbf{Códigos antigos}: códigos mais antigos podem ter mais vulnerabilidades do que códigos produzidos recentementes. Isto acontece devido a evolução do entendimento da equipe de desenvolvimento quanto aos possíveis problemas de segurança. Além disso, Howard ainda enfatiza que qualquer código legado deve ser profundamente investigado.
+\item \textbf{Códigos anonimamente acessíveis}: códigos que podem ser acessados por qualquer usuário, mesmo não autenticado, devem ser cuidadosamente revisados.
+\item \textbf{Códigos que escutam em interfaces de rede globalmente acessíveis}: códigos que escutam as interfaces acessíveis de redes por padrão, principalmente de redes desconhecidas como a Internet, devem ser cuidadosamente revisadas e ter monitoramento de vulnerabilidades.
+\item \textbf{Códigos escritos nas linguagens C, C++ e Assembly}: essas linguagens de programação possuem mecanismos de acesso direto à memória e devem ser periodicamente revisadas quanto a vulnerabilidades de \emph{buffer overflow} e de ponteiros inválidos ou inapropriadamente desalocados.
+\item \textbf{Códigos com histórico de vulnerabilidades}: códigos que já apresentaram problemas de vulnerabilidade devem sempre ser foco de novas revisões, a não ser que possa ser demonstrado que as vulnerabilidades apresentadas já foram realmente removidas.
+\item \textbf{Códigos que processam dados sensíveis}: códigos que manipulam dados sensíveis devem ser revisados para garantir que existam vulnerabilidades que permitam o acesso indevido aos mesmos por usuários não confiáveis.
+\item \textbf{Códigos complexos}: códigos que estrutura complexa devem ser periódicamente revisados para investigar possíveis melhorias que diminuam a complexidade. Como já destacado anteriormente nesta monografia, a complexidade é uma das principais inimigas da segurança e pode ocultar vulnerabilidades perigosas.
+\item \textbf{Códigos que mudam frequentemente}: códigos instáveis que são passíveis a mudanças frequentes devem ser revisados a cada grande mudança, pois mudanças podem trazer a inserção de novos \emph{bugs} e vulnerabilidades.
+\end{itemize}
+
+%%%%%%%%%%%%%%%
+%%\begin{itemize}
+%%\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em buffers de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
+%Podemos criar listagem de código 
+%%\item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para este processo. Como consequência, o sistema operacional pode realocar esta posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados incosistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente este endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de incosistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
+%informações importantes sobre esta vulnerabilidade: https://www.usenix.org/legacy/events/sec10/tech/full_papers/Akritidis.pdf
+%Seria interessante manter este footnote ou melhor referenciar como um Pattern do livro: http://www.informit.com/store/real-time-design-patterns-robust-scalable-architecture-9780201699562?w_ptgrevartcl=Real-Time+Design+Patterns%3a+Memory+Patterns_30309
+%Listagem do código 
+%%\item \textbf{\emph{Strings} formatadas não-controladas}: vulnerabilidade decorrida do tratamento inadequado das entradas do usuário sobre o software que, quando explorada, o dado submetido por uma \emph{string} de entrada é avaliado como um comando pela aplicação. Uma \emph{string} formatada pode conter dois tipos de dados: caracteres imprimíveis e diretivas de formatação de caracteres. Na linguagem C, funções de \emph{strings} formatadas tal como o \emph{printf} recebem um número variável de argumentos, dos quais uma \emph{string}  formatada é obrigatória. Para acessar o restante dos parâmetros que a chamada da função colocou na pilha, a função de \emph{string} formatada analiza a sequência de formatação e interpreta as diretrizes do formato a medida que realiza sua leitura \cite{lhee2002}.
+%%\item \textbf{\emph{SQL Injection}}: vulnerabilidade presente em aplicações que aceitam dados de uma fonte não confiável, não os validando adequadamente e os usando posteriormente para construção de \emph{queries} dinâmicas de SQL para comunicação com o banco de dados da aplicação. Todos os tipos de sistemas que incorporam SQL estam sujeitos a esta vulnerabilidade, apesar de serem mais comuns em aplicações WEB. Como consequência da exploração desta vulnerabilidade tem-se a perda de confiabilidade e quebra de integridade dos dados de uma base de dados. Em alguns casos, a eploração de \emph{SQL Injection} pode permitir ao atacante levar vantagens através da persistência de informações e geração de conteúdos dinâmicos em páginas web \cite{uscert2012}.
+%%\end{itemize}
+
+%Lista: https://cwe.mitre.org/top25/
+%http://nvd.nist.gov/cwe.cfm
+
 
 %
 
@@ -156,76 +253,9 @@ Os cuidados com o bom design do código-fonte são fundamentais para o desenvolv
 
 %
 
-A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram. Esses indicadores são obitidos a partir de interpretações de métricas que mensuram atributos relacionados ao código, seja de segurança ou não. O \emph{Common Vulnerability Scoring System - CVSS} é um \emph{framework} aberto desenvolvido pelo NIST (National Institute of Standard and Technology) em parceria com organizações industriais que endereça as questões relacionadas as métricas para quantificar a severidade e risco de vulnerabilidades \cite{cvss2007}. Este documento é composto por três grupos de métricas: Básicas, Temporal e Ambiental.
-
-%
-
-O grupo de métricas Básicas capturam características intrínsecas e fundamentais de uma vulnerabilidade que são constantes no tempo e no ambiente de uso. A seguir as métricas que compõem este grupo serão introduzidos:
-
-\begin{itemize}
-\item \textbf{Access Vector - AV}: esta métrica representa como a vulnerabilidade é explorada, localmente ou remotamente. Quanto mais remoto puder ser um ataque à informações de ativos, maior a pontuação da vulnerabilidade. Possíveis indicadores podem ser vistos  de acordo com os valores da Tabela~\ref{tab:av_scoring}.
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | l |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Local (L) & Uma vulnerabilidade que só pode ser explorada com acesso local requer que o atacante tenha acesso físico ao sistema vulnerável ou a uma conta local (shell) \\ \hline
-	    Rede Adjacente (A) & Uma vulnerabilidade explorável através de um acesso a rede adjacente exige que o atacante tenha acesso a partir de \emph{broadcast} ou colisão de domínios do software sob ataque \\ \hline
-	    Rede (N) & Uma vulnerabilidade explorável através de acesso a rede significa que o software vulnerável está vinculado a rede e não requer que o atacante tenha acesso local, podendo realizar uma "eploração remota" \\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica AV}
-	    \label{tab:av_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Access Complexity - AC}: algumas vulnerabilidades requerem alguns passos mais complexos para serem exploradas. Portanto, esta métrica mede a complexidade do ataque necessário para explorar a vulnerabilidade uma vez que o atacante tenha ganhado o controle sobre um sistema alvo. Os valores dessa métrica pode ser definido de acordo com os indicadores da Tabela~\ref{tab:ac_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | l |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Alto (H) & Existem condições especiais de acesso tais como: ter o privilégio de acesso e o atacante deve explorar condições diferentes de uso do software. \\ \hline
-	    Médio (M) & As condições de acessos são de alguma forma especiais tais como: a superfície vulnerável ao ataque só é acessível para um grupo de usuários e algumas informações devem estar disponíveis para possibilitar o ataque. \\ \hline
-	    Baixo (L) & Não existem condições especiais de acesso permitindo ataques manuais por atacantes com poucas habilidades.\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica AC}
-	    \label{tab:ac_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Authentication - Au}: esta métrica mede a quantidade de vezes que um atacante deve ser autenticado para explorar um vulnerabilidade. Quanto menos autenticações, maior será o valor desta métrica. Vale destacar que o objetivo desta métrica não é medir a complexidade e segurança do mecanismo de autenticação. Os indicadores desta métrica são simples e bem definidos: Multíplo (M), indicando duas ou mais autenticações necessárias; Único (S), indicando que apenas uma auntenticação é realizada; e Nenhum (N), indicando que nenhum auntenticação é realizada.
-\item \textbf{Confidentiality Impact - C}: esta métrica mede o impacto na confidencialidade do sistema quando uma vulnerabilidade é explorada. A confidencialidade refere-se a limitar o acesso a informações e sua divulgação somente para usuários autorizados. Os indicadores desta métrica são explicados na Tabela~\ref{tab:c_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | l |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Nenhum (N) & Não há nenhum impacto sobre a confidencialidade do sistema. \\ \hline
-	    Parcial (P) & Existe a divulgação considerável inapropriada de informações, mas o atacante não tem controle sobre a informação obtida.  \\ \hline
-	    Completa (C) & Existe a divulgação total inapropriada de informações, onde o atacante pode obter informações de todo o sistema\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica C}
-	    \label{tab:c_scoring}
-	\end{center}
-	\end{table}
-
-\end{itemize}
 %Lista: http://www.first.org/cvss/cvss-guide.pdf
 
 %
-
-Alguns módulos do software requerem mais atenção do que outros quanto riscos de vulnerabilidades. Neste sentido, principalmente em atividades de manutenção e evolução de um software existente, pode ser necessária a priorização do esforço para evolução da segurança do código-fonte voltados para módulos com maior risco. Pode-se, por exemplo, priorizar a redução da superfície de ataque em módulos mais expostos. Howard (\citeyear{howard2006}) propôs, dentre outras, as seguintes heurísticas para priorização da revisão de segurança de códigos:
-
-%
-
-\begin{itemize}
-\item \textbf{Códigos antigos}: códigos mais antigos podem ter mais vulnerabilidades do que códigos produzidos recentementes. Isto acontece devido a evolução do entendimento da equipe de desenvolvimento quanto aos possíveis problemas de segurança. Além disso, Howard ainda enfatiza que qualquer código legado deve ser profundamente investigado.
-\item \textbf{Códigos anonimamente acessíveis}: códigos que podem ser acessados por qualquer usuário, mesmo não autenticado, devem ser cuidadosamente revisados.
-\item \textbf{Códigos que escutam em interfaces de rede globalmente acessíveis}: códigos que escutam as interfaces acessíveis de redes por padrão, principalmente de redes desconhecidas como a Internet, devem ser cuidadosamente revisadas e ter monitoramento de vulnerabilidades.
-\item \textbf{Códigos escritos nas linguagens C, C++ e Assembly}: essas linguagens de programação possuem mecanismos de acesso direto à memória e devem ser periodicamente revisadas quanto a vulnerabilidades de \emph{buffer overflow} e de ponteiros inválidos ou inapropriadamente desalocados.
-\item \textbf{Códigos com histórico de vulnerabilidades}: códigos que já apresentaram problemas de vulnerabilidade devem sempre ser foco de novas revisões, a não ser que possa ser demonstrado que as vulnerabilidades apresentadas já foram realmente removidas.
-\item \textbf{Códigos que processam dados sensíveis}: códigos que manipulam dados sensíveis devem ser revisados para garantir que existam vulnerabilidades que permitam o acesso indevido aos mesmos por usuários não confiáveis.
-\item \textbf{Códigos complexos}: códigos que estrutura complexa devem ser periódicamente revisados para investigar possíveis melhorias que diminuam a complexidade. Como já destacado anteriormente nesta monografia, a complexidade é uma das principais inimigas da segurança e pode ocultar vulnerabilidades perigosas.
-\item \textbf{Códigos que mudam frequentemente}: códigos instáveis que são passíveis a mudanças frequentes devem ser revisados a cada grande mudança, pois mudanças podem trazer a inserção de novos \emph{bugs} e vulnerabilidades.
-\end{itemize}
 
 %========================================================================================%
 
@@ -269,6 +299,110 @@ Entretanto, as definições de métricas adequadas para o acompanhamento do proj
 
 \subsection{Métricas Estáticas de Segurança}
 
+Métricas de vunerabilidade são métricas diretas que contam quantas ocorrências da vunerabilidade é encontrada no software. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vunerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vunerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de buffer overflow. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de Buffer overflow. Encontrar a vunerabilidade no código consiste em identificar o uso do mesmo código ou lógica de programação que define a CWE. Métricas de segurança se baseiam então na ocorrencia ou não de trechos de código ou lógica de programação que representam uma vunerabilidade já catalogada.
+
+%
+
+Continuando com o exemplo da vunerabilidade de Buffer Overflow, podemos citar duas CWEs que identificam essa vunerabilidade de maneiras diferentes: CWE 242 e CWE 120. A CWE 120 é denominada \emph{Classic Buffer Overflow}, e esta vunerabilidade ocorre quando quando um buffer de entrada é copiado para um buffer de saída sem que haja a verificação o tamanho da entrada é menor ou igual ao tamanho de saída, podendo gerar uma sobrescrita nas posições de memória além das posições utilizadas pelo buffer. Da mesma maneira, a CWE 242 também trata o risco de um buffer overflow com o uso da função "gets()" da linguagem C, que  copia os dados de input do usuário para um buffer, sendo que não há garantia de que o input será menor ou igual o limite do buffer destinado ao armazenamento da informação.
+
+%
+
+A identificação desse códigos que representam vunerabilidades específicas podem ser feitas com o auxílio de ferramentas de análise estática de código, justamente pelo fato de que é difícil para um programador saber se ele está inserindo uma vunerabilidade no código ou não, pois é preciso ter o conhecimento da vunerabilidade. A ferramenta de análise estática Analizo, por exemplo, fornece algumas métricas de vunerabilidade. Estas são reportadas indicando a quantidade e o local de ocorrência.
+%
+\subsubsection{Métricas escolhidas}
+
+\subsubsection{CVSS}
+
+A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram. Esses indicadores são obitidos a partir de interpretações de métricas que mensuram atributos relacionados ao código, seja de segurança ou não. 
+
+O \emph{Common Vulnerability Scoring System - CVSS} é um \emph{framework} aberto desenvolvido pelo NIST (National Institute of Standard and Technology) em parceria com organizações industriais que endereça as questões relacionadas as métricas para quantificar a severidade e risco de vulnerabilidades \cite{cvss2007}. Com o CVSS é possível estabelecer um escore entre as vunerabilidades de maneira que possa haver uma comparação entre a criticidade de cada vunerabilidade para o contexto da organização. Distinguindo quais vunerabilidades são mais graves, os gestores conseguem distribuir melhor o esforço para o tratamento dessas vunerabilidades mais críticas. O CVSS é composto por três grupos de métricas: Básicas, Temporal e Ambiental.
+
+%
+
+O grupo de métricas Básicas capturam características intrínsecas e fundamentais de uma vulnerabilidade que são constantes no tempo e no ambiente de uso. A seguir as métricas que compõem este grupo serão introduzidos:
+
+\begin{itemize}
+\item \textbf{Access Vector - AV}: esta métrica representa como a vulnerabilidade é explorada, localmente ou remotamente. Quanto mais remoto puder ser um ataque à informações de ativos, maior a pontuação da vulnerabilidade. Possíveis indicadores podem ser vistos  de acordo com os valores da Tabela~\ref{tab:av_scoring}.
+	\begin{table}[H]
+	\begin{center}
+	    \begin{tabular}{ | l | p{10cm} |}
+	    \hline
+	    Valor da Métrica & Descrição \\ \hline
+	    Local (L) & Uma vulnerabilidade que só pode ser explorada com acesso local requer que o atacante tenha acesso físico ao sistema vulnerável ou a uma conta local (shell) \\ \hline
+	    Rede Adjacente (A) & Uma vulnerabilidade explorável através de um acesso a rede adjacente exige que o atacante tenha acesso a partir de \emph{broadcast} ou colisão de domínios do software sob ataque \\ \hline
+	    Rede (N) & Uma vulnerabilidade explorável através de acesso a rede significa que o software vulnerável está vinculado a rede e não requer que o atacante tenha acesso local, podendo realizar uma "eploração remota" \\ \hline
+	    \end{tabular}
+	    \caption{Avaliação de Indicadores da Métrica AV}
+	    \label{tab:av_scoring}
+	\end{center}
+	\end{table}
+\item \textbf{Access Complexity - AC}: algumas vulnerabilidades requerem alguns passos mais complexos para serem exploradas. Portanto, esta métrica mede a complexidade do ataque necessário para explorar a vulnerabilidade uma vez que o atacante tenha ganhado o controle sobre um sistema alvo. Os valores dessa métrica pode ser definido de acordo com os indicadores da Tabela~\ref{tab:ac_scoring}
+	\begin{table}[H]
+	\begin{center}
+	    \begin{tabular}{ | l | p{10cm} |}
+	    \hline
+	    Valor da Métrica & Descrição \\ \hline
+	    Alto (H) & Existem condições especiais de acesso tais como: ter o privilégio de acesso e o atacante deve explorar condições diferentes de uso do software. \\ \hline
+	    Médio (M) & As condições de acessos são de alguma forma especiais tais como: a superfície vulnerável ao ataque só é acessível para um grupo de usuários e algumas informações devem estar disponíveis para possibilitar o ataque. \\ \hline
+	    Baixo (L) & Não existem condições especiais de acesso permitindo ataques manuais por atacantes com poucas habilidades.\\ \hline
+	    \end{tabular}
+	    \caption{Avaliação de Indicadores da Métrica AC}
+	    \label{tab:ac_scoring}
+	\end{center}
+	\end{table}
+\item \textbf{Authentication - Au}: esta métrica mede a quantidade de vezes que um atacante deve ser autenticado para explorar um vulnerabilidade. Quanto menos autenticações, maior será o valor desta métrica. Vale destacar que o objetivo desta métrica não é medir a complexidade e segurança do mecanismo de autenticação. Os indicadores desta métrica são simples e bem definidos: Multíplo (M), indicando duas ou mais autenticações necessárias; Único (S), indicando que apenas uma auntenticação é realizada; e Nenhum (N), indicando que nenhum auntenticação é realizada.
+\item \textbf{Confidentiality Impact - C}: esta métrica mede o impacto na confidencialidade do sistema quando uma vulnerabilidade é explorada. A confidencialidade refere-se a limitar o acesso a informações e sua divulgação somente para usuários autorizados. Os indicadores desta métrica são explicados na Tabela~\ref{tab:c_scoring}
+	\begin{table}[H]
+	\begin{center}
+	    \begin{tabular}{ | l | p{10cm} |}
+	    \hline
+	    Valor da Métrica & Descrição \\ \hline
+	    Nenhum (N) & Não há nenhum impacto sobre a confidencialidade do sistema. \\ \hline
+	    Parcial (P) & Existe a divulgação considerável inapropriada de informações, mas o atacante não tem controle sobre a informação obtida.  \\ \hline
+	    Completa (C) & Existe a divulgação total inapropriada de informações, onde o atacante pode obter informações de todo o sistema\\ \hline
+	    \end{tabular}
+	    \caption{Avaliação de Indicadores da Métrica C}
+	    \label{tab:c_scoring}
+	\end{center}
+	\end{table}
+\item \textbf{Integrity Impact - I}: esta métrica mede o impacto da integridade do dados após um \emph{exploit} realizado com sucesso. Intregridade se diz respeito a confiabilidade e veracidade da informação. Os indicadores desta métrica são explicados na Tabela~\ref{tab:i_scoring}
+	\begin{table}[H]
+	\begin{center}
+	    \begin{tabular}{ | l | p{10cm} |}
+	    \hline
+	    Valor da Métrica & Descrição \\ \hline
+	    Nenhum (N) & Não há nenhum impacto sobre a integridade do sistema. \\ \hline
+	    Parcial (P) & Modificações de alguns arquivos são possiveis, porém o atacante não tem controle sobre o que pode ser modificado ou alcance do que pode ser modificado pelo atacante é limitado. Por exemplo, um sistema pode conter vários arquivos e o atancante não tem o controle de qual arquivo ele irá afetar.  \\ \hline
+	    Completa (C) & O atacante é capaz de modificar qualquer arquivo do sistema\\ \hline
+	    \end{tabular}
+	    \caption{Avaliação de Indicadores da Métrica I}
+	    \label{tab:i_scoring}
+	\end{center}
+	\end{table}
+\item \textbf{Availability Impact - A}: essa métrica mede o impacto da disponibilidade do sistema após o ataque. Ataques que consomem a largura de banda da rede, o uso do processador ou espaço do disco possuem impacto direto com a disponibilidade do sistema. Os indicadores dessa métrica são explicados na Tabela~\ref{tab:a_scoring}
+	\begin{table}[H]
+	\begin{center}
+	    \begin{tabular}{ | l | p{10cm} |}
+	    \hline
+	    Valor da Métrica & Descrição \\ \hline
+	    Nenhum (N) & Não há nenhum impacto sobre a disponibilidade do sistema. \\ \hline
+	    Parcial (P) & Existe redução na performance ou interrupções na disponibilidade do recurso. Por exemplo, um ataque que afetam a largura da banda reduz o número de conexões de usuários.\\ \hline
+	    Completa (C) & O atacante é capaz de deixar o recurso completamente indisponível.\\ \hline
+	    \end{tabular}
+	    \caption{Avaliação de Indicadores da Métrica A}
+	    \label{tab:a_scoring}
+	\end{center}
+	\end{table}
+\end{itemize}
+
+%
+As métricas do grupo Temporal podem ser desconsideradas do cálculo, sendo opcionais. Este grupo de métricas representam características de uma vunerabilidade que podem mudar ao longo do tempo mas não mudam entre ambientes de usuário.
+
+
+
+%
+
+As métricas do grupo Ambiental também são opcionais ao calculo, podendo ser desconsideradas. Este grupo de métricas representam características de uma vunerabilidade relevantes a um particular ambiente de usuário. Ou seja, são características que estão relacionadas unicamente ao ambiente em que a vunerabilidade é analisada.
 %  
 
 %

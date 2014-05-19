@@ -12,18 +12,80 @@ O \emph{design} se torna mais importante a medida que a complexidade dos softwar
 
 %
 
-Visando amenizar os riscos de se construir um sistema que não alcance seus objetivos, a arquitetura do software tem recebida atenção especial através dos métodos, práticas de desenvolvimento e estudos acadêmicos. O conjunto de decisões sobre as estruturas estáticas do sistema, hierarquia de módulos, descrição de dados, seleção de algoritmos, agrupamento e interface entre módulos podem ser previamente pensados a partir de modelos e documentação como também podem emergir a partir da aplicação de padrões de implementação e \emph{refactorings} sobre o código. O mais importante é que a medida que novas funcionalidades são incorporadas, o design do código continue mantendo suas características, aplicando bons princípios e não sendo um impendimento para manutenção e evolução do software, comprometendo assim sua existência e utilização. Neste sentido, o Engenheiro de Software tem a responsabilidade de desenvolver o software sem degradar sua arquitetura, respeitando padrões estabelecidos, evoluindo seu design à medida que implementa novas linhas de código e manter o código limpo e seguro para possibilitar que outros Engenheiros também compreendam e evoluam o software.
+Visando amenizar os riscos de se construir um sistema que não alcance seus objetivos, a arquitetura do software tem recebida atenção especial através dos métodos, práticas de desenvolvimento e estudos acadêmicos. O conjunto de decisões sobre as estruturas estáticas do sistema, hierarquia de módulos, descrição de dados, seleção de algoritmos, agrupamento e interface entre módulos podem ser previamente pensados a partir de modelos e documentação como também podem emergir a partir da aplicação de padrões de implementação e \emph{refactorings} sobre o código. O mais importante é que a medida que novas funcionalidades são incorporadas, o \emph{design} do código continue mantendo suas características, aplicando bons princípios e não sendo um impendimento para manutenção e evolução do software, comprometendo assim sua existência e utilização. Neste sentido, o Engenheiro de Software tem a responsabilidade de desenvolver o software sem degradar sua arquitetura, respeitando padrões estabelecidos, evoluindo seu \emph{design} à medida que implementa novas linhas de código e manter o código limpo e seguro para possibilitar que outros Engenheiros também compreendam e evoluam o software.
 
 %
 
-Nesta seção apresentaremos os princípios reconhecidos de bom design e algumas formas como estes princípios podem ser aplicados no código-fonte. Posteriormente, identificamos como as decisões de design são observáveis em termos de \emph{Bad Smells} e Código Limpo. Neste sentido, pretendemos estudar e revisar como estas características observáveis possuem relação com métricas de monitoramento de código-fonte com objetivo de prover mecanismos que permitam ao Engenheiro de Software e gestores destinarem seus esforços na remoção de não-conformidades e evolução do software.
+Nesta seção apresentaremos os princípios reconhecidos de bom \emph{design} e algumas formas como estes princípios podem ser aplicados no código-fonte. Posteriormente, identificamos como as decisões de design são observáveis em termos de \emph{Bad Smells} e Código Limpo. Neste sentido, pretendemos estudar e revisar como estas características observáveis possuem relação com métricas de monitoramento de código-fonte com objetivo de prover mecanismos que permitam ao Engenheiro de Software e gestores destinarem seus esforços na remoção de não-conformidades e evolução do software.
 
 %
 
 \subsection{O Design, Princípios e Práticas}
 \label{sec-principles-practises}
 
-O \emph{design} do software consiste no conjunto de decisões importantes tomadas sobre a organização de um sistema de software que podem ser observadas e mapeadas no código-fonte.
+O \emph{design} do software consiste no conjunto de decisões importantes tomadas sobre a organização de um sistema de software que podem ser observadas e mapeadas em diferentes níveis de abstração no código-fonte e em outros produtos. Para comunicação e documentação pode-se ter modelos que representem o \emph{design} conceitual demonstrando, por exemplo, o estilo arquitetural adotado na aplicação. Por outro lado, este modelo também é observável no código-fonte assim como violação de restrições estabelecidas. Um nível mais detalhado do \emph{design} consiste nas decisões de implementações existentes no código de uma classe do software que influenciam, por exemplo, na testabilidade desta classe. Assim, as decisões de \emph{design} tratam problemas em diferentes níveis, desde da escolha do paradigma adequado para desenvolvimento do sistema até os padrões de nomenclatura a serem utilizadas no código. 
+
+%
+
+Nesta monografia estamos essencialmente interessados nas decisões de projetos a nível de código e suas consequências no desenvolvimento do software. Assim, estamos falando principalmente do trabalho realizado pelo Engenheiro de Software, principalmente de quais formas este trabalho é realizado e como podemos apoiar e evoluir a atuação deste profissional para obtenção de bons resultados para projetos de software. Para o desenvolvimento de códigos com bom \emph{design}, é importante que o Engenheiro de Software conheça os principais problemas de implementação conhecidos, características e princípios que compõem um paradigma e técnicas que permitem a aplicação destes princípios.
+
+%
+
+Os problemas do software podem ser definidos com as características indesejáveis que dificultam a manutenção e evolução do sistema ou até mesmo comprometem sua segurança. Um dos mais conhecidos e facilmente observável é a complexidade do software depende das estruturas de dados, tamanho do sistema, algoritmos utilizados, complexidade das estruturas de controle e do fluxo de dados do software \cite{basili1983}. A complexidade afeta diretamente o quão compreensível um programa é, dificultando sua legibilidade e o encontro de \emph{bugs} e vulnerabilidades. Além disso, a complexidade afeta a testabilidade dos módulos, dificultando uma boa cobertura de testes que exercitem as estruturas do software. De modo geral, a complexidade se torna o principal fator de risco do software uma vez que a evolução do mesmo é comprometida por falta de legibilidade, flexibilidade e, muito provavelmente, pela falta de testes automatizados que suportem operações de \emph{refactorings} no código, aumentando os riscos do projeto em termos de qualidade, custos e prazos.
+
+%
+
+Outras características indesejadas para o software surgem a partir da atribuição inadequada de responsabilidades entre os módulos que o copõe. A baixa coesão surge quando um módulo é responsável pela realização de mais tarefas do que deveria, concentrando mais dados e operações do que deveria. A baixa coesão gera problemas de falta de reusabilidade, aumenta a complexidade e dificulta a manutenção uma vez que não apoia a modularização adequadamente. O alto acoplamento também pode ser consequência da baixa coesão e ocorre quando há forte dependência entre os componentes do software. As consequências do alto acoplamento estão principalmente nas dificuldades de se manter e evoluir o software já que as modificações em um componente podem afetar outros. Além disso, mudanças simples se tornam complexas pois ocorrem em mais de um lugar e se torna cada vez mais difícil a criação de testes unitários para o software, pois os componentes tendem a não poder serem testados isoladamente \cite{martensson2005}.
+
+%
+
+A concepção do \emph{design} para endereçar esses e outros problemas do software se inicia na escolha do paradigma que irá reger o desenvolvimento. Uma paradigma é constituído basicamente dos princípios gerais que são utilizados para a composição de um software, caracterizando a maneira de se pensar sobre os problemas e suas soluções. A partir daí, um conjunto de práticas são aplicadas com o foco na construção do \emph{design} do software que, no contexto do Processo Unificado são realizadas principalmente na fase de Elaboração. Por outro lado, estamos mais interessados no modelo gradual de desenvolvimento da arquitetura do sistema proposto pelos métodos ágeis, pois favorece a aplicação de práticas constantes de \emph{design} e pressupõe o desenvolvimento de testes como parte integrada do processo de construção do software. Scoot W. Ambler apresentar um conjunto de práticas que são realizadas durante o desenvolvimento de software nos diversos níveis de abstração para a concepção de um \emph{design} que aplicam princípios ágeis, representadas através da Figura~\ref{fig:agile-design}.
+
+%
+
+% \DeclareGraphicsExtensions{.png}
+% \graphicspath{{figuras/}}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics{agile_design_practices.png}
+% 	\caption{Práticas do Design Ágil \footnote{\url{http://www.agilemodeling.com/essays/agileDesign.htm}}}
+% 	\label{fig:agile-design}
+% \end{figure}
+
+%
+
+O conjunto de práticas destacadas na Figura~\ref{fig:agile-design} aplicam e exercitam princípios que são fundamentais para o desenvolvimento de um software que atenda a requisitos de qualidade do cliente, qualidade interna e proporcionem o sucesso em termos de custo e prazo. Este conjunto de práticas deve ser aplicadas diversas vezes em todas a iterações de desenvolvimento do software A seguir são apresentados princípios gerais que devem ser levados em consideração pelos Engenheiros de Software no desenvolvimento de qualquer aplicação, pois são fundamentais para a manutenibilidade, extensibilidade e testabilidade do software:
+
+\begin{itemize}
+\item \textbf{Reusabilidade} - O princípio de reusabilidade de código visa a implementação de componentes reutilizáveis, apoiados pela alta coesão e baixo acoplamento. Este princípio possui impactos positivos na qualidade do software, assim como no custo e produtividade do projeto uma vez que menos código deve ser produzido e mantido, menor o esforço de teste, dentre outros benefícios \cite{sametinger1997}. 
+
+
+http://cnx.org/content/m17494/latest/ Falar sobre frameworks, etc.
+\item \textbf{Modularização} - http://cnx.org/content/m17494/latest/
+\item \textbf{Abstração} - http://cnx.org/content/m17494/latest/
+\item \textbf{Baixo acoplamento} - http://cnx.org/content/m17494/latest/
+\item \textbf{Alta coesão} - http://cnx.org/content/m17494/latest/
+\item \textbf{\emph{Don't Repeat Yourself}} - http://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+\item \textbf{\emph{Keep It Simple, Stupid}} - http://en.wikipedia.org/wiki/KISS_principle
+\end{itemize}
+
+%
+
+
+%
+
+%
+
+O paradigma Orientado a Objetos - OO se baseia na interação entre objetos conceituais que gerenciam seus próprios estados e operações. Dentre os conceitos mais importantes deste paradigma, destacam-se a classes, estrutura de herança, encapsulamento e o relacionamento entre objetos, conceitos estes que favorecem um \emph{design} modular, com maior flexibilidade ereusabilidade. Robert C. Martin introduziu cinco princípios básicos de \emph{design} OO conhecidos pelo acrônimo SOLID que tratam o gerenciamento de dependências entre os módulos do software:
+
+\begin{itemize}
+\item \textbf{\emph{Single Responsability principle}} - http://brizeno.wordpress.com/category/design-de-software/page/3/
+\item \textbf{\emph{Open/closed principle}} - 
+\item \textbf{\emph{Liskov substitution principle}} -
+\item \textbf{\emph{Interface segregation principle}} - http://brizeno.wordpress.com/2012/01/15/principios-de-design-de-software-interface-segregation-principle/
+\item \textbf{\emph{Dependency inversion principle}} - 
+\end{itemize}
+
 
 
 

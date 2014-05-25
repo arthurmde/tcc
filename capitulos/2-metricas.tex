@@ -101,7 +101,34 @@ O apoio de \emph{frameworks} no desenvolvimento do sistema possui impacto direto
 \subsection{\emph{Code Smells} - Cheiros de Código}
 \label{sec-bad-smells}
 
+Um software pode ter sintomas (popularmente conhecido como \emph{Smells}) que podem indicar problemas relacionados ao uso de más práticas e a aplicação inadequada de princípios de \emph{design}. \emph{Code smells} não são a causa direta de falhas na aplicação, mas podem influenciar indiretamente para a inserção de erros responsáveis por futuras falhas \cite{fowler1999}. Em geral, eles são responsáveis pelas dificuldades de manutenção e evolução do sistema, realização de testes e propicia a inserção de \emph{bugs} \cite{mansoor2014}. Por isso, é muito importante saber como identificá-los para se aplicar os mecanismos necessários para sua remoção e, consequentemente, melhorar o \emph{design} do código existente. 
 
+%
+
+O tratamento de mals cheiros de códigos pode ser realizado preventivamente a partir do desenvolvimento da solução com pouca inserção de anomlias e características indesejáveis, a partir de aplicações de práticas de desenvolvimento e de princípios de \emph{design}. Por outro lado, também deve ser tratada constantemente a medida que o código é desenvolvido, através por exemplo da aplicação de \emph{refactorings} como proposto por \cite{fowler1999}. Para isso é necessária a identificação de suas ocorrências no código-fonte, que consiste na detecção de fragmentos de código que violam a estrutura ou propriedades semânticas desejadas, provocando acoplamento e complexidade, por exemplo \cite{mansoor2014}.
+
+%
+
+Martin Fowler em seu livro (\citeyear{fowler1999}), expõe que a identificação de mals cheiros de código (ou \emph{Bad Smells}) é o primeiro passo para realização de \emph{refactorings} controladas e em pequenos passos. Para tanto, ele explora quais são as principais ocorrências conhecidas de cheiros de códigos que devem ser tratados das quais iremos introduzir algumas:
+
+\begin{itemize}
+\item \textbf{Código Duplicado} - Mesma estrutura de código em mais de um lugar, indicando falta de reusabilidade.
+\item \textbf{Método Longo} - Métodos longos com muitas linhas de código, indicando falta de modularidade, reusabilidade e baixa coesão, dificultando o entendimento do código.
+\item \textbf{Classes Grande} - Classes que possuem muitas linhas de código, atributos e operações. Este mal cheiro indica falta de coesão na classe uma vez que as responsabilidades não são bem atribuídas.
+\item \textbf{Lista Grande de Parâmetros} - Número grande de parâmetros passados para um método. Este mal cheiro dificulta o entendimento do código e do objetivo do método, podendo indicar também falta de coesão, uma vez que o objeto precisa de muitas informações externas para realizar suas operações internamente.
+\item \textbf{Mudança Divergente} - Este mal cheiro acontece quando uma classe é constantemente modificada de diferentes formas por diferentes motivos. Mudanças Divergentes indicam que não há variações protegidas, demonstrando um alto acoplamento entre uma classe e a implementação de classes com quem ela se relaciona.
+\item \textbf{Sirurgia de Espingarda} - Existe quando uma mudança realizada em uma classe afeta o funcionamento de outras estruturas. Este mau cheiro é bem semelhante à Mudanças Divergentes e ambos indicam os mesmos problemas.
+\item \textbf{Dados Aglomerados} - Conjunto de atributos sempre são utilizados em conjunto seja em lista de parâmetros ou em operações em métodos. Este mal cheiro pode indicar uma falta de coesão relacionados a estes atributos, uma vez que seria mais interessante se estes atributos fossem compostos em um objeto mais apropriado para sua manipulação.
+\item \textbf{Estruturas com \emph{Switch}} - Utilização da estrutura de seleção \emph{switch} em algumas linguagens. Este mal cheiro indica duplicação e falta de reutilização de código, uma vez que esta estrutura geralmente é utilizada repetidamente no código para realizar o mesmo controle de fluxo.
+\item \textbf{Classes Preguiçosas} - Classes que não fazem o bastante para justificar sua existência. Este mal cheiro indica falta de coesão e pode indicar a existência de acoplamento desnecessário.
+\item \textbf{Cadeias de Mensagens} - Existe quando um objeto solicita a outro objeto uma sequência de objetos para realizar alguma operação. Indica um forte acoplamento entre estas classes e aplicação inadequada do princípio de abstração.
+\item \textbf{Heranças Recusadas} - Classes que recebem atributos e operações de suas classes mães, mas não gostariam de recebe-los. Esse mal cheiro indica a falta de encapsulamento e muito provavelmente a utilização inadequada de herança.
+\end{itemize}
+
+
+
+
+Como os 
 
 \subsection{Código Limpo}
 \label{sec-clean-code}

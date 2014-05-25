@@ -102,7 +102,7 @@ O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no 
 
 %
 
-O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE com o objetivo de enumerar as vulnerabilidades descoberdas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em MARTIN, antigamente cada organização nomeava de sua maneira uma vunerabilidade, de forma que uma mesma vunerabilidade era referenciada de maneira completamente distinta entra as organizações. 
+O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE com o objetivo de enumerar as vulnerabilidades descoberdas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em MARTIN, antigamente cada organização nomeava de sua maneira uma vulnerabilidade, de forma que uma mesma vulnerabilidade era referenciada de maneira completamente distinta entra as organizações. 
 
 %
 
@@ -150,7 +150,7 @@ O CLASP não é apenas uma taxonomia de categorização de vulnerabilidades, mas
 \end{itemize}
 
 %
-Exemplificando, as vulnerabilidades do tipo Buffer Overflow se encaixariam na categoria de erro de tipo e de range, pois nesse tipo de vunerabilidade é permitido a escrita de uma informação além o limite do buffer. A vunerabilidade do tipo  injeção de SQL também se encaixaria nessa categoria, pois esse tipo de vunerabilidade ocorre quando não há validação no tipo de informação fornecida pelo usuário. Mais detalhes podem ser vistos em http://cwe.mitre.org/about/sources.html (ARRUMAR REFERENCIA).
+Exemplificando, as vulnerabilidades do tipo Buffer Overflow se encaixariam na categoria de erro de tipo e de range, pois nesse tipo de vulnerabilidade é permitido a escrita de uma informação além o limite do buffer. A vulnerabilidade do tipo  injeção de SQL também se encaixaria nessa categoria, pois esse tipo de vulnerabilidade ocorre quando não há validação no tipo de informação fornecida pelo usuário. Mais detalhes podem ser vistos em http://cwe.mitre.org/about/sources.html (ARRUMAR REFERENCIA).
 
 %
 
@@ -171,10 +171,10 @@ A taxonomia Seven Pernicious Kingdoms é a que possibilita melhor entendimento a
 A idéia desta taxonomia foi criar reinos bem amplos para que novos filos fossem inseridos em seu lugar correto, porém a taxonomia proposta está aberta para a inserção de novos reinos, caso necessário. Mais informações e detalhes a cerca dos filos que incluem cada reino pode ser encontrado em (TSIPENYUK K. et all)
 
 %
-Com este cenário apresentado acima, em que temos a CVE como projeto de enumerar as vulnerabilidades encontradas e as taxonomias elaboradas por diversos trabralhos com o objetivo de classificar e dar mais informações sobre a vunerabilidade, ainda haviam a necessidade das empresas e organizações de utilizarem o uma terminologia padrão para listar e classificar vulnerabilidades de software, gerando uma linguagem unificada e uma base para ferramentas e serviços de medição dessas vulnerabilidades. Para essa necessidade foi elaborado o projeto CWE.
+Com este cenário apresentado acima, em que temos a CVE como projeto de enumerar as vulnerabilidades encontradas e as taxonomias elaboradas por diversos trabralhos com o objetivo de classificar e dar mais informações sobre a vulnerabilidade, ainda haviam a necessidade das empresas e organizações de utilizarem o uma terminologia padrão para listar e classificar vulnerabilidades de software, gerando uma linguagem unificada e uma base para ferramentas e serviços de medição dessas vulnerabilidades. Para essa necessidade foi elaborado o projeto CWE.
 
 %
-O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no design, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vunerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vunerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados.
+O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no design, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados.
 (FALAR SOBRE O TOP 25 CWE)
 %
 
@@ -302,19 +302,19 @@ Entretanto, as definições de métricas adequadas para o acompanhamento do proj
 
 \subsection{Métricas Estáticas de Segurança}
 
-Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas tecnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vunerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de buffer overflow. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de Buffer overflow. Encontrar a vunerabilidade no código consiste em identificar o uso do mesmo código ou lógica de programação definidas em CWEs relacionadas a esse erro. Dessa forma, as ferramentas de análise estática buscam em econtrar vulnerabilidades específicas, considerando o padrão CWE ou não, e quantificam o numero de ocorrências dessas vulnerabilidades por projeto, arquivo, método ou linha de código.
+Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer overflow}. Dessa forma, as ferramentas de análise estática buscam em econtrar vulnerabilidades específicas, considerando o padrão CWE ou não para caracterizar a vulnerabilidade, e quantificam o seu número de ocorrências.
 
 %
 
 Então, em termos de métricas, ferramentas de análise estáticas podem fornecer as seguintes métricas relacionadas a vulnerabilidades:
 
 \begin{itemize}
-\item Número total de vulnerabilidades no projeto: Cosiste em quantificar o total de vulnerabilidades encontradas no projeto inteiro, somando todos os tipos de vulnerabilidades encontradas;
-\item Número de vulnerabilidades por arquivo:
-\item Número de vulnerabilidades por função:
-\item Quantidade de um vunerabilidade especifica no projeto:
-\item Quantidade de um vunerabilidade especifica por arquivo:
-\item Quantidade de um vunerabilidade especifica por função:
+\item \textbf{Número total de vulnerabilidades no projeto}: Cosiste em quantificar o total de vulnerabilidades encontradas no projeto inteiro, somando todos os tipos de vulnerabilidades encontradas;
+\item \textbf{Número de vulnerabilidades por arquivo}
+\item \textbf{Número de vulnerabilidades por função}
+\item \textbf{Quantidade de um vulnerabilidade especifica no projeto}:
+\item \textbf{Quantidade de um vulnerabilidade especifica por arquivo}:
+\item \textbf{Quantidade de um vulnerabilidade especifica por função}:
 \end{itemize}
 
 %
@@ -325,27 +325,27 @@ UninitializedArgumentValue (uav) - Esta métrica conta as variáveis não inicia
 
 %
 
-Return of stack variable address (rsva) - Esta vunerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variaveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriomente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vunerabilidade é dificil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
+Return of stack variable address (rsva) - Esta vulnerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variáveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriomente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vulnerabilidade é dificil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
 
 %
 
-Potential insecure temporary file in call "mktemp" (pitfc)  - Esta vunerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vuneráveis a ataques.Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
+Potential insecure temporary file in call "mktemp" (pitfc)  - Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vuneráveis a ataques.Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
 
 %
 
-Potential buffer overflow in call to \'gets\' (fgbo): Esta vunerabilidade está relacionada ao uso da função 'gets' da linguagem C que copia toda informação passada pela entrada do programa para um buffer sem checar se o tamanho da entrada é equivalente ao tamanho do buffer. Dessa forma, caso a entrada seja maior que o buffer, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
+Potential buffer overflow in call to \'gets\' (fgbo): Esta vulnerabilidade está relacionada ao uso da função "gets" da linguagem C que copia toda informação passada pela entrada do programa para um buffer sem checar se o tamanho da entrada é equivalente ao tamanho do buffer. Dessa forma, caso a entrada seja maior que o buffer, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
 
 %
 
-Allocator sizeof operand mismatch (asom):Esta vunerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vunerabilidade ocorre quando temos um ponteiro para int e no momento de alocarmos a memória passarmos no sizeof um tipo char. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
+Allocator sizeof operand mismatch (asom):Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vulnerabilidade ocorre quando temos um ponteiro para int e no momento de alocarmos a memória passarmos no sizeof um tipo char. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
 
 %
 
-Dereference of undefined pointer value (dupv):Esta vunerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vunerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo pois nao foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
+Dereference of undefined pointer value (dupv):Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo pois nao foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
 
 %
 
-Divisions by zero (dbz): Esta vunerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vunerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de excessoes.
+Divisions by zero (dbz): Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de excessoes.
 
 %
 
@@ -353,22 +353,20 @@ Memory leak (mlk): O software não gerencia o uso de memória, provocando o cons
 
 %
 
-Out-of-bound array access (obaa):Esta vunerabilidade acontece quando a aplicação tenta acessar um indice de array que está fora de seu range. O acesso de uma posição fora do array pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter condigo a ser executado ou até outras informações, impactando na confidencialidade de dados.
+Out-of-bound array access (obaa):Esta vulnerabilidade acontece quando a aplicação tenta acessar um indice de array que está fora de seu range. O acesso de uma posição fora do array pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter condigo a ser executado ou até outras informações, impactando na confidencialidade de dados.
 
 %
 
-Double free - df - CWE 415
-
-Esta vunerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
+Double free (df): Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
 
  %SANS Institute, MITRE, e experts em segurança de software dos Estados Unidos e Europa elaboraram uma lista dos 25 erros de software mais perigosos. É uma lista que contem os erros mais comuns e perigosos que podem gerar sérias vulnerabilidades de software e que são muitas vezes fáceis de encontrar e de fácil exploit (REFERENCIA PARA SITE DA CWE). Estes erros são perigos pois podem permitir aos atacantes assumir o controle completo do software, roubar dados ou deixar a aplicação fora funcionamento. 
 %
 
-%Continuando com o exemplo da vunerabilidade de Buffer Overflow, podemos citar duas CWEs que identificam essa vunerabilidade de maneiras diferentes: CWE 242 e CWE 120. A CWE 120 é denominada \emph{Classic Buffer Overflow}, e esta vunerabilidade ocorre quando quando um buffer de entrada é copiado para um buffer de saída sem que haja a verificação o tamanho da entrada é menor ou igual ao tamanho de saída, podendo gerar uma sobrescrita nas posições de memória além das posições utilizadas pelo buffer. Da mesma maneira, a CWE 242 também trata o risco de um buffer overflow com o uso da função "gets()" da linguagem C, que  copia os dados de input do usuário para um buffer, sendo que não há garantia de que o input será menor ou igual o limite do buffer destinado ao armazenamento da informação.
+%Continuando com o exemplo da vulnerabilidade de Buffer Overflow, podemos citar duas CWEs que identificam essa vulnerabilidade de maneiras diferentes: CWE 242 e CWE 120. A CWE 120 é denominada \emph{Classic Buffer Overflow}, e esta vulnerabilidade ocorre quando quando um buffer de entrada é copiado para um buffer de saída sem que haja a verificação o tamanho da entrada é menor ou igual ao tamanho de saída, podendo gerar uma sobrescrita nas posições de memória além das posições utilizadas pelo buffer. Da mesma maneira, a CWE 242 também trata o risco de um buffer overflow com o uso da função "gets()" da linguagem C, que  copia os dados de input do usuário para um buffer, sendo que não há garantia de que o input será menor ou igual o limite do buffer destinado ao armazenamento da informação.
 
 %
 
-%A identificação desse códigos que representam vulnerabilidades específicas podem ser feitas com o auxílio de ferramentas de análise estática de código, justamente pelo fato de que é difícil para um programador saber se ele está inserindo uma vunerabilidade no código ou não, pois é preciso ter o conhecimento da vunerabilidade. A ferramenta de análise estática Analizo, por exemplo, fornece algumas métricas de vunerabilidade. Estas são reportadas indicando a quantidade e o local de ocorrência.
+%A identificação desse códigos que representam vulnerabilidades específicas podem ser feitas com o auxílio de ferramentas de análise estática de código, justamente pelo fato de que é difícil para um programador saber se ele está inserindo uma vulnerabilidade no código ou não, pois é preciso ter o conhecimento da vulnerabilidade. A ferramenta de análise estática Analizo, por exemplo, fornece algumas métricas de vulnerabilidade. Estas são reportadas indicando a quantidade e o local de ocorrência.
 %
 
 
@@ -376,7 +374,7 @@ Esta vunerabilidade ocorre na linguagem C, quando o programa realiza a chamada f
 
 A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram. Esses indicadores são obitidos a partir de interpretações de métricas que mensuram atributos relacionados ao código, seja de segurança ou não. 
 
-O \emph{Common Vulnerability Scoring System - CVSS} é um \emph{framework} aberto desenvolvido pelo NIST (National Institute of Standard and Technology) em parceria com organizações industriais que endereça as questões relacionadas as métricas para quantificar a severidade e risco de vulnerabilidades \cite{cvss2007}. Com o CVSS é possível estabelecer um escore entre as vulnerabilidades de maneira que possa haver uma comparação entre a criticidade de cada vunerabilidade para o contexto da organização. Distinguindo quais vulnerabilidades são mais graves, os gestores conseguem distribuir melhor o esforço para o tratamento dessas vulnerabilidades mais críticas. O CVSS é composto por três grupos de métricas: Básicas, Temporal e Ambiental.
+O \emph{Common Vulnerability Scoring System - CVSS} é um \emph{framework} aberto desenvolvido pelo NIST (National Institute of Standard and Technology) em parceria com organizações industriais que endereça as questões relacionadas as métricas para quantificar a severidade e risco de vulnerabilidades \cite{cvss2007}. Com o CVSS é possível estabelecer um escore entre as vulnerabilidades de maneira que possa haver uma comparação entre a criticidade de cada vulnerabilidade para o contexto da organização. Distinguindo quais vulnerabilidades são mais graves, os gestores conseguem distribuir melhor o esforço para o tratamento dessas vulnerabilidades mais críticas. O CVSS é composto por três grupos de métricas: Básicas, Temporal e Ambiental.
 
 %
 
@@ -457,13 +455,13 @@ O grupo de métricas Básicas capturam características intrínsecas e fundament
 \end{itemize}
 
 %
-As métricas do grupo Temporal podem ser desconsideradas do cálculo, sendo opcionais. Este grupo de métricas representam características de uma vunerabilidade que podem mudar ao longo do tempo mas não mudam entre ambientes de usuário.
+As métricas do grupo Temporal podem ser desconsideradas do cálculo, sendo opcionais. Este grupo de métricas representam características de uma vulnerabilidade que podem mudar ao longo do tempo mas não mudam entre ambientes de usuário.
 
 
 
 %
 
-As métricas do grupo Ambiental também são opcionais ao calculo, podendo ser desconsideradas. Este grupo de métricas representam características de uma vunerabilidade relevantes a um particular ambiente de usuário. Ou seja, são características que estão relacionadas unicamente ao ambiente em que a vunerabilidade é analisada.
+As métricas do grupo Ambiental também são opcionais ao calculo, podendo ser desconsideradas. Este grupo de métricas representam características de uma vulnerabilidade relevantes a um particular ambiente de usuário. Ou seja, são características que estão relacionadas unicamente ao ambiente em que a vulnerabilidade é analisada.
 %  
 
 %

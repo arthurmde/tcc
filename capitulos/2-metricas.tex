@@ -130,10 +130,36 @@ O entendimento e reconhecimento dos \emph{code smells} são muito importantes pa
 \subsection{Código Limpo}
 \label{sec-clean-code}
 
-Escrever Sub-seção
+A definição de um bom código pode ser dada a partir de algumas características desejáveis para um código. No livro \emph{Clean Code} \cite{martin2008}, o autor aborda sobre um conjunto de características importantes que contribuem principalmente para um bom \emph{design} do código, sintetizando-os em um estilo de programação chamado Código Limpo. Este estilo de programação pode ser complementado pelas diretrizes propostas no livro \emph{Implementation Patterns} \cite{beck2007}, conforme estudo por Almeida & Miranda (\citeyear{almeida2010}), pois ambos buscam a aplicação de três características:
 
+%
 
+\begin{itemize}
+\item \textbf{Expressividade} - um código expressivo pode ser facilmente lido e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Esta expressividade permite a outros desenvolvedores compreender o código, modificar e utilizá-lo.
+\item \textbf{Simplicidade} - simplicidade é também um dos principais princípios de \emph{design}, e diz respeito a redução de quantidade de informações que o leitor deve compreender para realizar alterações.
+\item \textbf{Flexibilidade} - um código flexível permite que o software seja estendido sem que muitas alterações na estrutura deva ser feita.
+\end{itemize}
 
+%
+
+Martin ressalva que para se conseguir um código expressivo, simples e flexível deve-se trabalhar em vários aspectos constantemente, desde o nome de métodos à estrutura da solução, pois a construção de um Código Limpo é iterativa e incremental. Esta ideia condiz com o modelo apresentado na Figura~\ref{fig:agile-design}. Portanto, um Código Limpo é resultado da constante evolução do código com cuidados sobre o seu \emph{design} com o exercício de práticas que aplicam os princípios de \emph{design}. 
+
+%
+
+Alguns aspectos importantes que devem ser sempre considerados para prover um código limpo são resumidas a seguir:
+
+\begin{itemize}
+\item \textbf{Nomes Significativos} - os desenvolvedores são responsáveis pela escolha de nomes de variáveis, classes e operações e, portanto, é de extrema importância que estes nomes revelem bem a intenção, diferenciando bem os elementos que compõe o software. Além disso, a escolha dos nomes são importantes para a abstração e compreensão dos diferentes módulos do software.
+\item \textbf{Métodos Coesos} - métodos são fundamentais para o Código Limpo, pois encapsulam trechos de código, definem escopo de variáveis e são essenciais para a aplicação de princípios de \emph{design}. Neste sentido, há grande preocupação quanto ao tamanho dos métodos, reduzindo-se não só o número de linhas, mas principalmente a complexidade e número de responsabilidades.
+\item \textbf{Argumentos Reduzidos} - é muito importante um número reduzido de argumentos dos métodos para facilitar sua compreensão, reduzir o esforço de testes e o acoplamento da classe com elementos externos.
+\item \textbf{Classes Coesas} - as classes encapsulam dados e operações, sendo a principal estrutura que compõe o \emph{design} do software. É muito importante que as responsabilidades estejam bem definidas e distribuídas para cada classe de tal forma que haja menos dependências entre elas.
+\end{itemize}
+
+%
+
+A composição de um Código Limpo é consequência da aplicação de princípios de \emph{design} e de boas práticas de programação. Um Código Limpo é, portanto, o estado desejável para que um software atenda os principais requisitos de qualidade interna. 
+
+%ESCRVER ALGO MAIS?
 
 %========================================================================================%
 

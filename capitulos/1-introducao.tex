@@ -11,21 +11,51 @@ No contexto de projetos que adotam metodologias ágeis observa-se que tanto a qu
 
 Valores semelhantes podem ser observados nas comunidades de desenvolvimento de softwares livres refletindo diretamente na alta qualidade do código produzido em diversos projetos livres \cite{schmidt2001}; \cite{halloran2002}; \cite{michlmayr2003}. Essas comunidades adotam a padronização de código e testes automatizados para manter a qualidade interna do código e incentivar a contribuição de diversos desenvolvedores.
 
-%
-A melhoria da qualidade interna do código apoia a melhoria contínua do processo oferecendo subsídios para que a equipe de desenvolvimento aumente sua produtividade e implemente novas funcionalidades com maior facilidade. Beck (\citeyear{beck2007}) corrobora esta afirmação ao destacar que a maior parte do tempo utilizado por um Programador ao inserir novas funcionalidades é destinado ao entendimento do código em manutenção. Neste sentido, a medição pode ser utilizada como um processo de apoio ao acompanhamento destas melhorias através do estabelecimento de metas e indicadores que indiquem oportunidades de melhorias observáveis do produto. Em um cenário otimista, os próprios Engenheiros de Software podem adotar como prática a medição do código-fonte para auxiliar as tomadas de decisões, ou até mesmo para avaliação do código inserido ou da aplicação de refactoring.
+A melhoria da qualidade interna do código apoia a melhoria contínua do processo oferecendo subsídios para que a equipe de desenvolvimento aumente sua produtividade e implemente novas funcionalidades com maior facilidade. Beck (\citeyear{beck2007}) corrobora esta afirmação ao destacar que a maior parte do tempo utilizado por um Programador ao inserir novas funcionalidades é destinado ao entendimento do código em manutenção. 
+% Falar sobre a segurança de software vs qualidade 
+
+Diretamente relacionado a qualidade de código está a sua segurança (MAC GRAW et al  - SEVEN KING..). A segurança de software está relacionada a confiabilidade, disponibilidade e integridade dos diversos componentes que compõe o software. Dados do ICAT/NIST de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa. Embora a segurança de uma aplicação também estejam relacionadas a aspectos externos ao software como a redes e componentes de hardware, o elo mais fraco continua sendo o próprio software. Dessa forma, cabe aos projetistas e desenvolvedores a responsabilidade do desenvolvimento de software seguro, sem prejuízos aos seus usuários.
+
+%http://cve.mitre.org/docs/docs-2002/prog-rpt_06-02/ CITAR
+A medida que o tempo vai passando, novas vunerabilidades vão sendo descobertas pela comunidade. O projeto CVE, que tem como objetivo enumerar vunerabilidades de software existentes, tinha uma lista de 321 vunerabilidades diferentes no ano de sua concepção, 1999. No ano de 2002, a lista já havia aumentado para 2032 vunerabilidades e atualmente o número já chega a 61 mil vunerabilidades específicas encontradas por empresas de todo o mundo.
+
+Visto esse cenário de inúmeras vulnerabilidades é fundamental que todos aqueles envolvidos no processo de produção do software tenham conhecimento das implicações relativas a segurança. O conhecimento de vunerabilidades e meios de detecta-las são habilidades necessárias para garantia de software seguro.
+
 %
 
-Portanto, neste trabalho serão exploradas a utilização de métricas de monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas. Assim, espera-se identificar as oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto a partir do estabelecimento de cenários, compostos a partir da análise de correlação de métricas, que evidenciem as boas e más características do design de um projeto com o objetivo de facilitar a interpretação e evitar possíveis equívocos que são baseados em análises errôneas sobre métricas isoladas, sobre correlações inexistentes ou até mesmo a escolha de métricas inadequadas cujos problemas são discutidos em \cite{chidamber1994}.
+Neste sentido, a medição pode ser utilizada como um processo de apoio ao acompanhamento da segurança e qualidade, através do estabelecimento de metas e indicadores que indiquem oportunidades de melhorias observáveis do produto. Em um cenário otimista, os próprios Engenheiros de Software podem adotar como prática a medição do código-fonte para auxiliar as tomadas de decisões, ou até mesmo para avaliação do código inserido ou da aplicação de refactoring.
+
+%falar sobre ferramentas de monitoramento e DW
+
+Porém, a grande quantidade de métricas, coletas manuais e poucos recursos de visualização são fatores que acabam por desmotivar o uso destas para o monitoramento do código. Além de que compreender o significado de valores que uma métrica isolada possui não é uma tarefa fácil.
+
+E como estamos falando do uso de métricas para a tomada de decisão, uma solução que se tem destaque no ramo de BI e tem enfase em fornecer uma ambiente de fácil acesso a informação para a tomada de decisão é um ambiente de Data Warehousing. O Data Warehouse, sendo um componente desse ambiente, constitui-se de uma base de dados que procura de maneira eficiente e flexível tratar de grande volume de dados e obter informações que auxiliem no processo de tomada de decisão (OLIVEIRA , 2007).
+
+No contexto de monitoramento de métricas de software, o uso de DWing para esta finalidade tem se mostrado como boa solução, como pode ser visto nos trabalhos de (CHULANI et al.,2003) (CASTELLANOS et al., 2005) (PALZA; FUHRMAN; ABRAN, 2003) (FOLLECOet al., 2007) (SILVEIRA, 2007). 
+
+
+Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades de software. Assim, espera-se identificar as oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto a partir do estabelecimento de cenários, compostos a partir da análise de correlação de métricas, que evidenciem as boas e más características do design de um projeto que impactam na vunerabilidade do sistema com o objetivo de facilitar a interpretação e evitar possíveis equívocos que são baseados em análises errôneas sobre métricas isoladas, sobre correlações inexistentes ou até mesmo a escolha de métricas inadequadas cujos problemas são discutidos em \cite{chidamber1994}. Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento baseado em métricas e um ambiente de DWing e será observado o uso dessas duas soluções e suas contribuições para a melhoria do processo e qualidade do produto..
 
 %------------------------------------------------------------------------------%
 
 \section{Objetivos}
 
-O objetivo deste trabalho permeia um estudo teórico de conceitos relacionados a métricas de monitoramento de código-fonte, buscando identificar correlações existentes entre algumas métricas e suas interpretações que evidenciem tanto características de bom design, tais como Código Limpo \cite{almeida1994}, quanto bad smells (CITAR REFERÊNCIA). O estabelecimento destes cenários permite a seleção de métricas adequadas baseadas em determinados objetivos de melhorias, facilta a interpretação tanto a nível gerencial quanto a nível de desenvolvimento e apoia a melhoria contínua de software a partir da adoção do monitoramento de código-fonte como uma prática de desenvolvimento.
+%O objetivo deste trabalho permeia um estudo teórico de conceitos relacionados a métricas de monitoramento de código-fonte, buscando identificar correlações existentes entre algumas métricas e suas interpretações que evidenciem tanto características de bom design, tais como Código Limpo \cite{almeida1994}, quanto bad smells (CITAR REFERÊNCIA). O estabelecimento destes cenários permite a seleção de métricas adequadas baseadas em determinados objetivos de melhorias, facilta a interpretação tanto a nível gerencial quanto a nível de desenvolvimento e apoia a melhoria contínua de software a partir da adoção do monitoramento de código-fonte como uma prática de desenvolvimento.
+
+O objetivo deste trabalho consite no estudo teórico sobre conceitos relacionados a métricas de monitoramento de código-fonte buscando relacionar características de bom design, como Código limpo, quanto Bad Smells no contexto de vunerabilidades de software  para o estabelecimento de cenários que caracterizam determinado componente do sistema e auxiliem na tomada de decisão no que diz respeito a refatoração de código para melhoria da segurança da aplicação.
 
 %
 
-Além disso, tem-se como objetivo nesta monografia evoluir a plataforma livre de monitoramento de código-fonte Mezuro para suportar a criação de configurações que caracterizem os cenários estabelecidos. Assim, pretende-se evidenciar como estes cenários podem ser utilizados através da ferramenta de análise estática de código automatizada incorporados as boas práticas de desenvolvimento das Engenharia de Software.
+Além disso, tem-se como objetivo nesta monografia oferecer duas propostas de ambientes de visualização e monitoramento do código com base nos cenários definidos:
+\begin{itemize}
+\item \textbf{Plataforma livre de monitoramento de métricas}: Evolução da plataforma Mezuro para suportar a criação de configurações que caracterizem os cenários estabelecidos;
+\item \textbf{Ambiente de DWing}: Criação de um ambiente de DWing para extração e análise das métricas baseada nos cenários definidos para a ajuda na tomada de decisão;
+\end{itemize}
+
+Assim, pretende-se evidenciar como estes cenários podem ser utilizados através da ferramenta de análise estática de código automatizada incorporados as boas práticas de desenvolvimento das Engenharia de Software.
+%% OU
+
+
 
 %------------------------------------------------------------------------------%
 

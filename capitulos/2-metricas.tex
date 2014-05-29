@@ -440,45 +440,48 @@ Então, em termos de métricas, ferramentas de análise estáticas podem fornece
 
 %
 %metricas do analizo
-Abaixo seguem algumas métricas(OU SERIA MELHOR VULNERABILIDADES) que podem ser encontradas por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a itrodução de vulnerabilidades.
+Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas	 por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a itrodução de vulnerabilidades.
 
-UninitializedArgumentValue (uav) - Esta métrica conta as variáveis não inicializadas no código. As linguagens C e C++ não são inicializadas com valores default quando são declaradas (recurso que é disponível em algumas linguagens) fazendo com que essas contenham lixo em seu conteúdo caso não sejam inicializadas. Dessa forma, a aplicação pode ter um comportamento inesperado quando utilizar essa variável não inicializada.
-
-%
-
-Return of stack variable address (rsva) - Esta vulnerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variáveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriomente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vulnerabilidade é dificil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
+\begin{itemize}
+\item \textbf{UninitializedArgumentValue (uav)}: Esta métrica conta as variáveis não inicializadas no código. As linguagens C e C++ não são inicializadas com valores default quando são declaradas (recurso que é disponível em algumas linguagens) fazendo com que essas contenham lixo em seu conteúdo caso não sejam inicializadas. Dessa forma, a aplicação pode ter um comportamento inesperado quando utilizar essa variável não inicializada.
 
 %
 
-Potential insecure temporary file in call "mktemp" (pitfc)  - Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vuneráveis a ataques.Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
+\item \textbf{Return of stack variable address (rsva)}: Esta vulnerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variáveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriomente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vulnerabilidade é dificil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
 
 %
 
-Potential buffer overflow in call to \'gets\' (fgbo): Esta vulnerabilidade está relacionada ao uso da função "gets" da linguagem C que copia toda informação passada pela entrada do programa para um buffer sem checar se o tamanho da entrada é equivalente ao tamanho do buffer. Dessa forma, caso a entrada seja maior que o buffer, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
+\item \textbf{Potential insecure temporary file in call "mktemp" (pitfc)}: Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vuneráveis a ataques.Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
 
 %
 
-Allocator sizeof operand mismatch (asom):Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vulnerabilidade ocorre quando temos um ponteiro para int e no momento de alocarmos a memória passarmos no sizeof um tipo char. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
+\item \textbf{Potential buffer overflow in call to \'gets\' (fgbo)}: Esta vulnerabilidade está relacionada ao uso da função "gets" da linguagem C que copia toda informação passada pela entrada do programa para um buffer sem checar se o tamanho da entrada é equivalente ao tamanho do buffer. Dessa forma, caso a entrada seja maior que o buffer, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
 
 %
 
-Dereference of undefined pointer value (dupv):Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo pois nao foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
+\item \textbf{Allocator sizeof operand mismatch (asom)}:Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vulnerabilidade ocorre quando temos um ponteiro para int e no momento de alocarmos a memória passarmos no sizeof um tipo char. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
 
 %
 
-Divisions by zero (dbz): Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de excessoes.
+\item \textbf{Dereference of undefined pointer value (dupv)}:Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo pois nao foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
 
 %
 
-Memory leak (mlk): O software não gerencia o uso de memória, provocando o consumo exessivo desta, podendo haver a falta de memória para a aplicação. Sem memória, a aplicação consegue funcionar corretamente, podendo gerar resultados inesperados como também a falha da aplicação.
+\item \textbf{Divisions by zero (dbz)}: Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de excessoes.
 
 %
 
-Out-of-bound array access (obaa):Esta vulnerabilidade acontece quando a aplicação tenta acessar um indice de array que está fora de seu range. O acesso de uma posição fora do array pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter condigo a ser executado ou até outras informações, impactando na confidencialidade de dados.
+\item \textbf{Memory leak (mlk)}: O software não gerencia o uso de memória, provocando o consumo exessivo desta, podendo haver a falta de memória para a aplicação. Sem memória, a aplicação consegue funcionar corretamente, podendo gerar resultados inesperados como também a falha da aplicação.
 
 %
 
-Double free (df): Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
+\item \textbf{Out-of-bound array access (obaa)}:Esta vulnerabilidade acontece quando a aplicação tenta acessar um indice de array que está fora de seu range. O acesso de uma posição fora do array pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter condigo a ser executado ou até outras informações, impactando na confidencialidade de dados.
+
+%
+
+\item \textbf{Double free (df)}: Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
+
+\end{itemize}
 
  %SANS Institute, MITRE, e experts em segurança de software dos Estados Unidos e Europa elaboraram uma lista dos 25 erros de software mais perigosos. É uma lista que contem os erros mais comuns e perigosos que podem gerar sérias vulnerabilidades de software e que são muitas vezes fáceis de encontrar e de fácil exploit (REFERENCIA PARA SITE DA CWE). Estes erros são perigos pois podem permitir aos atacantes assumir o controle completo do software, roubar dados ou deixar a aplicação fora funcionamento. 
 %

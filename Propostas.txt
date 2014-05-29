@@ -1,4 +1,4 @@
-﻿Questões de Pesquisa
+Questões de Pesquisa
 
 
 - 
@@ -8,10 +8,7 @@
 - O monitoramento de vulnerabilidades é viável em projetos de softwares não-críticos?
 - As métricas de produto, se utilizadas para melhoria contínua, são suficientes para redução de vulnerabilidades no software?
 - Métricas de design de código possuem correlação com métricas de vulnerabilidades?
-- Métricas podem ser compostas em cenários para a definição de indicadores mais informativos e completos?
-
-
-
+- Métricas estáticas podem ser compostas em cenários para a definição de indicadores mais informativos e completos?
 
 
 
@@ -19,10 +16,10 @@ Objetivos Técnológicos
 
 
 - Evoluir a plataforma livre Mezuro de monitoramento de código-fonte:
-- Evoluir a arquitetura do Mezuro para melhorar sua modularização e flexibilidade.
-- Evoluir a configuração de métricas do Mezuro
-- Implementar mecanismos de definição de celos/cenários no Mezuro
-- Melhorar mecanismos de visualização de software do Mezuro
+	- Evoluir a arquitetura do Mezuro para melhorar sua modularização e flexibilidade.
+	- Evoluir a configuração de métricas do Mezuro
+	- Implementar mecanismos de definição de celos/cenários no Mezuro
+	- Melhorar mecanismos de visualização de software do Mezuro
 
 
 - Criar ambiente de Data Warehousing 
@@ -30,15 +27,15 @@ Objetivos Técnológicos
         - Criar modelo dimensional
 - Gerar Cubo de dados        
 - Configurar mecanismos de visualização do cubo de dados na plataforma BI server.
-- Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 
+- Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 
 
 
 Objetivos Científicos
 
-
-- Estudos e definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
+- 
+- Catálogo e definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
 - Estudo teórico sobre a relação de vulnerabilidades de software com o design
 - Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e design de software.
 - Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos. (Agile Design Practices: http://www.agilemodeling.com/essays/agileDesign.htm)

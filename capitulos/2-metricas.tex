@@ -1,4 +1,4 @@
-\chapter{Design de Software e Métricas}
+\chapter{Design, Segurança e Métricas de Software}
 \label{cap-metrics}
 
 \section{Design de Software}
@@ -385,7 +385,7 @@ Os cuidados com o bom design do código-fonte são fundamentais para o desenvolv
 
 \section{Métricas em Engenharia de Software}
 \label{sec-metrics-esw} 
-Tanto a existência de um bom design quanto a de testes automatizados que exercitem as funcionalidades são características desejáveis em projetos de software.	Boa parte das técnicas modernas da Engenharia de Software (CITAR TÉCNICAS) são voltadas para desenvolvimento com design que proporcione simplicidade, manutenibilidade e testabilidade. Mesmo que a maior parte dessas técnicas tenham sido disseminadas a partir do advento dos Métodos Ágeis e do Software Livre, cujo foco central está em atividades relacionadas ao código-fonte, elas são aplicáveis independentemente da metodologia de desenvolvimento utilizada \cite{meirelles2013metrics}. A valorização por softwares que atendam estes parâmetros de qualidade deve-se ao fato de sempre que o Engenheiro de Software está escrevendo novas linhas de código, um tempo significativo é gasto por ele na leitura e entendimento do código existente, muitas vezes desenvolvidos por outros Engenheiros. Martin (\citeyear{martin2008}) destaca que o código-fonte deve ser escrito para ser entendido principalmente por pessoas, e não pela máquina.
+Tanto a existência de um bom \emph{design} quanto a de testes automatizados que exercitem as funcionalidades são características desejáveis em projetos de software.	Boa parte das técnicas modernas da Engenharia de Software (CITAR TÉCNICAS) são voltadas para desenvolvimento com design que proporcione simplicidade, manutenibilidade e testabilidade. Mesmo que a maior parte dessas técnicas tenham sido disseminadas a partir do advento dos Métodos Ágeis e do Software Livre, cujo foco central está em atividades relacionadas ao código-fonte, elas são aplicáveis independentemente da metodologia de desenvolvimento utilizada \cite{meirelles2013metrics}. A valorização por softwares que atendam estes parâmetros de qualidade deve-se ao fato de sempre que o Engenheiro de Software está escrevendo novas linhas de código, um tempo significativo é gasto por ele na leitura e entendimento do código existente, muitas vezes desenvolvidos por outros Engenheiros. Martin (\citeyear{martin2008}) destaca que o código-fonte deve ser escrito para ser entendido principalmente por pessoas, e não pela máquina.
 
 %
 
@@ -417,9 +417,53 @@ Entretanto, as definições de métricas adequadas para o acompanhamento do proj
 
 %
 
-\subsection{Métricas Estáticas de Código-fonte}
+\subsection{Métricas Estáticas de Design de Software}
+
+Nesta sub-seção iremos apresentar um conjunto de métricas de código-fonte que estão diretamente relacionadas ao \emph{design} de software. Neste conjunto de métricas estamos incluindo métricas que mensuram atributos do software tais como tamanho, complexidade assim como características específicas relacionadas à orientação à objetos. Portanto, métricas de \emph{design} de software devem ser compreendidas como um conjunto de métricas que medem atributos do código-fonte que permitam a avaliação de produtos de software.
 
 %
+
+A escolha de métricas para mensurar os atributos de \emph{design} se torna complexa, pois existem inúmeras propostas de métricas diferentes destinadas a medir os mesmo atributos, principalmente sobre tamanho e complexidade. Li \& Cheung \citeyear{li1987}, por exemplo, referencia e compara 31 métricas diferentes de complexidade. Entretanto, não está no escopo deste trabalho realizar uma comparação detalhada sobre métricas semelhantes. As métricas que iremos apresentar a seguir foram selecionadas devido a sua vasta utilização em estudos científicos referenciados neste trabalho e devido a sua existência em boa parte das ferramentas extratoras de métricas de código-fonte. Primeiramente serão apresentadas métricas relacionados a tamanho.
+
+%
+
+\begin{itemize}
+\item \textbf{LOC (\emph{Lines of Codes} - Linhas de Código)}: LOC calcula o número de linhas executáveis, desconsiderando linhas em branco e comentários. Esta é a métrica de tamanho mais comum. Entretanto, deve ser cuidadosamente usada e composta, pois os parâmetros de comparação não devem ser os mesmos quando se varia a linguagem e estilo de programação.
+\item \textbf{(\emph{Total Number of Modules or Classes} - Número Total de Módulos ou Classes)}: Esta métrica mensura o tamanho do software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível de desenvolvedores e estilo de codificação \cite{meirelles2013metrics}.
+\item \textbf{AMLOC (\emph{Average Method LOC} - Média de Número de Linhas de Código por Método)}: Esta métrica avalia a distribuição do código entre os métodos, sendo uma importante indicador de coesão, reutilização e outras características importantes. Entretanto, assim como a LOC, deve ser avaliada considerando-se a linguagem e estilo de programação.
+\end{itemize}
+
+%
+
+As métricas de tamanho são muito importantes para a composição de novas métricas que permitam avaliar outras características do código-fonte. A seguir são apresentadas algumas métricas que avaliam atributos estruturais, sendo muito importantes para a compreensão do nível da qualidade do \emph{design}, principalmente manutenibilidade, flexibilidade e testabilidade.
+
+%
+
+\begin{itemize}
+\item \textbf{NOA (\emph{Number of Attributes} - Número de Atributos)}: NOA calcula o número de atributos de uma classe, sendo bastante importante para avaliar a coesão de uma classe.
+\item \textbf{(\emph{Total Number of Modules or Classes} - Número Total de Módulos ou Classes)}: Esta métrica mensura o tamanho do software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível de desenvolvedores e estilo de codificação \cite{meirelles2013metrics}.
+\item \textbf{NOM (\emph{Number of Methods} - Número de Métodos)}: Esta métrica se refere ao tamanho de uma classe medindo a quantidade de operações de uma classe. Sua interpretação pode ser complicada. Um número excessivo de métodos pode representar falta de coesão e de potencial de reusabilidade da classe. Por outro lado, pode representar uma classe bem estruturada com operações bem definidas. Entretanto, a avaliação isolada desta métrica não permite este tipo de afirmação.
+\item \textbf{NPA (\emph{Number of Public Attributes} - Número de Atributos Públicos)}: NPA mede basicamente o encapsulamento de uma classe. Independente da linguagem, é desejado que este valor seja o mais baixo possível, pois é recomendado que a manipulação de atributos de uma classe sejam realizados por métodos de acesso e operacionais.
+\item \textbf{NPM (\emph{Number of Public Methods} - Número de Métodos Públicos)}: Esta métrica é muito importante para a compreensão da abstração da classe, pois mede diretamente o tamanho da interface de acesso à mesma. NPM pode ser melhor utilizada para compreender o potencial de reusabilidade e coesão de uma classe do que a métrica NOM isoladamente.
+\item \textbf{ANPM (\emph{Average Number of Parameters per Method} - Média de Parâmetros por Método)}: Essa métrica calcula a média de parâmetros dos métodos da classe, onde não se deseja um valor alto.
+\item \textbf{DIT (\emph{Depth of Inheritance Tree} - Profundidade da Árvore de Herança)}: Está métrica consiste no número de classes ancestrais da classe em análise, sem considerar heranças provindas de \emph{frameworks} ou bibliotecas. Para linguagens com herança múltipla, o valor desta métrica é o DIT da maior hierarquia.
+\item \textbf{NOC (\emph{Number of Children} - Número de Filhos)}: NOC consiste no número de filhos direto de uma classe. (FALAR MAIS AQUI)
+\item \textbf{ACCM (\emph{Average Cyclomatic Complexity per Method} - Média da Complexidade Ciclomática por Método)}: Esta métrica mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos de controle existente no método.
+\end{itemize}
+
+%
+
+As últimas métricas que serão apresentadas nesta sub-seção buscam medir características discutidas anteriormente tais como coesão e acoplamento.
+
+%
+
+\begin{itemize}
+\item \textbf{ACC (\emph{Afferent Connections per Class} - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
+\item \textbf{CBO (\emph{Coupling Between Objects} - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
+\item \textbf{COF (\emph{Coupling Factor} - Fator de Acoplamento)}: EXPLICAR ESTA AQUIIIIIIIIII
+\item \textbf{LCOM (\emph{Lack of Cohesion in Methods} - Ausência de Coesões em Métodos)}: EXPLICAR ESTA AQUIIIIIIIIII
+\end{itemize}
+
 
 \subsection{Métricas Estáticas de Segurança}
 

@@ -2,7 +2,7 @@
 
 %
 
-Como o nome sugere, Data Warehouse (DW), em português, significa armazém de dados. Segundo (INMON, 2002) um Data Warehouse é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão.
+Como o nome sugere, Data Warehouse (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um Data Warehouse é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão.
 
 %
 
@@ -19,7 +19,7 @@ O DW tem como caracteristica ser:
 
 \section{Data Warehousing}
 
-O conjunto de ferramentas de manipulação dos dados, desde sua extração até a sua visualização para o apoio a consultas e tomada de decisão é denominado de Data Warehousing. Portanto,  DWing não são as tecnologias em si envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias (Inmon, W. H, 2002).  As principais tecnologias envolvidas em um ambiente de DWing são:
+O conjunto de ferramentas de manipulação dos dados, desde sua extração até a sua visualização para o apoio a consultas e tomada de decisão é denominado de Data Warehousing. Portanto,  DWing não são as tecnologias em si envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de DWing são:
 
 %
 
@@ -32,33 +32,33 @@ O conjunto de ferramentas de manipulação dos dados, desde sua extração até 
 
 %
 
-(Kimball, 2002) define os componentes básicos de um ambiente de dwing da seguinte forma:
+Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de dwing da seguinte forma:
 
 IMAGEM dos componente KIMBAL
 
 \subsection{Sistemas de fonte de dados Operacionais}
 
-O sistemas de fonte de dados Operacionais (OSS) são as fontes dos dados de negócio que irá compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos xml ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte (KIMBALL).
+O sistemas de fonte de dados Operacionais (OSS) são as fontes dos dados de negócio que irá compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos xml ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
 
 \subsection{Área de preparação dos dados}
 
-A área de Preparação dos dados (DAS) é o ambiente na qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por (KIMBALL), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, esta, acessível ao usuário.
+A área de Preparação dos dados (DAS) é o ambiente na qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, esta, acessível ao usuário.
 
 %
 
-A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW. Os dados extraidos na camada OSS não são integrados, e segundo (Inmom,2002) esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa dos dados, que é uma das essências do ambiente de DWing. Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW (KIMBALL). Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
+A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW. Os dados extraidos na camada OSS não são integrados, e segundo Inmon (\citeyear{inmon2002}) esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa dos dados, que é uma das essências do ambiente de DWing. Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}. Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
 
 \subsection{Área de apresentação}
 
-A área de apresentação dos dados (DPA) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si (KIMBALL). 
+A área de apresentação dos dados (DPA) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
 
 %
 
-Um dos propósitos de um DW é ter uma navegação intuitiva e de alta performance nos dados (KIMBALL). A visualização das informações de um DW são resultados de agregações, caracterizados pelas consultas OLAP. Dessa forma, a modelagem relacional, normalmente utilizadas em bancos de dados transacionais, não dão suporte esses propósitos, pois a base de dados é normalizada. O processo de normalização foi inicialmente proposto por Byce Codd  que consiste em esquematizar as relações de uma base de dados relacional, minimizando redundância de informações e anomalias de inserção, exclusão e alteração, no que diz respeito a manter a consistência de dados caso haja a duplicidade deste. Dessa forma, uma base de dados relacional normalizada oferece mais segurança em transações de acesso e alteração/inclusão/deleção de dados pois possui esquemas menores e consistentes (SISTEMA DE BANCO DE DADOS ERLAD). O problema de esquemas menores é a performance, pois a realização consultas exige a navegação  entre várias tabelas, e se tratando de uma consulta que envolve grande quantidades de dados, como em um DWing, a performance se torna um fator muito importante para a qualidade do ambiente.
+Um dos propósitos de um DW é ter uma navegação intuitiva e de alta performance nos dados \cite{kimball2002}. A visualização das informações de um DW é resultado de agregações de dados, caracterizados pelas consultas OLAP. Dessa forma, a modelagem relacional, normalmente utilizadas em bancos de dados transacionais, não dão suporte esses propósitos, pois a base de dados é normalizada. O processo de normalização foi inicialmente proposto por Byce Codd  que consiste em esquematizar as relações de uma base de dados relacional, minimizando redundância de informações e anomalias de inserção, exclusão e alteração, no que diz respeito a manter a consistência de dados caso haja a duplicidade deste. Dessa forma, uma base de dados relacional normalizada oferece mais segurança em transações de acesso e alteração/inclusão/deleção de dados pois possui esquemas menores e consistentes \cite{elmasri2006}. O problema de esquemas menores é a performance, pois a realização consultas exige a navegação  entre várias tabelas, e se tratando de uma consulta que envolve grande quantidades de dados, como em um DWing, a performance se torna um fator muito importante para a qualidade do ambiente.
 
 %
 
-Kimball então propõe o uso da modelagem dimensional, que possui as mesmas informações que as bases normalizadas, porém em formato diferente, atendendo a facilidade na navegação e na performance das consultas. Mais detalhamento sobre a modelagem dimensional será visto uma secção separada.
+Kimball (\citeyear{kimball2002}) então propõe o uso da modelagem dimensional, que possui as mesmas informações que as bases normalizadas, porém em formato diferente, atendendo a facilidade na navegação e na performance das consultas. Mais detalhamento sobre a modelagem dimensional será visto uma secção separada.
 
 %
 
@@ -66,7 +66,9 @@ Kimball então propõe o uso da modelagem dimensional, que possui as mesmas info
 
 %
 
-As Ferramentas de acesso a dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de apresentação. Elas podem variar desde uma simples ferramentas de consulta ad hoc até ferramentas de análises complexas e de mineração de dados(KIMBALL).
+As Ferramentas de acesso a dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de apresentação. Elas podem variar desde uma simples ferramentas de consulta ad hoc até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
+
+(COMPLETAR FALANDO SOBRE algumas formas de visualização: graficos, dashboards...)
 
 %
 
@@ -74,14 +76,14 @@ As Ferramentas de acesso a dados são ferramentas que tem a capacidade de realiz
 
 %
 
-A modelagem dimensional é mais simples, mais expressiva e mais fácil de compreender do que a modelagem relacional (Ballard). A modelagem dimensional busca obter um modelo que representa um conjunto de medidas que são descritas por aspectos comuns de negócio.
+A modelagem dimensional é mais simples, mais expressiva e mais fácil de compreender do que a modelagem relacional \cite{ballard1998}. A modelagem dimensional busca obter um modelo que representa um conjunto de medidas que são descritas por aspectos comuns de negócio.
 
 %
 
 Os conceitos básicos da modelagem dimensional são:
 
 \begin{itemize}
-	\item \textbf{fatos}: são dados que contém medidas e seu contexto. Cada fato pode representar uma transação do negócio ou um evento que pode ser usado para análise do próprio negócio. São instâncias da realidade  que podem ser mensuradas de maneira quantitativa (KIMBALL).Em um DW os fatos são armazenas em tabelas de fatos, que consomem cerca de 90\% do espaço de uma base de dados dimensional. Tabela de fatos é a principal tabela de um modelo dimensional (KIMBALL)(BALLARD).
+	\item \textbf{fatos}: são dados que contém medidas e seu contexto. Cada fato pode representar uma transação do negócio ou um evento que pode ser usado para análise do próprio negócio. São instâncias da realidade  que podem ser mensuradas de maneira quantitativa \cite{kiball2002}.Em um DW os fatos são armazenas em tabelas de fatos, que consomem cerca de 90\% do espaço de uma base de dados dimensional. Tabela de fatos é a principal tabela de um modelo dimensional \cite{kimball2002} \cite{ballard1998}.
 	\item \textbf{dimensões}: determinam os detalhes do contexto em que foi obtido um fato. São tabelas que contem as descrições textuais de negócio e ajudam na identificação de um componente da respectiva dimensão. Cada fato se relaciona com várias dimensões, associado a apenas dado em cada uma dessas dimensões.
 	\item \textbf{medidas}: é um atributo numérico do fato. A medida determina a performance ou o comportamento de aspectos do negócio. As medidas são determinadas como combinações de membros de dimensões e alocados na tabela de fatos.
 
@@ -95,7 +97,7 @@ COLICAR IMAGEM DE CUBO
 
 %
 
-O modelo dimensional proposto por Kimball é chamado de star scheme. Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o join entre elas.
+O modelo dimensional proposto por Kimball (\citeyear{kiball2002}) é chamado de star scheme. Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o join entre elas.
 
 COLOCAR IMAGEM DO ESQUEMA ESTRELA
 
@@ -105,7 +107,7 @@ Uma Tabela de dimensão deve ser construída de maneira a incluir atributos que 
 
 %
 
-Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes (KIMBALL). Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve. Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
+Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes \cite{kimball2002}. Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve. Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
 
 %
 
@@ -113,7 +115,7 @@ A modelagem dimensional facilita o processamento analítico dos dados (OLAP), as
 
 %
 
- Kimbal (2002) define quatro passos que guiam o processo da modelagem dimensional, que são:
+ Kimbal (\citeyear{kimball2002}) define quatro passos que guiam o processo da modelagem dimensional, que são:
 
  %
 
@@ -129,7 +131,7 @@ A modelagem dimensional facilita o processamento analítico dos dados (OLAP), as
 
 %
 
-O processamento analítico On-Line (OLAP – On-line Analytc Processing) é toda atividade de consulta que busca trazer ao usuário uma visão analítica dos dados através de comparações, visões personalizadas, análises históricas, diferentes cenários e entre outras opções (Kimball). Pode-se definir OLAP como sistemas ou ferramentas que realizam consultas ao DW. Tais sistemas permitem aumentar ou diminuir o nível de detalhes da informação através das seguintes operações:
+O processamento analítico \emph{On-Line} (OLAP – \emph{On-line Analytc Processing}) é toda atividade de consulta que busca trazer ao usuário uma visão analítica dos dados através de comparações, visões personalizadas, análises históricas, diferentes cenários e entre outras opções \cite{kimball2002}. Pode-se definir OLAP como sistemas ou ferramentas que realizam consultas ao DW. Tais sistemas permitem aumentar ou diminuir o nível de detalhes da informação através das seguintes operações:
 
 %
 
@@ -146,12 +148,12 @@ O processamento analítico On-Line (OLAP – On-line Analytc Processing) é toda
 
 %
 
-Kimball (2002) define um ciclo de vida para o processo de construção de um ambiente de DWing. Neste ciclo, a primeira atividade a ser realizada é o planejamento do projeto. Essa atividade consiste em avaliar a iniciativa de construção do DWing, estabelecendo um escopo inicial e a justificativa, como também contempla a obtenção  de recursos e o lançamento do projeto.
+Kimball (\citeyear{kimball2002}) define um ciclo de vida para o processo de construção de um ambiente de DWing. Neste ciclo, a primeira atividade a ser realizada é o planejamento do projeto. Essa atividade consiste em avaliar a iniciativa de construção do DWing, estabelecendo um escopo inicial e a justificativa, como também contempla a obtenção  de recursos e o lançamento do projeto.
 
 (COLOCAR FIGURA DO CICLO DE VIDA)
 %
 %http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5680911 SEN, A
-A próxima atividade é a definição dos requisitos de negócio. O alinhamento do DWing com o s requisitos dos usuários é absolutamente crucial. Não adianta construir o ambiente com as melhores ferramentas do mercado se o este não fornece a informação que o usuário precisa ver. Dessa forma, mais de 50\% das iniciativas de DWing não tem sucesso (SEN,A 2012). Pelo levantamento feito na pesquisa de James F. Kimpel et all (2013), a principal causa é o não entendimento do problema que o usuário de negócio quer solucionar. E é na etapa de requistos que o problema e as necessidades devem ser entendidos e transformados em requistos de negócio para as etapas seguintes, de modelagem e construção do ambiente.
+A próxima atividade é a definição dos requisitos de negócio. O alinhamento do DWing com o s requisitos dos usuários é absolutamente crucial. Não adianta construir o ambiente com as melhores ferramentas do mercado se o este não fornece a informação que o usuário precisa ver. Dessa forma, mais de 50\% das iniciativas de DWing não tem sucesso \cite{sen2011}. Pelo levantamento feito na pesquisa de Kimpel (\citeyear{kimpel2013}), a principal causa é o não entendimento do problema que o usuário de negócio quer solucionar. E é na etapa de requistos que o problema e as necessidades devem ser entendidos e transformados em requistos de negócio para as etapas seguintes, de modelagem e construção do ambiente.
 
 %
 

@@ -5,9 +5,49 @@ Neste capítulo será apresentado o conceito de Cenários de Decisões, que visa
 
 %
 
-Na seção (CITAR SEÇÂO) do Capítulo (REFERENCIAR CHAPTER) ainda foram introduzidos temas relacionados ao monitoramento de código-fonte, métricas de design de software e métricas de vulnerabilidades. Aferimos que apesar de vários estudos relacionados à utilização de métricas de código-fonte ainda existem muitas dificuldades da adoção prática de métricas de código-fonte em projetos reais de Software. Deve-se enfatizar que métricas não resolvem problemas e sim as pessoas \cite{}. Métricas de software atuam como indicadores para prover informação, entendimento, avaliação, controle e predição para que as pessoas possam realizar escolhas e ações. Neste sentido, no presente capítulo buscamos reduzir a distância entre a medição do código-fonte e tomada de decisões por Engenheiros de Software através da proposta de Cenários de Decisões.
+Na seção (CITAR SEÇÂO) do Capítulo (REFERENCIAR CHAPTER) ainda foram introduzidos temas relacionados ao monitoramento de código-fonte, métricas de design de software e métricas de vulnerabilidades. Aferimos que apesar de vários estudos relacionados à utilização de métricas de código-fonte ainda existem muitas dificuldades da adoção prática de métricas de código-fonte em projetos reais de Software. Deve-se enfatizar que métricas não resolvem problemas e sim as pessoas \cite{westfall2005}. Métricas de software atuam como indicadores para prover informação, entendimento, avaliação, controle e predição para que as pessoas possam fazer escolhas e ações. Neste sentido, no presente capítulo buscamos reduzir a distância entre a medição do código-fonte e tomada de decisões por Engenheiros de Software através da proposta de Cenários de Decisões.
 
 %
+
+Cenários de Decisões nomeiam e mapeiam estados observáveis através de métricas de código-fonte que indicam a existência de determinada característica dentro do software, classe ou método. Um Cenário de Decisão é composto por:
+
+%
+
+\begin{itemize}
+\item \textbf{Nome}: Identificação única do cenário. Deve ser significativo para prover a compreensão do estado que o cenário representa.
+\item \textbf{Métricas Envolvidas}: Identifica as métricas necessárias para a caracterização do cenário, sem definir relações entre essas métricas.
+\item \textbf{Descrição}: Discuti os problemas, princípios envolvidos e a caracterização
+\item \textbf{Caracterização com Métricas}: Define e discuti como as métricas envolvidas devem ser utilizadas para identificar o cenário. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
+\item \textbf{Ações sugeridas}: Propõe um conjunto de ações específicas tais como uma refatoração, a utilização de um padrão de projeto, prática e aplicação de princípios.
+\end{itemize}
+
+%
+
+O objetivo da definição de Cenários é minimizar as principais dificuldades existentes na medição do código-fonte:
+
+%
+
+\begin{itemize}
+\item \textbf{Escolha de Métricas}: Cada cenário é composto por um conjunto de métricas que devem ser utilizadas para aferir a ocorrência do mesmo. Neste sentido, caso se queira observar se um software possui um determinado cenário de vulnerabilidade específica, por exemplo, o Engenheiro de Software ou Gerente devem se preocupar apenas sobre a escolha correta do cenário, abstraindo a escolha de métricas específicas.
+\item \textbf{Interpretação de Valores}: A ocorrência de um cenário em algum trecho específico do código deve ser, por si só, o suficiente para o entendimento e avaliação do estado de \emph{design} deste trecho, não havendo a necessidade de ter que se interpretar os valores obtidos. A existência de um cenário ruim específico em um  método deve prover o entendimento necessário para que o Engenheiro de Software realize ações para remoção deste cenário.
+\item \textbf{Redundância de Métricas}: Existem muitas métricas na Engenharia de Software que podem ser utilizadas para medir a mesma característica do software tais como tamanho, complexidade e coesão. Compreender cada uma delas e suas intersecções é uma tarefa dispendiosa, dificultando a escolha adequada de métricas que avaliem bem os elementos do software sem redundância de informação. A redundância de métricas não é algo desejado em projetos de software uma vez que a medição é um processo complexo e caro. Cenários idealmente devem ser estabelecidos a partir de estudos e experimentos. Assim, métricas consideradas redundantes podem ser eliminadas a partir da definição de cenários ou podem ser necessárias para a identificação de cenários diferentes para os quais essas métricas agregam alguma informação.
+\item \textbf{Interpretações Isoladas}: Podem existir métricas que possam ser utilizadas para a identificação de um cenário específico sem a necessidade de uso de outras métricas. Entretanto, na maioria dos casos uma métrica não provê informação suficiente a ponto de poder ser interpretada isoladamente. Assim, Cenários de Decisões diminuem o risco de interpretações isoladas inadequadas, pois reunem um conjunto de métricas necessários para sua caracterização. Mesmo quando um cenário é composto por uma métrica específica, ele oferece um nível de abstração e interpretação que diminui as possibilidades de erros de interpretação.
+\item \textbf{Parâmetros de Comparação}: Os cenários definem uma interpretação a partir de um conjunto de métricas, mas não especificando valores de intervalos necessários para caracterizar este cenário. Assim, um cenário deve ser adaptável para diferentes contextos devido a importância de se flexibilizar as interpretações de métricas, tema discutido e defendido por Meirelles (\citeyear{meirelles2013metrics}). Sugere-se que a escolha dos parâmetros adequados para caracterização do cenário deve ser feita por especialistas que compreendam as necessidades de seus projetos e as limitações e recursos da linguagem e paradigma de programação utilizados no software. Portanto, a escolha dos valores para caracterização de um cenário é a instanciação deste cenário para um contexto específico. Nesta monografia, além da proposta de cenários, também iremos propor instâncias destes cenários para determinados contextos.
+\end{itemize}
+
+%
+
+Com os Cenários de Decisões introduzimos um novo conceito a ser utilizado na medição de software. Espera-se que o esforço destinado a medição de software em um projeto seja concentrado sobre a instanciação destes cenários, diminuindo-se o esforço necessário para coleta, interpretação e viusalização de dados. Entretanto, os benefícios dos Cenários de Decisões são passíveis de experimentação e estão fora do escopo deste trabalho.
+
+%
+
+
+
+
+%http://estudijas.lu.lv/pluginfile.php/317090/mod_resource/content/1/metrics_traps_to_avoid.pdf
+%http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2013-003.pdf
+%http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.384.7471
+
 
 
 

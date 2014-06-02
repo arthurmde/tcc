@@ -73,12 +73,39 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 
 \begin{itemize}
 \item \textbf{Cenários de Decisão para Caracterização da Qualidade de código}: Estes cenários buscam identificar caracteristicas de software relacionadas a qualidade e design de código que podem influenciar em sua segurança, como complexidade, acoplamento, etc.
-\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades espefífica de código}: Estes cenários buscam em identificar vulnerabilidades de software que podem ser encontradas em código fonte indepente que este esteja em um bom nível de qualidade e design;
+\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades espefífica de código}: Estes cenários buscam em identificar vulnerabilidades de software que podem ser encontradas em código fonte indepente que este esteja em um bom nível de qualidade e design. São cenários relacionados mais a erros que podem ser cometidos pelos desenvolvedores no momento da implementação;
 \end{itemize}
 
 %
 
 \subsubsection{Cenários de Decisão para Caracterização da Qualidade do Código }
+
+%
+
+\textbf{Alta superfície de ataque}
+
+%
+
+Este cenário busca atender ao princípio de design de segurança Redução da Superfície de ataque (Seção \ref{sec-security-principles}). Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de design, a diminuição de métodos públicos de classes assim como a diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
+
+%
+
+Em termos de métricas de código fonte, este cenário busca medir a quantidade de métodos públicos e o número de atributos de entrada dos métodos. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos públicos e métodos que tenham um elevado número de parâmetros. 
+
+%
+
+Há várias opções de \emph{refactorings} que o Engenheiro de Software pode aplicar durante o desenvolvimento para adequar o encapsulamento de suas classes de acordos com os objetivos de segurança do princípio \emph{reduce attack surface}: \emph{Encapsulate Collection}\footnote{\url{http://refactoring.com/catalog/encapsulateCollection.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}}; \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}};
+
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: Alta Superfície de Ataque
+\item \textbf{Métricas Envolvidas}: Quantidade de métodos públicos e quantidade de parâmetros de entrada de métodos;
+\item \textbf{Descrição}: Esse cenário busca identificar classes e métodos que possuem muita exposição devido ao alto número de métodos públicos e número elevado de parâmetros de entrada de métodos.
+\item \textbf{Caracterização com Métricas}: Compõe este cenário classes que possuem elevado número de métodos públicos; e métodos que possuem elevado número de parâmetros;
+\item \textbf{Ações sugeridas}: .
+\end{itemize}
 
 %
 

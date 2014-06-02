@@ -218,7 +218,11 @@ Algumas das vulnerabilidades mais comuns estão listada abaixo:
 
 %Lista: https://cwe.mitre.org/top25/
 %http://nvd.nist.gov/cwe.cfm
+
 \subsection{Classificações e taxonomias de vulnerabilidades}
+\label{subsec-vulnerabilities-taxonomy}
+%
+
 O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no código fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atancantes utilizam estas vulnerabilidadespara falhar o sistema. Existem muitos tipos de vulnerabilidades, e com o passar do tempo, novas vulnerabilidades são descobertas e novos \emph{exploits} são criados por atacantes. Em meio a essa diversidade, a classificação de vulnerabilidades representa um grande desafio, porém, já houve vários avanços na área com o objetivo de enumerar e catalogar estas vulnerabilidades.
 
 %
@@ -300,6 +304,7 @@ O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common W
 %
 
 \subsection{Princípios de segurança}
+\label{sec-security-principles}
 
 Como visto no estudo sobre a classificação e taxonomias, existem muitas vulnerabilidades de software que são passíveis de exploração por atacantes. Neste sentido, é de suma importância para o desenvolvimento de softwares mais seguros que os Engenheiros de Software construam códigos com qualidade suficiente que os permitam identificar, corrigir e evitar a inserção de vulnerabilidades. Tendo-se o conhecimento de quais são as principais vulnerabilidades existentes, os Engenheiros devem tratar essas vulnerabilidades desde as primeiras fases de design e desenvolvimento código-fonte, seguindo até o fim do ciclo de vida do desenvolvimento do software. Assim como os desenvolvedores programam aplicando ao código princípios de design, devem evoluir o código aplicando princípios de design seguro tais quais os apresentados por outros trabalhos \cite{saltzer1975} \cite{bishop2003} \cite{mcgraw2002} \cite{a1lshammari2009}.
 
@@ -466,6 +471,7 @@ As últimas métricas que serão apresentadas nesta sub-seção buscam medir car
 
 
 \subsection{Métricas Estáticas de Segurança}
+\label{subsec-security-metrics}
 
 Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer overflow}. Dessa forma, as ferramentas de análise estática buscam em econtrar vulnerabilidades específicas, considerando o padrão CWE ou não para caracterizar a vulnerabilidade, e quantificam o seu número de ocorrências. 
 

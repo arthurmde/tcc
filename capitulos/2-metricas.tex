@@ -467,19 +467,21 @@ As últimas métricas que serão apresentadas nesta sub-seção buscam medir car
 
 \subsection{Métricas Estáticas de Segurança}
 
-Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer overflow}. Dessa forma, as ferramentas de análise estática buscam em econtrar vulnerabilidades específicas, considerando o padrão CWE ou não para caracterizar a vulnerabilidade, e quantificam o seu número de ocorrências.
+Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na secção de Segurança(COLOCAR REFERNCIA PARA A SECÇAO), o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer overflow}. Dessa forma, as ferramentas de análise estática buscam em econtrar vulnerabilidades específicas, considerando o padrão CWE ou não para caracterizar a vulnerabilidade, e quantificam o seu número de ocorrências. 
+
+O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante ao desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha(\citeyear{aranha2012}) mostra claramente a importancia do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletronica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código.
 
 %
 
 Então, em termos de métricas, ferramentas de análise estáticas podem fornecer as seguintes métricas relacionadas a vulnerabilidades:
 
 \begin{itemize}
-\item \textbf{Número total de vulnerabilidades no projeto}: Cosiste em quantificar o total de vulnerabilidades encontradas no projeto inteiro, somando todos os tipos de vulnerabilidades encontradas;
-\item \textbf{Número de vulnerabilidades por arquivo}
-\item \textbf{Número de vulnerabilidades por função}
-\item \textbf{Quantidade de um vulnerabilidade especifica no projeto}:
-\item \textbf{Quantidade de um vulnerabilidade especifica por arquivo}:
-\item \textbf{Quantidade de um vulnerabilidade especifica por função}:
+\item Número total de vulnerabilidades no projeto
+\item Número de vulnerabilidades por arquivo
+\item Número de vulnerabilidades por função
+\item Quantidade de um vulnerabilidade especifica no projeto
+\item Quantidade de um vulnerabilidade especifica por arquivo
+\item Quantidade de um vulnerabilidade especifica por função
 \end{itemize}
 
 %

@@ -533,6 +533,8 @@ Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas
 
 \item \textbf{\emph{Double free (df)}}: Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
 
+\item \textbf{Assigned value is garbage or undefined (auv)}:Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido existe. Esta vulnerabilidade ocorre quando uma variável recebe um valor cujo a origem vem de entrada do usuário no sistema. Caso não seja feito a verificação desse parâmetro de entrada, a variável poderá receber lixo ou um valor indefinido e sua posterior utilização pode causar desde quebra da aplicação como também resultados inesperados de comportamento de software.
+
 \end{itemize}
 
  %SANS Institute, MITRE, e experts em segurança de software dos Estados Unidos e Europa elaboraram uma lista dos 25 erros de software mais perigosos. É uma lista que contem os erros mais comuns e perigosos que podem gerar sérias vulnerabilidades de software e que são muitas vezes fáceis de encontrar e de fácil exploit (REFERENCIA PARA SITE DA CWE). Estes erros são perigos pois podem permitir aos atacantes assumir o controle completo do software, roubar dados ou deixar a aplicação fora funcionamento. 

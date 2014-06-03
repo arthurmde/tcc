@@ -16,6 +16,7 @@ Cenários de Decisões nomeiam e mapeiam estados observáveis através de métri
 \begin{itemize}
 \item \textbf{Nome}: Identificação única do cenário. Deve ser significativo para prover a compreensão do estado que o cenário representa.
 \item \textbf{Métricas Envolvidas}: Identifica as métricas necessárias para a caracterização do cenário, sem definir relações entre essas métricas.
+\item \textbf{Nível}: Define abstração de software que pode ser caracterizada pelo cenário, por exemplo: Projeto; Estrutura de Herança; Classe; Método;
 \item \textbf{Descrição}: Discuti os problemas, princípios envolvidos e a caracterização
 \item \textbf{Caracterização com Métricas}: Define e discuti como as métricas envolvidas devem ser utilizadas para identificar o cenário. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
 \item \textbf{Ações sugeridas}: Propõe um conjunto de ações específicas tais como uma refatoração, a utilização de um padrão de projeto, prática e aplicação de princípios.
@@ -82,32 +83,72 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 
 %
 
-\textbf{Alta superfície de ataque}
+\textbf{Alta Superfície de Ataque a Atributos Internos}
 
 %
 
-Este cenário busca identifica a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}). Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de \emph{design}, a diminuição de métodos públicos de classes assim como a diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
+Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos atributos de um objeto. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de \emph{design}, diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe. 
 
 %
 
-Em termos de métricas de código-fonte, este cenário busca medir a quantidade de interações possíveis com um determinado objeto além de avaliar. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos e atributos públicos e métodos que tenham um elevado número de parâmetros. 
+Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque aos atributos de uma classe. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de atributos públicos. 
 
 %
-
-Há várias opções de \emph{refactorings} que o Engenheiro de Software pode aplicar durante o desenvolvimento para adequar o encapsulamento de suas classes de acordos com os objetivos de segurança do princípio \emph{reduce attack surface}: \emph{Encapsulate Collection}\footnote{\url{http://refactoring.com/catalog/encapsulateCollection.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}}; \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}};
-
 
 Quadro resumo:
 
 \begin{itemize}
 \item \textbf{Nome}: Alta Superfície de Ataque
-\item \textbf{Métricas Envolvidas}: NPA (Número de Atributos Públicos), NPM(Número de Métodos Públicos), ANPM(Média de Parâmetros por Método);
-\item \textbf{Descrição}: Esse cenário busca identificar classes e métodos que possuem muita exposição devido ao alto número de métodos e atributos públicos e número elevado de parâmetros de entrada de métodos, violando o princípio de \emph{design} seguro Redução de Superfície de Ataque.
-\item \textbf{Caracterização com Métricas}: NPA alto e distante de zero; NPM consideravelmente alto; ANPM alto;
-\item \textbf{Ações sugeridas}: Refatorações aplicáveis: \emph{Encapsulate Collection}\footnote{\url{http://refactoring.com/catalog/encapsulateCollection.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}}; \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}}; \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}};
+\item \textbf{Classificação}: Composta;
+\item \textbf{Métricas Envolvidas}: NPA (Número de Atributos Públicos), NOA (Número de Atributos);
+\item \textbf{Nível}: Classe;
+\item \textbf{Descrição}: Esse cenário busca identificar classes que possuem muita exposição devido ao alto número de atributos públicos, violando o princípio de \emph{design} seguro Redução de Superfície de Ataque.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{Composição NPA/NOA} - Caracteriza o tamanho da superfície de ataque a atributos em percentagem. O cenário existe quando o valor desta métrica composta está acima do valor estipulado.
+	\end{itemize}
+\item \textbf{Ações sugeridas}:
+	\begin{itemize}
+	\item \textbf{Refatorações aplicáveis:} - \emph{Encapsulate Field}\footnote{\url{http://refactoring.com/catalog/encapsulateField.html}}.
+	\item \textbf{Princípios aplicáveis à classe} - Princípio e Redução de Superfície de Ataque; Princípio de Encapsulamento;
+	\end{itemize}
 \end{itemize}
 
 %
+
+\textbf{Alta Superfície de Ataque Operacional}
+
+%
+
+Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}), o que aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
+
+%
+
+Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque através de operações acessíveis de uma classe e os parâmetros necessários para sua realização. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos públicos e que tenham grande quantidade de parâmetros. 
+
+%
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: Alta Superfície de Ataque Operacional
+\item \textbf{Classificação}: Polimétrico;
+\item \textbf{Métricas Envolvidas}: NPM (Número de Métodos Públicos), MNPM (Número Máximo de Parâmetros por Método); 
+\item \textbf{Nível}: Classe;
+\item \textbf{Descrição}: Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio \emph{Mediate Completely} devido à grande exposição da classe em termos operacionais. Este cenário indica que a aplicação do princípio de \emph{design} seguro Redução de Superfície de Ataque pode melhorar o \emph{design} da classe uma vez que as definições e abstrações de seus métodos são reestruturadas.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{NPM} - Caracteriza a quantidade de interações possíveis para as quais o princípio \emph{Mediate Completely} deve ser aplicado. O cenário pode existir caso os valores desta métrica esteja acima do estipulado;
+	\item \textbf{MNPM} - Caracteriza a quantidade de informações que poderiam ser verificadas para evitar ataques externos. O cenário pode existir caso os valores desta métrica esteja acima do estipulado; 
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Refatorações aplicáveis aos métodos da classe} - \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}};
+	\item \textbf{Princípios aplicáveis à classe} - Princípio e Redução de Superfície de Ataque; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \cite{larman2007};
+	\item \textbf{Padrões aplicáveis no projeto para reduzir a ocorrência deste cenário} - Padrão \emph{Facade}\footnote{\url{http://sourcemaking.com/design_patterns/facade}};
+	\end{itemize}
+\end{itemize}
+
 
 \subsubsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 

@@ -341,7 +341,7 @@ Alguns módulos do software requerem mais atenção do que outros quanto riscos 
 
 %
 
-O estudo sobre conceituação de vulnerabilidades conhecidas, de princípios de design seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e \emph{design} até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de \emph{design} seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
+O estudo sobre conceituação de vulnerabilidades conhecidas, de princípios de \emph{design} seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Este profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e \emph{design} até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de \emph{design} seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
 
 %
 
@@ -464,10 +464,11 @@ As últimas métricas que serão apresentadas nesta sub-seção buscam medir car
 %
 
 \begin{itemize}
+\item \textbf{RFC (\emph{Response For a Class} - Resposta de uma Classe)}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe pode invocar, tanto métodos internos quanto de outras classes.
 \item \textbf{ACC (\emph{Afferent Connections per Class} - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
 \item \textbf{CBO (\emph{Coupling Between Objects} - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
-\item \textbf{COF (\emph{Coupling Factor} - Fator de Acoplamento)}: EXPLICAR ESTA AQUIIIIIIIIII
-\item \textbf{LCOM (\emph{Lack of Cohesion in Methods} - Ausência de Coesões em Métodos)}: EXPLICAR ESTA AQUIIIIIIIIII
+\item \textbf{COF (\emph{Coupling Factor} - Fator de Acoplamento)}: Esta métrica é a razão entre o número acoplamento existente que não sejam provindos de herança e do número total de possíveis acoplamentos. O máximo de acoplamento possível acontece quando todas as classes estão e são acopladas com as outras classes do projeto.
+\item \textbf{LCOM4 (\emph{Lack of Cohesion in Methods} - Ausência de Coesões em Métodos)}: Esta métrica cálcula o número de componentes conectados em uma classe. Um componente conectado consiste em um conjunto de métodos relacionados. Dois métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um método invoca ao outro.
 \end{itemize}
 
 

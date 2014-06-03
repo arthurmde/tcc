@@ -149,6 +149,38 @@ Quadro resumo:
 	\end{itemize}
 \end{itemize}
 
+%
+
+\textbf{Ponto Crítico de Falha}
+
+%
+
+Este cenário busca identificar a ocorrência de classes ou módulos que concentram muitas responsabilidades das quais muitas outras classes dependem. Este cenário é problemático uma vez que a classe das quais muitas outras classes dependem, em caso de falhas e exploração de vulnerabilidades tendem a afetar muitas outras estruturas do projeto. Além disso, a alta concentração de dependências em uma classe pode ser devido a inadequada distribuição de responsabilidades entre os módulos que compõem o projeto.
+
+%
+
+Em termos de métricas de código-fonte, este cenário é caracterizado a partir da medição da quatindade de classes que dependem da classe em análise. Esta dependência deve ser considerada em termos de acesso à métodos, acesso à atributos e herança. 
+
+%
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: Ponto Crítico de Falha
+\item \textbf{Classificação}: Composto
+\item \textbf{Métricas Envolvidas}: ACC (Conexões Aferentes por Classe), NOC (Número de Filhos)
+\item \textbf{Nível}: Classe;
+\item \textbf{Descrição}: Esse cenário busca identificar classes que potencialmente são pontos críticos do projeto de software. Classes que são caracterizadas com este cenário devem ser cuidadosamente repensadas em termos de responsabilidades para não ser permanecerem sendo potenciais pontos críticos do projetos, uma vez que falhas e exploração de vulnerabilidades podem comprometer toda a estrutura acoplada a ela.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{Composição ACC + NOC} - Caracteriza a quantidade de classes acopladas à classe em análise, tanto em termos de acesso à métodos e atributos quanto em termos de herança. Este cenário existe quando o valor calculado através desta composição, ou seja, o número de classes acopladas a classe em análise é superior ao valor definido para o projeto.
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Refatorações aplicáveis aos métodos da classe} - \emph{Extract Class}\footnote{\url{http://refactoring.com/catalog/extractClass.html}}, \emph{Move Method}\footnote{\url{http://refactoring.com/catalog/moveMethod.html}}, \emph{Push Down Method}\footnote{\url{http://refactoring.com/catalog/pushDownMethod.html}};
+	\item \textbf{Princípios aplicáveis à classe} - Princípios de bom \emph{design}: Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \cite{larman2007};
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 
@@ -156,11 +188,11 @@ Quadro resumo:
 
 \textbf{Parâmetros de entrada de usuário não são verificados}
 
-Este cenário busca identificar situações no código fonte o valor de uma entrada de usuário é passado para uma variável sem que tenha sido feito, antes da atribuição e uso, uma verificação desse dado de entrada. Essa vulnerabilidade é catalogada no padrão CWE como CWE-20\fontenote{\url{http://cwe.mitre.org/data/definitions/20.html}}, que é classificada como uma classe que inclui diversas vulnerabilidades com mais nível de detalhe relacionadas a não validação. A não validação de atributos de entrada de usuário pode implicar em diversos riscos para a aplicação. Com essa vulnerabilidade podem ser exploradas vulnerabilidades  mais específica como \emph{Buffer Overflow}, \emph{SQL injection} e \emph{XSS}, permitindo ao atacante inserir valores inesperados, podendo causar a quebra da aplicação; ler arquivos confidenciais por manipulação do do programa, como por exemplo o uso de \emph{SQL injection}; como também pode modificar dados ou mudar o fluxo de programa explorando o \emph{Buffer Overflow}.
+Este cenário busca identificar situações no código fonte onde valor de uma entrada de usuário é passado para uma variável sem que tenha sido feito, antes da atribuição e uso, uma verificação desse dado de entrada. Essa vulnerabilidade é catalogada no padrão CWE como CWE-20 \footnote{\url{http://cwe.mitre.org/data/definitions/20.html}}, que é classificada como uma classe que inclui diversas vulnerabilidades com mais nível de detalhe relacionadas a não validação. A não validação de atributos de entrada de usuário pode implicar em diversos riscos para a aplicação. Com essa vulnerabilidade podem ser exploradas vulnerabilidades  mais específica como \emph{Buffer Overflow}, \emph{SQL injection} e \emph{XSS}, permitindo ao atacante inserir valores inesperados, podendo causar a quebra da aplicação; ler arquivos confidenciais por manipulação do do programa, como por exemplo o uso de \emph{SQL injection}; como também pode modificar dados ou mudar o fluxo de programa explorando o \emph{Buffer Overflow}.
 
 %
 
-Em termos de métricas de código fonte, este cenário busca medir métricas de vulnerabilidade que identificam a ocorrencia da não verificação dos parâmetros de entrada. Então, este cenário busca medir a métria AUV somente, caracterizando este cenário como monométrico. Se a medida desta métrica for maior um, quer dizer que existe ao menos uma ocorrência dessa vulnerabilidade, e já caracteriza a ocorrência deste cenário.
+Em termos de métricas de código fonte, este cenário busca medir métricas de vulnerabilidade que identificam a ocorrencia da não verificação dos parâmetros de entrada. Então, este cenário busca medir a métria AUV somente, caracterizando este cenário como monométrico. Se a medida desta métrica for maior do que um, quer dizer que existe ao menos uma ocorrência dessa vulnerabilidade, e já caracteriza a ocorrência deste cenário.
 
 %
 

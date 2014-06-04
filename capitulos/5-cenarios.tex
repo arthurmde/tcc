@@ -186,7 +186,7 @@ Quadro resumo:
 
 %
 
-\textbf{Parâmetros de entrada de usuário não são verificados}
+\textbf{Entradas não validadas}
 
 Este cenário busca identificar situações no código fonte onde valor de uma entrada de usuário é passado para uma variável sem que tenha sido feito, antes da atribuição e uso, uma verificação desse dado de entrada. Essa vulnerabilidade é catalogada no padrão CWE como CWE-20 \footnote{\url{http://cwe.mitre.org/data/definitions/20.html}}, que é classificada como uma classe que inclui diversas vulnerabilidades com mais nível de detalhe relacionadas a não validação. A não validação de atributos de entrada de usuário pode implicar em diversos riscos para a aplicação. Com essa vulnerabilidade podem ser exploradas vulnerabilidades  mais específica como \emph{Buffer Overflow}, \emph{SQL injection} e \emph{XSS}, permitindo ao atacante inserir valores inesperados, podendo causar a quebra da aplicação; ler arquivos confidenciais por manipulação do do programa, como por exemplo o uso de \emph{SQL injection}; como também pode modificar dados ou mudar o fluxo de programa explorando o \emph{Buffer Overflow}.
 
@@ -196,10 +196,26 @@ Em termos de métricas de código fonte, este cenário busca medir métricas de 
 
 %
 
-Para tratar este cenário deve ser feito uma verificação e tratamento do dado de etrada antes de seu uso para se certificar que a informação está realmente aplicavel ao contexto. Então pode ser interessante a criação de uma lista de valores válidos ou determinação de regras para cada entrada não validada e realizar a verificação, e o tratamento para caso a entrada não esteja adequada.
+Para tratar este cenário deve ser feita a verificação e tratamento do dado de entrada antes de seu uso para se certificar que a informação está realmente condizente ao contexto. Então pode ser interessante a criação de uma lista de valores válidos ou determinação de regras para a verificação desses dados de entrada.
 
 
+Quadro resumo:
 
+\begin{itemize}
+\item \textbf{Nome}: Entradas não validadas
+\item \textbf{Classificação}: Monométrico
+\item \textbf{Métricas Envolvidas}: AUV (Assigned value is garbage or undefined)
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Esse cenário busca identificar parâmetros de entrada de usuário na aplicação que não são validados e verificados e são utilizados pela aplicação. Nessa situação, não temos certeza de que valor foi passado como entrada, podendo causar desde comportamento inesperado da aplicação até quebra e leitura de dados confidenciais.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{AUV} - Aponta linhas do código em que se encontram a variáveis que podem ter o valor indefinido ou com lixo. Este cenário existe quando o valor calculado desta métrica é diferente de zero, ou seja, esse cenário existe se tiver pelo menos uma ocorrencia dessa métrica no código fonte
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Implementar mecanismos de validação} - A implementação de mecanismos de verificação da integridade e consistência do dado de entrada ajuda a garantir que esta entrada não seja indefinida ou lixo.
+	\end{itemize}
+\end{itemize}
 
 %------------------------------------------------------------------------------%
 

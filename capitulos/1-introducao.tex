@@ -1,11 +1,11 @@
 \chapter{Introdução}
 \label{cap-introducao}
 
-A Engenharia de Software tem evoluídos seus métodos e técnicas para prover melhorias no desenvolvimento de software com objetivos baseados em cumprimento de prazos e orçamentos assim como a implementação de produtos que atendem parâmetros de qualidades desejados. Estas melhorias são observáveis em diferentes pontos, desde o processo ao produto, cujos objetivos e prioridades podem variar de acordo com a metodologia de desenvolvimento. Apesar de suas diferenças conceituais e de valores, a maior parte dos métodos preveêm processos e técnicas referentes ao design, testes e medição, que visam garantir a qualidade do software em desenvolvimento.
+A Engenharia de Software tem evoluído seus métodos e técnicas para prover melhorias no desenvolvimento de software com objetivos baseados em cumprimento de prazos e orçamentos assim como a implementação de produtos que atendem parâmetros de qualidades desejados. Estas melhorias são observáveis em diferentes pontos, desde o processo ao produto, cujos objetivos e prioridades podem variar de acordo com a metodologia de desenvolvimento. Apesar de suas diferenças conceituais e de valores, a maior parte dos métodos preveêm processos e técnicas referentes ao \emph{design}, testes e medição, que visam garantir a qualidade do software em desenvolvimento.
 
 %
 
-No contexto de projetos que adotam metodologias ágeis observa-se que tanto a qualidade interna quanto a qualidade externa do software são preponderantes, pois são fatores fundamentais para suportar a simplicidade, o feedback contínuo e adaptação à mudanças, valores que solidificam o desenvolvimento ágil. A qualidade interna do software é observada a partir de atributos de qualidades na perspectiva de desenvolvimento que, segundo Berander (\citeyear{berander2005}), se resumem em corretude, testabilidade, flexibilidade, portabilidade, reusabilidade, interoperabilidade, analisabilidade, adaptatividade e estabilidade. As práticas ressaltadas pela metologia Extreme Programming \cite{beck2000} visam realçar os valores dos atributos destacados. O design simples pode ser obtido através de técnicas como o Desenvolvimento Orientado à Testes (CITAR UMA REFERÊNCIA) e o Refactoring (CITAR OUTRA REFERÊNCIA), que por sua vez influenciam diretamente os atributos testabilidade, reusabilidade e adaptatividade. Ambas as técnicas se baseiam fortemente em testes unitários (CITAR OUTRA REFERÊNCIA) que provê a segurança necessária para realização de mudanças assim como o feedback automatizado da manutenção do software. O Pair Programming (CITAR REFERÊNCIA), dentre outras técnicas, também possui papel fundamental na garantia da qualidade interna, uma vez que exercita a programação e revisão ao mesmo tempo, reduzindo a ocorrência de não-conformidades técnicas e inserção de bugs. Por outro lado, a qualidade externa do software pode ser alcançada a partir do envolvimento do cliente ao longo das atividades de desenvolvimento e, principalmente, a partir de entregas contínuas de software com valor de negócio.
+No contexto de projetos que adotam metodologias ágeis observa-se que tanto a qualidade interna quanto a qualidade externa do software são preponderantes, pois são fatores fundamentais para suportar a simplicidade, o feedback contínuo e adaptação à mudanças, valores que solidificam o desenvolvimento ágil. A qualidade interna do software é observada a partir de atributos de qualidades na perspectiva de desenvolvimento que, segundo Berander (\citeyear{berander2005}), se resumem em corretude, testabilidade, flexibilidade, portabilidade, reusabilidade, interoperabilidade, analisabilidade, adaptatividade e estabilidade. As práticas ressaltadas pela metologia \emph{Extreme Programming} \cite{beck2000} visam realçar os valores dos atributos destacados. O \emph{design} simples pode ser obtido através de técnicas como o Desenvolvimento Orientado à Testes \cite{beck2002} e a Refatoração \cite{fowler1999}, que por sua vez influenciam diretamente os atributos testabilidade, reusabilidade e adaptatividade. Ambas as técnicas se baseiam fortemente em testes unitários que proveem a segurança necessária para realização de mudanças assim como o feedback automatizado da manutenção do software. A Programação em Pares, dentre outras técnicas, também possui papel fundamental na garantia da qualidade interna, uma vez que exercita a programação e revisão ao mesmo tempo, reduzindo a ocorrência de não-conformidades técnicas e inserção de bugs. Por outro lado, a qualidade externa do software pode ser alcançada a partir do envolvimento do cliente ao longo das atividades de desenvolvimento e, principalmente, a partir de entregas contínuas de software com valor de negócio.
 
 %
 
@@ -27,11 +27,11 @@ A medida que o tempo vai passando, novas vunerabilidades vão sendo descobertas 
 
 %
 
-Visto esse cenário de inúmeras vulnerabilidades é fundamental que todos aqueles envolvidos no processo de produção do software tenham conhecimento das implicações relativas a segurança. O conhecimento de vunerabilidades e meios de detecta-las são habilidades necessárias para garantia de software seguro. Este conhecimento deve estar alinhado às habilidades de concepção de um bom \emph{design} para prover a segurança necessária no desenvolvimento do software e se alcançar os valores e objetivos anteriormente destacados.
+Visto esse cenário de inúmeras vulnerabilidades é fundamental que todos aqueles envolvidos no processo de produção do software tenham conhecimento das implicações relativas a segurança. O conhecimento de vunerabilidades e meios de detectá-las são habilidades necessárias para garantia de software seguro. Este conhecimento deve estar alinhado às habilidades de concepção de um bom \emph{design} para prover a segurança necessária no desenvolvimento do software e se alcançar os valores e objetivos anteriormente destacados.
 
 %
 
-Neste sentido, a medição pode ser utilizada como um processo de apoio ao acompanhamento da segurança e qualidade, através do estabelecimento de metas e indicadores que indiquem oportunidades de melhorias observáveis do produto. Em um cenário otimista, os próprios Engenheiros de Software podem adotar como prática a medição do código-fonte para auxiliar as tomadas de decisões, ou até mesmo para avaliação do código inserido ou da aplicação de refactoring.
+Neste sentido, a medição pode ser utilizada como um processo de apoio ao acompanhamento da segurança e qualidade, através do estabelecimento de metas e indicadores que indiquem oportunidades de melhorias observáveis do produto. Em um cenário otimista, os próprios Engenheiros de Software podem adotar como prática a medição do código-fonte para auxiliar as tomadas de decisões, ou até mesmo para avaliação do código inserido ou da aplicação de refatorações.
 
 %falar sobre ferramentas de monitoramento e DW
 
@@ -43,15 +43,15 @@ Assim, destaca-se a importância de ferramentas que auxiliem o processo de medi�
 
 %
 
-Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software. Assim, espera-se identificar as oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto a partir do estabelecimento de cenários, compostos a partir da análise de correlação de métricas, que evidenciem as boas e más características do design de um projeto que impactam na vunerabilidade do sistema com o objetivo de facilitar a interpretação e evitar possíveis equívocos que são baseados em análises errôneas sobre métricas isoladas, sobre correlações inexistentes ou até mesmo a escolha de métricas inadequadas cujos problemas são discutidos em \cite{chidamber1994}. Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento baseado em métricas e um ambiente de DWing e será observado o uso dessas duas soluções e suas contribuições para a melhoria do processo e qualidade do produto..
+Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software. Assim, espera-se identificar as oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto a partir do estabelecimento de cenários, compostos a partir da análise de correlação de métricas, que evidenciem as boas e más características do \emph{design} de um projeto que impactam na vunerabilidade do sistema com o objetivo de facilitar a interpretação e evitar possíveis equívocos que são baseados em análises errôneas sobre métricas isoladas, sobre correlações inexistentes ou até mesmo a escolha de métricas inadequadas cujos problemas são discutidos em \cite{chidamber1994}. Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte e um ambiente de DWing e será observado o uso dessas duas soluções e suas contribuições para a melhoria do processo e qualidade do produto.
 
 %------------------------------------------------------------------------------%
 
 \section{Objetivos}
 
-%O objetivo deste trabalho permeia um estudo teórico de conceitos relacionados a métricas de monitoramento de código-fonte, buscando identificar correlações existentes entre algumas métricas e suas interpretações que evidenciem tanto características de bom design, tais como Código Limpo \cite{almeida1994}, quanto bad smells (CITAR REFERÊNCIA). O estabelecimento destes cenários permite a seleção de métricas adequadas baseadas em determinados objetivos de melhorias, facilta a interpretação tanto a nível gerencial quanto a nível de desenvolvimento e apoia a melhoria contínua de software a partir da adoção do monitoramento de código-fonte como uma prática de desenvolvimento.
+%O objetivo deste trabalho permeia um estudo teórico de conceitos relacionados a métricas de monitoramento de código-fonte, buscando identificar correlações existentes entre algumas métricas e suas interpretações que evidenciem tanto características de bom \emph{design}, tais como Código Limpo \cite{almeida1994}, quanto bad smells (CITAR REFERÊNCIA). O estabelecimento destes cenários permite a seleção de métricas adequadas baseadas em determinados objetivos de melhorias, facilta a interpretação tanto a nível gerencial quanto a nível de desenvolvimento e apoia a melhoria contínua de software a partir da adoção do monitoramento de código-fonte como uma prática de desenvolvimento.
 
-O objetivo deste trabalho consite no estudo teórico sobre conceitos relacionados a métricas de monitoramento de código-fonte buscando relacionar características de bom design, como Código limpo e Bad Smells no contexto de vunerabilidades de software  para o estabelecimento de cenários que caracterizam determinado componente do sistema e auxiliem na tomada de decisão no que diz respeito a refatoração de código para melhoria da segurança da aplicação.
+O objetivo deste trabalho consite no estudo teórico sobre conceitos relacionados a métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software  para o estabelecimento de cenários que caracterizam determinado componente do sistema e auxiliem na tomada de decisão no que diz respeito à práticas de \emph{design} de código para melhoria da segurança da aplicação.
 
 %
 
@@ -74,13 +74,12 @@ Este trabalho busca responder as seguintes questões de pesquisa:
 %
 
 \begin{itemize}
-\item \textbf{QP1}- Um ambiente de \emph{Data Warehousing}(DWing) é  adequado para auxiliar na tomada de decisão tanto do ponto de vista estratégico gerencial quanto no ponto de vista de modificações de design por desenvolvedores/Engenheiro de software?
+\item \textbf{QP1}- Um ambiente de \emph{Data Warehousing}(DWing) é  adequado para auxiliar na tomada de decisão tanto do ponto de vista estratégico gerencial quanto no ponto de vista de modificações de \emph{design} por desenvolvedores/Engenheiro de software?
 \item \textbf{QP2}- O Mezuro é adequado para suportar a tomada de decisões gerenciais de projetos de software e para auxiliar o Engenheiro de Software na melhoria contínua do produto?
 \item \textbf{QP3}- O Mezuro e o DWing podem ser utilizados em conjunto para auxiliar a tomada de decisões em vários níveis de projetos de software?
-\item \textbf{QP4}- O monitoramento de vulnerabilidades é viável em projetos de softwares não- críticos?
-\item \textbf{QP5}- As métricas de produto, se utilizadas para melhoria contínua, são suficientes para redução de vulnerabilidades no software?
-\item \textbf{QP6}- Métricas de design de código possuem correlação com métricas de vulnerabilidades?
-\item \textbf{QP7}- Métricas estáticas podem ser compostas em cenários para a definição de indicadores mais informativos e completos?
+\item \textbf{QP4}- Métricas de \emph{design} de código possuem correlação com métricas de vulnerabilidades?
+\item \textbf{QP5}- O monitoramento de vulnerabilidades é viável em projetos de softwares não- críticos?
+\item \textbf{QP6}- Métricas estáticas podem ser compostas em cenários para a definição de indicadores mais informativos e completos?
 \end{itemize}
 
 %
@@ -92,31 +91,31 @@ Para responder estas questões de pesquisa, busca-se atingir os seguintes objeti
 	\item [Objetivos Técnológicos]\
 \end{description}
 		\begin{itemize}
-			\item Evoluir a plataforma livre Mezuro de monitoramento de código-fonte:
+			\item \textbf{OT1}- Evoluir a plataforma livre Mezuro de monitoramento de código-fonte:
 				\begin{itemize}
 					\item Evoluir a arquitetura do Mezuro para melhorar sua modularização e flexibilidade.
 					\item Evoluir a configuração de métricas do Mezuro
 					\item Implementar mecanismos de definição de celos/cenários no Mezuro
 					\item Melhorar mecanismos de visualização de software do Mezuro
 				\end{itemize}
-			\item Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
+			\item \textbf{OT2}- Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
 	        	\begin{itemize}
 	        		\item Implementar extração, transformação e carregamento da base de dados a partir de reports de ferramentas de análise estática na ferramenta Pentaho.
 	        		\item Criar modelo dimensional
 	        		\item Gerar Cubo de dados        
 					\item Configurar mecanismos de visualização do cubo de dados na plataforma BI server.
 	        	\end{itemize}
-			\item Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
+			\item \textbf{OT3}- Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 		\end{itemize}
 \begin{description}
 	\item [Objetivos Científicos]\
 \end{description}	
 	 	\begin{itemize}
-			\item Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
-			\item Estudo teórico sobre a relação de vulnerabilidades de software com o design
-			\item Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e design de software.
-			\item Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
-			\item Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
+			\item \textbf{OC1}- Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
+			\item \textbf{OC2}- Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}
+			\item \textbf{OC3}- Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e \emph{design} de software.
+			\item \textbf{OC4}- Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
+			\item \textbf{OC5}- Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
 	 	\end{itemize}
 
 
@@ -126,3 +125,9 @@ Para responder estas questões de pesquisa, busca-se atingir os seguintes objeti
 %------------------------------------------------------------------------------%
 
 \section{Metodologia e Pesquisa}
+
+%------------------------------------------------------------------------------%
+
+\section{Organização do Trabalho}
+
+Esta monografia está dividida em mais outros 4 capítulos. A seguir, o leitor encontrará o Capítulo \ref{cap-metrics} onde são estruturados e discutidos os principais conceitos relacionados a \emph{design}, vulnerabilidade e métricas de software. Posteriormente no Capítulo \ref{cap-mezuro} será apresentada a plataforma de monitoramento de código-fonte Mezuro, uma ferramenta livre que será evoluída de acordo com os Objetivos Tecnlógicos deste trabalho. O Capítulo \ref{cap-dw} apresenta os principais conceitos relacionados a Data Warehousing que também será explorada no contexto deste trabalho como solução para utilização de métricas de código-fonte. Por fim, no Capítulo \ref{cap-cenarios} serão apresentados o conceito de Cenários de Decisões e algumas propostas que podem ser utilizadas no monitoramento de projetos.

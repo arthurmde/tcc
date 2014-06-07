@@ -1,4 +1,4 @@
-TARGET = TCC_Arthur.pdf
+TARGET = TCC_ArthurCarlos.pdf
 
 BIBTEX = bibtex
 LATEX = latex
@@ -54,7 +54,7 @@ $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 clean:
 	rm -f *~ *.dvi *.ps *.backup *.aux *.log
 	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx
-	rm -f tcc.pdf TCC_Arthur.pdf
+	rm -f tcc.pdf TCC_ArthurCarlos.pdf
 	rm -f *.synctex.gz
 	
 dist: clean

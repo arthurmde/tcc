@@ -1,9 +1,11 @@
-#TCC1 de Arthur de Moura Del Esposte FGA-UnB
+#TCC1 de Arthur de Moura Del Esposte & Carlos Filipe FGA-UnB
 
 Aluno: Arthur de Moura Del Esposte  
+Aluno: Carlos Filipe
 Orientador: Prof. Dr. Paulo Roberto Miranda Meirelles
+Coorientador: Prof. Mr. Hilmer Rodrigues Neri
 
-Título: Cenários de Refatoração Orientadas a Métricas: Uma Evolução do Monitoramento de Código Fonte Realizada pelo Mezuro
+Título: Tomada de decisões orientadas a métricas de software: observações de métricas de produto e vulnerabilidades de software via DW e Plataforma de monitoramente de código-fonte.
 
 Esse trabalho utiliza o template desenvolvido e adaptado pelo professor Edson Alves <edsomjr@gmail.com> disponível em [Template TCC FGA](https://github.com/fga-unb/template-latex-tcc)
 

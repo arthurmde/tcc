@@ -211,7 +211,7 @@ Quadro resumo:
 \item \textbf{Descrição}: Esse cenário busca identificar parâmetros de entrada de usuário que não são validados ou verificados, e posteriormente são utilizados pela aplicação. Nessa situação, não temos certeza o real valor que foi passado como entrada, podendo causar desde comportamento inesperado da aplicação até quebra e leitura de dados confidenciais.
 \item \textbf{Caracterização com Métricas}: 
 	\begin{itemize}
-	\item \textbf{AUV} - Aponta linhas do código em que se encontram a variáveis que podem ter o valor indefinido ou com lixo. Este cenário existe quando o valor calculado desta métrica é diferente de zero, ou seja, esse cenário existe se tiver pelo menos uma ocorrencia dessa métrica no código fonte
+	\item \textbf{Composição AUV+FGBO} - Aponta linhas do código em que se encontram a variáveis que podem ter o valor indefinido ou com lixo obtidos na entrada do programa e também o uso da função \emph{gets}. Este cenário existe quando o valor calculado desta métrica é diferente de zero, ou seja, esse cenário existe se tiver pelo menos uma ocorrencia dessa métrica no código fonte
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
@@ -253,3 +253,45 @@ Quadro resumo:
 	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, inicializando variáveis no momento em que são instanciadas.
 	\end{itemize}
 \end{itemize}
+
+
+\begin{landscape}
+
+	\begin{table}[H]
+		\begin{center}
+	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{5cm}  | p{5cm}  |}
+	    \hline
+	    \textbf{Cenário} & \textbf{Caracterização} & \textbf{Nível do} & \textbf{Descrição} & \textbf{Caracterização} & \textbf{Ações Sugeridas} \\
+	      & \textbf{do cenário} & \textbf{cenário} &  & \textbf{com Métricas} & \\ 	\hline
+	    Alta Superfície de Ataque a Atributos Internos & Qualidade de código & Classe & Busca diminuir a exposição da classes em relação aos seus atributos públicos & Valor alto de NPA/NOA &  \textbf{Refatorações}: Encapsulate Field; \textbf{Aplicar Princípios}:Redução da superfície de ataque, Princípio de encapsulamento \\ \hline
+
+	    Alta Superfície de Ataque Operacional & Qualidade de código & Classe & Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio Mediate Completely devido à grande exposição da classe em termos operacionais.& Valor alto de número NPM e MNPM & \textbf{Refatorações}: Hide Method; Remove Parameter; \textbf{Aplicar Princípios}:Princípio e Redução de Superfície de Ataque;
+Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP; \textbf{Aplicar padõres}: Padrão facade\\ \hline
+
+	    \end{tabular}
+		    \caption{Parte I - Resumo de todos os cenários propostos para o monitoramento da segurança de software}
+		    \label{tab:resumoI}
+		\end{center}
+	\end{table}
+
+	\begin{table}[H]
+		\begin{center}
+	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{5cm}  | p{5cm}  |}
+	    \hline
+	    \textbf{Cenário} & \textbf{Caracterização} & \textbf{Nível do} & \textbf{Descrição} & \textbf{Caracterização} & \textbf{Ações Sugeridas} \\
+	      & \textbf{do cenário} & \textbf{cenário} &  & \textbf{com Métricas} & \\ 	\hline
+	    
+	    Ponto Crítico de Falha & Qualidade de código & Classe & Este cenário busca identificar classes muito acopladas, que representam pontos críticos da aplicação & Alto valor de ACC+NOC & \textbf{Refatorações}: Extract Class, Move Method, Push Down Method; \textbf{Aplicar Princípios}:Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \\
+	 \hline
+	    Entradas não validadas  & Vulnerabilidade específica & Método & Busca indentificar a não ocorrencia de validação de variáveis de entrada por outros mecanismos e também pelo uso da função \emph{gets} & Ao menos uma ocorrência da métrica FGBO ou AUV & Implementar mecanismos validação de entrada de usuário ; substituir função \emph{gets} pela \emph{fgets} \\ \hline
+	    Variáveis não inicializadas  & Vulnerabilidade específica & Método & Variáveis não inicializadas podem causar falha da aplicação ou acesso não autorizado de informações caso sejam utilizadas & Ao menos uma ocorrência da métrica UAV & Inicializar variáveis sempre que criar uma\\ \hline
+
+	    \end{tabular}
+		    \caption{Parte II - Resumo de todos os cenários propostos para o monitoramento da segurança de software}
+		    \label{tab:resumo2}
+		\end{center}
+	\end{table}
+
+
+\end{landscape}
+

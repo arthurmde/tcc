@@ -226,7 +226,7 @@ O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no 
 
 %
 
-O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE com o objetivo de enumerar as vulnerabilidades descoberdas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em MARTIN, antigamente cada organização nomeava de sua maneira uma vulnerabilidade, de forma que uma mesma vulnerabilidade era referenciada de maneira completamente distinta entra as organizações. 
+O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE\footnote{\url{http://www.mitre.org/}} com o objetivo de enumerar as vulnerabilidades descoberdas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em \cite{cve2001martin}, antigamente cada organização nomeava de sua maneira uma vulnerabilidade, de forma que uma mesma vulnerabilidade era referenciada de maneira completamente distinta entra as organizações. 
 
 %
 
@@ -234,7 +234,7 @@ A enumeração realizada pelo CVE é feita por uma junta de especialistas 	de se
 
 %
 
-Surgiram propostas além do CVE para a classificação e agrupamento de vulnerabilidades, que são chamadas de taxonomias. O trabalho de MALEBRA descreve as as primeiras propostas taxonômicas, como os trabalhos de Landwher em 1992(\emph{A toxonomy of Computer Security Flaws}) e Aslam em 1997 (\emph{Use of  a taxonomy of Security Faults}). Porém, consideramos mais relevante abordar mais detalhadamente sobre as taxonomias mais recentes, que são utilizadas no projeto CWE, iniciativa semelhante a CVE que será abordada mais adiante. As principais taxonomias são:
+Surgiram propostas além do CVE para a classificação e agrupamento de vulnerabilidades, que são chamadas de taxonomias. O trabalho de Malerba (\citeyear{malerba2010}) descreve as as primeiras propostas taxonômicas, como os trabalhos de Landwher em 1992(\emph{A toxonomy of Computer Security Flaws}) e Aslam em 1997 (\emph{Use of  a taxonomy of Security Faults}). Porém, consideramos mais relevante abordar mais detalhadamente sobre as taxonomias mais recentes, que são utilizadas no projeto CWE, iniciativa semelhante a CVE que será abordada mais adiante. As principais taxonomias são:
 
 %
 
@@ -246,7 +246,7 @@ Surgiram propostas além do CVE para a classificação e agrupamento de vulnerab
 
 %
 
-O PLOVER foi criado em 2005 pelo MITRE em parceria com o DHS(US. Departament of Homeland Secutity) e o NIST(National Institute of Technology). É um documento que lista mais de 1400 exemplos reais de vulnerabilidades identificados pelo CVE. Trata-se de um framework conceitual que descreve as vulnerabilidades em diversos níveis de detalhe. O PLOVER também fornece uma série de conceitos que podem ajudar na comunicação e discussões à respeitos de vulnerabilidades.
+O PLOVER foi criado em 2005 pelo MITRE em parceria com o DHS (US. Departament of Homeland Secutity) e o NIST (National Institute of Technology). É um documento que lista mais de 1400 exemplos reais de vulnerabilidades identificados pelo CVE. Trata-se de um framework conceitual que descreve as vulnerabilidades em diversos níveis de detalhe. O PLOVER também fornece uma série de conceitos que podem ajudar na comunicação e discussões à respeitos de vulnerabilidades.
 
 %
 
@@ -258,7 +258,7 @@ Foram definidas 28 categorias de mais alto nivel para a categorização de vulne
 \item SPECTS: inclui vulnerabilidades que ocorrem e tecnologias específicas, como a injeção de SQL e XSS
 \end{itemize}
 
-A lista completa das categorias e mais detalhes sobre o PLOVER podem ser encontrados em (CHRISTEY,2006).
+A lista completa das categorias e mais detalhes sobre o PLOVER podem ser encontrados em \cite{christey2006}.
 
 %
 
@@ -274,11 +274,11 @@ O CLASP não é apenas uma taxonomia de categorização de vulnerabilidades, mas
 \end{itemize}
 
 %
-Exemplificando, as vulnerabilidades do tipo \emph{Buffer Overflow} se encaixariam na categoria de erro de tipo e de range, pois nesse tipo de vulnerabilidade é permitido a escrita de uma informação além o limite do buffer. A vulnerabilidade do tipo  injeção de SQL também se encaixaria nessa categoria, pois esse tipo de vulnerabilidade ocorre quando não há validação no tipo de informação fornecida pelo usuário. Mais detalhes podem ser vistos em http://cwe.mitre.org/about/sources.html (ARRUMAR REFERENCIA).
+Exemplificando, as vulnerabilidades do tipo \emph{Buffer Overflow} se encaixariam na categoria de erro de tipo e de range, pois nesse tipo de vulnerabilidade é permitido a escrita de uma informação além o limite do buffer. A vulnerabilidade do tipo  injeção de SQL também se encaixaria nessa categoria, pois esse tipo de vulnerabilidade ocorre quando não há validação no tipo de informação fornecida pelo usuário. Mais detalhes podem ser vistos no site do CWE\footnote{\url{http://cwe.mitre.org/about/sources.html}}.
 
 %
 
-A taxonomia Seven Pernicious Kingdoms é a que possibilita melhor entendimento ao desenvolvedor, e é até utilizada como base em uma das visões das CWEs denominada \emph{Development View}(SITE CWE REFERENCIA). Utiliza os conceitos da biologia de Reino e Filo. Na taxonomia, o Reino é a classificação mais abrangente e o Filo é uma subdivisão do Reino. Essa taxonomia, embora o nome sugere sete, possui oito reinos sendo que sete reinos são dedicados a vulnerabilidades de código fonte e um reino referente a aspectos de configuração e ambiente. São eles:
+A taxonomia Seven Pernicious Kingdoms é a que possibilita melhor entendimento ao desenvolvedor, e é até utilizada como base em uma das visões das CWEs denominada \emph{Development View}\footnote{\url{http://cwe.mitre.org/data/graphs/699.html}}. Utiliza os conceitos da biologia de Reino e Filo. Na taxonomia, o Reino é a classificação mais abrangente e o Filo é uma subdivisão do Reino. Essa taxonomia, embora o nome sugere sete, possui oito reinos sendo que sete reinos são dedicados a vulnerabilidades de código fonte e um reino referente a aspectos de configuração e ambiente. São eles:
 
 \begin{itemize}
 \item \textbf{Validação e representação de entrada}: inclui erros de buffer overflow, injeção de SQL, XSS, etc;
@@ -292,14 +292,13 @@ A taxonomia Seven Pernicious Kingdoms é a que possibilita melhor entendimento a
 
 \end{itemize}
 
-A idéia desta taxonomia foi criar reinos bem amplos para que novos filos fossem inseridos em seu lugar correto, porém a taxonomia proposta está aberta para a inserção de novos reinos, caso necessário. Mais informações e detalhes a cerca dos filos que incluem cada reino pode ser encontrado em (TSIPENYUK K. et all)
+A idéia desta taxonomia foi criar reinos bem amplos para que novos filos fossem inseridos em seu lugar correto, porém a taxonomia proposta está aberta para a inserção de novos reinos, caso necessário. Mais informações e detalhes a cerca dos filos que incluem cada reino pode ser encontrado em \cite{tsipenyuk2005}
 
 %
 Com este cenário apresentado acima, em que temos a CVE como projeto de enumerar as vulnerabilidades encontradas e as taxonomias elaboradas por diversos trabralhos com o objetivo de classificar e dar mais informações sobre a vulnerabilidade, ainda haviam a necessidade das empresas e organizações de utilizarem o uma terminologia padrão para listar e classificar vulnerabilidades de software, gerando uma linguagem unificada e uma base para ferramentas e serviços de medição dessas vulnerabilidades. Para essa necessidade foi elaborado o projeto CWE.
 
 %
 O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no design, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados.
-(FALAR SOBRE O TOP 25 CWE)
 %
 
 \subsection{Princípios de segurança}

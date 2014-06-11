@@ -39,7 +39,7 @@ Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente d
 
  \begin{figure}[!htb]
  	\centering
- 		\includegraphics[scale=0.5]{figuras/DWcomponentes.pdf}
+ 		\includegraphics[scale=0.5]{figuras/componentesDW}
  		\caption{Componentes de um DWing \cite{kimball2002}}.
  		\label{componentesdw}
  \end{figure}
@@ -84,7 +84,14 @@ Ferramentas de visualização são muito importantes em um ambiente de DWing poi
 
 %
 
-Outra forma de visualização de dados é dada através  de \emph{dashboards}. Um \emph{dashboard} é um tipo de aplicação analítica constituída por uma tela com informação resumida que pode conter diferentes elementos de exploração, como tabelas, gráficos, manometros, entre outros, tal como se mostra na Figura (???).
+Outra forma de visualização de dados é dada através  de \emph{dashboards}. Um \emph{dashboard} é um tipo de aplicação analítica constituída por uma tela com informação resumida que pode conter diferentes elementos de exploração, como tabelas, gráficos, manometros, entre outros, tal como se mostra na Figura (\ref{dashboard}).
+
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.57]{figuras/dashboard}
+ 		\caption{Exemplo de visualização de dados através de dashboards}.
+ 		\label{dashboard}
+ \end{figure}
 %REFERENCIAR http://www.link.pt/BI/detalhe_artigo.aspx?idsc=5380&idl=1
 
 
@@ -110,15 +117,28 @@ Os conceitos básicos da modelagem dimensional são:
 
 %
 
-A idéia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões.
-
-COLICAR IMAGEM DE CUBO
+A idéia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões. Na figura (\ref{dw-cube}) é exemplificado um cubo de dados para o contexto de uma loja. As células desse cubo pode representar a quantidade de vendas, sendo possível a realização de diferentes análises.
 
 %
 
-O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de star scheme. Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o join entre elas.
 
-COLOCAR IMAGEM DO ESQUEMA ESTRELA
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.8]{figuras/dw-cubo}
+ 		\caption{Exemplo de cubo de dados}.
+ 		\label{dw-cube}
+ \end{figure}
+
+%
+
+O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de modelo estrela (\emph{star scheme}, Figura \ref{dw-starscheme}). Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o join entre elas.
+
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.8]{figuras/dw-Modelo-estrela}
+ 		\caption{Esquema estrela}.
+ 		\label{dw-starscheme}
+ \end{figure}
 
 %
 
@@ -126,9 +146,14 @@ Uma Tabela de dimensão deve ser construída de maneira a incluir atributos que 
 
 %
 
-Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes \cite{kimball2002}. Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve. Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
+Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes \cite{kimball2002}. Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve, como pode ser visto na Figura (\ref{dw-snowflackscheme}). Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
 
-COLOCAR IMAGEM DO SNOW FLAck
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.8]{figuras/dw-modelo-flocodeneve}
+ 		\caption{Esquema floco de neve}.
+ 		\label{dw-snowflackscheme}
+ \end{figure}
 
 %
 
@@ -157,13 +182,22 @@ O processamento analítico \emph{On-Line} (OLAP – \emph{On-line Analytc Proces
 %
 
 \begin{itemize}
-\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de Drill Down consistiria e trazer essa mesma informação por mês.
-\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do Drill down.
-\item \textbf{\emph{Slice and dice}}: A operação de slice consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda,  fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A Operação dice, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de dice em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
-\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. 
+	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de Drill Down consistiria e trazer essa mesma informação por mês.
+	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do Drill down.
+	\item \textbf{\emph{Slice and dice}}: A operação de slice consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda,  fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A Operação dice, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de dice em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
+	\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. 
 \end{itemize}
 
 %
+
+A Figura (\ref{dw-olap}) exemplifica cada uma das operações OLAP que podem ser aplicadas em um cubo de dados.
+%
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=1]{figuras/olap}
+ 		\caption{Operações OLAP}.
+ 		\label{dw-olap}
+ \end{figure}
 
 \section{Ciclo de vida de um ambiente de \emph{Data Warehousing}}
 \label{sec-lifecycleDw}

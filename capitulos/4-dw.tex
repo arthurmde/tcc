@@ -205,7 +205,12 @@ A Figura (\ref{dw-olap}) exemplifica cada uma das operações OLAP que podem ser
 
 Kimball (\citeyear{kimball2002}) define um ciclo de vida para o processo de construção de um ambiente de DWing. Neste ciclo, a primeira atividade a ser realizada é o planejamento do projeto. Essa atividade consiste em avaliar a iniciativa de construção do DWing, estabelecendo um escopo inicial e a justificativa, como também contempla a obtenção  de recursos e o lançamento do projeto.
 
-(COLOCAR FIGURA DO CICLO DE VIDA)
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.7]{figuras/dw-ciclo-de-vida}
+ 		\caption{Ciclo de vida de um Projeto de DWing \cite{kimball2002}}.
+ 		\label{dw-lifecycle}
+ \end{figure}
 %
 %
 
@@ -213,7 +218,7 @@ A próxima atividade é a definição dos requisitos de negócio. O alinhamento 
 
 %
 
-Com os requistos definidos, existem três conjuntos de tarefas. As tarefas superiores da figura (????) são responsaveis pela concepção tecnologica do ambiente. Consiste na definição da arquitetura técnica e  seleção das tecnologias envolvidas na solução de DWing. O conjunto de tarefas que se encontram no meio do ciclo são responsáveis pelo desenho do modelo dimensional, modelo físico e a definição e desenvolvimento do processo de ETL dos dados. O conjunto de tarefas inferiores são responáveis pelo desenho e desenvolvimento das aplicações analíticas, que irão fornecer a visualização da informação gerada pela DWing para o usuário. Juntando esses tres conjuntos de tarefas temos a implantação e disponibilização do ambiente de DWing para o usuário, então pode-se dizer que a solução de DWing foi implantada e pode começar a ser utilizada. 
+Com os requistos definidos, existem três conjuntos de tarefas. As tarefas superiores (na cor verde) da figura (\ref{dw-lifecycle}) são responsáveis pela concepção tecnológica do ambiente. Consiste na definição da arquitetura técnica e  seleção das tecnologias envolvidas na solução de DWing. O conjunto de tarefas que se encontram no meio do ciclo (na cor amarela) são responsáveis pelo desenho do modelo dimensional e físico e a definição e desenvolvimento do processo de ETL dos dados. O conjunto de tarefas inferiores (na cor  azul) são responáveis pelo desenho e desenvolvimento das aplicações analíticas, que irão fornecer a visualização da informação gerada pela DWing para o usuário. Juntando esses três conjuntos de tarefas temos a implantação e disponibilização do ambiente de DWing para o usuário, então pode-se dizer que a solução de DWing foi implantada e pode começar a ser utilizada. 
 
 %
 

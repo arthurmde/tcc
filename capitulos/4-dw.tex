@@ -46,21 +46,21 @@ Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente d
 
 %
 
-\subsection{Sistemas de fonte de dados Operacionais}
+\subsection{Sistemas de fonte de dados Operacionais - OSS}
 
-O sistemas de fonte de dados Operacionais (OSS) são as fontes dos dados de negócio que irá compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos xml ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
+O sistemas de fonte de dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irá compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos xml ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
 
-\subsection{Área de preparação dos dados}
+\subsection{Área de Preparação dos Dados - DSA}
 
-A área de Preparação dos dados (DAS) é o ambiente na qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, esta, acessível ao usuário.
+A área de Preparação dos dados (DSA - \emph{Data Staging Area}) é o ambiente na qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, esta, acessível ao usuário.
 
 %
 
 A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW. Os dados extraidos na camada OSS não são integrados, e, segundo Inmon (\citeyear{inmon2002}), esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa dos dados, que é uma das essências do ambiente de DWing. Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}. Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
 
-\subsection{Área de apresentação}
+\subsection{Área de apresentação - DPA}
 
-A área de apresentação dos dados (DPA) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
+A área de apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
 
 %
 

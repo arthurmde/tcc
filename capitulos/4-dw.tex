@@ -7,14 +7,14 @@ Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazé
 
 %
 
-O DW tem como caracteristica ser:
+O DW tem como característica ser:
 
 %
 
 \begin{itemize}
 \item \textbf{Integrado}: capaz de integrar dados de diversas fontes de formatos.
-\item \textbf{Orientado a assunto}: um sistema corporativo pode fornecer diversas informações sobre determinados aspectos da corporação. O DW é construído focando em alguns aspectos específicos, como por exemplo, em um sistema de vendas de uma loja, podemos analisar as informações sobre venda, como também podemos analisar informações sobre frequência de funcionários ou também sobre o estoque. Cada aspecto sugere a seleção de apenas dados específicos do sistema que serão uteis para a análise desse aspecto. Os demais dados não são de interesse.
-\item \textbf{Não volátil}: os dados de um DW representam a informação capturada em um determinado momento da aplicação. Em aplicações, os dados estão sempre sujeitos a modificações. Dessa forma, o DW irá capturar novamente, em outro momento, essa informação e irá acrescentá-la, e não atualiza-la, ao DW, permitindo visualizar a atualização dessa determinada informação em momentos diferentes. Ou seja, os dados de um DW não são modificados, salvo raras excessões.
+\item \textbf{Orientado a assunto}: um sistema corporativo pode fornecer diversas informações sobre determinados aspectos da corporação. O DW é construído focado em alguns aspectos específicos, como por exemplo, em um sistema de vendas de uma loja, podemos analisar as informações sobre venda, como também podemos analisar informações sobre frequência de funcionários ou também sobre o estoque. Cada aspecto sugere a seleção de apenas dados específicos do sistema que serão uteis para a análise desse aspecto. Os demais dados não são de interesse.
+\item \textbf{Não volátil}: os dados de um DW representam a informação capturada em um determinado momento da aplicação. Em aplicações, os dados estão sempre sujeitos a modificações. Dessa forma, o DW irá capturar novamente, em outro momento, essa informação e irá acrescentá-la ao DW, e não atualiza-la, permitindo visualizar a atualização dessa determinada informação em momentos diferentes. Ou seja, os dados de um DW não são modificados, salvo raras excessões.
 \item \textbf{Temporais}: consiste em armazenar a data referente à informação ou à coleta da informação. Dessa forma, o DW consegue fornecer várias visões da informação agrupadas por medidas de tempo. 
 \end{itemize}
 
@@ -33,7 +33,7 @@ O conjunto de ferramentas de manipulação dos dados, desde sua extração até 
 
 %
 
-Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de dwing conforme a Figura \ref{componentesdw}:
+Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de DWing conforme a Figura \ref{componentesdw}:
 
 %
 
@@ -46,21 +46,21 @@ Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente d
 
 %
 
-\subsection{Sistemas de fonte de dados Operacionais - OSS}
+\subsection{Sistemas de Fonte de Dados Operacionais - OSS}
 
-O sistemas de fonte de dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irá compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos xml ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
+O Sistemas de Fonte de Dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irão compor o ambiente de DW. Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.  Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos XML ou qualquer outra forma de se armazenar e representar informações de negócio. As fontes de dados não podem ser consideradas dentro do escopo do DWing, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
 
 \subsection{Área de Preparação dos Dados - DSA}
 
-A área de Preparação dos dados (DSA - \emph{Data Staging Area}) é o ambiente na qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, esta, acessível ao usuário.
+A Área de Preparação dos Dados (DSA - \emph{Data Staging Area}) é o ambiente no qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL. Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL. Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, base essa acessível ao usuário.
 
 %
 
-A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW. Os dados extraidos na camada OSS não são integrados, e, segundo Inmon (\citeyear{inmon2002}), esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa dos dados, que é uma das essências do ambiente de DWing. Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}. Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
+A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW. Os dados extraidos na camada OSS não são integrados, e, segundo Inmon (\citeyear{inmon2002}), esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa, que é uma das essências do ambiente de DWing. Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}. Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
 
-\subsection{Área de apresentação - DPA}
+\subsection{Área de Apresentação - DPA}
 
-A área de apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
+A Área de Apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
 
 %
 
@@ -76,11 +76,11 @@ Kimball (\citeyear{kimball2002}) então propõe o uso da modelagem dimensional, 
 
 %
 
-As Ferramentas de acesso a dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de apresentação. Elas podem variar desde uma simples ferramentas de consulta ad hoc até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
+As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de Apresentação. Elas podem variar desde simples ferramentas de consulta \emph{ad-hoc} até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
 
 %
 
-Ferramentas de visualização são muito importantes em um ambiente de DWing pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de DWing listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios. Relatórios nada mais são do que vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP ad hoc para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
+Ferramentas de visualização são muito importantes em um ambiente de DWing, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de DWing listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP ad hoc para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
 
 %
 
@@ -110,14 +110,14 @@ A modelagem dimensional é mais simples, mais expressiva e mais fácil de compre
 Os conceitos básicos da modelagem dimensional são:
 
 \begin{itemize}
-	\item \textbf{fatos}: são dados que contém medidas e seu contexto. Cada fato pode representar uma transação do negócio ou um evento que pode ser usado para análise do próprio negócio. São instâncias da realidade  que podem ser mensuradas de maneira quantitativa \cite{kimball2002}.Em um DW os fatos são armazenadas em tabelas de fatos, que consomem cerca de 90\% do espaço de uma base de dados dimensional. Tabela de fatos é a principal tabela de um modelo dimensional \cite{kimball2002} \cite{ballard1998}.
+	\item \textbf{fatos}: são dados que contém medidas e seu contexto. Cada fato pode representar uma transação do negócio ou um evento que pode ser usado para análise do próprio negócio. São instâncias da realidade  que podem ser mensuradas de maneira quantitativa \cite{kimball2002}. Em um DW os fatos são armazenadas em tabelas de fatos, que consomem cerca de 90\% do espaço de uma base de dados dimensional. Tabela de fatos é a principal tabela de um modelo dimensional \cite{kimball2002} \cite{ballard1998}.
 	\item \textbf{dimensões}: determinam os detalhes do contexto em que foi obtido um fato. São tabelas que contem as descrições textuais de negócio e ajudam na identificação de um componente da respectiva dimensão. Cada fato se relaciona com várias dimensões, associado a apenas a um dado em cada uma dessas dimensões.
 	\item \textbf{medidas}: é um atributo numérico do fato. A medida determina a performance ou o comportamento de aspectos do negócio. As medidas são determinadas como combinações de membros de dimensões e alocados na tabela de fatos.
 \end{itemize}
 
 %
 
-A idéia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões. Na figura (\ref{dw-cube}) é exemplificado um cubo de dados para o contexto de uma loja. As células desse cubo pode representar a quantidade de vendas, sendo possível a realização de diferentes análises.
+A idéia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões. Na Figura \ref{dw-cube} é exemplificado um cubo de dados para o contexto de uma loja. As células desse cubo pode representar a quantidade de vendas, sendo possível a realização de diferentes análises.
 
 %
 
@@ -131,7 +131,7 @@ A idéia da modelagem dimensional é representar os tipos de dados de negócio e
 
 %
 
-O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de modelo estrela (\emph{star scheme}, Figura \ref{dw-starscheme}). Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o join entre elas.
+O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de modelo estrela (\emph{star scheme}, Figura \ref{dw-starscheme}). Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o \emph{Join} entre elas.
 
  \begin{figure}[!htb]
  	\centering
@@ -142,11 +142,11 @@ O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de
 
 %
 
-Uma Tabela de dimensão deve ser construída de maneira a incluir atributos que podem ser agregados, fornecendo ao usuário maneiras alternativas de visualizar as as informações. Como por exemplo, uma tabela de produto tem o atributo “nome do produto” e o atributo “categoria”. Dessa forma, o usuário poderá agrupar os produtos por categoria para ter uma diferente visão sobre a informação. Diferente do modelo relacional, o fato da tabela dimensão não ser normalizada implica na melhoria da performance, pois nesse exemplo citado, “categoria” do produto normalmente seria outra tabela, e para a referida análise seria necessário a realização de um Join, que foi substituído apenas por uma clausula \emph{Group by}.
+Uma Tabela de Dimensão deve ser construída de maneira a incluir atributos que podem ser agregados, fornecendo ao usuário maneiras alternativas de visualizar as informações. Como por exemplo, uma tabela de produto tem o atributo “nome do produto” e o atributo “categoria”. Dessa forma, o usuário poderá agrupar os produtos por categoria para ter uma diferente visão sobre a informação. Diferente do modelo relacional, o fato da tabela dimensão não ser normalizada implica na melhoria da performance, pois nesse exemplo citado, “categoria” do produto normalmente seria outra tabela, e para a referida análise seria necessário a realização de um \emph{Join}, que foi substituído apenas por uma clausula \emph{Group by}.
 
 %
 
-Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes \cite{kimball2002}. Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve, como pode ser visto na Figura (\ref{dw-snowflackscheme}). Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
+Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o uso do espaço de armazenamento de informações redundantes \cite{kimball2002}. Nesse caso, quando uma dimensão é normalizada passa-se a ter o esquema floco de neve, como pode ser visto na Figura \ref{dw-snowflackscheme}. Esse esquema torna mais fácil a manutenção de dimensões, porém é aconselhado o seu uso apenas em situações que realmente seja necessário abrir mão da performance que o esquema estrela oferece.
 
  \begin{figure}[!htb]
  	\centering
@@ -157,7 +157,7 @@ Porém, tabelas dimensões podem ser normalizadas com o intuito de diminuir o us
 
 %
 
-A modelagem dimensional facilita o processamento analítico dos dados (OLAP), aspecto que será tratado na seção (\ref{sec-olap}).
+A modelagem dimensional facilita o processamento analítico dos dados (OLAP), aspecto que será tratado na Seção \ref{sec-olap}.
 
 %
 
@@ -177,14 +177,14 @@ A modelagem dimensional facilita o processamento analítico dos dados (OLAP), as
 
 %
 
-O processamento analítico \emph{On-Line} (OLAP – \emph{On-line Analytc Processing}) é toda atividade de consulta que busca trazer ao usuário uma visão analítica dos dados através de comparações, visões personalizadas, análises históricas, diferentes cenários e entre outras opções \cite{kimball2002}. Pode-se definir OLAP como sistemas ou ferramentas que realizam consultas ao DW. Tais sistemas permitem aumentar ou diminuir o nível de detalhes da informação através das seguintes operações:
+O Processamento Analítico \emph{On-Line} (OLAP – \emph{On-line Analytc Processing}) é toda atividade de consulta que busca trazer ao usuário uma visão analítica dos dados através de comparações, visões personalizadas, análises históricas, diferentes cenários e entre outras opções \cite{kimball2002}. Pode-se definir OLAP como sistemas ou ferramentas que realizam consultas ao DW. Tais sistemas permitem aumentar ou diminuir o nível de detalhes da informação através das seguintes operações:
 
 %
 
 \begin{itemize}
-	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de Drill Down consistiria e trazer essa mesma informação por mês.
-	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do Drill down.
-	\item \textbf{\emph{Slice and dice}}: A operação de slice consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda,  fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A Operação dice, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de dice em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
+	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de \emph{Drill Down} consistiria em trazer essa mesma informação por mês.
+	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do \emph{Drill down}.
+	\item \textbf{\emph{Slice and dice}}: A operação de slice consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda,  fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A Operação \emph{dice}, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de \emph{dice} em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
 	\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. 
 \end{itemize}
 
@@ -214,11 +214,11 @@ Kimball (\citeyear{kimball2002}) define um ciclo de vida para o processo de cons
 %
 %
 
-A próxima atividade é a definição dos requisitos de negócio. O alinhamento do DWing com o s requisitos dos usuários é absolutamente crucial. Não adianta construir o ambiente com as melhores ferramentas do mercado se o este não fornece a informação que o usuário precisa ver. Dessa forma, mais de 50\% das iniciativas de DWing não tem sucesso \cite{sen2011}. Pelo levantamento feito na pesquisa de Kimpel (\citeyear{kimpel2013}), a principal causa é o não entendimento do problema que o usuário de negócio quer solucionar. E é na etapa de requistos que o problema e as necessidades devem ser entendidos e transformados em requistos de negócio para as etapas seguintes, de modelagem e construção do ambiente.
+A próxima atividade é a definição dos requisitos de negócio. O alinhamento do DWing com o s requisitos dos usuários é absolutamente crucial. Não adianta construir o ambiente com as melhores ferramentas do mercado se o este não fornece a informação que o usuário precisa ver. Dessa forma, mais de 50\% das iniciativas de DWing não tem sucesso \cite{sen2011}. Pelo levantamento feito na pesquisa de Kimpel (\citeyear{kimpel2013}), a principal causa é o não entendimento do problema que o usuário de negócio quer solucionar. E é na etapa de requisitos que o problema e as necessidades devem ser entendidos e transformados em requisitos de negócio para as etapas seguintes, de modelagem e construção do ambiente.
 
 %
 
-Com os requistos definidos, existem três conjuntos de tarefas. As tarefas superiores (na cor verde) da figura (\ref{dw-lifecycle}) são responsáveis pela concepção tecnológica do ambiente. Consiste na definição da arquitetura técnica e  seleção das tecnologias envolvidas na solução de DWing. O conjunto de tarefas que se encontram no meio do ciclo (na cor amarela) são responsáveis pelo desenho do modelo dimensional e físico e a definição e desenvolvimento do processo de ETL dos dados. O conjunto de tarefas inferiores (na cor  azul) são responáveis pelo desenho e desenvolvimento das aplicações analíticas, que irão fornecer a visualização da informação gerada pela DWing para o usuário. Juntando esses três conjuntos de tarefas temos a implantação e disponibilização do ambiente de DWing para o usuário, então pode-se dizer que a solução de DWing foi implantada e pode começar a ser utilizada. 
+Com os requisitos definidos, existem três conjuntos de tarefas. As tarefas superiores (na cor verde) da Figura \ref{dw-lifecycle} são responsáveis pela concepção tecnológica do ambiente. Consiste na definição da arquitetura técnica e  seleção das tecnologias envolvidas na solução de DWing. O conjunto de tarefas que se encontram no meio do ciclo (na cor amarela) são responsáveis pelo desenho do modelo dimensional e físico e a definição e desenvolvimento do processo de ETL dos dados. O conjunto de tarefas inferiores (na cor  azul) são responáveis pelo desenho e desenvolvimento das aplicações analíticas, que irão fornecer a visualização da informação gerada pela DWing para o usuário. Juntando esses três conjuntos de tarefas temos a implantação e disponibilização do ambiente de DWing para o usuário, então pode-se dizer que a solução de DWing foi implantada e pode começar a ser utilizada. 
 
 %
 

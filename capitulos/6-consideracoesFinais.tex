@@ -1,17 +1,27 @@
 \chapter{Considerações Finais}
 \label{cap-consideracoesFinais}
 
+Esta primeira etapa deste trabalho apresentou uma revisão bibliográfica sobre qualidade interna de software, abrangendo aspectos relacionados ao \emph{design} e segurança. Além disso, foi apresentado os principais conceitos de métricas de software onde explorou-se as métricas que podem ser utilizadas para mensurar alguns atributos de qualidade do software e até identificar possíveis vulnerabilidades existentes.
 
-(DAR UM APANHADO GERAL DO TRABALHO)
+%
+
+Nesta etapa do trabalho ainda foram estudadas ferramentas que poderam ser utilizadas para apoiar a utilização de métricas em projetos de software. Portanto, foi explorado a plataforma livre de monitoramento de código-fonte Mezuro e a utilização de DWing, onde foram apresentadas as principais características e a arquitetura de cada solução. Estes estudos são fundamentais para a compreensão, construção e evolução dessas ferramentas para responder as questões de pesquisa QP1, QP2 e QP3. Este estudo também é fundamental para os próximos passos do trabalho que visam responder à essas questões, consistindo na definição do protocolo de estudo de caso que será utilizado para avaliar essas duas soluções e compará-las.
+
+%
 
 
 %respondendo questao de pesquisa  4
 
-Como discutido ao longo deste trabalho, métricas de \emph{design} de código tem relação com  vulnerabilidades de software, pois vimos que um código com baixa qualidade e alta complexidade facilitam a inserção de erros e dificultam a identificação de vulnerabilidades já existentes. Dessa forma, algumas métricas de design em conjunto podem determinar vulnerabilidades de software, visto facilitar a inserção de vulnerabilidades e dificultar a identificação destas no código fonte pode ser considerado uma vulnerabilidade. Foi visto também nas seções \ref{sec-metrics-security} e \ref{subsec-security-metrics} que existem vulnerabilidades específicas, que não são aplicáveis a todas as linguagens, que são independentes da qualidade de software. Essas vulnerabilidades específicas são mais sujeitas a ataques, pois são pontos falhos do software que estão sujeito a exploração por esses atacantes. 
+Como discutido ao longo deste trabalho, métricas de \emph{design} de código tem relação com  vulnerabilidades de software, pois vimos que um código com baixa qualidade e alta complexidade facilitam a inserção de erros e dificultam a identificação de vulnerabilidades já existentes. Dessa forma, algumas métricas de \emph{design} em conjunto podem determinar vulnerabilidades de software, dado que a qualidade interna do código-fonte influencia na inserção de vulnerabilidades e na identificação e remoção destas vulnerabilidades e falhas. Assim, apresentamos o conceito de Cenários de Decisões, uma proposta de estrutura para ser utilizado em projetos de software para minimizar as dificuldades existentes na adoção de métricas nesses projetos.
 
 %
 
-Dessa forma, podemos responder parcialmente a questão de pesquisa QP4 definida neste trabalho, que diz respeito a saber se métricas de \emph{design} possui correlação com métricas de vulnerabilidade. Métricas de \emph{design} podem especificar vulnerabilidades de software, porém não necessariamente estão diretamente relacionadas a vulnerabilidades específicas. Mas podemos afirmar que um código que segue bons princípios de design pode reduzir vulnerabilidades, pois em um código limpo e de baixa complexidade é mais difícil inserir vulnerabilidades e é mais fácil a sua identificação. Para responder essa pergunta completamente, será criado um protocolo de estudo de correlação entre esses dois grupos de métricas a fim de analisar softwares livres na comunidade e identificar se tal correlação existe de fato.
+Foi visto também nas seções \ref{sec-metrics-security} e \ref{subsec-security-metrics} que existem vulnerabilidades específicas, que não são aplicáveis a todas as linguagens. Essas vulnerabilidades específicas são mais sujeitas a ataques, pois são pontos falhos do software que estão sujeito a exploração por atacantes maliciosos. 
+
+%
+
+Baseado no estudo teórico, podemos responder parcialmente a questão de pesquisa QP4 definida neste trabalho, que diz respeito a saber se métricas de \emph{design} possui correlação com métricas de vulnerabilidade. Métricas de \emph{design} podem especificar vulnerabilidades de software, porém não necessariamente estão diretamente relacionadas a vulnerabilidades específicas. Mas podemos afirmar que um código que segue bons princípios de \emph
+{design} pode reduzir vulnerabilidades, pois em um código limpo e de baixa complexidade é mais difícil inserir vulnerabilidades e é mais fácil a sua identificação. Para responder essa pergunta completamente, será criado um protocolo de estudo de correlação entre esses dois grupos de métricas a fim de analisar softwares livres na comunidade e identificar se tal correlação existe de fato através de análise estatística.
 
 %
 
@@ -19,13 +29,9 @@ Neste trabalho também foi questionado se métricas isoladas poderiam se relacio
 
 %
 
-Observou-se nesta monografia que, para o contexto de vulnerabilidade de software, métricas relacionadas ao \emph{design} de código podem ser agrupadas em cenários mais facilmente em relação a métricas de vulnerabilidades específicas, visto que vulnerabilidades específicas são definidas por CWE's específicas. O projeto CWE faz o catálogo de vulnerabilidades específicas de código, e estas vulnerabilidades específicas já podem ser considerados cenários completos, dado o fato de que estas vulnerabilidades são bem definidas em termos de como ocorrem e como são solucionadas.   
+Observou-se nesta monografia que, para o contexto de vulnerabilidade de software, métricas relacionadas ao \emph{design} de código podem ser mais facilmente agrupadas em Cenários de Decisão do que métricas de vulnerabilidades específicas. Isto acontece pois as métricas de vulnerabilidades identificam ocorrências específicas das mesmas, sendo difícil relacionar uma métrica com outra. Além disso, cada uma dessas vulnerabilidades são documentadas por CWE's específicas e, portanto, suas ocorrências e soluções são bem definidas.
 
-%refatorar texto acima, acho q ficou um pouco repetitivo.
-
-
-
-
+%===============================================
 
 \section{Proposta de trabalho (OU Trabalhos Futuros)}
 

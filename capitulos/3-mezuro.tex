@@ -5,7 +5,7 @@ No Capítulo \ref{cap-metrics} discutimos as principais questões de \emph{desig
 
 %
 
-Entretanto, o esforço necessário para extrair as métricas estáticas manualmente é imensurável, dificultando ainda mais a adoção dessas métricas em projetos de software. Portanto, é de extrema importância a utilização de ferramentas que auxiliem a utilização de métricas de código-fonte, automatizando a extração e visualização dessas métricas. Porém, existem existem poucas ferramentas disponíveis, e muitas delas nem sempre são adequadas para análise de determinados projetos de software ~\cite{meirelles2010mezuro}. Isso também decorre devido a existência de várias ferramentas extratoras independentes, que seguem seus próprios padrões e oferecem um conjunto de métricas limitados que podem não se adequar para determinados contextos.
+Entretanto, o esforço necessário para extrair as métricas estáticas manualmente é imensurável, dificultando ainda mais a adoção dessas métricas em projetos de software. Portanto, é de extrema importância a utilização de ferramentas que auxiliem a utilização de métricas de código-fonte, automatizando a extração e visualização dessas métricas. Porém, existem poucas ferramentas disponíveis, e muitas delas nem sempre são adequadas para análise de determinados projetos de software ~\cite{meirelles2010mezuro}. Isso também decorre devido a existência de várias ferramentas extratoras independentes, que seguem seus próprios padrões e oferecem um conjunto de métricas limitados que podem não se adequar para determinados contextos.
 
 %
 
@@ -17,7 +17,7 @@ A primeira versão do Mezuro foi criada a partir da plataforma web chamada Noosf
 
 %
 
-O Noosfero é construído em Ruby implementando a arquitetura MVC através do \emph{framework} Rails. A arquitetura do Noosfero ainda permite a implementação de novas funcionalidades através da criação de \emph{plugins} que podem ser habilitados no ambiente istanciado. Assim, na primeira versão do Mezuro, foi implementado um \emph{plugin} que adicionava as funcionalidades específicas para o monitoramento de código-fonte e realizava a conexão com os outros componentes necessários (explicados a seguir na Seção \ref{sec-mezuro-design}).
+O Noosfero é construído em Ruby, implementando a arquitetura MVC através do \emph{framework} Rails. A arquitetura do Noosfero ainda permite a implementação de novas funcionalidades através da criação de \emph{plugins} que podem ser habilitados no ambiente instanciado. Assim, na primeira versão do Mezuro, foi implementado um \emph{plugin} que adicionava as funcionalidades específicas para o monitoramento de código-fonte e realizava a conexão com os outros componentes necessários (explicados a seguir na Seção \ref{sec-mezuro-design}).
 
 %
 
@@ -40,9 +40,9 @@ Listamos a seguir algumas ferramentas semelhantes ao Mezuro, ferramentas identif
 %
 
 \begin{itemize}
-\item \textbf{SonarQube}\footnote{\url{http://www.sonarqube.org/}} - Plataforma livre de gerenciamento de qualidade de código que classifica problemas encontrados e cálcula métricas simples relacionados a testes e dívidas técnicas.
+\item \textbf{SonarQube}\footnote{\url{http://www.sonarqube.org/}} - Plataforma livre de gerenciamento de qualidade de código que classifica problemas encontrados e calcula métricas simples relacionados a testes e dívidas técnicas.
 \item \textbf{CodeClimate}\footnote{\url{https://codeclimate.com/}} - Ferramenta que procura identificar \emph{code smells} no software em análise e classificá-los a partir de notas que varia de \emph{A} a \emph{F}. Esta ferramenta fornece análise sobre códigos JavaScript e Ruby.
-\item \textbf{SQO-OSS}\footnote{\url{http://www.sqo-oss.org/}} (Software Quality Assessment of Open Source Software) - Conjunto de ferramentas de análise e \emph{benchmarking} de projetos de software livre.
+\item \textbf{SQO-OSS}\footnote{\url{http://www.sqo-oss.org/}} (\emph{Software Quality Assessment of Open Source Software}) - Conjunto de ferramentas de análise e \emph{benchmarking} de projetos de software livre.
 \end{itemize}
 
 %
@@ -52,12 +52,12 @@ Destacamos as principais características do Mezuro, que também serão discutid
 %
 
 \begin{itemize}
-\item Coletar dados a partir de diversos extratores, possibilitando a escolha  rica de diversas métricas. Atualmente, o Mezuro Além disso, o Mezuro é extensível para a inserção de extratores diferentes.
+\item Coletar dados a partir de diversos extratores, possibilitando a escolha  rica de diversas métricas. Além disso, o Mezuro é extensível para a inserção de extratores diferentes.
 \item Criação de configurações que são um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Esta característica permite que especialistas definam os parâmetros e métricas adequadas para um determinado contexto, sendo que uma configuração também pode ser aplicado em outros projetos a depender da necessidade de quem utilizará a ferramenta.
 \item Criação de intervalos qualitativos associado a valores de métricas. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim.
-\item Combinação de métricas nativaz para a criação de métricas mais complexas a partir, flexibilizando e estendendo a utilização da ferramenta.
+\item Criação de métricas mais complexas a partir da combinação de métricas nativas, flexibilizando e estendendo a utilização da ferramenta.
 \item Monitoramento de projetos a partir de repositórios ou arquivos compactados. As opções de repositórios possíveis incluem o GIT, Subversion e o Bazaar. Vale ressaltar que os resultados dos monitoramentos são públicos a acessíveis à comunidade.
-\item Monitoramento de projetos periódico definido pelo usuário.
+\item Monitoramento de projetos com periodicidade definido pelo usuário.
 \item Escolha de qual configuração um determinado projeto irá utilizar.
 \end{itemize}
 

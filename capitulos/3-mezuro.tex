@@ -68,13 +68,13 @@ Destacamos as principais características do Mezuro, que também serão discutid
 
 Como mencionado, o Mezuro está evoluindo para uma aplicação independente. Neste sentido, a arquitetura da plataforma como um todo está sendo modificada, visando principalmente maior modularização em diversos serviços independentes. A Figura~\ref{fig:mezuro-current-design} apresenta a arquitetura atual da plataforma.
 
-% \graphicspath{{figuras/}}
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=0.6\textwidth]{MezuroAtual.png}
-% \caption{Arquitetura Atual do Mezuro. Extraído de \cite{manzo2014}}
-% \label{fig:mezuro-current-design}
-% \end{figure}
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{MezuroAtual.eps}
+\caption{Arquitetura Atual do Mezuro. Extraído de \cite{manzo2014}}
+\label{fig:mezuro-current-design}
+\end{figure}
 
 %
 
@@ -84,13 +84,13 @@ O Mezuro utiliza o WebService Kalibro Metrics~\footnote{\url{http://kalibro.org}
 
 Dentre os objetivos da evolução desta arquitetura, tem-se a reescrita do Kalibro e sua modularização em três serviços principais, que pode ser observada na Figura~\ref{fig:mezuro-future-design}. O primeiro módulo já está em uso, sendo também represetado na Figura~\ref{fig:mezuro-current-design}, é o módulo Kalibro Processor. Neste sentido, a contemplação desta nova arquitetura consiste na reescrita de serviços do Kalibro, de Java para Ruby, para concepção de dois novos módulos: Kalibro Project e Kalibro Configuration, responsáveis pelo processamento de projetos e configuração respectivamente. Esta nova proposta apoia a modularização e o baixo acoplamento, utilizando-se principalmente o conceito de orquestração de serviços que podem ser encontrados em Arquiteturas Orientadas à Serviço - SOA \cite{thomaserl2007}.
 
-% \graphicspath{{figuras/}}
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=0.6\textwidth]{MezuroNovo.png}
-% \caption{Arquitetura Futura do Mezuro. Extraído de \cite{manzo2014}}
-% \label{fig:mezuro-future-design}
-% \end{figure}
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{MezuroNovo.eps}
+\caption{Arquitetura Futura do Mezuro. Extraído de \cite{manzo2014}}
+\label{fig:mezuro-future-design}
+\end{figure}
 
 %
 

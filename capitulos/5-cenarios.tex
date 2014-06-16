@@ -85,7 +85,10 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 
 %
 
-\textbf{Alta Superfície de Ataque a Atributos Internos}
+\begin{description}
+	\item [Alta Superfície de Ataque a Atributos Internos]\
+\end{description}
+
 
 %
 
@@ -118,8 +121,9 @@ Quadro resumo:
 
 %
 
-\textbf{Alta Superfície de Ataque Operacional}
-
+\begin{description}
+	\item [Alta Superfície de Ataque Operacional]\
+\end{description}
 %
 
 Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}), o que aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
@@ -153,8 +157,9 @@ Quadro resumo:
 
 %
 
-\textbf{Ponto Crítico de Falha}
-
+\begin{description}
+	\item [Ponto Crítico de Falha]\
+\end{description}
 %
 
 Este cenário busca identificar a ocorrência de classes ou módulos que concentram muitas responsabilidades das quais muitas outras classes dependem. Este cenário é problemático uma vez que a classe das quais muitas outras classes dependem, em caso de falhas e exploração de vulnerabilidades tendem a afetar muitas outras estruturas do projeto. Além disso, a alta concentração de dependências em uma classe pode ser devido a inadequada distribuição de responsabilidades entre os módulos que compõem o projeto.
@@ -187,8 +192,10 @@ Quadro resumo:
 \subsubsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 
 %
+\begin{description}
+	\item [Entradas não validadas]\
+\end{description}
 
-\textbf{Entradas não validadas}
 
 Este cenário busca identificar situações no código fonte onde valor de uma entrada de usuário é passado para uma variável sem que tenha sido feito, antes da atribuição e uso, uma verificação desse dado de entrada. Essa vulnerabilidade é catalogada no padrão CWE como CWE-20 \footnote{\url{http://cwe.mitre.org/data/definitions/20.html}}, que é classificada como uma classe que inclui diversas vulnerabilidades com mais nível de detalhe relacionadas a não validação. A não validação de atributos de entrada de usuário pode implicar em diversos riscos para a aplicação. Com essa vulnerabilidade podem ser exploradas vulnerabilidades  mais específica como \emph{Buffer Overflow}, \emph{SQL injection} e \emph{XSS}, permitindo ao atacante inserir valores inesperados, podendo causar a quebra da aplicação; ler arquivos confidenciais por manipulação do do programa, como por exemplo o uso de \emph{SQL injection}; como também pode modificar dados ou mudar o fluxo de programa explorando o \emph{Buffer Overflow}.
 

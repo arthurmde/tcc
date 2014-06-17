@@ -14,7 +14,7 @@ O DW tem como característica ser:
 \begin{itemize}
 \item \textbf{Integrado}: capaz de integrar dados de diversas fontes de formatos.
 \item \textbf{Orientado a assunto}: um sistema corporativo pode fornecer diversas informações sobre determinados aspectos da corporação. O DW é construído focado em alguns aspectos específicos, como por exemplo, em um sistema de vendas de uma loja, podemos analisar as informações sobre venda, como também podemos analisar informações sobre frequência de funcionários ou também sobre o estoque. Cada aspecto sugere a seleção de apenas dados específicos do sistema que serão uteis para a análise desse aspecto. Os demais dados não são de interesse.
-\item \textbf{Não volátil}: os dados de um DW representam a informação capturada em um determinado momento da aplicação. Em aplicações, os dados estão sempre sujeitos a modificações. Dessa forma, o DW irá capturar novamente, em outro momento, essa informação e irá acrescentá-la ao DW, e não atualiza-la, permitindo visualizar a atualização dessa determinada informação em momentos diferentes. Ou seja, os dados de um DW não são modificados, salvo raras excessões.
+\item \textbf{Não volátil}: os dados de um DW representam a informação capturada em um determinado momento da aplicação. Em aplicações, os dados estão sempre sujeitos a modificações. Dessa forma, o DW irá capturar novamente, em outro momento, essa informação e irá acrescentá-la ao DW, e não atualiza-la, permitindo visualizar os registros dessa determinada informação em momentos diferentes. Ou seja, os dados de um DW não são modificados, salvo raras excessões.
 \item \textbf{Temporais}: consiste em armazenar a data referente à informação ou à coleta da informação. Dessa forma, o DW consegue fornecer várias visões da informação agrupadas por medidas de tempo. 
 \end{itemize}
 
@@ -80,7 +80,7 @@ As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realiz
 
 %
 
-Ferramentas de visualização são muito importantes em um ambiente de DWing, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de DWing listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP ad hoc para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
+Ferramentas de visualização são muito importantes em um ambiente de DWing, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de DWing listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP \emph{ad-hoc} para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
 
 %
 
@@ -131,7 +131,7 @@ A idéia da modelagem dimensional é representar os tipos de dados de negócio e
 
 %
 
-O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de modelo estrela (\emph{star scheme}, Figura \ref{dw-starscheme}). Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primarias de diferentes dimensões. Para juntar as informações basta fazer o \emph{Join} entre elas.
+O modelo dimensional proposto por Kimball (\citeyear{kimball2002}) é chamado de modelo estrela (\emph{star scheme}, Figura \ref{dw-starscheme}). Nele, temos a tabela fato no centro e varias tabelas dimensões se relacionando com essa tabela fato. As tabelas fatos devem possuir duas ou mais chaves estrangeiras para as chaves primárias de diferentes dimensões. Para juntar as informações basta realizar um \emph{Join} entre elas.
 
  \begin{figure}[!htb]
  	\centering
@@ -166,10 +166,10 @@ A modelagem dimensional facilita o processamento analítico dos dados (OLAP), as
  %
 
  \begin{itemize}
- 	\item \textbf{Selecionar o processo de negócio a ser modelado}: consiste em definir qual o assunto na qual o DWing será orientado. Como ja foi explicado, o DW é orientado a assunto, e tomando como exemplo um sistema de vendas de uma loja, pode ser feita a análise sobre as vendas, sobre o estoque, etc. Selecionar o processo de negócio é selecionar qual desses assuntos serão analizados e modelados.
+ 	\item \textbf{Selecionar o processo de negócio a ser modelado}: consiste em definir qual o assunto no qual o DWing será orientado. Como ja foi explicado, o DW é orientado a assunto, e tomando como exemplo um sistema de vendas de uma loja, pode ser feita a análise sobre as vendas, sobre o estoque, etc. Selecionar o processo de negócio é selecionar qual desses assuntos serão analizados e modelados.
  	\item \textbf{Declarar o \emph{"grão"} do processo de negócio}: significa especificar exatamente o que uma linha da tabela de fatos representa. Nessa etapa é definido o nível de glanuralidade da informação. Por exemplo, visualizar as informações por dia ou por mês. A granularidade se refere ao nível de detalhe que o fato deve ter. 
  	\item \textbf{Escolher as dimensões}: consiste em definir as dimensões que se aplicam acada linha de fato que foi definido. Se o nível granularidade foi bem definido, é fácil definir as dimensões. 
- 	\item \textbf{Identificar fatos}: consite em responder a pergunta "	o que estamos medindo?". Nessa estapa é definido os fatos numéricos que irão popular as tabelas fatos.	  
+ 	\item \textbf{Identificar fatos}: consite em responder a pergunta "o que estamos medindo?". Nessa estapa é definido os fatos numéricos que irão popular as tabelas fatos.	  
  \end{itemize}
 
 \section{OLAP}
@@ -184,13 +184,13 @@ O Processamento Analítico \emph{On-Line} (OLAP – \emph{On-line Analytc Proces
 \begin{itemize}
 	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de \emph{Drill Down} consistiria em trazer essa mesma informação por mês.
 	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do \emph{Drill down}.
-	\item \textbf{\emph{Slice and dice}}: A operação de slice consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda,  fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A Operação \emph{dice}, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de \emph{dice} em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
+	\item \textbf{\emph{Slice and dice}}: A operação de \emph{slice} consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda, fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A operação \emph{dice}, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de \emph{dice} em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
 	\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. 
 \end{itemize}
 
 %
 
-A Figura (\ref{dw-olap}) exemplifica cada uma das operações OLAP que podem ser aplicadas em um cubo de dados.
+A Figura \ref{dw-olap} exemplifica cada uma das operações OLAP que podem ser aplicadas em um cubo de dados.
 %
  \begin{figure}[!htb]
  	\centering

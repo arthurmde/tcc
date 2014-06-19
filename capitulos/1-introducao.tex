@@ -22,14 +22,14 @@ Essas comunidades adotam a padronização de código e testes automatizados para
 A melhoria da qualidade interna do código apoia a melhoria contínua do processo oferecendo subsídios para que a equipe de desenvolvimento aumente sua produtividade e implemente novas funcionalidades com maior facilidade. Beck (\citeyear{beck2007}) corrobora essa afirmação ao destacar que a maior parte do tempo utilizado por um Programador ao inserir novas funcionalidades é destinado ao entendimento do código em manutenção. 
 %
 Diretamente relacionado a qualidade de código está a sua segurança \cite{tsipenyuk2005}. A segurança de software está relacionada a confiabilidade, disponibilidade e integridade dos diversos componentes que compõe o software.
-%TODO: Nota de rodapé sobre ICAT/NIST
-Dados do ICAT/NIST de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa \cite{duarte2005}.
+
+Dados do ICAT/NIST\footnote{ ICAT foi um motor de busca de vulnerabilidades, desenvolvido pelo NIST(\emph{National Institue of Standards and Technology}), catalogadas no padrão CVE. O ICAT foi substituido pelo NVD (\emph{National Vulnerability Database }), que alé de possuir o mesmo mecanismo de busca, é um repositório governamental dos Estados Unidos que armazena diversas informações sobre vulnerabilidades de software (nomenclaturas, métricas, checklists, etc)} de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa \cite{duarte2005}.
 %
 Embora a segurança de uma aplicação também estejam relacionadas a aspectos externos ao software como a redes e componentes de hardware, o elo mais fraco continua sendo o próprio software. Dessa forma, cabe aos projetistas e desenvolvedores a responsabilidade do desenvolvimento de software seguro, sem prejuízos aos seus usuários.
 
-%TODO: http://cve.mitre.org/docs/docs-2002/prog-rpt_06-02/ CITAR
-%TODO: descrever sigla CVE
-A medida que o tempo vai passando, novas vunerabilidades vão sendo descobertas pela comunidade. O projeto CVE, que tem como objetivo enumerar vunerabilidades de software existentes, tinha uma lista de 321 vunerabilidades diferentes no ano de sua concepção, em 1999 \cite{cve2002}.
+%
+
+A medida que o tempo vai passando, novas vunerabilidades vão sendo descobertas pela comunidade. O projeto CVE (\emph{Common Vulnerabilities and Exposures List}), que tem como objetivo enumerar vunerabilidades de software existentes, tinha uma lista de 321 vunerabilidades diferentes no ano de sua concepção, em 1999 \cite{cve2002}.
 %
 No ano de 2002, a lista já havia aumentado para 2032 vunerabilidades e atualmente o número já chega a 61 mil vunerabilidades específicas encontradas por empresas de todo o mundo.
 
@@ -61,8 +61,7 @@ Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução
 
 Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software.
 %
-Assim, esperamos identificar as oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto a partir do estabelecimento de cenários, compostos a partir da análise de correlação de métricas, que evidenciem as boas e más características do \emph{design} de um projeto que impactam na vunerabilidade do sistema com o objetivo de facilitar a interpretação e evitar possíveis equívocos que são baseados em análises errôneas sobre métricas isoladas, sobre correlações inexistentes ou até mesmo a escolha de métricas inadequadas cujos problemas são discutidos em \cite{chidamber1994}.
-%TODO:re-organizar essa frase acima, quebrando em sentenças/frases menores porque tem muita informação.
+A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
 %TODO:pensar se queremos mesmo falar em melhoria contínua do processo 
 %
 Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte e um ambiente de \emph{DWing}.
@@ -132,13 +131,9 @@ Para responder essas questões de pesquisa, definimos os seguintes objetivos esp
 			\item \textbf{OT2}- Criar ambiente de \emph{Data Warehousing} para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
 	        	\begin{itemize}
 	        		\item Implementar extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática na plataforma de \emph{Bussines Inteligence} (BI) Pentaho.
-	        		\item Criar modelo dimensional
-%TODO: o que é um modelo dimensional?
-	        		\item Gerar Cubo de dados
-%TODO: o que é um cubo de dado?
-					\item Configurar mecanismos de visualização do cubo de dados na plataforma BI server.
-%TODO: O que é BI server? ou estamos falando do Pentaho
-
+	        		\item Criar modelo dimensional que, diferente de um modelo relacional utilizado para modelagem de banco de dados, permitirá melhor performance para processamento analítico dos dados.
+	        		\item Gerar Cubo de dados, que é agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
+					\item Configurar mecanismos de visualização do cubo de dados na plataforma de BI Pentaho.
 	        	\end{itemize}
 			\item \textbf{OT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 		\end{itemize}

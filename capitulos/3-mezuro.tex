@@ -1,4 +1,13 @@
-\chapter{Mezuro: Uma plataforma de Monitoramento de Código-Fonte}
+\chapter{Ambientes de Tomada de Decisão}
+
+
+%
+
+Neste capítulo serão apresentados conceitos a respeito dos dois ambientes de tomada de decisão contemplados por esse trabalho: Mezuro e DWing. Esses conceitos serão importantes para o entendimento das soluções que serão desenvolvidas, sendo explorado características particulares de cada um.
+
+%
+
+\section{Mezuro: Uma plataforma de Monitoramento de Código-Fonte}
 \label{cap-mezuro}
 
 No Capítulo \ref{cap-metrics} discutimos as principais questões de \emph{design}, segurança e métricas no contexto da Engenharia de Software. As métricas estáticas de código-fonte são recursos que podem ser utilizados para a compreensão da qualidade e identificação de vulnerabilidades do código-fonte. Entretanto, como discutido no mesmo capítulo, avaliar a qualidade de um software envolve um processo dispendioso e não trivial. Na Seção \ref{sec-metrics-esw}, apresentamos um conjunto de métricas estáticas cujo propósito é medir alguns atributos do software tais como complexidade, acoplamento e tamanho. 
@@ -74,7 +83,7 @@ Destacamos as principais características do Mezuro, que também serão discutid
 
 %
 
-\section{Arquitetura do Mezuro}
+\subsection{Arquitetura do Mezuro}
 \label{sec-mezuro-design}
 
 Como mencionado, o Mezuro está evoluindo para uma aplicação independente. Nesse sentido, a arquitetura da plataforma como um todo está sendo modificada, visando principalmente maior modularização em diversos serviços independentes. A Figura~\ref{fig:mezuro-current-design} apresenta a arquitetura atual da plataforma.
@@ -87,7 +96,6 @@ Como mencionado, o Mezuro está evoluindo para uma aplicação independente. Nes
 \label{fig:mezuro-current-design}
 \end{figure}
 
-%TODO: Qualidade da figura está ruim
 
 O Mezuro utiliza o WebService Kalibro Metrics~\footnote{\url{http://kalibro.org}} para fornecer a funcionalidade de análise e avaliação de métricas de código-fonte.
 %
@@ -122,4 +130,4 @@ Essa nova proposta apoia a modularização e o baixo acoplamento, utilizando-se 
 
 %TODO: falta explicar melhor o Mezuro, especial a parte de configuração, relacionar com o Analizo e concluir o capítulo/seção em si, relacionando com a questão dos cenários e sinalizar alguns próximos passos.
 
-%TODO: Devemos juntas com capítulo de Dwing, chamando de "Ambientes de tomada de decisão"
+\include{capitulos/4-dw}

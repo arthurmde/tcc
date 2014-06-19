@@ -136,23 +136,19 @@ Essa concepção inicia-se na escolha do paradigma que irá reger o desenvolvime
 %
 Um paradigma é constituído basicamente dos princípios gerais que são utilizados para a composição de um software, caracterizando a maneira de se pensar sobre os problemas e suas soluções.
 %
-A partir desse ponto, um conjunto de práticas são aplicadas com o foco na construção do \emph{design} do software que, no contexto do Processo Unificado, são realizadas principalmente na fase de Elaboração. Por outro lado, estamos interessados no modelo gradual de desenvolvimento da arquitetura do sistema, proposto pelos métodos ágeis, pois favorece a aplicação de práticas constantes de \emph{design} e pressupõe o desenvolvimento de testes como parte integrada do processo de construção do software.
+A partir desse ponto, um conjunto de práticas são aplicadas com o foco na construção do \emph{design} do software que, no contexto do Processo Unificado, são realizadas principalmente na fase de Elaboração \cite{larman2007}. Por outro lado, estamos interessados no modelo gradual de desenvolvimento da arquitetura do sistema, proposto pelos métodos ágeis, pois favorece a aplicação de práticas constantes de \emph{design} e pressupõe o desenvolvimento de testes como parte integrada do processo de construção do software.
 %
-Scoot W. Ambler apresenta um conjunto de práticas que são realizadas durante o desenvolvimento de software nos diversos níveis de abstração para a concepção de um \emph{design} que aplicam princípios ágeis, representadas através da Figura~\ref{fig:agile-design}\footnote{\url{http://www.agilemodeling.com/essays/agileDesign.htm}}.
+Scoot W. Ambler\footnote{\url{http://www.agilemodeling.com/essays/agileDesign.htm}} apresenta um conjunto de práticas que são realizadas durante o desenvolvimento de software nos diversos níveis de abstração para a concepção de um \emph{design} que aplicam princípios ágeis, representadas através da Figura~\ref{fig:agile-design}.
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{agile_design_practices.eps}
-\caption{Práticas do Design Ágil}
+\includegraphics[width=0.8\textwidth]{DesignAgil.eps}
+\caption{Práticas do Design Ágil, adaptado de Scoot W. Ambler}
 \label{fig:agile-design}
 \end{figure}
 
-%TODO: Se der tempo, refazer a figura em Pt-BR
-%... caso não, refazer no TCC 2
-
-O conjunto de práticas destacadas na Figura~\ref{fig:agile-design} podem ser utilizadas para a aplicação e exercicío dos princípios que influenciam o desenvolvimento de um software que atenda aos requisitos de qualidade do cliente, qualidade interna e proporcionem o sucesso em termos de custo e prazo.
-%TODO: O que é requisitos de qualidade do cliente? podemos falar apenas em "requisitos do cliente"?
+O conjunto de práticas destacadas na Figura~\ref{fig:agile-design} podem ser utilizadas para a aplicação e exercicío dos princípios que influenciam o desenvolvimento de um software que atenda aos requisitos do cliente, qualidade interna e proporcionem o sucesso em termos de custo e prazo.
 % 
 Quanto mais próximo do nível de abstração arquitetural, mais atenção é dada para os elementos e decisões genéricas do sistema.
 %
@@ -171,8 +167,7 @@ Além dos paradigmas de programação, padrões de projetos, estilo de código e
 %TODO: Avaliar se precisamos mesmo das explicações sobre estilo arquitetural, frameworks etc
 %TODO: Avaliar jogar tudo isso para um apêndice
 %------------------------------------------------------------------------------
-A definição do estilo ou padrão de programação é a escolha de um conjunto de regras e diretrizes para a escrita de um software, sendo fundamental para a propriedade coletiva do código.
-%TODO: referência ou explicação sore propriedade coletiva do código no rodapé
+A definição do estilo ou padrão de programação é a escolha de um conjunto de regras e diretrizes para a escrita de um software, sendo fundamental para a propriedade coletiva do código\footnote{Propriedade Coletiva do Código: convenção explícita de que qualquer membro da equipe de desenvolvimento pode modificar e evoluir qualquer pedaço do código, pois qualquer pedaço de código é de todos e não de um só programador.}.
 %
 Um padrão de codificação implica que não há pessoalidade no código, facilitando a leitura e evolução do mesmo.
 %
@@ -182,7 +177,7 @@ Estas regras devem estar documentadas e acessíveis para os desenvolvedores do p
 %
 Kernighan \& Plauger (\citeyear{kernighan1978}), em seu livro \emph{The Elements of Programming Style}, apresentam e avaliam elementos do estilo de programação de softwares reais, destacando lições aprendidas na análise dos códigos.
 %
-A noção de padrões de código é extendida para o conceito de Código Limpo, explorado posteriormente nesta seção.
+A noção de padrões de código é estendida para o conceito de Código Limpo, explorado na Seção \ref{sec-clean-code}.
 
 
 Tão importante quanto conhecer padrões e estilo de códigos é conhecer padrões de projetos para aplicação dos princípios de \emph{design}.
@@ -193,14 +188,14 @@ No conhecido livro \emph{Design Patterns: Elements of Reusable Object-Oriented S
 %
 A partir de um estudo empírico, Hegedüs e colaboradores (\citeyear{hegedus2012}) avaliaram os resultados obtidos a partir da aplição de alguns padrões de projetos em relação aos atributos de qualidade do ISO/IEC 9126 (\citeyear{iso9126}), onde foi observados impactos positivos sobre a manutenibilidade do software.
 %
-Portanto, os padrões de projetos são ferramentas importantes para o desenvolvimento de softwares com aplicação dos bons princípios de \emph{design} e estabelecimento de uma arquitetura que seja reutilizável, extensível, manutenível, simples e modularizada.
+Portanto, os padrões de projetos são ferramentas importantes para o desenvolvimento de softwares com aplicação dos bons princípios de \emph{design} e estabelecimento de uma arquitetura que seja reutilizável, estensível, manutenível, simples e modularizada.
 %
 Os padrões de projeto devem ser considerados nas decisões em nível arquitetural e aplicados durante a implementação do software, por exemplo, a partir de refatorações como proposto em \cite{kerievsky2008}.
 
 
 O apoio de \emph{frameworks} no desenvolvimento do sistema possui impacto direto na qualidade do software, seja esta desenvolvido para o projeto ou por terceiros.
 %
-Os benefícios da utilização de \emph{frameworks} estão na melhoria da modularidade do sistema, reusabilidade, extensibilidade e inversão de controle provida para os desenvolvedores \cite{fayad1997}.
+Os benefícios da utilização de \emph{frameworks} estão na melhoria da modularidade do sistema, reusabilidade, estensibilidade e inversão de controle provida para os desenvolvedores \cite{fayad1997}.
 %
 Além disso, corroborando os benefícios da utilização de \emph{frameworks}, vale ressaltar que o desenvolvimento de \emph{frameworks} consiste na aplicação extrema de alguns padrões de projetos para provimento de alguns serviços e estabelecimento de controle de operações de uma aplicação, se tornando uma estrutura fundamental que vem sendo extremamente utilizado no desenvolvimento de sistemas \cite{fayad1997}.
 
@@ -257,7 +252,7 @@ Martin Fowler em seu livro (\citeyear{fowler1999}), expõe que a identificação
 \item \textbf{Heranças Recusadas} - Classes que recebem atributos e operações de suas classes mães, mas não gostariam de recebe-los. Esse mal cheiro indica a falta de encapsulamento e muito provavelmente a utilização inadequada de herança.
 \end{itemize}
 
-O entendimento e reconhecimento dos \emph{code smells} são muito importantes para que sua remoção seja feita o mais cedo possível no desenvolvimento. Entretanto, a identificação deles pode ser fragilizadas, pois dependem diretamente da interpretação e habilidade de identifação do desenvolvedor. Outro problema é não conhecer quais os mecanismos podem ser aplicados para a remoção destes mals cheiros de código. Nesse sentido, o presente trabalho visa contribuir para o desenvolvimento de habilidades e ferramentas que possam ser utilizadas pelo Engenheiro de Software para encontrar as principais falhas de seus softwares e atuar de maneira a melhorar a qualidade interna dos mesmos.
+O entendimento e reconhecimento dos \emph{code smells} são muito importantes para que sua remoção seja feita o mais cedo possível no desenvolvimento. Entretanto, a identificação deles pode ser fragilizada, pois depende diretamente da interpretação e habilidade de identifação do desenvolvedor. Outro problema é não conhecer quais os mecanismos podem ser aplicados para a remoção destes mals cheiros de código. Nesse sentido, o presente trabalho visa contribuir para o desenvolvimento de habilidades e ferramentas que possam ser utilizadas pelo Engenheiro de Software para encontrar as principais falhas de seus softwares e atuar de maneira a melhorar a qualidade interna dos mesmos.
 
 \subsection{Código Limpo}
 \label{sec-clean-code}
@@ -337,7 +332,7 @@ No presente trabalho, estamos interessados essencialmente em vulnerabilidades de
 
 %
 
-Vulnerabilidades de software são, na maior parte das vezes, causadas pela falta ou imprópria validação das entradas realizadas pelo usuário. Essas condições indesejáveis são usadas por usuários maliciosos para injetar falhas e códigos no sistema que os permitam executar seus próprios códigos e aplicações  \cite{jimenez2009}. McGraw e colaboradores (\citeyear{mcgraw2004}) afirmam que 50\% dos problemas de segurança surgem no nível de design. Poucas ações específicas são tomadas por Engenheiros de Software para manter a segurança no desenvolvimento de novas funcionalidades ou até mesmo na realização de \emph{refactorings}. Em outras palavras, muitas vezes o desenvolvedor de software pode estar inserindo vulnerabilidades no código que podem ser exploradas por usuários maliciosos ou, acidentalmente, por usuários comuns. Mesmo os Engenheiros de Software que realizam testes unitários automatizados tendem a não exercitar estas vulnerabilidades, pois no geral testam principalmente as condições de uso padrão do software, enquanto deveriam explorar melhor o comportamento do software à interações indesejadas \cite{vries2006}.
+Vulnerabilidades de software são, na maior parte das vezes, causadas pela falta ou imprópria validação das entradas realizadas pelo usuário. Essas condições indesejáveis são usadas por usuários maliciosos para injetar falhas e códigos no sistema que os permitam executar seus próprios códigos e aplicações  \cite{jimenez2009}. McGraw e colaboradores (\citeyear{mcgraw2004}) afirmam que 50\% dos problemas de segurança surgem no nível de \emph{design}. Poucas ações específicas são tomadas por Engenheiros de Software para manter a segurança no desenvolvimento de novas funcionalidades ou até mesmo na realização de \emph{refactorings}. Em outras palavras, muitas vezes o desenvolvedor de software pode estar inserindo vulnerabilidades no código que podem ser exploradas por usuários maliciosos ou, acidentalmente, por usuários comuns. Mesmo os Engenheiros de Software que realizam testes unitários automatizados tendem a não exercitar estas vulnerabilidades, pois no geral testam principalmente as condições de uso padrão do software, enquanto deveriam explorar melhor o comportamento do software à interações indesejadas \cite{vries2006}.
 
 %
 
@@ -346,7 +341,7 @@ Algumas das vulnerabilidades mais comuns estão listada abaixo:
 %
 
 \begin{itemize}
-\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em \emph{buffers} de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros buffers ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
+\item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em \emph{buffers} de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros \emph{buffers} ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
 %Podemos criar listagem de código 
 
 \item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para esse processo. Como consequência, o sistema operacional pode realocar essa posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados incosistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente esse endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de incosistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
@@ -366,7 +361,7 @@ Algumas das vulnerabilidades mais comuns estão listada abaixo:
 \label{subsec-vulnerabilities-taxonomy}
 %
 
-O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no código fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atancantes utilizam estas vulnerabilidadespara falhar o sistema. Existem muitos tipos de vulnerabilidades, e com o passar do tempo, novas vulnerabilidades são descobertas e novos \emph{exploits} são criados por atacantes. Em meio a essa diversidade, a classificação de vulnerabilidades representa um grande desafio, porém, já houve vários avanços na área com o objetivo de enumerar e catalogar estas vulnerabilidades.
+O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no código fonte é conhecer quais são os problemas mais comuns existentes em softwares e como os atancantes utilizam estas vulnerabilidades para falhar o sistema. Existem muitos tipos de vulnerabilidades, e com o passar do tempo, novas vulnerabilidades são descobertas e novos \emph{exploits} são criados por atacantes. Em meio a essa diversidade, a classificação de vulnerabilidades representa um grande desafio, porém, já houve vários avanços na área com o objetivo de enumerar e catalogar estas vulnerabilidades.
 
 %
 
@@ -374,7 +369,7 @@ O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MIT
 
 %
 
-A enumeração realizada pelo CVE é feita por uma junta de especialistas 	de segurança. Essa equipe nomeia, descreve e referencia cada nova ameaça. As novas ameaças são reportadas pela comunidade. Após estudo e aprovação, essa ameaça passa a incluir a lista da CVE, cujo o identificador é representado da seguinte forma : CVE-2014-0002. O valor 2014 significa que a CVE foi criada em 2014, e o numero 0002 se refere ao numero sequencial atribuído a essa CVE dentre todas que foram aprovadas nesse ano.
+A enumeração realizada pelo CVE é feita por uma junta de especialistas 	de segurança. Essa equipe nomeia, descreve e referencia cada nova ameaça. As novas ameaças são reportadas pela comunidade. Após estudo e aprovação, essa ameaça passa a incluir a lista da CVE, cujo o identificador é representado da seguinte forma: CVE-2014-0002. O valor 2014 significa que a CVE foi criada em 2014, e o numero 0002 se refere ao numero sequencial atribuído a essa CVE dentre todas que foram aprovadas nesse ano.
 
 %
 
@@ -390,7 +385,7 @@ Surgiram propostas além do CVE para a classificação e agrupamento de vulnerab
 
 %
 
-O PLOVER foi criado em 2005 pelo MITRE em parceria com o DHS (US. Departament of Homeland Secutity) e o NIST (National Institute of Technology). É um documento que lista mais de 1400 exemplos reais de vulnerabilidades identificados pelo CVE. Trata-se de um framework conceitual que descreve as vulnerabilidades em diversos níveis de detalhe. O PLOVER também fornece uma série de conceitos que podem ajudar na comunicação e discussões à respeitos de vulnerabilidades.
+O PLOVER foi criado em 2005 pelo MITRE em parceria com o DHS\footnote{US. Departament of Homeland Secutity} e o NIST\footnote{National Institute of Technology}. É um documento que lista mais de 1400 exemplos reais de vulnerabilidades identificados pelo CVE. Trata-se de um framework conceitual que descreve as vulnerabilidades em diversos níveis de detalhe. O PLOVER também fornece uma série de conceitos que podem ajudar na comunicação e discussões à respeitos de vulnerabilidades.
 
 %
 
@@ -443,21 +438,21 @@ Com esse cenário apresentado acima, em que temos a CVE como projeto de enumerar
 
 %
 
-O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no design, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados. Além disso, observou-se que o CVE busca enumerar casos de vulnerabilidades reais na comunidade, especificando a maneira de como a vulnerabilidade foi explorada. Já o projeto CWE, o termo "vulnerabilidade" está mais relacionado a fraqueza de software, que se refere a códigos e práticas de programação que podem oferecer risco a segurança da aplicação, não indicando como a vulnerabilidade pode ser explorada e sim indicando que tal característica pode tornar o software vulnerável.
+O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no \emph{design}, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados. Além disso, observou-se que o CVE busca enumerar casos de vulnerabilidades reais na comunidade, especificando a maneira de como a vulnerabilidade foi explorada. Já o projeto CWE, o termo \"vulnerabilidade\" está mais relacionado a fraqueza de software, que se refere a códigos e práticas de programação que podem oferecer risco a segurança da aplicação, não indicando como a vulnerabilidade pode ser explorada e sim indicando quais características podem tornar o software vulnerável.
 
 %
 
 \subsection{Princípios de segurança}
 \label{sec-security-principles}
 
-Como visto no estudo sobre a classificação e taxonomias, existem muitas vulnerabilidades de software que são passíveis de exploração por atacantes. Nesse sentido, ganha-se importância para o desenvolvimento de softwares mais seguros que os Engenheiros de Software construam códigos com qualidade suficiente que os permitam identificar, corrigir e evitar a inserção de vulnerabilidades. Tendo-se o conhecimento de quais são as principais vulnerabilidades existentes, os Engenheiros devem tratar essas vulnerabilidades desde as primeiras fases de design e desenvolvimento código-fonte, seguindo até o fim do ciclo de vida do desenvolvimento do software. Assim como os desenvolvedores programam aplicando ao código princípios de design, devem evoluir o código aplicando princípios de design seguro tais quais os apresentados por outros trabalhos \cite{saltzer1975} \cite{bishop2003} \cite{mcgraw2002} \cite{a1lshammari2009}.
+Como visto no estudo sobre a classificação e taxonomias, existem muitas vulnerabilidades de software que são passíveis de exploração por atacantes. Nesse sentido, ganha-se importância para o desenvolvimento de softwares mais seguros que os Engenheiros de Software construam códigos com qualidade suficiente que os permitam identificar, corrigir e evitar a inserção de vulnerabilidades. Tendo-se o conhecimento de quais são as principais vulnerabilidades existentes, os Engenheiros podem tratar essas vulnerabilidades desde as primeiras fases de \emph{design} e desenvolvimento código-fonte, seguindo até o fim do ciclo de vida do desenvolvimento do software. Assim como os desenvolvedores programam aplicando ao código princípios de \emph{design}, devem evoluir o código aplicando princípios de \emph{design} seguro tais quais os apresentados por outros trabalhos \cite{saltzer1975} \cite{bishop2003} \cite{mcgraw2002} \cite{a1lshammari2009}.
 
 %
 
-Dentre os princípios de segurança que os Engenheiros de Software podem aplicar no design de seus programas, introduziremos aqui os seguintes princípios:
+Dentre os princípios de segurança que os Engenheiros de Software podem aplicar no \emph{design} de seus programas, introduziremos aqui os seguintes princípios:
 
 \begin{itemize}
-\item \textbf{\emph{Least privilege}}: este princípio sugere que o usuário deve ter somente os direitos necessários para completar suas tarefas \cite{bishop2003}. Em termos de design de classes, significa que o design mais seguro é aquele cujos métodos realizam o menor número de ações possíveis \cite{a1lshammari2009}.
+\item \textbf{\emph{Least privilege}}: este princípio sugere que o usuário deve ter somente os direitos necessários para completar suas tarefas \cite{bishop2003}. Em termos de \emph{design} de classes, significa que o \emph{design} mais seguro é aquele cujos métodos realizam o menor número de ações possíveis \cite{a1lshammari2009}.
 
 \item \textbf{\emph{Reduce attack surface}}: este princípio tem como objetivo limitar o acesso a dados não permitidos. Pode-se aplicar este princípio reduzindo-se a quantidade de código executável, com \emph{design} prezando por menor números métodos de acesso (públicos) e menor número de parâmetros possíveis que possam afetar atributos privados para realização de uma tarefa. Pode-se também buscar eliminar serviços que são usados somente por poucos clientes.
 
@@ -469,10 +464,12 @@ Dentre os princípios de segurança que os Engenheiros de Software podem aplicar
 
 \item \textbf{\emph{Mediate completely}}: princípio que defende que todos os acessos a quaisquer objetos devem ser verificados para garantir se há permissões para realizar tal ação. Se em algum momento for solicitado a leitura de um objeto, o sistema deve verificar se o sujeito tem permissão de leitura. Caso tenha, deve prover somente os recursos necessários para realização das tarefas que interessa a este sujeito. Essa operação deve se repetir todas as vezes que a requisição ao objeto for feita, não somente na primeira vez \cite{bishop2003}.
 
-\item \textbf{\emph{Separation of duties}}: princípio relacionado a separação de interesses dentro dos métodos e mecanismos de segurança do software. A OWASP sugere a separação entre as entidades que aprovação a ação, entidades que realizam a ação e entidades que monitoram a ação \footnote{\url{https://www.owasp.org/index.php/Separation_of_duties}}. Este princípio está diretamente relacionado com os princípios de \emph{design} orientado à objetos tais como coesão e separação de interesses. Por outro lado, também mantém forte relação com o princípio de \emph{design} seguro \emph{Economy of mechanism}, pois proporciona código mais limpo e que podem ser mantidos separadamente.
+\item \textbf{\emph{Separation of duties}}: princípio relacionado a separação de interesses dentro dos métodos e mecanismos de segurança do software. A OWASP\footnote{Open Web Application Security Project} sugere a separação entre as entidades que aprovação a ação, entidades que realizam a ação e entidades que monitoram a ação \footnote{\url{https://www.owasp.org/index.php/Separation_of_duties}}. Este princípio está diretamente relacionado com os princípios de \emph{design} orientado à objetos tais como coesão e separação de interesses. Por outro lado, também mantém forte relação com o princípio de \emph{design} seguro \emph{Economy of mechanism}, pois proporciona código mais limpo e que podem ser mantidos separadamente.
 \end{itemize}
 
 
+\subsection{Unindo Conceitos de Segurança e \emph{Design}}
+\label{sec-security-application}
 %TODO: acho que aqui cabe uma sub-seção, pois estamos falando de outra coisa
 
 Alguns módulos do software requerem mais atenção do que outros quanto riscos de vulnerabilidades. Nesse sentido, principalmente em atividades de manutenção e evolução de um software existente, pode ser necessária a priorização do esforço para evolução da segurança do código-fonte voltados para módulos com maior risco. Pode-se, por exemplo, priorizar a redução da superfície de ataque em módulos mais expostos. Howard (\citeyear{howard2006}) propôs, dentre outras, as seguintes heurísticas para priorização da revisão de segurança de códigos:
@@ -500,14 +497,11 @@ Alguns módulos do software requerem mais atenção do que outros quanto riscos 
 
 %
 
-O estudo sobre conceituação de vulnerabilidades conhecidas, de princípios de \emph{design} seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é o principal responsável por manter a segurança de seus projetos. Esse profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e \emph{design} até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de design de software com os princípios de \emph{design} seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
+O estudo sobre conceituação de vulnerabilidades conhecidas, de princípios de \emph{design} seguro e da revisão bibliográfica nos permite afirmar que o Engenheiro de Software é um dos  principais responsáveis por manter a segurança de seus projetos. Esse profissional deve se preocupar com os problemas de segurança desde os primeiros passos da concepção do código-fonte e \emph{design} até o desenvolvimento dos últimos testes automatizados. Verifica-se uma forte relação entre princípios de \emph{design} de software com os princípios de \emph{design} seguro, onde a aplicação de ambos podem prover softwares mais robustos, extensíveis e seguros. 
 
 %
 
-Como já mencionado, as decisões de \emph{design} são fundamentais para a concepção de um software seguro. Khan \& Khan (\citeyear{khan2010}) enfatizam que a complexidade é o maior desafio para desenvolvedores de software ao projetarem um produto de qualidade que cubra ao máximo aspectos de segurança. Os mesmos autores ainda definem que a complexidade de software orientados a objetos está relacionada principalmente a quantidade de parâmetros de \emph{design} de um objeto e as relações estabelecidas entre os objetos do projeto. Da mesma forma, a complexidade é um dos principais problemas que afetam a qualidade interna do software, dificultando principalmente a manutenção e evolução do software. Mesmo a complexidade sendo uma propriedade da essência do software e não acidental, conforme afirmado por Brook (FAZER CITAÇÃO), é de suma importância que os desenvolvedores cuidem da complexidade de seus códigos, pois estes esforços reduzem os impactos negativos diretos sobre a estrutura interna do software assim como na segurança do mesmo.
-%TODO: Colocar a citação indicada
-%TODO: "suma importância" está aparecendo muito no texto - rever uso dessa expressão
-Para tanto, faz-se necessário a aplicação dos princípios de bom \emph{design} e de princípios de \emph{design} seguro através, por exemplo, da prática de \emph{refactorings} e aplicação de padrões de projeto. A seguir são listadas algumas características observáveis no \emph{design} do software que podem indicar complexidade \cite{khan2010}:
+Como já mencionado, as decisões de \emph{design} são fundamentais para a concepção de um software seguro. Khan \& Khan (\citeyear{khan2010}) enfatizam que a complexidade é o maior desafio para desenvolvedores de software ao projetarem um produto de qualidade que cubra ao máximo aspectos de segurança. Os mesmos autores ainda definem que a complexidade de software orientados a objetos está relacionada principalmente a quantidade de parâmetros de \emph{design} de um objeto e as relações estabelecidas entre os objetos do projeto. Da mesma forma, a complexidade é um dos principais problemas que afetam a qualidade interna do software, dificultando principalmente a manutenção e evolução do software. Mesmo a complexidade sendo uma propriedade da essência do software e não acidental, conforme afirmado por Brook (\citeyear{brooks1986}), é importante que os desenvolvedores cuidem da complexidade de seus códigos, pois estes esforços reduzem os impactos negativos diretos sobre a estrutura interna do software assim como na segurança do mesmo. Para tanto, faz-se necessário a aplicação dos princípios de bom \emph{design} e de princípios de \emph{design} seguro através, por exemplo, da prática de \emph{refactorings} e aplicação de padrões de projeto. A seguir são listadas algumas características observáveis no \emph{design} do software que podem indicar complexidade \cite{khan2010}:
 
 %
 
@@ -522,7 +516,7 @@ Para tanto, faz-se necessário a aplicação dos princípios de bom \emph{design
 
 %
 
-O encapsulamento é uma das principais características de projetos orientados a objetos, sendo fundamental para estabelecer critérios de relação entre as classes de um projeto. Em termos de segurança, esta é outra característica fundamental que deve ser cuidadosamente pensada no \emph{design}de de códigos seguros, pois se relaciona diretamente com os princípios \emph{reduce attack surface} e \emph{mediate completely}.
+O encapsulamento é uma das principais características de projetos orientados a objetos, sendo fundamental para estabelecer critérios de relação entre as classes de um projeto. Em termos de segurança, esta é outra característica fundamental que deve ser cuidadosamente pensada no \emph{design} de de códigos seguros, pois se relaciona diretamente com os princípios \emph{reduce attack surface} e \emph{mediate completely}.
 
 O nível de encapsulamento também está extritamente relacionado com o princípio \emph{mediate completely}, uma vez que um baixo grau de encapsulamento provê diferentes formas de interações com o objeto que, segundo este princípio, devem ser verificadas sempre. Quando se tem diversos pontos de interação com um objeto as verificações necessárias para prover uma interação segura devem ser mais complexas para explorar os perigos inerentes a cada um desses tipos de interação. Portanto, restringir acessos à alguns métodos e atributos públicos podem beneficiar a aplicação do princípio de \emph{design} seguro \emph{mediate completely}.
 
@@ -531,8 +525,6 @@ O nível de encapsulamento também está extritamente relacionado com o princíp
 Os cuidados com o nível de encapsulamento das estruturas do software tem outros impactos sobre o \emph{design} seguro. A maior parte das decisões de design afetam a complexidade do código-fonte, o que também é verdade para decisões relacionadas a encapsulamentos de classes. A redução dos métodos de acesso diminui as opções de interação com um objeto, tornando a API do objeto mais simples, sendo que o mesmo pode ser dito para a diminuição de parâmetros. Complementarmente, o encapsulamento auxilia na redução do acoplamento entre classes, promovendo maior independência entre os módulos do projeto, aumentando a extensibilidade, manutenibilidade e testabilidade do código. A redução do acoplamento entre classes apoia o \emph{design} seguro, principalmente na detecção e tratamento de vulnerabilidades através de testes e aplicações dos princípios de \emph{design} seguro cujos impactos são mais facilmente gerenciáveis.
 
 %
-
-%Introduzir métricas
 
 Os cuidados com o bom design do código-fonte são fundamentais para o desenvolvimento de códigos seguros. Entretanto, ações específicas devem ser realizadas com objetivos de tratar especificamente das vulnerabilidades inerentes ao código produzido. Em um cenário ideal, essas ações deveriam ser realizadas por Engenheiros de Software ao longo do desenvolvimento, como inspeções de código-fonte para busca de vulnerabilidades. Felizmente, existem estudos e padrões que buscam compreender e definir a existência de vulnerabilidades no software e de que maneiras podemos tratá-las. Tais estudos permitem a criação de ferramentas que automatizam a identificação de possíveis vulnerabilidades no software através de métricas obtidas com a análise estática do código-fonte que podem e devem ser utilizadas por Engenheiros de Software para apoiar a produção de softwares seguros, independentemente da criticidade do sistema. 
 

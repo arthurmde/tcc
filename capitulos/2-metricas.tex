@@ -12,9 +12,7 @@ Com isso, tanto do ponto de vista processo quanto do produto de software, prazos
 
 %
 
-O \emph{design} ganha um grau de importância maior a medida que a complexidade dos softwares aumentam durante o desenvolvimento, pois suas consequências são diretas sobre os atributos de qualidade do software tais como flexibilidade, testabilidade, manutenibilidade, desempenho e segurança. Em projetos de software livre, por exemplo, esses atributos de qualidade são fatores fundamentais na atratividade de colaboradores para os projetos, onde observa-se uma correlação entre métricas de qualidade de código-fonte com a atratividade desses projetos \cite{meirelles2013metrics}. 
-%TODO: Tem um artigo do SBES de 2010 com este estudo publicado - referenciá-lo.
-%... buscar no google atractivess free software paulo meirelles
+O \emph{design} ganha um grau de importância maior a medida que a complexidade dos softwares aumentam durante o desenvolvimento, pois suas consequências são diretas sobre os atributos de qualidade do software tais como flexibilidade, testabilidade, manutenibilidade, desempenho e segurança. Em projetos de software livre, por exemplo, esses atributos de qualidade são fatores fundamentais na atratividade de colaboradores para os projetos, onde observa-se uma correlação entre métricas de qualidade de código-fonte com a atratividade desses projetos \cite{meirelles2010sbes}. 
 
 
 Visando amenizar os riscos de se construir um sistema que não alcance seus objetivos, a arquitetura do software tem recebida uma maior atenção através dos métodos, práticas de desenvolvimento e estudos acadêmicos.
@@ -50,7 +48,7 @@ Neste trabalho estamos essencialmente interessados nas decisões de projetos em 
 %
 Assim, estamos tratando principalmente do trabalho realizado pelo Engenheiro de Software, de quais formas esse trabalho é realizado e como podemos apoiar e evoluir a atuação desse profissional para obtenção de bons resultados para projetos de software.
 %
-Para o desenvolvimento de códigos com bom \emph{design}, é importante que o Engenheiro de Software conheça os principais problemas de implementação conhecidos, características e princípios que compõem um paradigma e técnicas que permitem a aplicação desses princípios.
+Para o desenvolvimento de códigos com bom \emph{design}, assim como defendido por Spinellis (\citeyear{spinellis2006}), é importante que o Engenheiro de Software conheça os principais problemas de implementação conhecidos, características e princípios que compõem um paradigma e técnicas que permitem a aplicação desses princípios.
 
 %
 
@@ -98,7 +96,7 @@ A modularização é muito importante para os atributos de qualidade do software
 %
 Baldwin \& Clark (\citeyear{baldwin2000}) argumentam que um sistema bem modularizado permite o trabalho paralelo em diversas partes do produto, ameniza as dificuldades com a complexidade e esconde as incertezas e detalhes não necessários dentro dos módulos.
 %
-\item \textbf{Abstração} - O princípio de abstração recomenda que um elemento que compõe o design seja representado apenas por suas características essenciais, provendo apenas as informações relevantes  para sua utilização, além de permitir sua distinção com outros elementos por parte do observador \cite{germoglio2009}.
+\item \textbf{Abstração} - O princípio de abstração recomenda que um elemento que compõe o \emph{design} seja representado apenas por suas características essenciais, provendo apenas as informações relevantes  para sua utilização, além de permitir sua distinção com outros elementos por parte do observador \cite{germoglio2009}.
 %
 A abstração é importante para a comunicação, compreensão e reutilização dos componentes.
 
@@ -114,9 +112,7 @@ O grau de acoplamento determina como é difícil fazer alterações em uma aplic
 %
 Portanto, este princípio consiste na composição e modularização de serviços pouco acoplados com outros módulos a partir da melhor definição e distribuição de dados, de interfaces e responsabilidades.
 
-\item \textbf{Alta coesão} - De acordo com a Terminologia Padrão da IEEE, coesão é o grau com que cada tarefa realizada por um módulo está relacionado funcionalmente com o mesmo.
-%TODO: referência ou nota sobre o padrão IEEE 
-%... descrever a sigla IEEE
+\item \textbf{Alta coesão} - De acordo com a Terminologia Padrão da IEEE\footnote{Institute of Electric and Electronic Engineers} \cite{ieee1990}, coesão é o grau com que cada tarefa realizada por um módulo está relacionado funcionalmente com o mesmo.
 %
 Um módulo pode ser definido como coeso se todos as suas operações estão relacionadas com uma única abstração.
 %

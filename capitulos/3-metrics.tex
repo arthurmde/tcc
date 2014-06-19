@@ -6,7 +6,7 @@ Tanto a existência de um bom \emph{design} quanto a de testes automatizados que
 
 %
 
-Nesse sentido, o monitoramento da qualidade de código-fonte é fundamental e pode apoiar a utilização de técnicas de desenvolvimento que visam a melhoria contínua do código. Além disso, as métricas de código-fonte são muito importantes para projetos de software, pois estas podem ser utilizadas tanto como ferramenta para gestão do projeto quanto como referência técnica para tomada de decisões sobre o código-fonte.
+Nesse sentido, o monitoramento da qualidade de código-fonte pode ser utilizado para apoiar a utilização de técnicas de desenvolvimento que visam a melhoria contínua do código. Além disso, as métricas de código-fonte são muito importantes para projetos de software, pois estas podem ser utilizadas tanto como ferramenta para gestão do projeto quanto como referência técnica para tomada de decisões sobre o código-fonte.
 
 %
 
@@ -14,7 +14,7 @@ Uma métrica, no âmbito da Engenharia de Software, provê uma forma de medir qu
 
 %
 
-Métricas de monitoramento de código-fonte possuem natureza objetiva e foram inicialmente concebidas para medir o tamanho e a complexidade do software \cite{henry1984kafura}\cite{troy1981zweben}\cite{yau1985zweben}. Outras métricas surgiram para avaliar softwares que utilizam paradigmas específicos, não sendo aplicáveis a qualquer tipo de software. Por exemplo, métricas orientada a objetos são usadas para avaliar sistemas orientados a objetos \cite{systa2000}. Métricas OO são destinadas, portanto, para avaliar a coesão de classes, as hierarquias de classes existentes, nível de acoplamento entre classes, reuso de código, dentre outras características.
+Métricas de monitoramento de código-fonte possuem natureza objetiva e foram inicialmente concebidas para medir o tamanho e a complexidade do software \cite{henry1984kafura}\cite{troy1981zweben}\cite{yau1985zweben}. Outras métricas surgiram para avaliar softwares que utilizam paradigmas específicos, não sendo aplicáveis a qualquer tipo de software. Por exemplo, métricas Orientada a Objetos (OO) são usadas para avaliar sistemas orientados a objetos \cite{systa2000}. Métricas OO são destinadas, portanto, para avaliar a coesão de classes, as hierarquias de classes existentes, nível de acoplamento entre classes, reuso de código, dentre outras características.
 
 %
 
@@ -22,10 +22,7 @@ Algumas características importantes ajudam a classificar as métricas de códig
 
 %
 
-No contexto desta monografia estamos interessados principalmente na análise estática de códigos-fontes. Nesse sentido, a análise estática é definida como o processo de avaliar um sistema ou seus componentes baseados em suas formas, estruturas, conteúdo ou documentação que podem gerar insumos para compreensão da qualidade de design do código assim como enderaçar suas principais vulnerabilidades, podendo ser realizada sobre módulos e até mesmo sobre códigos ainda não finalizados \cite{black2009}. Esta análise pode ser realizada manualmente, tal como é feita em inspeções de código e com \emph{pair programming} ou de maneira automatizada através de ferramentas desenvolvidas para tal fim.
-
-%TODO:(PRECISA CITAR FERRAMENTAS???)
-% Não precisa.
+No contexto desta monografia estamos interessados principalmente na análise estática de códigos-fontes. Nesse sentido, a análise estática é definida como o processo de avaliar um sistema ou seus componentes baseados em suas formas, estruturas, conteúdo ou documentação que podem gerar insumos para compreensão da qualidade de \emph{design} do código assim como enderaçar suas principais vulnerabilidades, podendo ser realizada sobre módulos e até mesmo sobre códigos ainda não finalizados \cite{black2009}. Esta análise pode ser realizada manualmente, tal como é feita em inspeções de código e com \emph{pair programming} ou de maneira automatizada através de ferramentas desenvolvidas para tal fim.
 
 %
 
@@ -35,17 +32,17 @@ As métricas de software também podem ser classificadas quanto ao método de ob
 
 Entretanto, as definições de métricas adequadas para o acompanhamento do projeto, dimensionamento do software e principalmente para a aferimento da qualidade do código-fonte são tarefas que aumentam a complexidade de adoção de métricas em projetos de software, assim como destacado por Rakić e Budimac (\citeyear{rakic2011budimac}).
 %
-Isto se deve a diversos fatores: à grande quantidade de métrica existentes; pouca aderência de algumas métricas com a realidade; diversas formas de interpretação de dados; dificuldades de definir parâmetros para comparação; poucos recursos de visualização de dados; coleta de dados não automatizados ou difíceis.
+Isso se deve a diversos fatores: à grande quantidade de métrica existentes; pouca aderência de algumas métricas com a realidade; diversas formas de interpretação de dados; dificuldades de definir parâmetros para comparação; poucos recursos de visualização de dados; coleta de dados não automatizados ou difíceis.
 %
 Fenton e Pfleeger (\citeyear{fenton1998}) definem características desejáveis de métricas que orientam a escolha das mesmas enquanto outros autores estudam formas de viabilizar a utilização de métricas pelos desenvolvedores em geral\cite{meirelles2013metrics,almeida2010}.
 %
-O presente trabalho visa correlacionar métricas de desenvolvimento de software com objetivo de definir configurações para estabelecer cenários que representem o estado da qualidade do software. Dessa forma, espera-se reduzir as dificuldades de utilização de métricas de código fonte, tanto para o acompanhamento gerencial quanto para a tomada de decisões de design por desenvolvedores baseada em evidências. Para tanto, nas próximas seções serão apresentados estudos realizados sobre métricas de monitoramento de código-fonte para sistemas orientados à objetos e métricas para avaliação de vulnerabilidades do software.
+O presente trabalho visa relacionar métricas de desenvolvimento de software com objetivo de definir configurações para estabelecer cenários que representem o estado da qualidade do software. Dessa forma, espera-se reduzir as dificuldades de utilização de métricas de código fonte, tanto para o acompanhamento gerencial quanto para a tomada de decisões de \emph{design} por desenvolvedores baseada em evidências. Para tanto, nas próximas seções serão apresentados estudos realizados sobre métricas de monitoramento de código-fonte para sistemas orientados à objetos e métricas para avaliação de vulnerabilidades do software.
 
 %
 
 \section{Métricas Estáticas de \emph{Design} de Software}
 
-Nesta sub-seção iremos apresentar um conjunto de métricas de código-fonte que estão diretamente relacionadas ao \emph{design} de software. Neste conjunto de métricas estamos incluindo métricas que medem atributos do software tais como tamanho, complexidade assim como características específicas relacionadas à orientação à objetos. Portanto, métricas de \emph{design} de software devem ser compreendidas como um conjunto de métricas que medem atributos do código-fonte que permitam a avaliação de produtos de software.
+Nesta seção iremos apresentar um conjunto de métricas de código-fonte que estão diretamente relacionadas ao \emph{design} de software. Neste conjunto de métricas estamos incluindo métricas que medem atributos do software tais como tamanho, complexidade assim como características específicas relacionadas à orientação à objetos. Portanto, métricas de \emph{design} de software devem ser compreendidas como um conjunto de métricas que medem atributos do código-fonte que permitam a avaliação de produtos de software.
 
 %
 
@@ -80,7 +77,7 @@ As métricas de tamanho são muito importantes para a composição de novas mét
 
 %
 
-As últimas métricas que serão apresentadas nesta sub-seção buscam medir características discutidas anteriormente tais como coesão e acoplamento.
+As últimas métricas que serão apresentadas nesta seção buscam medir características discutidas anteriormente tais como coesão e acoplamento.
 
 %
 
@@ -98,7 +95,7 @@ As últimas métricas que serão apresentadas nesta sub-seção buscam medir car
 
 Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na Seção \ref{sec-metrics-security}, o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer Overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer Overflow}, dessa forma, cada maneira diferente compõe uma vulnerabilidade específica. As ferramentas de análise estática buscam  encontrar essas vulnerabilidades específicas e quantificar o seu número de ocorrências. 
 
-O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante ao desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha(\citeyear{aranha2012}) mostra claramente a importancia do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
+O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha(\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
 
 %
 
@@ -108,14 +105,14 @@ Nesse contexto, em termos de métricas, ferramentas de análise estáticas podem
 \item Número total de vulnerabilidades no projeto
 \item Número de vulnerabilidades por arquivo
 \item Número de vulnerabilidades por função
-\item Quantidade de um vulnerabilidade especifica no projeto
-\item Quantidade de um vulnerabilidade especifica por arquivo
-\item Quantidade de um vulnerabilidade especifica por função
+\item Quantidade de um vulnerabilidade específica no projeto
+\item Quantidade de um vulnerabilidade específica por arquivo
+\item Quantidade de um vulnerabilidade específica por função
 \end{itemize}
 
 %
 %metricas do analizo
-Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas	 por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a itrodução de vulnerabilidades.
+Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a itrodução de vulnerabilidades.
 
 \begin{itemize}
 
@@ -175,100 +172,45 @@ Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido exist
 %
 %TODO: deixar o trecho acima comentado mesmo, faltou um link para a subseção abaixo
 
-\subsubsection{Common Vulnerability Scoring System - CVSS}
+\section{Utilizando Métricas na Engenharia de Software}
+\label{subsec-security-metrics}
 
-A medida que o código cresce e se torna mais complexo, faz-se necessário o uso de indicadores que auxiliem a visualização dos impactos de determinadas mudanças no código-fonte, inclusive em termos de possíveis vulnerabilidades que surgiram.
-%
-Esses indicadores são obitidos a partir de interpretações de métricas que mensuram atributos relacionados ao código, seja de segurança ou não. 
-
-O \emph{Common Vulnerability Scoring System - CVSS} é um \emph{framework} aberto desenvolvido pelo NIST (National Institute of Standard and Technology) em parceria com organizações industriais que endereça as questões relacionadas as métricas para quantificar a severidade e risco de vulnerabilidades \cite{cvss2007}.
-%
-Com o CVSS é possível estabelecer uma pontuação entre as vulnerabilidades de maneira que possa haver uma comparação entre a criticidade de cada vulnerabilidade para o contexto da organização.
-%
-Distinguindo quais vulnerabilidades são mais graves, por exemplo, os gestores conseguem distribuir melhor o esforço para o tratamento dessas vulnerabilidades mais críticas. O CVSS é composto por três grupos de métricas: Básicas, Temporal e Ambiental.
+Métricas estáticas de código podem ser utilizadas para compreender e analisar características do código. Apresentamos as principais métricas relacionadas ao \emph{design} de software e também algumas métricas de identificação de vulnerabilidades de código.
 
 %
 
-O grupo de métricas Básicas capturam características intrínsecas e fundamentais de uma vulnerabilidade que são constantes no tempo e no ambiente de uso. A seguir as métricas que compõem este grupo serão introduzidos:
+Acreditamos que o monitoramento do código através de métricas deva ser utilizado para melhoria contínua do desenvolvimento, independentemente da metodologia utilizada. Além disso, acreditamos que o Engenheiro de Software deveria utilizar métricas como uma prática constante de desenvolvimento tal qual a criação de testes automatizados e a realização de \emph{refactorings}. A Figura~\ref{fig:agile-design-metrics} apresenta uma adaptação da Figura~\ref{fig:agile-design}, onde propomos a inserção de dois novos componentes para o conjunto de práticas de \emph{design} ágil.
 
-\begin{itemize}
-\item \textbf{Access Vector - AV}: esta métrica representa como a vulnerabilidade é explorada, localmente ou remotamente. Quanto mais remoto puder ser um ataque à informações de ativos, maior a pontuação da vulnerabilidade. Possíveis indicadores podem ser vistos  de acordo com os valores da Tabela~\ref{tab:av_scoring}.
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | p{10cm} |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Local (L) & Uma vulnerabilidade que só pode ser explorada com acesso local requer que o atacante tenha acesso físico ao sistema vulnerável ou a uma conta local (shell) \\ \hline
-	    Rede Adjacente (A) & Uma vulnerabilidade explorável através de um acesso a rede adjacente exige que o atacante tenha acesso a partir de \emph{broadcast} ou colisão de domínios do software sob ataque \\ \hline
-	    Rede (N) & Uma vulnerabilidade explorável através de acesso a rede significa que o software vulnerável está vinculado a rede e não requer que o atacante tenha acesso local, podendo realizar uma "eploração remota" \\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica AV}
-	    \label{tab:av_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Access Complexity - AC}: algumas vulnerabilidades requerem alguns passos mais complexos para serem exploradas. Portanto, esta métrica mede a complexidade do ataque necessário para explorar a vulnerabilidade uma vez que o atacante tenha ganhado o controle sobre um sistema alvo. Os valores dessa métrica pode ser definido de acordo com os indicadores da Tabela~\ref{tab:ac_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | p{10cm} |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Alto (H) & Existem condições especiais de acesso tais como: ter o privilégio de acesso e o atacante deve explorar condições diferentes de uso do software. \\ \hline
-	    Médio (M) & As condições de acessos são de alguma forma especiais tais como: a superfície vulnerável ao ataque só é acessível para um grupo de usuários e algumas informações devem estar disponíveis para possibilitar o ataque. \\ \hline
-	    Baixo (L) & Não existem condições especiais de acesso permitindo ataques manuais por atacantes com poucas habilidades.\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica AC}
-	    \label{tab:ac_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Authentication - Au}: esta métrica mede a quantidade de vezes que um atacante deve ser autenticado para explorar um vulnerabilidade. Quanto menos autenticações, maior será o valor desta métrica. Vale destacar que o objetivo desta métrica não é medir a complexidade e segurança do mecanismo de autenticação. Os indicadores desta métrica são simples e bem definidos: Multíplo (M), indicando duas ou mais autenticações necessárias; Único (S), indicando que apenas uma auntenticação é realizada; e Nenhum (N), indicando que nenhum auntenticação é realizada.
-\item \textbf{Confidentiality Impact - C}: esta métrica mede o impacto na confidencialidade do sistema quando uma vulnerabilidade é explorada. A confidencialidade refere-se a limitar o acesso a informações e sua divulgação somente para usuários autorizados. Os indicadores desta métrica são explicados na Tabela~\ref{tab:c_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | p{10cm} |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Nenhum (N) & Não há nenhum impacto sobre a confidencialidade do sistema. \\ \hline
-	    Parcial (P) & Existe a divulgação considerável inapropriada de informações, mas o atacante não tem controle sobre a informação obtida.  \\ \hline
-	    Completa (C) & Existe a divulgação total inapropriada de informações, onde o atacante pode obter informações de todo o sistema\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica C}
-	    \label{tab:c_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Integrity Impact - I}: esta métrica mede o impacto da integridade do dados após um \emph{exploit} realizado com sucesso. Intregridade se diz respeito a confiabilidade e veracidade da informação. Os indicadores desta métrica são explicados na Tabela~\ref{tab:i_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | p{10cm} |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Nenhum (N) & Não há nenhum impacto sobre a integridade do sistema. \\ \hline
-	    Parcial (P) & Modificações de alguns arquivos são possiveis, porém o atacante não tem controle sobre o que pode ser modificado ou alcance do que pode ser modificado pelo atacante é limitado. Por exemplo, um sistema pode conter vários arquivos e o atancante não tem o controle de qual arquivo ele irá afetar.  \\ \hline
-	    Completa (C) & O atacante é capaz de modificar qualquer arquivo do sistema\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica I}
-	    \label{tab:i_scoring}
-	\end{center}
-	\end{table}
-\item \textbf{Availability Impact - A}: essa métrica mede o impacto da disponibilidade do sistema após o ataque. Ataques que consomem a largura de banda da rede, o uso do processador ou espaço do disco possuem impacto direto com a disponibilidade do sistema. Os indicadores dessa métrica são explicados na Tabela~\ref{tab:a_scoring}
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | l | p{10cm} |}
-	    \hline
-	    Valor da Métrica & Descrição \\ \hline
-	    Nenhum (N) & Não há nenhum impacto sobre a disponibilidade do sistema. \\ \hline
-	    Parcial (P) & Existe redução na performance ou interrupções na disponibilidade do recurso. Por exemplo, um ataque que afetam a largura da banda reduz o número de conexões de usuários.\\ \hline
-	    Completa (C) & O atacante é capaz de deixar o recurso completamente indisponível.\\ \hline
-	    \end{tabular}
-	    \caption{Avaliação de Indicadores da Métrica A}
-	    \label{tab:a_scoring}
-	\end{center}
-	\end{table}
-\end{itemize}
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{DesignAgilComMedicao.eps}
+\caption{Práticas do Design Ágil Utilizando Métricas de Código-Fonte}
+\label{fig:agile-design-metrics}
+\end{figure}
 
-As métricas do grupo Temporal podem ser desconsideradas do cálculo, sendo opcionais. Esse grupo de métricas representam características de uma vulnerabilidade que podem mudar ao longo do tempo mas não mudam entre ambientes de usuário.
 %
-Por sua vez, as métricas do grupo Ambiental também são opcionais ao cálculo, podendo ser desconsideradas. Esse grupo de métricas representam características de uma vulnerabilidade relevantes a um particular ambiente de usuário. Ou seja, são características que estão relacionadas unicamente ao ambiente em que a vulnerabilidade é analisada.
 
-%TODO: falta fechar esse (novo) capítulo,
-% ... em especial, relacionando com o que vem pela frente no texto.
+A prática Medição do Projeto, apresentada na Figura~\ref{fig:agile-design-metrics}, propõe o monitoramento detalhado do código a cada iteração de desenvolvimento. Através desse monitoramento a equipe de desenvolvimento e gestores podem definir e priorizar um conjunto de requisitos técnicos para a próxima iteração que visam atacar os mals cheiros de código identificados, problemas de segurança ou violações do \emph{design}.
 
+%
+
+Na Figura~\ref{fig:agile-design-metrics} ainda propomos a prática Medição Rápida como uma prática a ser utilizada constamente pelo Engenheiro de Software ao evoluir e estender o código. As modificações realizadas durante o desenvolvimento podem gerar incoformidades técnicas indesejadas para o bem estar do código, que por sua vez podem ser identificadas através de métricas. Assim, o Engenheiro de Software teria um melhor suporte para escolher quais são os seus próximos passos, como por exemplo, analisando qual seria a melhor refatoração a ser aplicada. Portanto, a prática de Medição Rápida poderia ser utilizada várias vezes ao longo do desenvolvimento, proporcionando a melhoria contínua do código.
+
+%
+
+Para que as práticas destacadas na Figura~\ref{fig:agile-design-metrics} possam de fato ser utilizadas na melhoria contínua do código, é necessário que os parâmetros de qualidade de um projeto sejam bem definidos e conhecidos pelos membros da equipe técnica. Mais do que isso, é importante que as medições sejam utilizadas para caracterizar o estado do software adequadamente, não baseado somente em interpretações de métricas isoladas, de tal forma que possibilite a tomada de decisão segura.
+
+%
+
+Tendo em vista os benefícios de se utilizar métricas no processo de desenvolvimento de software, buscamos com este trabalho estudar como métricas podem ser utilizadas em projetos de software. Além disso, queremos estudar mecanismos e ferramentas que diminuam as dificuldades inerentes à medição de software, suportando, por exemplo, o trabalho de Engenheiro de Software para tomada de decisões sobre a segurança do código. Neste sentido, no próximo capítulo exploramos dois ambientes diferentes para monitoramento de código-fonte como soluções que podem ser utilzadas por equipes de software.
+
+%
+
+Em busca de mecanismos que facilitem a adoção da medição como prática constante no desenvolvimento de software, no Capítulo \ref{cap-cenarios} é proposto a técnica Cenários de Decisões para utilização de métricas de código-fonte que visa abstrair as métricas para cenários que caracterizem o estado de um código, suportando a tomada de decisões. Ainda neste capítulo fazemos algumas propostas de cenários que utilizam tanto métricas de \emph{design} quanto de segurança para caracterizar estados indesejáveis para a segurança do código.
+
+%
+
+Por fim, o estudo e levantamento de métricas apresentadas no presente capítulo serão a base para a proposta de exemplos de Cenários de Decisões do Capítulo \ref{cap-cenarios}. Além disso, buscamos compreender e relacionar as métricas de \emph{desingn} e vulnerabilidades apresentadas para melhorar o monitoramento e evolução de softwares, dada as motivações apresentadas no Capítulo \ref{cap-metrics}.
+
+%

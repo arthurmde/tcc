@@ -8,11 +8,11 @@ Apesar de suas diferenças conceituais e de valores, a maior parte dos métodos 
 
 No contexto de projetos que adotam metodologias ágeis, observa-se que tanto a qualidade interna quanto a qualidade externa do software são preponderantes, pois são fatores fundamentais para suportar a simplicidade, o \emph{feedback} contínuo e adaptação à mudanças, valores que solidificam o desenvolvimento ágil.
 %
-A qualidade interna do software é observada a partir de atributos de qualidades na perspectiva de desenvolvimento que, segundo Berander (\citeyear{berander2005}), se resumem em corretude, testabilidade, flexibilidade, portabilidade, reusabilidade, interoperabilidade, analisabilidade, adaptatividade e estabilidade. As práticas ressaltadas pela metologia \emph{Extreme Programming} \cite{beck2000} visam realçar os valores dos atributos destacados.
+A qualidade interna do software é observada a partir de atributos de qualidades na perspectiva de desenvolvimento que, segundo Berander (\citeyear{berander2005}), se resumem em corretude, testabilidade, flexibilidade, portabilidade, reusabilidade, interoperabilidade, analisabilidade, adaptatividade e estabilidade. As práticas ressaltadas pela metologia \emph{Extreme Programming} \cite{beck2000} visam realçar os valores dos atributos destacados, atributos esses que definem um bom \emph{design}.
 %
 O \emph{design} simples pode ser obtido através de técnicas como o Desenvolvimento Orientado à Testes \cite{beck2002} e a Refatoração \cite{fowler1999}, que por sua vez influenciam diretamente os atributos testabilidade, reusabilidade e adaptatividade. Ambas as técnicas se baseiam fortemente em testes unitários que provêem a segurança necessária para realização de mudanças assim como o feedback automatizado da manutenção do software.
 %
-A Programação em Pares, dentre outras práticas, também contribui para a garantia da qualidade interna, uma vez que exercita a programação e revisão ao mesmo tempo, reduzindo a ocorrência de não-conformidades técnicas e inserção de bugs. Por outro lado, a qualidade externa do software pode ser alcançada a partir do envolvimento do ``cliente'' ao longo das atividades de desenvolvimento e, principalmente, a partir de entregas contínuas de software com valor de negócio.
+A Programação em Pares, dentre outras práticas, também contribui para a garantia da qualidade interna, uma vez que exercita a programação e revisão ao mesmo tempo, reduzindo a ocorrência de não-conformidades técnicas e inserção de \emph{bugs}. Por outro lado, a qualidade externa do software pode ser alcançada a partir do envolvimento do ``cliente'' ao longo das atividades de desenvolvimento e, principalmente, a partir de entregas contínuas de software com valor de negócio.
 
 
 Valores semelhantes podem ser observados nas comunidades de desenvolvimento de softwares livres refletindo diretamente na alta qualidade do código produzido em diversos projetos livres \cite{schmidt2001}; \cite{halloran2002}; \cite{michlmayr2003}.
@@ -23,7 +23,7 @@ A melhoria da qualidade interna do código apoia a melhoria contínua do process
 %
 Diretamente relacionado a qualidade de código está a sua segurança \cite{tsipenyuk2005}. A segurança de software está relacionada a confiabilidade, disponibilidade e integridade dos diversos componentes que compõe o software.
 
-Dados do ICAT/NIST\footnote{ ICAT foi um motor de busca de vulnerabilidades, desenvolvido pelo NIST(\emph{National Institue of Standards and Technology}), catalogadas no padrão CVE. O ICAT foi substituido pelo NVD (\emph{National Vulnerability Database }), que alé de possuir o mesmo mecanismo de busca, é um repositório governamental dos Estados Unidos que armazena diversas informações sobre vulnerabilidades de software (nomenclaturas, métricas, checklists, etc)} de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa \cite{duarte2005}.
+Dados do ICAT/NIST\footnote{ ICAT foi um motor de busca de vulnerabilidades, desenvolvido pelo NIST(\emph{National Institue of Standards and Technology}), catalogadas no padrão CVE. O ICAT foi substituido pelo NVD (\emph{National Vulnerability Database }), que além de possuir o mesmo mecanismo de busca, é um repositório governamental dos Estados Unidos que armazena diversas informações sobre vulnerabilidades de software (nomenclaturas, métricas, checklists, etc).} de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa \cite{duarte2005}.
 %
 Embora a segurança de uma aplicação também estejam relacionadas a aspectos externos ao software como a redes e componentes de hardware, o elo mais fraco continua sendo o próprio software. Dessa forma, cabe aos projetistas e desenvolvedores a responsabilidade do desenvolvimento de software seguro, sem prejuízos aos seus usuários.
 
@@ -56,17 +56,17 @@ Atualmente existem algumas ferramentas que automatizam a extração de métricas
 %
 Outras ferramentas denominadas Plataformas de Monitoramento de Código-Fonte procuram oferecer melhores formas de monitoramento e visualização do software a partir da personalização de métricas e mecanismos que faciltem a interpretação dos resultados obitidos.
 %
-Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução que tem se destacado no ramo de BI e tem enfase em fornecer uma ambiente de fácil acesso a informação para a tomada de decisão. O \emph{Data Warehouse} constitui-se de uma base de dados que procura de maneira eficiente e flexível tratar de grande volume de dados e obter informações que auxiliem no processo de tomada de decisão \cite{lopes2007}. Alguns trabalhos já têm utilizados o DWing no contexto de monitoramento de métricas apresentando bons resultados  \cite{Castellanos2005} \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011}.
+Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução que tem se destacado no ramo de \emph{Business Intelligence} - BI e tem enfase em fornecer uma ambiente de fácil acesso a informação para a tomada de decisão. O \emph{Data Warehouse} constitui-se de uma base de dados que procura de maneira eficiente e flexível tratar de grande volume de dados e obter informações que auxiliem no processo de tomada de decisão \cite{lopes2007}. Alguns trabalhos já têm utilizados o DWing no contexto de monitoramento de métricas apresentando bons resultados  \cite{Castellanos2005} \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011}.
 
 
 Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software.
 %
-A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do processo e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
+A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria técnica contínua do processo e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
 %TODO:pensar se queremos mesmo falar em melhoria contínua do processo 
 %
-Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte e um ambiente de \emph{DWing}.
+Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte Mezuro e um ambiente de \emph{DWing}.
 %
-Dessa forma, será observado o uso dessas duas soluções e suas contribuições para a melhoria do processo e qualidade do produto.
+Dessa forma, será observado o uso dessas duas soluções e suas contribuições para a melhoria técnica do processo e qualidade do produto.
 %TODO: Pensar - melhoria do processo mesmo? como é um termo consolidado na Eng. Soft. tradicional, temos que usar um termo menos batido...
 
 %------------------------------------------------------------------------------%
@@ -128,26 +128,25 @@ Para responder essas questões de pesquisa, definimos os seguintes objetivos esp
 					\item Evoluir mecanismos de visualização de software do Mezuro
 				\end{itemize}
 
-			\item \textbf{OT2}- Criar ambiente de \emph{Data Warehousing} para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
+			\item \textbf{OT2} - Criar ambiente de \emph{Data Warehousing} para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
 	        	\begin{itemize}
 	        		\item Implementar extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática na plataforma de \emph{Bussines Inteligence} (BI) Pentaho.
 	        		\item Criar modelo dimensional que, diferente de um modelo relacional utilizado para modelagem de banco de dados, permitirá melhor performance para processamento analítico dos dados.
-	        		\item Gerar Cubo de dados, que é agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
+	        		\item Gerar Cubo de dados, que consiste em agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
 					\item Configurar mecanismos de visualização do cubo de dados na plataforma de BI Pentaho.
 	        	\end{itemize}
-			\item \textbf{OT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
+			\item \textbf{OT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo.
 		\end{itemize}
 \begin{description}
 	\item [Objetivos Científicos]\
 \end{description}	
 	 	\begin{itemize}
 			\item \textbf{OC1} - Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
-			\item \textbf{OC2} - Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}
+			\item \textbf{OC2} - Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}.
 			\item \textbf{OC3} - Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e \emph{design} de software.
 			\item \textbf{OC4} - Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
 			\item \textbf{OC5} - Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
 	 	\end{itemize}
-
 
 %------------------------------------------------------------------------------%
 
@@ -181,6 +180,4 @@ Essa atividade está relacionado aos objetivos tecnológicos deste trabalho de c
 
 \section{Organização do Trabalho}
 
-%TODO: com o surgimento do novo capítulo, atualizar aqui...
-
-Esta monografia está dividida em mais outros 4 capítulos. A seguir, o leitor encontrará o Capítulo \ref{cap-metrics} onde são estruturados e discutidos os principais conceitos relacionados à \emph{design}, vulnerabilidade e métricas de código-fonte. Posteriormente, no Capítulo \ref{cap-mezuro} será apresentada a plataforma de monitoramento de código-fonte Mezuro, uma ferramenta livre que será evoluída de acordo com os Objetivos Tecnlógicos deste trabalho. O Capítulo \ref{cap-dw} apresenta os principais conceitos relacionados a \emph{Data Warehousing}, que também será explorada no contexto deste trabalho como solução para utilização de métricas de código-fonte. Por fim, no Capítulo \ref{cap-cenarios} serão apresentados o conceito de Cenários de Decisões e algumas propostas que podem ser utilizadas no monitoramento de projetos.
+Esta monografia está dividida em mais outros 5 capítulos. A seguir, o leitor encontrará o Capítulo \ref{cap-metrics} onde são estruturados e discutidos os principais conceitos relacionados à \emph{design}, vulnerabilidade e métricas de código-fonte. Posteriormente, no Capítulo \ref{cap-mezuro} será apresentada a plataforma de monitoramento de código-fonte Mezuro, uma ferramenta livre que será evoluída de acordo com os Objetivos Tecnlógicos deste trabalho. O Capítulo \ref{cap-dw} apresenta os principais conceitos relacionados a \emph{Data Warehousing}, que também será explorada no contexto deste trabalho como solução para utilização de métricas de código-fonte. No Capítulo \ref{cap-cenarios} serão apresentados o conceito de Cenários de Decisões e algumas propostas que podem ser utilizadas no monitoramento de projetos. Por fim, no Capítulo \ref{cap-consideracoesFinais} serão realizadas as principais considerações e ponderações a respeito deste trabalho, além de apresentar um cronograma de passos futuros para sua complementação.

@@ -1,11 +1,13 @@
 \section{\emph{Data Warehouse}}
 \label{cap-dw}
-%TODO: juntar com o capítulo do Mezuro como um capítulo
-%sobre os ambientes de tomada de decisão
+
 %TODO: pontuar a expectativa de DW em relação ao Mezuro
 
-Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão.
+Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferencendo suporte a gestão de negócios}. O fato de o DW fazer parte de várias soluções do mercado de BI e oferecer um alto poder de análise por armazenar uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão, sendo melhor que o Mezuro. Entretanto, temos a hipótese de que o DW seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão validadas com a real comparação entre os dois ambientes implementados.
+
+
 %
+
 O DW tem como característica ser:
 
 \begin{itemize}
@@ -53,35 +55,34 @@ O conjunto de ferramentas de manipulação dos dados, desde sua extração até 
  \begin{figure}[!htb]
  	\centering
  		\includegraphics[scale=0.5]{figuras/componentesDW}
- 		\caption{Componentes de um \emph{DWing} \cite{kimball2002}}.
+ 		\caption{Componentes de um \emph{DWing}. Adaptação de \cite{kimball2002}}.
  		\label{componentesdw}
  \end{figure}
 
 
 %TODO: ver se concorda com o fato de não termos subseções aqui
 % a figura acima estava sem explicação/interpretação "explicita"
-Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de \emph{DWing} conforme a Figura \ref{componentesdw}, onde temos:
+Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de \emph{DWing} conforme a Figura \ref{componentesdw}. A extração dos dados que irão compor o DW é feita de fonte de dados de sistemas, podendo ser de um ou vários sistemas relacionados. Esses dados são tratados na DSA, pois como podem vir de diversas fontes devem ser combinados, limpados ou transformados, tornado-os mais consistentes para que possam então ser amazenados na DPA, onde ficam os DW ou \emph{Data Mart's}\footnote{\emph{Data Mart} é um subconjunto de dados de um DW. Foca em uma ou mais áreas específicas \cite{kimball2002}}. As ferramentas de acesso são as responsáveis pela análise dos dados, podendo realizar consultas, gerar relatórios entre outros mecanismos de visualização. Cada um dos componentes serão um pouco mais detalhados a baixo, pois revelam algumas características fundamentais de um ambiente de \emph{DWing}.
 
 \begin{description}
-
-
-\item[Sistemas de Fonte de Dados Operacionais - OSS:]
-
+	\item[Sistemas de Fonte de Dados Operacionais - OSS]
+\end{description}
 %
 
 O Sistemas de Fonte de Dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irão compor o ambiente de DW.
 %
 Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.
 %
-Essas bases de dados não precisam ser necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos XML ou qualquer outra forma de se armazenar e representar informações de negócio.
+Essas bases de dados não precisam utilizar necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos XML ou qualquer outra forma de se armazenar e representar informações de negócio.
 %
 As fontes de dados não podem ser consideradas dentro do escopo do \emph{DWing}, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
 
-\item[Área de Preparação dos Dados - DSA:]
-
+\begin{description}
+\item[Área de Preparação dos Dados - DSA]
+\end{description}
 %
 
-A Área de Preparação dos Dados (DSA - \emph{Data Staging Area}) é o ambiente no qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL.
+A Área de Preparação dos Dados (DSA - \emph{Data Staging Area}) é o ambiente no qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL (\emph{Extract, Transform, Load}).
 %
 Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL.
 %
@@ -95,8 +96,11 @@ Dessa forma, uma série de transformações podem ser feitas buscando a limpeza 
 %
 Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
 
-\item[Área de Apresentação - DPA:]
+\begin{description}
+\item[Área de Apresentação - DPA]
+\end{description}
 %
+
 A Área de Apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
 
 
@@ -104,20 +108,23 @@ Um dos propósitos de um DW é ter uma navegação intuitiva e de alta performan
 
 Kimball (\citeyear{kimball2002}) então propõe o uso da modelagem dimensional, que possui as mesmas informações que as bases normalizadas, porém em um formato diferente, atendendo a facilidade na navegação e na performance das consultas. Mais detalhamento sobre a modelagem dimensional será vista na Seção (\ref{sec-dimensional-modeling}).
 
+\begin{description}
 \item[Ferramentas de Acesso de dados – Visualização de dados:]
+\end{description}
 
 As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de Apresentação. Elas podem variar desde simples ferramentas de consulta \emph{ad-hoc} até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
 
 Ferramentas de visualização são muito importantes em um ambiente de \emph{DWing}, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de \emph{DWing} listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP \emph{ad-hoc} para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
-
-\end{description}
-
 %TODO: Achei as explicações acima muito longas. Tentar ser mais objetivo, uma vez que agora estamos usando tais descrições para explicar a figura citada acima.
+%Carlos: Acredito que tais descrições são necessárias pois revelam algumas caracteríticas importantes do DW que são tratadas em cada componente, como a preocupação com a performance, redundancia entre outros aspectos. Fiz uma descrição breve da figura e fiz um link para os detalhes, ok?
+
+Outra forma de visualização de dados é dada através  de \emph{dashboards}. Um \emph{dashboard} é um tipo de aplicação analítica constituída por uma tela com informação resumida que pode conter diferentes elementos de exploração, como tabelas, gráficos, manometros, entre outros. O uso de dashboads mostra-se interessante, pois pode ser muito útil para o monitoramento de indicadores sobre as informações do projeto. 
 
 %TODO: acho que não precisa de figura e explicação sobre dashboard (pelo menos da forma como está)
 %TODO: ver se concorda em retirarmos/comentarmos
+%Carlos: eu acho que seria interessante falar sobre dashboards pois é um mecanismos de visualização que pode ser muito útil para o monitoramento
 \begin{comment}
-Outra forma de visualização de dados é dada através  de \emph{dashboards}. Um \emph{dashboard} é um tipo de aplicação analítica constituída por uma tela com informação resumida que pode conter diferentes elementos de exploração, como tabelas, gráficos, manometros, entre outros, tal como se mostra na Figura (\ref{dashboard}).
+
 
  \begin{figure}[!htb]
  	\centering
@@ -129,7 +136,7 @@ Outra forma de visualização de dados é dada através  de \emph{dashboards}. U
 
 \end{comment}
 
-\subsection{Modelage dimensional}
+\subsection{Modelagem dimensional}
 \label{sec-dimensional-modeling}
 
 %
@@ -152,18 +159,16 @@ Os conceitos básicos da modelagem dimensional são:
  \begin{figure}[!htb]
  	\centering
  		\includegraphics[scale=0.8]{figuras/dw-cubo}
- 		\caption{Exemplo de cubo de dados}.
+ 		\caption{Exemplo de cubo de dados Fonte: \cite{Guimaraes2012}}.
  		\label{dw-cube}
  \end{figure}
 
-A ideia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões. Na Figura \ref{dw-cube} é exemplificado um cubo de dados para o contexto de uma loja. As células desse cubo pode representar a quantidade de vendas, sendo possível a realização de diferentes análises.
-%TODO: nova norma ortográfica define que não tem acento em ideia...
-% ...eu corrigi isso em alguns lugares
+A ideia da modelagem dimensional é representar os tipos de dados de negócio em estruturas de cubo de dados. As células desse cubo contém os valores medidos e os lados definem as dimensões. Na Figura \ref{dw-cube} é exemplificado um cubo de dados para o contexto de uma loja. As células desse cubo pode representar a quantidade de vendas, sendo possível a realização de diferentes análises.''
 
  \begin{figure}[!htb]
  	\centering
  		\includegraphics[scale=0.8]{figuras/dw-Modelo-estrela}
- 		\caption{Esquema estrela}.
+ 		\caption{Esquema estrela Fonte: \cite{Wagner2012}}.
  		\label{dw-starscheme}
  \end{figure}
 
@@ -174,7 +179,7 @@ Uma Tabela de Dimensão deve ser construída de maneira a incluir atributos que 
 \begin{figure}[!htb]
  	\centering
  		\includegraphics[scale=1]{figuras/dw-modelo-flocodeneve}
- 		\caption{Esquema floco de neve}.
+ 		\caption{Esquema floco de neve  Fonte: \cite{Wagner2012}}.
  		\label{dw-snowflackscheme}
  \end{figure}
 %TODO: as figuras estão sem referencia (essa e outras)
@@ -248,6 +253,16 @@ Com os requisitos definidos, existem três conjuntos de tarefas. As tarefas supe
 
 No fim do ciclo ainda existe uma atividade de manutenção e crescimento do ambiente, dado que esse é um tipo de ambiente que deve evoluir dinamicamente de acordo com o negócio e suas necessidades de tomada de decisão.
 
+
+\subsection{Construção de ambiente de DW para o monitoramento de métricas de software.}
+
+%
+
+Nas seções anteriores foi feito uma revisão teórica sobre as principais caracteríticas de um ambiente de \emph{DWing}. Neste trabalho, buscamos desenvolver um ambiente de \emph{DWing} que auxilie no monitoramento e na tomada de decisão, baseado em métricas de software. Dessa forma, a proposta é desenvolver um ambiente que nos permita coletar métricas de ferramentas de análise estática de código, identificar o cenários de decisão a partir da correlação dessas métricas (assunto que será abordado no Capítulo \ref{cap-cenarios}) e sugerir refatorações para solucionar esse cenário. A suíte de ferramentas Analizo, como fornecedor de métricas, irá compor o componente OSS da arquitetura de um \emph{DWing} discutida no inícío desta seção. O Pentaho é uma suíte de ferramentas de BI que oferece desde mecanismos de ETL, \emph{reporting}, OLAP e mineração de dados. Essa ferramenta nos permitirá extraír, tratar e analisar os dados de relatórios do Analizo a fim de identificar os cenários de decisão. Os recursos OLAP irão permitir diferentes visões que permitirá identificar diversas características que poderão auxiliar na tomada de decisão, como qual a classe que possui mais cenários, qual cenário é o mais recorrente, além de poder extrair indicadores a partir dos dados e analisar o histórico das informações, verificando se houve melhoria ou não na situação do projeto.
+
+Percebe-se que vários recursos de um ambiente de \emph{DWing} podem ser explorados a fim de dar mais informações a respeito de um projeto de software a partir de métricas. Entretanto, tais aspéctos e configurações da solução serão ainda serão definidos e refinados para a composição da solução final.
+
+%
 
 %TODO: Não achei didático este capítulo/texto sobre DW. Foi muito "mais do mesmo" sem contextualizar, exemplificar e casar com o trabalho em si.
 %TODO: Para o TCC 2 ser mais objetivo e contextualizar as explicações com o trabalho, ou seja, ser mais didático e simples.

@@ -1,17 +1,16 @@
 \chapter{Ambientes de Tomada de Decisão}
 \label{cap-decision-making-environment}
 
-
 %
 
-Neste capítulo serão apresentados conceitos a respeito dos dois ambientes de tomada de decisão contemplados por esse trabalho: Mezuro e DWing. Esses conceitos serão importantes para o entendimento das soluções que serão desenvolvidas, sendo explorado características particulares de cada um.
+Neste capítulo serão apresentados as principais ideias, funcionalidades e conceitos a respeito dos dois ambientes de tomada de decisão contemplados por esse trabalho: Mezuro e DWing. Esse estudo será importante para o entendimento das soluções que serão desenvolvidas, sendo explorado características particulares de cada um.
 
 %
 
 \section{Mezuro: Uma plataforma de Monitoramento de Código-Fonte}
 \label{cap-mezuro}
 
-No Capítulo \ref{cap-metrics} discutimos as principais questões de \emph{design}, segurança e métricas no contexto da Engenharia de Software. As métricas estáticas de código-fonte são recursos que podem ser utilizados para a compreensão da qualidade e identificação de vulnerabilidades do código-fonte. Entretanto, como discutido no mesmo capítulo, avaliar a qualidade de um software envolve um processo dispendioso e não trivial. Na Seção \ref{sec-metrics-esw}, apresentamos um conjunto de métricas estáticas cujo propósito é medir alguns atributos do software tais como complexidade, acoplamento e tamanho. 
+No Capítulo \ref{cap-metrics} discutimos as principais questões de \emph{design}, segurança e métricas no contexto da Engenharia de Software. As métricas estáticas de código-fonte são recursos que podem ser utilizados para a compreensão da qualidade e identificação de vulnerabilidades do código-fonte. Entretanto, como discutido no mesmo capítulo, avaliar a qualidade de um software envolve um processo dispendioso e não trivial. No Capítulo \ref{cap-metrics-esw}, apresentamos um conjunto de métricas estáticas cujo propósito é medir alguns atributos do software tais como complexidade, acoplamento e tamanho. 
 
 %
 
@@ -44,7 +43,7 @@ Entretanto, o Mezuro tem sido evoluído como uma plataforma independente. Isto o
 \graphicspath{{figuras/}}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{mezuro-standalone}
+\includegraphics[width=0.8\textwidth]{mezuro-standalone}
 \caption{Tela principal do Mezuro. Disponível em \url{http://mezuro.org/}}
 \label{mezuro}
 \end{figure}
@@ -111,6 +110,14 @@ na Figura~\ref{fig:mezuro-current-design}
 
 %
 
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{MezuroNovaArquitetura.eps}
+\caption{Arquitetura Futura do Mezuro. Extraído de \cite{manzo2014}}
+\label{fig:mezuro-future-design}
+\end{figure}
+
 Dentre os objetivos da evolução desta arquitetura, tem-se a reescrita do Kalibro e sua modularização em três serviços principais, que pode ser observada na Figura~\ref{fig:mezuro-future-design}.
 %
 O primeiro módulo já está em uso, sendo também represetado na Figura~\ref{fig:mezuro-current-design}, é o módulo Kalibro Processor.
@@ -119,13 +126,6 @@ Assim, a contemplação desta nova arquitetura consiste na reescrita de serviço
 %
 Essa nova proposta apoia a modularização e o baixo acoplamento, utilizando-se principalmente o conceito de orquestração de serviços que podem ser encontrados em Arquiteturas Orientadas à Serviço - SOA \cite{thomaserl2007}.
 
-\graphicspath{{figuras/}}
-\begin{figure}[h]
-\centering
-\includegraphics[width=1.0\textwidth]{MezuroNovo.eps}
-\caption{Arquitetura Futura do Mezuro. Extraído de \cite{manzo2014}}
-\label{fig:mezuro-future-design}
-\end{figure}
 
 %TODO: A mesma figura?
 

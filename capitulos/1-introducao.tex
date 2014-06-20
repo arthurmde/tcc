@@ -61,21 +61,17 @@ Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução
 
 Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software.
 %
-A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria técnica contínua do processo e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
-%TODO:pensar se queremos mesmo falar em melhoria contínua do processo 
+A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do desenvolvimento e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de relação e correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
 %
 Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte Mezuro e um ambiente de \emph{DWing}.
 %
-Dessa forma, será observado o uso dessas duas soluções e suas contribuições para a melhoria técnica do processo e qualidade do produto.
-%TODO: Pensar - melhoria do processo mesmo? como é um termo consolidado na Eng. Soft. tradicional, temos que usar um termo menos batido...
+Dessa forma, será observado o uso dessas duas soluções e suas contribuições para a melhoria do desenvolvimento e qualidade do produto.
 
 %------------------------------------------------------------------------------%
 
 \section{Objetivos}
 
 O objetivo deste trabalho consite no estudo teórico sobre conceitos relacionados às métricas de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software  para o estabelecimento de cenários que caracterizam determinado componente do sistema e auxiliem na tomada de decisão no que diz respeito à práticas de \emph{design} de código para melhoria da segurança da aplicação.
-%TODO: tentar deixar mais claro na introdução nossa "definição/visão" sobre "bom design"
-%... para o leitor entender que daquele ponto em diante o que é "bom design"
 %
 Além disso, temos como objetivo nesta monografia oferecer duas propostas de ambientes de visualização e monitoramento do código com base nos cenários definidos:
 \begin{itemize}
@@ -97,17 +93,17 @@ Este trabalho busca responder as seguintes questões de pesquisa:
 
 \begin{itemize}
 
-\item \textbf{QP1}- Um ambiente de \emph{Data Warehousing}(DWing) é  adequado para auxiliar na tomada de decisão tanto do ponto de vista estratégico quanto ao ponto de vista de modificações de \emph{design} por Engenheiro de Software?
+\item \textbf{QP1} - Um ambiente de \emph{Data Warehousing}(DWing) é  adequado para auxiliar na tomada de decisão tanto do ponto de vista estratégico quanto ao ponto de vista de modificações de \emph{design} por Engenheiro de Software?
 %
-\item \textbf{QP2}- Uma plataforma de monitoramento de código-fonte é adequado para suportar a tomada de decisões em projetos de software para auxiliar o Engenheiro de Software na melhoria contínua do produto?
+\item \textbf{QP2} - Uma plataforma de monitoramento de código-fonte é adequado para suportar a tomada de decisões em projetos de software para auxiliar o Engenheiro de Software na melhoria contínua do produto?
 %
-\item \textbf{QP3}- Uma plataforma de monitoramento de código-fonte e um \emph{DWing} podem ser utilizados em conjunto para auxiliar a tomada de decisões, em diferentes níveis, de um projeto de software?
+\item \textbf{QP3} - Uma plataforma de monitoramento de código-fonte e um \emph{DWing} podem ser utilizados em conjunto para auxiliar a tomada de decisões, em diferentes níveis, de um projeto de software?
 %
-\item \textbf{QP4}- Métricas de \emph{design} de código possuem correlação de causalidade com métricas de vulnerabilidades?
+\item \textbf{QP4} - Métricas de \emph{design} de código possuem correlação de causalidade com métricas de vulnerabilidades?
 %
-\item \textbf{QP5}- O monitoramento de métricas de vulnerabilidades é pertinente em projetos de softwares não-críticos?
+\item \textbf{QP5} - O monitoramento de métricas de vulnerabilidades é pertinente em projetos de softwares não-críticos?
 %
-\item \textbf{QP6}- Métricas código-fonte (\emph{design} e/ou vulnerabilidade) podem ser compostas em cenários para a definição de indicadores para tomadas de decisão?
+\item \textbf{QP6} - Métricas código-fonte (\emph{design} e/ou vulnerabilidade) podem ser compostas em cenários para a definição de indicadores para tomadas de decisão?
 
 \end{itemize}
 

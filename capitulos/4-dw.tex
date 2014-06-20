@@ -3,7 +3,7 @@
 
 %TODO: pontuar a expectativa de DW em relação ao Mezuro
 
-Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferencendo suporte a gestão de negócios}. O fato de o DW fazer parte de várias soluções do mercado de BI e oferecer um alto poder de análise por armazenar uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão, sendo melhor que o Mezuro. Entretanto, temos a hipótese de que o DW seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão validadas com a real comparação entre os dois ambientes implementados.
+Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferencendo suporte a gestão de negócios}. O fato de o DW fazer parte de várias soluções do mercado de BI e oferecer um alto poder de análise por armazenar uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. Entretanto, temos a hipótese de que o DW seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão validadas com a real comparação entre os dois ambientes implementados.
 
 
 %
@@ -211,26 +211,72 @@ Pode-se definir OLAP como sistemas ou ferramentas que realizam consultas ao DW.
 %
 Tais sistemas permitem aumentar ou diminuir o nível de detalhes da informação através das operações descritas abaixo. A Figura \ref{dw-olap} exemplifica cada uma das operações OLAP que podem ser aplicadas em um cubo de dados. 
 
- \begin{figure}[!htb]
- 	\centering
- 		\includegraphics[scale=1]{figuras/olap}
- 		\caption{Operações OLAP}.
- 		\label{dw-olap}
- \end{figure}
+ %\begin{figure}[!htb]
+ %	\centering
+ %		\includegraphics[scale=1]{figuras/olap}
+ %		\caption{Operações OLAP}.
+ %		\label{dw-olap}
+ %\end{figure}
 %TODO: esta figura está ruim de ler no pdf. Melhorar ou repensar o uso dela para o TCC 2.
 
 
 \begin{itemize}
 
-	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por ano. Uma operação de \emph{Drill Down} consistiria em trazer essa mesma informação por mês.
-
-	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do \emph{Drill down}.
-
-	\item \textbf{\emph{Slice and dice}}: A operação de \emph{slice} consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, em um cubo com informações sobre a venda, fatiar este cubo pelo ano 2012 consiste em eliminar a dimensão tempo e apenas considerar as vendas para o ano de 2012. A operação \emph{dice}, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de \emph{dice} em um cubo de vendas consiste em selecionar as vendas entre o ano de 2010 a 2013, nas localizações “Rio de janeiro”, “São Paulo”, “Distrito Federal” e produtos de categoria “Alimentos” e “Eletronicos”.
-
-	\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. 
-
+	\item \textbf{\emph{Drill down}}: Consiste em navegar em uma informação de menor nível de detalhe para uma informação de maior nível de detalhe. Por exemplo, uma análise utilizando a dimensão tempo fornece o tempo por bimestre. Uma operação de \emph{Drill Down} consistiria em trazer essa mesma informação por mês. Este exemplo pode ser visto na Figura \ref{fig-dw-rollup}.
 \end{itemize}
+	
+\begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.7]{figuras/dw-drill-down}
+ 		\caption{Demonstração da operação de \emph{Drill Down}   Fonte: \cite{TutorialsPoint}}
+ 		\label{fig-dw-rollup}
+ \end{figure}
+
+\begin{itemize}
+	\item \textbf{\emph{Roll up}}: Consiste em navegar em uma informação de maior nível de detalhe para um menor nível de detalhes. É exatamente o inverso do \emph{Drill down}.
+ \end{itemize}
+
+ %\begin{figure}[!htb]
+ %	\centering
+ %		\includegraphics[scale=1]{figuras/dw-rollup}
+ %		\caption{Demonstração da operação de Roll up    Fonte: TutorialsPoint}.
+ %		\label{dw-rollup}
+ %\end{figure}
+
+\begin{itemize}
+	\item \textbf{\emph{Slice and dice}}: A operação de \emph{slice} consiste em fatiar o cubo, que consiste em selecionar um atributo de uma dimensão específica e olhar apenas as informações das outras dimensões sobre esse atributo, eliminando a dimensão fatiada. Por exemplo, dado o cubo demosntrado na Figura \ref{fig-dw-slice}, a operação \emph{slice} foi feita ao selecionar apenas as informações do primeiro bimestre (Q1), eliminando qualquer outra informação da dimensão de tempo. A operação \emph{dice}, como o nome sugere, consiste em fatiar em formato de cubo. Nessa caso, não será eliminado nenhuma dimensão, mas será selecionado alguns subgrupos em duas ou mais dimensões, resultando em um subcubo. Por exemplo,  a operação de \emph{dice} no cubo representado na Figura \ref{fig-dw-dice} consistiu em selecionar apenas as informações de Toronto ou Vancouver, no primeiro e segundo bimestre e de apenas itens Mobile ou Modem, gerando um subcubo menor.
+\end{itemize}
+
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.7]{figuras/dw-slice}
+ 		\caption{Demonstração da operação de \emph{Slice}    Fonte: \cite{TutorialsPoint}}
+ 		\label{fig-dw-slice}
+ \end{figure}
+
+\vspace{10cm}
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.7]{figuras/dw-dice}
+ 		\caption{Demonstração da operação de \emph{Dice}    Fonte: \cite{TutorialsPoint}}
+ 		\label{fig-dw-dice}
+ \end{figure}
+\begin{itemize}
+
+
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.55]{figuras/dw-pivot}
+ 		\caption{Demonstração da operação de \emph{Pivoting}    Fonte: \cite{TutorialsPoint}}
+ 		\label{fig-dw-pivot}
+ \end{figure}
+
+	\item \textbf{\emph{Pivoting}}: Também conhecida como \emph{rotate}, é uma operação que realiza uma rotação nos eixos de um cubo, gerando uma visualização alternativa da informação \cite{cavalcanti2012}. O resultado de uma operação de \emph{pivoting} pode ser visto na Figura \ref{fig-dw-pivot}.  
+\end{itemize}
+ 
+
+
+
 
 \subsection{Ciclo de vida de um ambiente de \emph{Data Warehousing}}
 \label{sec-lifecycleDw}
@@ -260,7 +306,7 @@ No fim do ciclo ainda existe uma atividade de manutenção e crescimento do ambi
 
 Nas seções anteriores foi feito uma revisão teórica sobre as principais caracteríticas de um ambiente de \emph{DWing}. Neste trabalho, buscamos desenvolver um ambiente de \emph{DWing} que auxilie no monitoramento e na tomada de decisão, baseado em métricas de software. Dessa forma, a proposta é desenvolver um ambiente que nos permita coletar métricas de ferramentas de análise estática de código, identificar o cenários de decisão a partir da correlação dessas métricas (assunto que será abordado no Capítulo \ref{cap-cenarios}) e sugerir refatorações para solucionar esse cenário. A suíte de ferramentas Analizo, como fornecedor de métricas, irá compor o componente OSS da arquitetura de um \emph{DWing} discutida no inícío desta seção. O Pentaho é uma suíte de ferramentas de BI que oferece desde mecanismos de ETL, \emph{reporting}, OLAP e mineração de dados. Essa ferramenta nos permitirá extraír, tratar e analisar os dados de relatórios do Analizo a fim de identificar os cenários de decisão. Os recursos OLAP irão permitir diferentes visões que permitirá identificar diversas características que poderão auxiliar na tomada de decisão, como qual a classe que possui mais cenários, qual cenário é o mais recorrente, além de poder extrair indicadores a partir dos dados e analisar o histórico das informações, verificando se houve melhoria ou não na situação do projeto.
 
-Percebe-se que vários recursos de um ambiente de \emph{DWing} podem ser explorados a fim de dar mais informações a respeito de um projeto de software a partir de métricas. Entretanto, tais aspéctos e configurações da solução serão ainda serão definidos e refinados para a composição da solução final.
+Percebe-se que vários recursos de um ambiente de \emph{DWing} podem ser explorados a fim de dar mais informações a respeito de um projeto de software a partir de métricas. Entretanto, tais aspéctos e configurações da solução serão ainda  definidos e refinados para a composição da solução final.
 
 %
 

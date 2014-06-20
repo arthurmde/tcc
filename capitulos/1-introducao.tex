@@ -61,116 +61,76 @@ Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução
 
 Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software.
 %
-A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do desenvolvimento e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de relação e correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
+
+Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software.A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do desenvolvimento e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de relação e correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
 %
 Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte Mezuro e um ambiente de \emph{DWing}.
-%
-Dessa forma, será observado o uso dessas duas soluções e suas contribuições para a melhoria do desenvolvimento e qualidade do produto.
+
 
 %------------------------------------------------------------------------------%
 
+\section{Problema}
+
+%
+Como utilizar métricas de código-fonte para apoiar práticas de melhoria contínua da qualidade interna do software.
+
 \section{Objetivos}
 
-O objetivo deste trabalho consite no estudo teórico sobre conceitos relacionados às métricas de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software  para o estabelecimento de cenários que caracterizam determinado componente do sistema e auxiliem na tomada de decisão no que diz respeito à práticas de \emph{design} de código para melhoria da segurança da aplicação.
-%
-Além disso, temos como objetivo nesta monografia oferecer duas propostas de ambientes de visualização e monitoramento do código com base nos cenários definidos:
-\begin{itemize}
-\item \textbf{Plataforma livre de monitoramento de métricas}: Evolução da plataforma Mezuro para suportar a criação de configurações que caracterizem os cenários estabelecidos;
-\item \textbf{Ambiente de DWing}: Criação de um ambiente de DWing para extração e análise das métricas baseada nos cenários definidos para a ajuda na tomada de decisão;
-\end{itemize}
+O objetivo deste trabalho consite na proposta e implementação da técnica de construção de Cenários de Decisões como técnica de monitoramento do código-fonte que consiste na caracterização de determinado componente do sistema baseado na sua observação através de métricas, para orientar a aplicação de práticas e tomada de decisões sobre o software. Portanto, serão propostos algumas cenários através do uso desta técnica sobre características de segurança de software, a partir do estudo teórico e estatísticos sobre métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software.
 
-Assim, pretendemos evidenciar como esses cenários podem ser utilizados através da ferramenta de análise estática de código, automatizada, incorporados às boas práticas de desenvolvimento de software. Uma comparação entre as duas propostas também cabem ao escopo deste trabalho.
-
-%
-
-\subsection{Questões de Pesquisa}
-
-%
-
-Este trabalho busca responder as seguintes questões de pesquisa:
-
-%
-
-\begin{itemize}
-
-\item \textbf{QP1} - Um ambiente de \emph{Data Warehousing}(DWing) é  adequado para auxiliar na tomada de decisão tanto do ponto de vista estratégico quanto ao ponto de vista de modificações de \emph{design} por Engenheiro de Software?
-%
-\item \textbf{QP2} - Uma plataforma de monitoramento de código-fonte é adequado para suportar a tomada de decisões em projetos de software para auxiliar o Engenheiro de Software na melhoria contínua do produto?
-%
-\item \textbf{QP3} - Uma plataforma de monitoramento de código-fonte e um \emph{DWing} podem ser utilizados em conjunto para auxiliar a tomada de decisões, em diferentes níveis, de um projeto de software?
-%
-\item \textbf{QP4} - Métricas de \emph{design} de código possuem correlação de causalidade com métricas de vulnerabilidades?
-%
-\item \textbf{QP5} - O monitoramento de métricas de vulnerabilidades é pertinente em projetos de softwares não-críticos?
-%
-\item \textbf{QP6} - Métricas código-fonte (\emph{design} e/ou vulnerabilidade) podem ser compostas em cenários para a definição de indicadores para tomadas de decisão?
-
-\end{itemize}
-
-%
-
-Para responder essas questões de pesquisa, definimos os seguintes objetivos específicos:
-
+\section{Contribuições}
 %
 \begin{description}
-	\item [Objetivos Técnológicos]\
+	\item [Contribuições Técnológicas]\
 \end{description}
 		\begin{itemize}
-			\item \textbf{OT1} - Evoluir a plataforma livre Mezuro de monitoramento de código-fonte:
+			\item \textbf{CT1} - Evoluir a plataforma livre Mezuro de monitoramento de código-fonte:
 				\begin{itemize}
 					\item Evoluir a arquitetura do Mezuro para melhorar sua modularização e flexibilidade.
 					\item Evoluir a configuração de métricas do Mezuro
 					\item Implementar mecanismos de definição de celos/cenários no Mezuro
 					\item Evoluir mecanismos de visualização de software do Mezuro
 				\end{itemize}
-
-			\item \textbf{OT2} - Criar ambiente de \emph{Data Warehousing} para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
+			\item \textbf{CT2} - Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
 	        	\begin{itemize}
 	        		\item Implementar extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática na plataforma de \emph{Bussines Inteligence} (BI) Pentaho.
 	        		\item Criar modelo dimensional que, diferente de um modelo relacional utilizado para modelagem de banco de dados, permitirá melhor performance para processamento analítico dos dados.
 	        		\item Gerar Cubo de dados, que consiste em agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
 					\item Configurar mecanismos de visualização do cubo de dados na plataforma de BI Pentaho.
 	        	\end{itemize}
-			\item \textbf{OT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo.
+			\item \textbf{CT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 		\end{itemize}
 \begin{description}
-	\item [Objetivos Científicos]\
+	\item [Contribuições Científicas]\
 \end{description}	
 	 	\begin{itemize}
-			\item \textbf{OC1} - Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
-			\item \textbf{OC2} - Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}.
-			\item \textbf{OC3} - Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e \emph{design} de software.
-			\item \textbf{OC4} - Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
-			\item \textbf{OC5} - Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
+			\item \textbf{CC1} - Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
+			\item \textbf{CC2} - Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}
+			\item \textbf{CC3} - Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e \emph{design} de software.
+			\item \textbf{CC4} - Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
+			\item \textbf{CC5} - Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
 	 	\end{itemize}
 
 %------------------------------------------------------------------------------%
 
 \section{Metodologia e Pesquisa}
 
-Os objetivos científicos e tecnológicos deste trabalho contemplam passos para a alcançar o seu Objetivo Geral e responder às perguntas de pesquisa. Portanto, serão realizados estudos teóricos através de revisão bibliográfica para compreensão e definição dos conceitos básicos sobre características de \emph{design}  e de vulnerabilidades de software, contemplando os objetivos científicos OC1 e OC2.
+Dado o objetivo principal desta monografia, serão realizados estudos teóricos através de revisão bibliográfica para compreensão e definição dos conceitos básicos sobre características de \emph{design}  e de vulnerabilidades de software, referindo-se às contribuições científicas CC1 e CC2.
 
-Além das discussões obtidas a partir da revisão bibliográfica, para se alcançar o OC3 será projetado um estudo para se avaliar a relação entre características de \emph{design} e vulnerabilidades de software.
+Além das discussões obtidas a partir da revisão bibliográfica, para se alcançar o CC3 será projetado um estudo para se avaliar a relação entre características de \emph{design} e vulnerabilidades de software.
 %
-Esse estudo consistirá em uma coleta de métricas em diversos projetos de software livre e a análise estatística de correlação entre essas métricas, onde pretende-se analisar softwares críticos e não críticos.
-%
-Neste sentido, espera-se respoder as questões de pesquisa QP4 e QP5. Para tanto, será utilizado um modelo estatístico de regressão múltipla (a ser definido na segunda etapa deste trabalho) para verificar a correlação entre os dados.
+Esse estudo consistirá em uma coleta de métricas em diversos projetos de software livre e a análise estatística de correlação entre essas métricas. Para tanto, será utilizado um modelo estatístico de regressão múltipla (a ser definido na segunda etapa deste trabalho) para verificar a correlação entre os dados.
 %
 Iremos, então, determinar o impacto de métricas de \emph{design} (variáveis independentes) com a ocorrência de  vulnerabilidades específicas (varíaveis dependentes).
 %
 Este estudo será projetado através de um protocolo de estudo experimental, contemplando a definição de hipóteses, seleção da amostra, desenho do estudo, estratégia de condução e análise de dados conforme proposto por Luna (\citeyear{luna1998}).
 
-Para responder às questões de pesquisa Q1, Q2 e Q3, ou seja, verificar a adequação do ambiente de DWing e da plataforma de monitoramento Mezuro para auxílio na tomada de decisão orientada a métricas de software, será elaborado um protocolo de estudo de caso.
 %
-Esse protocolo será usado para guiar a condução do estudo de caso e deverá conter os procedimentos e regras que governam a condução da pesquisa \cite{miles1994}.
-%
-O objetivo principal deste estudo de caso é avaliar aspectos e características das soluções frente às necessidades de projetos de software.
-%
-Com o resultado da aplicação desse protocolo, também será possível comparar as duas soluções e verificar se ambas podem se complementar, fornecendo um serviço mais completa e com mais benefícios.
 
 Por fim, baseado principalmente na revisão bibliográfica sobre \emph{design}, segurança e métricas estáticas de software, as duas ferramentas propostas, Mezuro e ambiente DWing, serão configuradas e evoluídas.
 %
-Essa atividade está relacionado aos objetivos tecnológicos deste trabalho de conclusão de curso, onde técnicas, métodos e padrões de Engenharia de Software poderão ser aplicados.
+Essa atividade está relacionado aos contribuições tecnológicos deste trabalho de conclusão de curso, onde técnicas, métodos e padrões de Engenharia de Software poderão ser aplicados.
+
 
 %------------------------------------------------------------------------------%
 

@@ -46,7 +46,7 @@ Nesta seção iremos apresentar um conjunto de métricas de código-fonte que es
 
 %
 
-A escolha de métricas para mensurar os atributos de \emph{design} se torna complexa, pois existem inúmeras propostas de métricas diferentes destinadas a medir os mesmo atributos, principalmente sobre tamanho e complexidade. Li \& Cheung \citeyear{li1987}, por exemplo, referencia e compara 31 métricas diferentes de complexidade. Entretanto, não está no escopo deste trabalho realizar uma comparação detalhada sobre métricas semelhantes. As métricas que iremos apresentar a seguir foram selecionadas devido a sua vasta utilização em estudos científicos referenciados neste trabalho e devido a sua existência em boa parte das ferramentas extratoras de métricas de código-fonte. Primeiramente serão apresentadas métricas relacionados a tamanho.
+A escolha de métricas para mensurar os atributos de \emph{design} se torna complexa, pois existem inúmeras propostas de métricas diferentes destinadas a medir os mesmo atributos, principalmente sobre tamanho e complexidade. Li \& Cheung (\citeyear{li1987}), por exemplo, referencia e compara 31 métricas diferentes de complexidade. Entretanto, não está no escopo deste trabalho realizar uma comparação detalhada sobre métricas semelhantes. As métricas que iremos apresentar a seguir foram selecionadas devido a sua vasta utilização em estudos científicos referenciados neste trabalho e devido a sua existência em boa parte das ferramentas extratoras de métricas de código-fonte. Primeiramente serão apresentadas métricas relacionados a tamanho.
 
 %
 
@@ -95,7 +95,7 @@ As últimas métricas que serão apresentadas nesta seção buscam medir caracte
 
 Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na Seção \ref{sec-metrics-security}, o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer Overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer Overflow}, dessa forma, cada maneira diferente compõe uma vulnerabilidade específica. As ferramentas de análise estática buscam  encontrar essas vulnerabilidades específicas e quantificar o seu número de ocorrências. 
 
-O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha(\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
+O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha (\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
 
 %
 
@@ -172,7 +172,7 @@ Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido exist
 %
 %TODO: deixar o trecho acima comentado mesmo, faltou um link para a subseção abaixo
 
-\section{Utilizando Métricas na Engenharia de Software}
+\section{Proposta de Utilização de Métricas de Código-fonte}
 \label{subsec-security-metrics}
 
 Métricas estáticas de código podem ser utilizadas para compreender e analisar características do código. Apresentamos as principais métricas relacionadas ao \emph{design} de software e também algumas métricas de identificação de vulnerabilidades de código.
@@ -211,6 +211,6 @@ Em busca de mecanismos que facilitem a adoção da medição como prática const
 
 %
 
-Por fim, o estudo e levantamento de métricas apresentadas no presente capítulo serão a base para a proposta de exemplos de Cenários de Decisões do Capítulo \ref{cap-cenarios}. Além disso, buscamos compreender e relacionar as métricas de \emph{desingn} e vulnerabilidades apresentadas para melhorar o monitoramento e evolução de softwares, dada as motivações apresentadas no Capítulo \ref{cap-metrics}.
+Por fim, o estudo e levantamento de métricas apresentadas no presente capítulo serão a base para a proposta de exemplos de Cenários de Decisões do Capítulo \ref{cap-cenarios}. Além disso, buscamos compreender e relacionar as métricas de \emph{design} e vulnerabilidades apresentadas para melhorar o monitoramento e evolução de softwares, dada as motivações apresentadas no Capítulo \ref{cap-metrics}.
 
 %

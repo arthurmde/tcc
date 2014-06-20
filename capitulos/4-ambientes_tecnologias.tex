@@ -124,11 +124,22 @@ O primeiro módulo já está em uso, sendo também represetado na Figura~\ref{fi
 %
 Assim, a contemplação desta nova arquitetura consiste na reescrita de serviços do Kalibro, de Java para Ruby, para concepção de dois novos módulos: Kalibro Project e Kalibro Configuration, responsáveis pelo processamento de projetos e configuração respectivamente.
 %
-Essa nova proposta apoia a modularização e o baixo acoplamento, utilizando-se principalmente o conceito de orquestração de serviços que podem ser encontrados em Arquiteturas Orientadas à Serviço - SOA \cite{thomaserl2007}.
+Essa nova proposta apoia a modularização e o baixo acoplamento, utilizando-se principalmente o conceito de orquestração de serviços que podem ser encontrados em Arquiteturas Orientadas à Serviço - SOA \cite{thomaserl2007}. Esta nova arquitetura proporcionará que novos extratores possam ser mais facilmente acoplados à plataforma, além de proporcionar que as funcionalidades e processamento dos projetos e configurações evoluam independentemente.
+
+%
 
 
-%TODO: A mesma figura?
+Os objetivos tecnológicos deste trabalho estão diretamente relacionados com os objetivos de evolução arquitetural da comunidade do Mezuro. Portanto, já iniciamos a contribuição com esta evolução, buscando viabilizar as melhorias necessárias para que o Mezuro contemple os objetivos desde trabalho. Dentre as futuras contribuições, pretendemos trabalhar principalmente sobre as funcionalidades de configuração de métricas do Mezuro, pois desejamos melhorar os mecanismos de configuração e visualização de métricas, viabilizando a utilização da estrutura de Cenários de Decisões que será apresentada no próximo Capítulo.
 
+%
+
+O Mezuro já possui as métricas de \emph{design} listadas no Capítulo \ref{cap-metrics-esw}. Atualmente, métricas de vulnerabilidades específicas tais quais as mencionadas no Capítulo \ref{cap-metrics-esw} já estão sendo coletadas pelo Analizo. Portanto, nossas contribuições também serão direcionadas para que estas métricas sejam tratadas e processadas na plataforma Mezuro. 
+
+%
+
+Com estas contribuições, o Mezuro será avaliado como proposta de plataforma de monitoramento de código-fonte para utilização de métricas na tomada de decisão de projetos de software.
+
+%
 %TODO: falta explicar melhor o Mezuro, especial a parte de configuração, relacionar com o Analizo e concluir o capítulo/seção em si, relacionando com a questão dos cenários e sinalizar alguns próximos passos.
 
 \include{capitulos/4-dw}

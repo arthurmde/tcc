@@ -1,0 +1,63 @@
+\chapter{Alguns Detalhes sobre os Compomentes de um Ambiente de DWing}
+\label{Att:dw}
+
+
+\begin{description}
+	\item[Sistemas de Fonte de Dados Operacionais - OSS]
+\end{description}
+%
+
+O Sistemas de Fonte de Dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irão compor o ambiente de DW.
+%
+Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.
+%
+Não podem ser consideradas dentro do escopo do \emph{DWing}, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
+%
+Essas bases de dados não precisam utilizar necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos XML ou qualquer outra forma de se armazenar e representar informações de negócio.
+
+\begin{description}
+\item[Área de Preparação dos Dados - DSA]
+\end{description}
+%
+
+A Área de Preparação dos Dados (DSA - \emph{Data Staging Area}) é o ambiente no qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL (\emph{Extract, Transform, Load}).
+%
+Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL.
+%
+Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, base essa acessível ao usuário.
+%
+A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW.
+%
+Os dados extraidos na camada OSS não são integrados, e, segundo Inmon (\citeyear{inmon2002}), esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa, que é uma das essências do ambiente de \emph{DWing}.
+%
+Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}.
+%
+Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
+
+\begin{description}
+\item[Área de Apresentação - DPA]
+\end{description}
+%
+
+A Área de Apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
+
+
+Um dos principais propósitos de um DW é ter uma navegação intuitiva e de alta performance \cite{kimball2002}. A visualização das informações de um DW é resultado de agregações de dados, ou seja, diferentes formas de agrupamentos de dados que geram diferentes tipos de informações. Essas agregações são caracterizadas pelas consultas OLAP. Dessa forma, a modelagem relacional, normalmente utilizadas em bancos de dados transacionais, não dão suporte esses propósitos, pois a base de dados é normalizada e a agregação de grande número de dados torna-se custosa em termos de performance. O processo de normalização foi inicialmente proposto por Byce Codd  que consiste em esquematizar as relações de uma base de dados relacional, minimizando redundância de informações e anomalias de inserção, exclusão e alteração, no que diz respeito a manter a consistência de dados caso haja a duplicidade deste. Dessa forma, uma base de dados relacional normalizada oferece mais segurança em transações de acesso e alteração/inclusão/deleção de dados pois possui esquemas menores e consistentes \cite{elmasri2006}. O problema de esquemas menores é a performance, pois a realização consultas exige a navegação  entre várias tabelas, e se tratando de uma consulta que envolve grande quantidades de dados, como em um \emph{DWing}, a performance se torna um fator muito importante para a qualidade do ambiente.
+
+Kimball (\citeyear{kimball2002}) então propõe o uso da modelagem dimensional, que possui as mesmas informações que as bases normalizadas, porém em um formato diferente, atendendo a facilidade na navegação e na performance das consultas. Mais detalhamento sobre a modelagem dimensional será vista na Seção (\ref{sec-dimensional-modeling}).
+
+\begin{description}
+\item[Ferramentas de Acesso de dados – Visualização de dados:]
+\end{description}
+
+As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de Apresentação. Elas podem variar desde simples ferramentas de consulta \emph{ad-hoc} até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
+
+Ferramentas de visualização são muito importantes em um ambiente de \emph{DWing}, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de \emph{DWing} listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP \emph{ad-hoc} para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
+%TODO: Achei as explicações acima muito longas. Tentar ser mais objetivo, uma vez que agora estamos usando tais descrições para explicar a figura citada acima.
+%Carlos: Acredito que tais descrições são necessárias pois revelam algumas caracteríticas importantes do DW que são tratadas em cada componente, como a preocupação com a performance, redundancia entre outros aspectos. Fiz uma descrição breve da figura e fiz um link para os detalhes, ok?
+
+Outra forma de visualização de dados é dada através  de \emph{dashboards}, que são muito úteis para o monitoramento de indicadores por ser basicamente uma tela com informações resumidas com diferentes elementos de exploração como tabelas, graficos, manometros, entre outros.
+%TODO: acho que não precisa de figura e explicação sobre dashboard (pelo menos da forma como está)
+%TODO: ver se concorda em retirarmos/comentarmos
+%Carlos: eu acho que seria interessante falar sobre dashboards pois é um mecanismos de visualização que pode ser muito útil para o monitoramento
+

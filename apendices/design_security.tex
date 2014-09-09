@@ -5,105 +5,10 @@ Neste anexo, contém o estudo e conceituação teórica mais aprofundada sobre \
 
 \section*{Design de Software}
 
-\subsection{O Design, Princípios e Práticas}
-\label{sec-principles-practises}
+\subsection{O Design e suas Práticas}
+\label{sec-practises}
 
-O \emph{design} do software consiste no conjunto de decisões importantes tomadas sobre a organização de um sistema de software que podem ser observadas e mapeadas em diferentes níveis de abstração no código-fonte e em outros produtos.
-%
-Katki (\citeyear{katki1991}) completa a definição explicando que \emph{design} é tanto o processo de definição da arquitetura, módulos, interfaces e outras características de um sistema quanto o resultado deste processo.
-%
-Para comunicação e documentação pode-se ter modelos que representem o \emph{design} conceitual demonstrando, por exemplo, o estilo arquitetural adotado na aplicação.
-%
-Por outro lado, esse modelo também é observável no código-fonte, assim como violação de restrições estabelecidas. Um nível mais detalhado do \emph{design} consiste nas decisões de implementações existentes no código de uma classe do software que influenciam, por exemplo, na testabilidade desta classe. Assim, as decisões de \emph{design} tratam problemas em diferentes níveis, desde da escolha do paradigma adequado para desenvolvimento do sistema até os padrões de nomenclatura a serem utilizadas no código.
-
-
-Neste trabalho estamos essencialmente interessados nas decisões de projetos em nível de código e suas consequências no desenvolvimento do software.
-%
-Assim, estamos tratando principalmente do trabalho realizado pelo Engenheiro de Software, de quais formas esse trabalho é realizado e como podemos apoiar e evoluir a atuação desse profissional para obtenção de bons resultados para projetos de software.
-%
-Para o desenvolvimento de códigos com bom \emph{design}, assim como defendido por Spinellis (\citeyear{spinellis2006}), é importante que o Engenheiro de Software conheça os principais problemas de implementação conhecidos, características e princípios que compõem um paradigma e técnicas que permitem a aplicação desses princípios.
-
-%
-
-Neste trabalho estamos argumentando que os problemas do software podem ser definidos com as características indesejáveis que dificultam a manutenção e evolução do sistema ou até mesmo comprometem sua segurança.
-%
-Um dos mais conhecidos e facilmente observável é a complexidade do software que depende das estruturas de dados, tamanho do sistema, algoritmos utilizados, complexidade das estruturas de controle e do fluxo de dados do software \cite{basili1983}.
-%
-A complexidade afeta diretamente o quão compreensível um programa é, dificultando sua legibilidade e o encontro de \emph{bugs} e vulnerabilidades.
-%
-Além disso, a complexidade afeta a testabilidade dos módulos, dificultando uma boa cobertura de testes que exercitem as estruturas do software.
-%
-De modo geral, entendemos a complexidade como um fator de risco do software uma vez que a evolução do mesmo é comprometida por falta de legibilidade, flexibilidade e, muito provavelmente, pela falta de testes automatizados que suportem operações de \emph{refactorings} no código, aumentando os riscos do projeto em termos de qualidade, custos e prazos.
-
-
-Outras características que argumentamos como indesejadas para o software surgem a partir da atribuição inadequada de responsabilidades entre os módulos que o copõe.
-%
-A baixa coesão surge quando um módulo é responsável pela realização de mais tarefas, concentrando mais dados e operações do que deveria. A baixa coesão gera problemas de falta de reusabilidade, aumenta a complexidade e dificulta a manutenção uma vez que não apoia a modularização adequadamente.
-%
-O alto acoplamento também pode ser consequência da baixa coesão e ocorre quando há forte dependência entre os componentes do software.
-%
-As consequências do alto acoplamento estão principalmente nas dificuldades de se manter e evoluir o software já que as modificações em um componente podem afetar outros.
-%
-Além disso, algumas mudanças tendem a deixar de serem simples, pois ocorrem em mais de um lugar, o que pode dificultar, por exemplo, a criação de testes unitários, uma vez que os componentes tendem a não poder serem testados isoladamente \cite{martensson2005}.
-
-
-Os problemas elencados acima, assim como outras características indesajadas para o código-fonte são evitadas a partir da adoção de princípios reconhecidos e propostos através de diversos trabalhos para concepção de bons \emph{designs} \cite{martin2002} \cite{lakos1996} \cite{demeyer2002} \cite{lieberherr1996}. 
-%
-Esses princípios podem ser genéricos, como características desejáveis em qualquer código-fonte, ou podem estar relacionados com um paradigma específico, acoplado as estruturas introduzidas pelo próprio paradigma.
-%
-A seguir apresentamos os princípios gerais que indicamos ser levados em consideração pelos Engenheiros de Software no desenvolvimento de qualquer aplicação, pois são relacionados com a manutenibilidade, extensibilidade e testabilidade do software:
-
-\begin{itemize}
-
-\item \textbf{Reusabilidade} - O princípio de reusabilidade de código visa a implementação de componentes reutilizáveis, apoiados pela alta coesão e baixo acoplamento.
-%
-A reusabilidade pode existir em diferentes níveis do \emph{design}, podendo ser aplicada desde a introdução de funções reutilizáveis até serviços completos que oferecem operações auto-contidas e reutilizáveis, sendo que a complexidade de implementação e as habilidades necessárias para conseguir a reusabilidade crescem proporcionalmente com o nível de abstração como discutido em \cite{cruise2007}.
-
-Este princípio possui impactos positivos na qualidade do software, assim como no custo e produtividade do projeto uma vez que menos código deve ser produzido e mantido, menor o esforço de teste, dentre outros benefícios \cite{sametinger1997}.
-%
-O princípio de reusabilidade é extendido e aplicável na definição do conhecido princípio \emph{DRY - Don't Repeat Yourself}\footnote{\url{http://c2.com/cgi/wiki?DontRepeatYourself}} que é bastante enfatizado em \emph{frameworks} modernos de desenvolvimeno web como Rails\footnote{\url{http://rubyonrails.org/}} e Django\footnote{\url{https://www.djangoproject.com/}}.
-%
-\item \textbf{Modularização} - O princípio de modularização visa a decomposição do sistema em estruturas lógicas bem definidas conceitualmente e fisicamente.
-%
-A modularização é muito importante para os atributos de qualidade do software, principalmente manutenibilidade e testabilidade, uma vez que apoia a alta coesão, baixo acoplamento e a reusabilidade.
-%
-Baldwin \& Clark (\citeyear{baldwin2000}) argumentam que um sistema bem modularizado permite o trabalho paralelo em diversas partes do produto, ameniza as dificuldades com a complexidade e esconde as incertezas e detalhes não necessários dentro dos módulos.
-%
-\item \textbf{Abstração} - O princípio de abstração recomenda que um elemento que compõe o \emph{design} seja representado apenas por suas características essenciais, provendo apenas as informações relevantes  para sua utilização, além de permitir sua distinção com outros elementos por parte do observador \cite{germoglio2009}.
-%
-A abstração é importante para a comunicação, compreensão e reutilização dos componentes.
-
-\item \textbf{Baixo acoplamento} - O acoplamento é uma característica natural do software sendo o grau de qualquer interação existente entre dois ou mais módulos.
-%
-Essa característica é fundamental para a composição lógica do sistema, sendo que as interações dos componentes são necessárias para a implementação de funcionalidades que se complementam e juntas fornecem serviços complexos e completos.
-%
-Beck \& Diehl (\citeyear{diehl2011}) apresentam e discutem os diferentes tipos de acoplamentos e suas consequências na modularização do design.
-%
-O princípio de baixo acoplamento ressalva a importância que esse acoplamento não seja forte ao ponto de dificultar a evolução de componentes que dependem de outros.
-%
-O grau de acoplamento determina como é difícil fazer alterações em uma aplicação, assim como quão difícil é compreendê-la e testá-la, principalmente se os componentes acoplados são instáveis e sofrem constantes mudanças.
-%
-Portanto, este princípio consiste na composição e modularização de serviços pouco acoplados com outros módulos a partir da melhor definição e distribuição de dados, de interfaces e responsabilidades.
-
-\item \textbf{Alta coesão} - De acordo com a Terminologia Padrão da IEEE\footnote{Institute of Electric and Electronic Engineers} \cite{ieee1990}, coesão é o grau com que cada tarefa realizada por um módulo está relacionado funcionalmente com o mesmo.
-%
-Um módulo pode ser definido como coeso se todos as suas operações estão relacionadas com uma única abstração.
-%
-O princípio da alta coesão sugere manter o maior nível de coesão possível no \emph{design} de componentes do software.
-%
-A alta coesão apoia a redução de complexidade do sistema, pois melhora seu entendimento conceitual, diminui as dependências de seus módulos e apoia a modularidade e reusabilidade, além de possuir uma relação direta com o baixo acoplamento, conforme estudado por Baig (\citeyear{baig2004}).
-
-\item \textbf{Simplicidade} - Um dos maiores desafios no desenvolvimento de software é manter o \emph{design} o mais simples possível, sendo esse o principal objetivo do princípio da simplicidade.
-%
-A simplicidade dentro do software é obtida a partir da redução da complexidade de seus módulos, desde a escolha de algoritmos até suas interfaces de comunicação.
-%
-Os benefícios deste princípio consiste na solução dos problemas inerentes a complexidade do software, discutidos anteriormente nesta seção.
-%
-A simplicidade do software é também conhecida através do princípio \emph{KISS - Keep It Simple, Stupid} que enfatiza que a principal característica do \emph{design} deve ser a simplicidade.
-
-\end{itemize}
-
-A concepção do \emph{design} para endereçar os problemas de software consiste na aplicação desses e outros princípios a partir de técnicas e práticas no decorrer do desenvolvimento do software.
+A concepção do \emph{design} para endereçar os problemas de software consiste na aplicação dos princípios de \emph{design} destacados na Seção \ref{sec-principles-practises} e outros princípios a partir de técnicas e práticas no decorrer do desenvolvimento do software.
 %
 Essa concepção inicia-se na escolha do paradigma que irá reger o desenvolvimento.
 %

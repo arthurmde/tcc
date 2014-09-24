@@ -160,6 +160,46 @@ Quadro resumo:
 
 %TODO: discutir este cenário para o TCC 2 - porque ACC e não CBO?
 
+%Cenários com parâmetros : Minimizing the interaction of system components minimizes the number of sanity checks on data being transmitted among components.
+
+%MUDAR NOME DESTE CENÀRIO
+
+\subsubsection{Risco Elevado de Segurança}
+%-------------------------------------------------------------------------------
+
+Este cenário busca identificar métodos que, devido sua estrutura interna, aumentam os riscos relacionados à segurança, principalmente por dificultarem a realização de testes, a busca de \emph{bugs} existentes e a compreensão do sofware. Em outras palavras, quanto maior a complexidade de um método, mais complexas são suas interações, verificações e mecanismos de segurança. Além disso, o aumento da complexidade tem como consequência a dificuldade de se entender o módulo em análise. Assim, quanto mais complexo um método ou classe, menos pessoas vão compreendê-los completamente, reduzirando as chances dos envolvidos no projeto encontrarem inconformidades e vulnerabilidades.
+
+%
+
+O problema com a complexidade de módulos do software está diretamente relacionado ao princípio de \emph{design} seguro \emph{Economy of mechanism} e ao princípio Simplicidade de bom \emph{design}. Saltzer \& Schroeder (\citeyear{schroeder1975}) afirmam que esses dois princípios são muito importantes pois, erros ou falhas que resultam em vulnerabilidades e acessos não desejados normalmente não são notados durante o uso normal. Portanto, técnicas como inspenção de código e outras são necessárias para assegurar os menamismos de proteção necessários. Assim, para que tais técnicas possam ser utilizadas, um \emph{design} simples e pequeno é essencial.
+
+%
+
+Em termos de métricas de código-fonte, este cenário busca medir a complexidade dos métodos das classes do projeto de software. Estão inclusos nesse cenário classes com métodos com alta complexidade. 
+
+%
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: Risco Elevado de Segurança
+\item \textbf{Classificação}: Polimétrico;
+\item \textbf{Métricas Envolvidas}: CC (Complexidade Ciclomática), MLOC (Número de Linhas de Código por Método);
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Esse cenário busca identificar métodos que aumentam o risco de problemas de segurança e \emph{bugs} no código-fonte devido sua complexidade e difícil manutenção.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{CC} - Caracteriza a complexidade lógica do método, além de medir o mínimo de esforço de testes necessários para o método e o nível de dificuldade para compreensão completa do método. O cenário pode existir caso os valores desta métrica esteja acima do estipulado;
+	\item \textbf{MLOC} - Caracteriza a quantidade de linhas de código dentro de um método, sendo que quanto maior a quantidade de linhas em um método, mais difícil é sua compreensão e inspeção. O cenário pode existir caso os valores desta métrica esteja acima do estipulado; 
+	\end{itemize}
+\item \textbf{Ações sugeridas}:
+	\begin{itemize}
+	\item \textbf{Refatorações aplicáveis:} - \emph{Extract Method}\footnote{\url{http://refactoring.com/catalog/extractMethod.html}},  \emph{Extract Surrounding Method}\footnote{\url{http://refactoring.com/catalog/extractSurroundingMethod.html}}, \emph{Replace Conditional with Polymorphism}\footnote{\url{http://refactoring.com/catalog/eplaceConditionalWithPolymorphism.html}}, \emph{Replace Conditional with Polymorphism}\footnote{\url{http://refactoring.com/catalog/eplaceConditionalWithPolymorphism.html}}, \emph{Replace Nested Conditional with Guard Clauses}\footnote{\url{http://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html.html}}, \emph{Substitute Algorithm}\footnote{\url{http://refactoring.com/catalog/substituteAlgorithm.html}}.
+	\item \textbf{Princípios aplicáveis ao método} - Princípio de Economia de Mecanismos; Princípio da Simplicidade ou KISS;
+	\end{itemize}
+\end{itemize}
+
+
 \subsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 
 \subsubsection{Entradas não validadas}

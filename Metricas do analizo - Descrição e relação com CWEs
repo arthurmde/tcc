@@ -28,6 +28,11 @@ Esta vunerabilidade acontece quando uma função retorna um endereço para uma v
 ---------------------------------------
 Result of operation is garbage or undefined - rogu
 
+por exemplo, quando fazemos operações desse tipo
+
+int teste;
+int v = teste +v;
+
 ---------------------------------------
 Potential insecure temporary file in call 'mktemp' - pitfc - CWE 377
 
@@ -85,7 +90,7 @@ Bad free - bf -
 Não encontrei nada sobre bad free, porem, me parece semelhante a Bad deallocator. talvez seja um dos casos do bad deallocator.
 
 ---------------------------------------
-Bad deallocator - bd - CWE 404(Improper Resource Shutdown or Release) ou 762 (Mismatched Memory Management Routines)
+Bad deallocator - bd - 762 (Mismatched Memory Management Routines)
 
 O analizo não deixa claro qual caso ele consegue pegar. Tentarei conversar com a galera do analizo para ver se sabem de qual CWE especifica está tratando.
 
@@ -106,26 +111,22 @@ malloc/free, new/delete, and new[]/delete[] to allocate/deallocate
 Assigned value is garbage or undefined - auv
 %Não encontrei na CWEs 
 
-Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido existe. Por exemplo, caso um array seja criado e preenchido com base na quantidade de elementos passados por parametro e logo em seguida uma variavel recebe o valor de uma posição desse array, caso o valor passado por parametro seja incompativel com o valor da posição do array a ser atribuido, a variávei receberá lixo de memória.
+Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido existe. 
+exemplo
 
-ex
-int main(int argc, const char * argv[])
-{
-    int n = argc-1;
-    int *a = malloc(	sizeof(int));
-    for (int i=0; i<n; i++) {
-        a[i] = i;
-    }
-    int foo = a[0];
-    free(a);
-    return foo;
-}
+int teste;
+int v = teste;
 
-se não houver argumentos, "int foo = a[0];" será indefindo.
+como a variavel nao foi inicializada, ela recebeu lixo;
 
 
 ---------------------------------------
 Argument with 'nonnull' attribute passed null - an
+
+--------------------------------------=
+Use after Free - uaf
+
+Ocorre quando utilizamos uma variável apos dar um free nela
 
 
 
@@ -145,3 +146,91 @@ Esta vunerabilidade está relacionada ao uso da função 'gets' da linguagem C q
 Allocator sizeof operand mismatch - asom
 
 Esta vunerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vunerabilidade ocorre quando temos um ponteiro para char e no momento de alocarmos a memória passarmos no sizeof um tipo int. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
+
+
+
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+Relação métricas com O CLANG
+
+									Analizo					| CLANG Static
+-------------------------------------------------------------------------------------------------------------
+Argument with 'nonnull' attribute passed null -   	| an  	|  core.NonNullParamChecker (C, C++, ObjC)
+-------------------------------------------------------------------------------------------------------------
+Assigned value is garbage or undefined - 			| auv	| ok
+-------------------------------------------------------------------------------------------------------------
+Bad deallocator -                             		| bd  	| Mismached memory
+762 (Mismatched Memory Management Routines) - CERTEZA
+-------------------------------------------------------------------------------------------------------------
+Bad free - 											| bf -	| +-
+-------------------------------------------------------------------------------------------------------------
+Dead assignment - 									| da 	|
+- CWE 563(unused variable)
+-------------------------------------------------------------------------------------------------------------
+Dereference of null pointer - 						| dnp	|
+ - CWE 746
+-------------------------------------------------------------------------------------------------------------
+Dereference of undefined pointer value - 			| dupv	|
+-------------------------------------------------------------------------------------------------------------
+Divisions by zero - 								| dbz	|
+ - CWE 369
+-------------------------------------------------------------------------------------------------------------
+Double free - 										| df	|
+ - CWE 415
+-------------------------------------------------------------------------------------------------------------
+Memory leak - 										| mlk	|
+ - CWE 401
+-------------------------------------------------------------------------------------------------------------
+Offset free - 										| osf 	|
+-------------------------------------------------------------------------------------------------------------
+Out-of-bound array access - 						| obaa	|
+ - CWE 125
+-------------------------------------------------------------------------------------------------------------
+Potential insecure temporary file in call 'mktemp' 	| pitfc |
+- CWE 377
+-------------------------------------------------------------------------------------------------------------
+Result of operation is garbage or undefined - 		| rogu	| ok
+-------------------------------------------------------------------------------------------------------------
+Return of stack variable address - 					| rsva	|
+  - CWE 562
+-------------------------------------------------------------------------------------------------------------
+Stack address stored into global variable - 		| saigv |
+- CWE 562 (não é exatamente)
+-------------------------------------------------------------------------------------------------------------
+Undefined allocation of 0 bytes- 					| ua 	|
+(CERT MEM04-C; CWE-131) 
+-------------------------------------------------------------------------------------------------------------
+UninitializedArgumentValue - 						| uav	| ok
+-------------------------------------------------------------------------------------------------------------
+Use After free'										| auf	| ok
+
+
+
+
+
+Cenários Criados
+
+Entradas nao validadas
+	Metricas: FGBO
+	* tirar AUV pois foi verificado que ela nao tem muito a ver com entrada nao validada. 
+
+Parametros não inicializadas
+	Metricas: UAV
+
+	*Essa métrica identifica parametros de funções que sao passados sem serem inicializados.
+
+Uso de variaveis nao inicializadas
+	Metricas: rogu auv
+
+Alta possibilidade de Falha por mau uso de ponteiros
+	Metricas: dnp df auf dupv bd dnp
+
+Buffer Overflow
+	Metricas : fgbo asom
+
+Confidencialidade ameaçada
+	Metricas : obaa dupv
+
+Operações lógicas (somas, divisoes) com integridade ameaçada
+	Metricas: dbz rogu

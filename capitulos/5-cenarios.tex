@@ -66,7 +66,7 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 \begin{itemize}
 \item \textbf{Cenários de Decisão para Caracterização da Qualidade de Código}: Estes cenários buscam identificar caracteristicas de software relacionadas a qualidade e \emph{design} de código que podem influenciar em sua segurança, como complexidade, acoplamento, etc.
 
-\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades espefífica de código}: Estes cenários buscam identificar vulnerabilidades de software que podem ser encontradas em código-fonte indepente que este esteja em um bom nível de qualidade e \emph{design}. São cenários relacionados mais a erros que podem ser cometidos pelos desenvolvedores no momento da implementação;
+\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades específicas de código}: Estes cenários buscam identificar vulnerabilidades de software que podem ser encontradas em código-fonte indepente que este esteja em um bom nível de qualidade e \emph{design}. São cenários relacionados mais a erros que podem ser cometidos pelos desenvolvedores no momento da implementação;
 \end{itemize}
 
 
@@ -237,7 +237,7 @@ Quadro resumo:
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{Variáveis não inicializadas}
+\subsubsection{Uso de variáveis não inicializadas}
 %-------------------------------------------------------------------------------
 
 Este cenário busca identificar o uso de variáveis não inicializadas. Este cenário também é definido pela CWE-457 \footnote{http://cwe.mitre.org/data/definitions/457.html}.
@@ -248,25 +248,74 @@ Essa situação é perigosa, pois tanto a aplicação pode apresentar resultados
 
 Muitas vezes podem ocorrer de existir uma estrutura de controle de fluxo de execução de código (como \emph{if else} e \emph{switch case}) que definem a situação em que a variável irá ser inicializada e, ao sair dessa estrutura de controle de fluxo, a variável é finalmente utilizada. Nessa situação, pode ocorrer da aplicação não passar pelo fluxo que inicializa a variável. Dessa forma, ao sair do fluxo, o programa irá usar a variável que não foi inicializada.
 
-Em termos de métricas de código-fonte, este cenário busca medir a quantidade de variáveis não inicializadas. A métrica UAV (\emph{Uninitialized Argument Value}) busca medir exatamente essa vulnerabilidade.
+Em termos de métricas de código-fonte, este cenário busca medir a quantidade de variáveis não inicializadas. A métrica UAV (\emph{Uninitialized Argument Value}) busca medir argumentos passado como parâmetros de chamada de funções que não foram inicializados. A métrica ROGU (\emph{Result of operation is garbage or undefined}) busca verificar situações onde usamos variáveis não inicializadas em operações lógicas. A métrica AUV (\emph{Assinged Value is garbage or undefined}) busca verificar situações que uma variável recebe o valor de outra variável que não foi inicializada. Essas três métricas podem ser utilizadas em conjunto, e um alto valor da ocorrências delas pode indicar a existência desse cenário.
 
 Quadro resumo:
 
 \begin{itemize}
-\item \textbf{Nome}: Variáveis não inicializadas
+\item \textbf{Nome}: Uso de Variáveis não inicializadas
 \item \textbf{Classificação}: Monométrica;
-\item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value});
+\item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}),ROGU (\emph{Result of operation is garbage or undefined}),AUV (\emph{Assinged Value is garbage or undefined});
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informaçãõ não autorizado.
 \item \textbf{Caracterização com Métricas}: 
 	\begin{itemize}
-	\item \textbf{UAV} - Este cenário ocorre quando existe ao menos uma ocorrência dessa vulnerabilidade.
+	\item \textbf{Composição AUV + UAV + ROGU} - Este cenário ocorre quando o valor da soma dessas métricas está acima do aceitável.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
 	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, inicializando variáveis no momento em que são instanciadas.
 	\end{itemize}
 \end{itemize}
+
+
+\subsubsection{Alta possibilidade de Falha por mau uso de ponteiros}
+%-------------------------------------------------------------------------------
+Este cenário busca identificar possíveis locais no código fonte em que é feito o mau uso de ponteiros, e que consequentimente podem gerar falhas na aplicação. 
+
+Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{\"segmentation fault\"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar.
+
+Em termos de métricas de código-fonte, este cenário é composto pelas métricas:
+\begin{itemize}
+	\item \textbf{DNP (\emph{Dereference of null pointer})}
+	\item \textbf{DF (\emph{Double free})}
+	\item \textbf{AUF (\emph{Use After free})}
+	\item \textbf{DUPV (\emph{Dereference of undefined pointer value})}
+	\item \textbf{BD (\emph{Bad deallocator})}
+\end{itemize}
+
+Todas essas métricas podem identificar possíveis falhas na aplicação. Este cenário pode ser muito útil para solucionar falhas na aplicação cujo não se sabe a causa.
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: Alta possibilidade de Falha por mau uso de ponteiros
+\item \textbf{Classificação}: Composta;
+\item \textbf{Métricas Envolvidas}: DNP (\emph{Dereference of null pointer}); DF (\emph{Double free}).,AUF (\emph{Use After free}), DUPV (\emph{Dereference of undefined pointer value}), BD (\emph{Bad deallocator});
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Este cenário busca identificar o uso de ponteiros de maneira não segura, que podem gerar falha na aplicação.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{Composição DNP + DF + AUF + DUPV + BD} - Este cenário ocorre quando o valor da soma dessas métricas está acima do valor aceitável.
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, inicializando variáveis no momento em que são instanciadas.
+	\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Buffer Overflow}
+%-------------------------------------------------------------------------------
+
+
+\subsubsection{Confidencialidade Ameaçada}
+%-------------------------------------------------------------------------------
+
+
+\subsubsection{Operações lógicas (somas, divisoes) com integridade ameaçada}
+%-------------------------------------------------------------------------------
+
 
 %TODO: fazer um comentário geral, em especial, chamando a atenção que são proposta iniciais e que outros cenários serão pensados, e "chamar" o resumo na tabela abaixo.
 

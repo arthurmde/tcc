@@ -359,7 +359,31 @@ Quadro resumo:
 \subsubsection{Confidencialidade Ameaçada}
 %-------------------------------------------------------------------------------
 
-%Este cenário busca identificar 
+Este cenário busca identificar situações no código fonte onde informações podem ser expostas sem a devida permissão, impactando diretamente em um dos principais aspectos quando falamos de segurança de software, que é a confidencialidade dos dados.
+
+Um código seguro não pode dar brecha para que o atacante ou qualquer outro usuário possa ver informações que não eram para serem vistas. Alguns erros na codificação, como por exemplo, acessar uma posição de uma \emph{array} fora de seu intervalo, podem acabar mostrando informações de outras regiões de memória, podendo ser essa inforamção crítica ou não para a segurança do sistema.
+
+Em termos de métricas de código fonte, as métricas OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) buscam identificar situações de código fonte em que podem ser expostas informações não autorizadas pelo sistema. A métrica OBAA identifica justamente o acesso de indices que não pertencem ao \emph{array}, podendo assim vazar a informação contida na região de memória adjacente a região do \emph{array}. A métrica DUPV identifica situações onde um ponteiro indefinido é desreferenciado, ou seja, quando é lido o valor de um ponteiro que está indefinido. Dessa forma, ele pode estar apontando para uma posição de memória a qual não sabemos, e , consequentemente, vazando alguma informação não autorizada. 
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: \emph{Confidencialidade Ameaçada}
+\item \textbf{Classificação}: Composta;
+\item \textbf{Métricas Envolvidas}: OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) 
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Este cenário busca identificar trechos de código fonte que podem fornecer informações não autorizadas, impactando na confidencialidade do sistema. O acesso a informação não autorizada se dá pela leitura de regiões de memória que não estão no contexto da variável em questão.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{OBAA} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item \textbf{DUPV} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Especificar e verificar o range o \emph{array} antes de acessa-lo} - identificar o trecho de código que métrica OBAA aponta e criar mecanismos que garantem o limite do índice de acesso do array, dessa forma iremos garantir que somente a região de memória pertencente ao \emph{array} é acessada e lida.  
+	 
+	\end{itemize}
+\end{itemize}
 
 
 \subsubsection{Operações lógicas (somas, divisoes) com integridade ameaçada}

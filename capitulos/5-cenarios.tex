@@ -264,7 +264,7 @@ Quadro resumo:
 
 \begin{itemize}
 \item \textbf{Nome}: Uso de Variáveis não inicializadas
-\item \textbf{Classificação}: Monométrica;
+\item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}),ROGU (\emph{Result of operation is garbage or undefined}),AUV (\emph{Assinged Value is garbage or undefined});
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informaçãõ não autorizado.
@@ -318,9 +318,48 @@ Quadro resumo:
 \subsubsection{Buffer Overflow}
 %-------------------------------------------------------------------------------
 
+Este cenário busca no código fonte situações que podem gerar a vulnerabilidade de \emph{Buffer Overflow}. Como já mencionado na sessão \ref{sec-metrics-security}, o \emph{Buffer Overflow} é um caso comum de violação da segurança a memória, e ocorre normalmente quando escrevemos dados cujo tamanho  ultrapasse o tamanho do \emph{buffer} definido para ele. Essa situação pode gerar  mau funcionamento do sistema, pois a informação que estourou o \emph{buffer} pode corromper outras informações ou processos que tiveram sua região de memória invadida; como também pode ser usado para injetar códigos malicioso e alterar o fluxo de execução da aplicação.
+
+Em termos de métricas de código fonte, este cenário é composto pelas métricas FGBO (\emph{Potential buffer overflow in call to \"gets\"}) e pela métrica ASOM (\emph{Allocator sizeof operand mismatch}). Ambas métricas identificam vulnerabilidades que podem gerar \emph{buffer overflow}. A métrica FGBO identifica a utilização da função \emph{\"gets\"} na linguagem C/C++. Essa função não garante garante que o tamanho da variável de entrada será do tamanho da variável a ser atribuída, se tornando um risco a ser explorado pelos atacantes. A métrica ASOM identifica situações no código em que é passado o operador inadequando no momento que se aloca memória para uma variável. Isso acontece, por exemplo na linguage C, quando declaramos um ponteiro do tipo inteiro e no momento do alocação de memória é passado um tamanho refente a uma variável do tipo \emph{char}. Logo, o espaço alocado não corresponde ao tamanho do dado que é esperado receber, podendo causar o estouro de \emph{buffer}.
+
+Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: \emph{Buffer Overflow}
+\item \textbf{Classificação}: Composta;
+\item \textbf{Métricas Envolvidas}: FGBO (\emph{Potential buffer overflow in call to \"gets\"}) e ASOM (\emph{Allocator sizeof operand mismatch})
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Este cenário busca identificar situações no código fonte que podem gerar a vulnerabilidade de \emph{Buffer Overflow} (Estouro de memória);
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{ASOM} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item \textbf{FGBO} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Substituir chamadas para a função \emph{"gets"}} - a função \emph{"fgets()"} pode ser utilizada no lugar da função  \emph{"gets"}, pois aquela possui um parâmetro em sua chamada que indica o tamanho máximo do \emph{buffer}.  
+	\item \textbf{Fazer \emph{match} dos operadores de alocação de memória} - Refator os trechos de cógido atribuindo o operador correto para a alocação de memória; 
+	\end{itemize}
+\end{itemize}
+
+
+%Parametros não inicializadas
+%	Metricas: UAV
+%
+%	*Essa métrica identifica parametros de funções que sao passados sem serem inicializados.
+%
+%
+%Confidencialidade ameaçada
+%	Metricas : obaa dupv
+%
+%Operações lógicas (somas, divisoes) com integridade ameaçada
+%	Metricas: dbz rogu
+
 
 \subsubsection{Confidencialidade Ameaçada}
 %-------------------------------------------------------------------------------
+
+%Este cenário busca identificar 
 
 
 \subsubsection{Operações lógicas (somas, divisoes) com integridade ameaçada}

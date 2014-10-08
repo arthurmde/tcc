@@ -64,3 +64,5 @@ Pergunta de pesquisa: Quão melhor é um DW como ambiente de tomada de decisões
 Pergunta de pesquisa: Código mais complexo (métricas de produtos) são mais sujeitos à vulnerabilidades.
 
 
+=======================================================
+Carlos: Deixar mais claro qual é a regra para a ocorrencia do cenário. Por exemplo, quando o cenário possui duas métricas, devemos deixar claro quando ele ocorre, como por exemplo se é quando as duas métricas estão ruim, ou quando pelo menos uma está ruim, ou quando uma ruim e a outra boa...

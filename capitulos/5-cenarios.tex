@@ -342,20 +342,6 @@ Quadro resumo:
 	\end{itemize}
 \end{itemize}
 
-
-%Parametros não inicializadas
-%	Metricas: UAV
-%
-%	*Essa métrica identifica parametros de funções que sao passados sem serem inicializados.
-%
-%
-%Confidencialidade ameaçada
-%	Metricas : obaa dupv
-%
-%Operações lógicas (somas, divisoes) com integridade ameaçada
-%	Metricas: dbz rogu
-
-
 \subsubsection{Confidencialidade Ameaçada}
 %-------------------------------------------------------------------------------
 
@@ -386,9 +372,51 @@ Quadro resumo:
 \end{itemize}
 
 
+
+%Parametros não inicializadas
+%	Metricas: UAV
+%
+%	*Essa métrica identifica parametros de funções que sao passados sem serem inicializados.
+%
+%
+
+%Operações lógicas (somas, divisoes) com integridade ameaçada
+%	Metricas: dbz rogu
+
+
 \subsubsection{Operações lógicas (somas, divisoes) com integridade ameaçada}
 %-------------------------------------------------------------------------------
 
+Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variaveis indefinidas ou não inicializadas, compromentendo então a integridade da operação.
+
+Dessa forma, o software pode ter um comportamento diferente do esperado, pois o resultado da operação é indefinido, podendo levar o fluxo da aplicação para outro rumo ou fornecendo resultados errados ao usuário.
+
+Em termos de métricas, as métricas DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) buscam identificar ocorrências desse cenário no código fonte. 
+
+As divisões por zero, na linguagem C/C++, podem causar falha na aplicação, afetando sua disponibilidade. Esta vulnerabilidade é até definida pela CWE 396 \footnote{http://cwe.mitre.org/data/definitions/369.html}. Sugere-se verificar se o divisor é zero antes de se realizar a operação.
+
+A métrica ROGU busca identificar operações em que o resultado pode ser lixo ou indefinido. Por exemplo, se utilizamos uma variável não inicializada em uma equação, o resultado fica indefinido, pois certamente essa variável não inicializada terá lixo de memória em seu conteúdo. Essa métrica busca identificar esse tipo de situação. Como solução, sugere-se então inicializar as variáveis que irão participar da operação, garantindo assim que haverá o mínimo de integridade para a operação.
+
+ Quadro resumo:
+
+\begin{itemize}
+\item \textbf{Nome}: \emph{Operações lógicas (somas, divisoes) com integridade ameaçada}
+\item \textbf{Classificação}: Composta;
+\item \textbf{Métricas Envolvidas}: DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) 
+\item \textbf{Nível}: Método;
+\item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variaveis indefinidas ou não inicializadas, compromentendo então a integridade da operação.
+\item \textbf{Caracterização com Métricas}: 
+	\begin{itemize}
+	\item \textbf{DBZ} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item \textbf{ROGU} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\end{itemize}
+\item \textbf{Ações sugeridas}: 
+	\begin{itemize}
+	\item \textbf{Verificar divisor antes da operação} - Verificar se o divisor é zero antes de realizar a operação;  
+	\item \textbf{Ínicializar variáveis antes de operações} - Garantir que todas as variáveis estão pelo menos pré-inicializadas antes de participarem de uma operação 
+	 
+	\end{itemize}
+\end{itemize}
 
 %TODO: fazer um comentário geral, em especial, chamando a atenção que são proposta iniciais e que outros cenários serão pensados, e "chamar" o resumo na tabela abaixo.
 

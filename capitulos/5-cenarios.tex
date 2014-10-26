@@ -16,7 +16,7 @@ A ideia de definição de cenários para tomada de decisões é advinda do estud
 
 \item \textbf{Descrição}: Discuti os problemas, princípios envolvidos e a caracterização
 
-\item \textbf{Caracterização com Métricas}: Define e discuti como as métricas envolvidas devem ser utilizadas para identificar o cenário. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
+\item \textbf{Caracterização com Métricas}: Define matematicamente como caracterizar o cenários com as métricas envolvidas. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
 
 \item \textbf{Ações sugeridas}: Propõe um conjunto de ações específicas tais como uma refatoração, a utilização de um padrão de projeto, prática e aplicação de princípios.
 \end{itemize}
@@ -91,9 +91,9 @@ Quadro resumo:
 \item \textbf{Métricas Envolvidas}: NPA (Número de Atributos Públicos), NOA (Número de Atributos);
 \item \textbf{Nível}: Classe;
 \item \textbf{Descrição}: Esse cenário busca identificar classes que possuem muita exposição devido ao alto número de atributos públicos, violando o princípio de \emph{design} seguro Redução de Superfície de Ataque.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: NPA/NOA > value
 	\begin{itemize}
-	\item \textbf{Composição NPA/NOA} - Caracteriza o tamanho da superfície de ataque a atributos em percentagem. O cenário existe quando o valor desta métrica composta está acima do valor (referência) estipulado.
+	\item Caracteriza o tamanho da superfície de ataque a atributos em percentagem. O cenário existe quando o valor desta métrica composta está acima do valor (referência) estipulado. Para projetos em C++, value pode ser 0.2
 	\end{itemize}
 \item \textbf{Ações sugeridas}:
 	\begin{itemize}
@@ -116,13 +116,13 @@ Quadro resumo:
 \begin{itemize}
 \item \textbf{Nome}: Alta Superfície de Ataque Operacional
 \item \textbf{Classificação}: Polimétrico;
-\item \textbf{Métricas Envolvidas}: NPM (Número de Métodos Públicos), MNPM (Número Máximo de Parâmetros por Método); 
+\item \textbf{Métricas Envolvidas}: NPM (Número de Métodos Públicos), ANPM (Média de Parâmetros por Método); 
 \item \textbf{Nível}: Classe;
 \item \textbf{Descrição}: Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio \emph{Mediate Completely} devido à grande exposição da classe em termos operacionais. Este cenário indica que a aplicação do princípio de \emph{design} seguro Redução de Superfície de Ataque pode melhorar o \emph{design} da classe uma vez que as definições e abstrações de seus métodos são reestruturadas.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: NPM > npm\_value || ANPM > anpm\_value
 	\begin{itemize}
-	\item \textbf{NPM} - Caracteriza a quantidade de interações possíveis para as quais o princípio \emph{Mediate Completely} deve ser aplicado. O cenário pode existir caso os valores desta métrica esteja acima do estipulado;
-	\item \textbf{MNPM} - Caracteriza a quantidade de informações que poderiam ser verificadas para evitar ataques externos. O cenário pode existir caso os valores desta métrica esteja acima do estipulado; 
+	\item \textbf{NPM} - Caracteriza a quantidade de interações possíveis para as quais o princípio \emph{Mediate Completely} deve ser aplicado. Para projetos em C++, o valor de npm\_value pode ser 10;
+	\item \textbf{ANPM} - Caracteriza a quantidade de informações que poderiam ser verificadas para evitar ataques externos. Para projetos em C++, o valor de anpm\_value pode ser 3; 
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
@@ -147,9 +147,9 @@ Quadro resumo:
 \item \textbf{Métricas Envolvidas}: ACC (Conexões Aferentes por Classe), NOC (Número de Filhos)
 \item \textbf{Nível}: Classe;
 \item \textbf{Descrição}: Esse cenário busca identificar classes que potencialmente são pontos críticos do projeto de software. Classes que são caracterizadas com este cenário devem ser cuidadosamente repensadas em termos de responsabilidades para não ser permanecerem sendo potenciais pontos críticos do projetos, uma vez que falhas e exploração de vulnerabilidades podem comprometer toda a estrutura acoplada a ela.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: ACC + NOC > value
 	\begin{itemize}
-	\item \textbf{Composição ACC + NOC} - Caracteriza a quantidade de classes acopladas à classe em análise, tanto em termos de acesso à métodos e atributos quanto em termos de herança. Este cenário existe quando o valor calculado através desta composição, ou seja, o número de classes acopladas a classe em análise é superior ao valor definido para o projeto.
+	\item As duas métricas são utilizadas para Caracterizar a quantidade de classes acopladas à classe em análise, tanto em termos de acesso à métodos e atributos quanto em termos de herança. Este cenário existe quando o valor calculado através desta composição é maior do que estipulado. Para projetos em C++, o value pode ser 5.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
@@ -157,10 +157,6 @@ Quadro resumo:
 	\item \textbf{Princípios aplicáveis à classe} - Princípios de bom \emph{design}: Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \cite{larman2007};
 	\end{itemize}
 \end{itemize}
-
-%TODO: discutir este cenário para o TCC 2 - porque ACC e não CBO?
-
-%Cenários com parâmetros : Minimizing the interaction of system components minimizes the number of sanity checks on data being transmitted among components.
 
 %MUDAR NOME DESTE CENÀRIO
 
@@ -194,13 +190,13 @@ Quadro resumo:
 \begin{itemize}
 \item \textbf{Nome}: Risco Elevado de Segurança
 \item \textbf{Classificação}: Polimétrico;
-\item \textbf{Métricas Envolvidas}: CC (Complexidade Ciclomática), MLOC (Número de Linhas de Código por Método);
-\item \textbf{Nível}: Método;
+\item \textbf{Métricas Envolvidas}: ACCM (Média de Complexidade Ciclomática por Método), MLOC (Média de Número de Linhas de Código por Método);
+\item \textbf{Nível}: Classe;
 \item \textbf{Descrição}: Esse cenário busca identificar métodos que aumentam o risco de problemas de segurança e \emph{bugs} no código-fonte devido sua complexidade e difícil manutenção.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: ACCM > accm\_value || MLOC > mloc\_value
 	\begin{itemize}
-	\item \textbf{CC} - Caracteriza a complexidade lógica do método, além de medir o mínimo de esforço de testes necessários para o método e o nível de dificuldade para compreensão completa do método. O cenário pode existir caso os valores desta métrica esteja acima do estipulado;
-	\item \textbf{MLOC} - Caracteriza a quantidade de linhas de código dentro de um método, sendo que quanto maior a quantidade de linhas em um método, mais difícil é sua compreensão e inspeção. O cenário pode existir caso os valores desta métrica esteja acima do estipulado; 
+	\item \textbf{ACCM} - Caracteriza a complexidade lógica do método, além de medir o mínimo de esforço de testes necessários para o método e o nível de dificuldade para compreensão completa do método. Para projetos em C++, accm\_value pode ser 4;
+	\item \textbf{MLOC} - Caracteriza a quantidade de linhas de código dentro de um método, sendo que quanto maior a quantidade de linhas em um método, mais difícil é sua compreensão e inspeção. Para projetos em C++, mloc\_value pode ser 10;
 	\end{itemize}
 \item \textbf{Ações sugeridas}:
 	\begin{itemize}

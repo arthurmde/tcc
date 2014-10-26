@@ -4,9 +4,12 @@
 
 3. Consertar bug de editar e remover ranges de métricas
 
+4. Pensar em como representar a entidade cenários no Mezuro/prezento
 
 
 
+
+estudos 1 3 e 16
 
 =========================
 

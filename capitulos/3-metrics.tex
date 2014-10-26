@@ -82,7 +82,7 @@ As últimas métricas que serão apresentadas nesta seção buscam medir caracte
 %
 
 \begin{itemize}
-\item \textbf{RFC (\emph{Response For a Class} - Resposta de uma Classe)}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe pode invocar, tanto métodos internos quanto de outras classes.
+\item \textbf{RFC (\emph{Response For a Class} - Resposta de uma Classe)}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe pode invocar, tanto métodos internos quanto de outras classes. É, portanto, o número de métodos que podem ser executados em resposta a uma mensagem recebida por um objeto da classe, sendo a quantidade de métodos da classe somado à quantidade de métodos invocados por cada método da classe. Em resumo, apresenta por quantos caminhos uma classe está conectada à outras classes.
 \item \textbf{ACC (\emph{Afferent Connections per Class} - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
 \item \textbf{CBO (\emph{Coupling Between Objects} - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
 \item \textbf{COF (\emph{Coupling Factor} - Fator de Acoplamento)}: Esta métrica é a razão entre o número acoplamento existente que não sejam provindos de herança e do número total de possíveis acoplamentos. O máximo de acoplamento possível acontece quando todas as classes estão e são acopladas com as outras classes do projeto.

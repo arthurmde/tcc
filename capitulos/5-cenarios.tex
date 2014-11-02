@@ -200,41 +200,6 @@ Quadro resumo:
 
 \subsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 
-\subsubsection{Entradas não validadas}
-%-------------------------------------------------------------------------------
-
-Este cenário busca identificar situações no código-fonte onde valor de uma entrada de usuário é passado para uma variável sem que tenha sido feito, antes da atribuição e uso, uma verificação desse dado de entrada.
-%
-Essa vulnerabilidade é catalogada no padrão CWE como CWE-20 \footnote{\url{http://cwe.mitre.org/data/definitions/20.html}}, que é classificada como uma classe que inclui diversas vulnerabilidades com mais nível de detalhe relacionadas a não validação.
-%
-A não validação de atributos de entrada de usuário pode implicar em diversos riscos para a aplicação.
-%
-Com essa vulnerabilidade podem ser exploradas vulnerabilidades  mais específica como \emph{Buffer Overflow}, \emph{SQL injection} e \emph{XSS}, permitindo ao atacante inserir valores inesperados, podendo causar a quebra da aplicação; ler arquivos confidenciais por manipulação do do programa, como por exemplo o uso de \emph{SQL injection}; como também pode modificar dados ou mudar o fluxo de programa explorando o \emph{Buffer Overflow}.
-
-Em termos de métricas de código-fonte, este cenário busca medir a quantidade de vulnerabilidades que identificam a ocorrência da não verificação dos parâmetros de entrada. As métricas AUV (\emph{Assigned value is garbage or undefined}) e FGBO (\emph{Potential Buffer Overflow in call to "gets"}), descritas na Seção (\ref{subsec-security-metrics}) medem a quantidade de vulnerabilidades relacionadas a não validação de entradas na linguagem C/C++. 
-
-Para tratar este cenário deve ser feita a verificação e tratamento do dado de entrada antes de seu uso para se certificar que a informação está realmente condizente ao contexto. Então pode ser interessante a criação de uma lista de valores válidos ou determinação de regras para a verificação desses dados de entrada. Também vale a criação de mecanismos que limitem o tamanho do \emph{buffer} de entrada para que não haja estouro do mesmo.
-
-
-Quadro resumo:
-
-\begin{itemize}
-\item \textbf{Nome}: Entradas não validadas
-\item \textbf{Classificação}: Composta
-\item \textbf{Métricas Envolvidas}: AUV (\emph{Assigned value is garbage or undefined}) e FGBO (\emph{Potential Buffer Overflow in call to "gets"}) 
-\item \textbf{Nível}: Método;
-\item \textbf{Descrição}: Esse cenário busca identificar parâmetros de entrada de usuário que não são validados ou verificados, e posteriormente são utilizados pela aplicação. Nessa situação, não temos certeza o real valor que foi passado como entrada, podendo causar desde comportamento inesperado da aplicação até quebra e leitura de dados confidenciais.
-\item \textbf{Caracterização com Métricas}: 
-	\begin{itemize}
-	\item \textbf{Composição AUV+FGBO} - Aponta linhas do código em que se encontram a variáveis que podem ter o valor indefinido ou com lixo obtidos na entrada do programa e também o uso da função \emph{gets}. Este cenário existe quando o valor calculado desta métrica é diferente de zero, ou seja, esse cenário existe se tiver pelo menos uma ocorrencia dessa métrica no código-fonte
-	\end{itemize}
-\item \textbf{Ações sugeridas}: 
-	\begin{itemize}
-	\item \textbf{Implementar mecanismos de validação} - A implementação de mecanismos de verificação da integridade e consistência do dado de entrada ajuda a garantir que essa entrada não seja indefinida ou lixo.
-	\item \textbf{Substituir chamadas para a função \emph{"gets"}} - Caso não seja possível utilizar de recurso de interface gráfica para a limitação do tamanho de entrada do usuário,  a função \emph{"fgets()"} pode ser utilizada no lugar da função  \emph{"gets"}, pois aquela possui um parâmetro em sua chamada que indica o tamanho máximo do \emph{buffer}. 
-	\end{itemize}
-\end{itemize}
-
 \subsubsection{Uso de variáveis não inicializadas}
 %-------------------------------------------------------------------------------
 

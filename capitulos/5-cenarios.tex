@@ -54,7 +54,7 @@ em que apenas concebemos um conjunto inicial de cenários.
 
 A revisão teórica feita nesta monografia encontrada no capítulo (\ref{cap-metrics}) a respeito de características de bom \emph{design} e vulnerabilidades de software nos permite afirmar que a qualidade do código está diretamente relacionada a vulnerabilidades, visto que um código que possui alta complexidade, baixa modularização, alto acoplamento, entre outras caracteristicas apresentadas na seção (\ref{sec-principles-practises}) são mais fáceis de inserir vulnerabilidades e dificultam a descoberta de vulnerabilidades já existentes. Na seção (\ref{sec-security-principles}) foi visto também que muitos princípios de segurança de software estão relacionados ao \emph{design} do código. Visto isso, a aplicação de boas práticas de \emph{design} de código se torna essencial para o desenvolvimento de softwares seguros.
 
-Porém, vulnerabilidades de software não ocorrem somente em códigos com mal \emph{design}. Na seção (\ref{subsec-vulnerabilities-taxonomy}) foi visto que existe uma gama de vulnerabilidades específicas catalogadas pela comunidade, e muitas destas vulnerabilidades foram descobertas e reportadas por grandes empresas de softwares renomados no mercado, que muito provavelmente são bem maduras em relação a qualidade de seus produtos. Foi visto também que muitas das vulnerabilidades de software que são identificadas por ferramentas de análise estática (seção \ref{subsec-security-metrics}) são vulnerabilidaddes específicas de uso de códigos, funções ou práticas consideradas perigosas para segurança da aplicação. Tais vulnerabilidades podem ser encontradas no código-fonte indepentente da aplicação de boas práticas de \emph{design}, pois tais vulnerabilidades são difíceis de identificar, pois necessitam do conhecimento mais aprofundado do Engenheiro de Software para que este saiba que está inserindo uma vulnerabilidade no código.
+Porém, vulnerabilidades de software não ocorrem somente em códigos com mal \emph{design}. Na seção (\ref{subsec-vulnerabilities-taxonomy}) foi visto que existe uma gama de vulnerabilidades específicas catalogadas pela comunidade, e muitas destas vulnerabilidades foram descobertas e reportadas por grandes empresas de softwares renomados no mercado, que muito provavelmente são bem maduras em relação a qualidade de seus produtos. Foi visto também que muitas das vulnerabilidades de software que são identificadas por ferramentas de análise estática (seção \ref{subsec-security-metrics}) são vulnerabilidaddes específicas de uso de códigos, funções ou práticas consideradas perigosas para segurança da aplicação. Tais vulnerabilidades podem ser encontradas no código-fonte indepentente da aplicação de boas práticas de \emph{design}, pois são difíceis de identificar e necessitam do conhecimento mais aprofundado do Engenheiro de Software para que este saiba se está inserindo ou não uma vulnerabilidade no código.
 
 Dessa forma, para o contexto de vulnerabilidades do software, podemos definir dois tipos de cenários de decisão:
 
@@ -65,7 +65,11 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 \end{itemize}
 
 
+O estudo sobre vulnerabilidades de software nos mostrou que grande parte das vulnerabilidades são encontradas na linguagem de programação C/C++. Dessa forma, decidirmos por usar a linguagem C++ como base para instanciação dos cenários propostos a seguir, visto que se trata de uma linguagem orientada a objetos, permitindo aplicarmos tanto os conceitos estudados a respeito de \emph{design} de código quanto os conceitos estudados a respeito de vulnerabilidades específicas.
+
 \subsection{Cenários de Decisão para Caracterização da Qualidade do Código }
+
+A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}).
 
 \subsubsection{Alta Superfície de Ataque a Atributos Internos}
 %-------------------------------------------------------------------------------
@@ -199,6 +203,15 @@ Quadro resumo:
 
 
 \subsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
+
+A seguir serão apresentados instâncias de cenários de decisão que buscam identificar vulnerabilidades específicas de código. Observamos que instâncias desse tipo de cenário são particulares para cada linguagem de programação ou contexo, pois cada tecnologia envolvida na criação de software possui suas particularidades e com elas, vulnerabilidades específicas. Nesse sentido, como dito no início desse capítulo, iremos abordar apenas vulnerabilidades presentes na linguagem C++, tornando os cenários a seguir aplicáveis apenas nesse contexto.
+
+Com o estudo sobre as \emph{CWE's}, percebemos que vulnerabilidades específicas já descrevem um cenário específico pois cada vulnerabilidade caracteriza um problema e um estado do código fonte. Porém, vimos com o estudo das taxonomias que algumas vulnerabilidades estão relacionadas à um problema mais geral. Dessa forma, os cenários propostos a seguir buscam agrupar algumas vulnerabilidades para descrever uma estado de código mais alto nível.
+
+Em relação aos valores de métricas destes cenários, como cada métrica conta quantas ocorrencias daquela vulnerabilidade ocorre no código, basta então apenas uma ocorrência para que o código se torne vulnerável. Porém, sabemos que até mesmo grandes software estão em produção e possuem suas vulnerabilidades, deixando a idéia de que possa existir uma quantidade \"aceitável\" de determinada vulnerabilidade. Mas isso cabe a um estudo a parte definir esse valor. Nesta monografia, iremos considerar que vulnerabilidades não podem existir, e devem ser combatidas a todo momento.
+
+Feitas essas observações, vamos aos cenários definidos.
+
 
 \subsubsection{Uso de variáveis não inicializadas}
 %-------------------------------------------------------------------------------

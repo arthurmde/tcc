@@ -51,6 +51,7 @@ em que apenas concebemos um conjunto inicial de cenários.
 %------------------------------------------------------------------------------%
 
 \section{Definição de Cenários de Decisão para Vulnerabilidades de Software}
+\label{cap-cenarios-sec-definicaocenarios}
 
 A revisão teórica feita nesta monografia encontrada no capítulo (\ref{cap-metrics}) a respeito de características de bom \emph{design} e vulnerabilidades de software nos permite afirmar que a qualidade do código está diretamente relacionada a vulnerabilidades, visto que um código que possui alta complexidade, baixa modularização, alto acoplamento, entre outras caracteristicas apresentadas na seção (\ref{sec-principles-practises}) são mais fáceis de inserir vulnerabilidades e dificultam a descoberta de vulnerabilidades já existentes. Na seção (\ref{sec-security-principles}) foi visto também que muitos princípios de segurança de software estão relacionados ao \emph{design} do código. Visto isso, a aplicação de boas práticas de \emph{design} de código se torna essencial para o desenvolvimento de softwares seguros.
 
@@ -65,7 +66,9 @@ Dessa forma, para o contexto de vulnerabilidades do software, podemos definir do
 \end{itemize}
 
 
-O estudo sobre vulnerabilidades de software nos mostrou que grande parte das vulnerabilidades são encontradas na linguagem de programação C/C++. Dessa forma, decidirmos por usar a linguagem C++ como base para instanciação dos cenários propostos a seguir, visto que se trata de uma linguagem orientada a objetos, permitindo aplicarmos tanto os conceitos estudados a respeito de \emph{design} de código quanto os conceitos estudados a respeito de vulnerabilidades específicas.
+O estudo sobre vulnerabilidades de software nos mostrou que grande parte das vulnerabilidades são encontradas na linguagem de programação C/C++. Além disso, existem uma quantidade expressiva de projetos livres desenvolvidos em C++, que incluem grandes projetos renomados como Chrome, Firefox, MySQL e OpenOffice. Vale ressaltar também que ambas as ferramentas que utilizaremos para demonstrar o uso dos cenários já suportam a coleta da maior parte das métricas introduzidas no Capítulo \ref{cap-metrics} para C++.
+
+Dessa forma, decidirmos por usar a linguagem C++ como base para instanciação dos cenários propostos a seguir. Como se trata de uma linguagem orientada a objetos, permitirá aplicarmos tanto os conceitos estudados a respeito de \emph{design} de código quanto os conceitos estudados a respeito de vulnerabilidades específicas.
 
 \subsection{Cenários de Decisão para Caracterização da Qualidade do Código }
 

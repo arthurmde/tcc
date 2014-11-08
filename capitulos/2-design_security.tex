@@ -101,7 +101,7 @@ A abstração é importante para a comunicação, compreensão e reutilização 
 %
 Essa característica é fundamental para a composição lógica do sistema, sendo que as interações dos componentes são necessárias para a implementação de funcionalidades que se complementam e juntas fornecem serviços complexos e completos.
 %
-Beck \& Diehl (\citeyear{diehl2011}) apresentam e discutem os diferentes tipos de acoplamentos e suas consequências na modularização do design.
+Beck \& Diehl (\citeyear{diehl2011}) apresentam e discutem os diferentes tipos de acoplamentos e suas consequências na modularização do \emph{design}.
 %
 O princípio de baixo acoplamento ressalva a importância que esse acoplamento não seja forte ao ponto de dificultar a evolução de componentes que dependem de outros.
 %
@@ -135,7 +135,7 @@ No Apêndice \ref{Att:design-security} tem-se uma discussão mais aprofundada so
 \label{sec-metrics-security}
 %introdução
 
-A segurança de software está relacionada com o contínuo processo de manter a confidencialidade, integridade e disponibilidade nas diversas camadas que o compõe, sendo considerado parte dos requisitos não-funcionais do sistema. Independentemente da criticidade do sistema, a segurança em software deve ser tratada com prioridade dentro do ciclo de vida de desenvolvimento do software. Aggarwal e colaboradores (\citeyear{aggarwal2002}) cita que o custo e esforço gastos na segurança do software são bem altos, podendo chegar a 70\% do esforço total de desenvolvimento e suporte do software.
+A segurança de software está relacionada com o contínuo processo de manter a confidencialidade, integridade e disponibilidade nas diversas camadas que o compõe, sendo considerado parte dos requisitos não-funcionais do sistema. Independentemente da criticidade do sistema, a segurança em software deve ser tratada com prioridade dentro do ciclo de vida de desenvolvimento do software. Aggarwal e colaboradores (\citeyear{aggarwal2002}) citam que o custo e esforço gastos na segurança do software são bem altos, podendo chegar a 70\% do esforço total de desenvolvimento e suporte do software.
 
 %
 
@@ -275,7 +275,7 @@ Com esse cenário apresentado acima, em que temos a CVE como projeto de enumerar
 
 %
 
-O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no \emph{design}, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados. Além disso, observou-se que o CVE busca enumerar casos de vulnerabilidades reais na comunidade, especificando a maneira de como a vulnerabilidade foi explorada. Já o projeto CWE, o termo \"vulnerabilidade\" está mais relacionado a fraqueza de software, que se refere a códigos e práticas de programação que podem oferecer risco a segurança da aplicação, não indicando como a vulnerabilidade pode ser explorada e sim indicando quais características podem tornar o software vulnerável.
+O CWE é uma lista formal de vulnerabilidades comuns de software (\emph{Common Weakness Enumeration}). Tem como objetivo estabelecer uma linguagem comum para descrever vulnerabilidades de software no \emph{design}, arquitetura ou no código; servir de base para ferramentas de análise de cobertura de segurança de código, dessa forma é possivel saber quais vulnerabilidades as ferramentas conseguem capturar; e prover uma base de informações padrão a respeito de como identificar, mitigar e previnir uma certa vulnerabilidade. Dessa forma, diferente da enumeração fornecida pela CVE, O CWE também inclui detalhes sobre a vulnerabilidade e cria uma classificação baseadas nos trabalhos desenvolvidos sobre taxonomias apresentados neste trabalho e outros que não foram apresentados. Além disso, observou-se que o CVE busca enumerar casos de vulnerabilidades reais na comunidade, especificando a maneira de como a vulnerabilidade foi explorada. Já o projeto CWE, o termo "vulnerabilidade" está mais relacionado a fraqueza de software, que se refere a códigos e práticas de programação que podem oferecer risco a segurança da aplicação, não indicando como a vulnerabilidade pode ser explorada e sim indicando quais características podem tornar o software vulnerável.
 
 %
 
@@ -301,7 +301,7 @@ Dentre os princípios de segurança que os Engenheiros de Software podem aplicar
 
 \item \textbf{\emph{Mediate completely}}: princípio que defende que todos os acessos a quaisquer objetos devem ser verificados para garantir se há permissões para realizar tal ação. Se em algum momento for solicitado a leitura de um objeto, o sistema deve verificar se o sujeito tem permissão de leitura. Caso tenha, deve prover somente os recursos necessários para realização das tarefas que interessa a este sujeito. Essa operação deve se repetir todas as vezes que a requisição ao objeto for feita, não somente na primeira vez \cite{bishop2003}.
 
-\item \textbf{\emph{Separation of duties}}: princípio relacionado a separação de interesses dentro dos métodos e mecanismos de segurança do software. A OWASP\footnote{Open Web Application Security Project} sugere a separação entre as entidades que aprovação a ação, entidades que realizam a ação e entidades que monitoram a ação \footnote{\url{https://www.owasp.org/index.php/Separation_of_duties}}. Este princípio está diretamente relacionado com os princípios de \emph{design} orientado à objetos tais como coesão e separação de interesses. Por outro lado, também mantém forte relação com o princípio de \emph{design} seguro \emph{Economy of mechanism}, pois proporciona código mais limpo e que podem ser mantidos separadamente.
+\item \textbf{\emph{Separation of duties}}: princípio relacionado a separação de interesses dentro dos métodos e mecanismos de segurança do software. A OWASP\footnote{Open Web Application Security Project} sugere a separação entre as entidades que aprovam a ação, entidades que realizam a ação e entidades que monitoram a ação \footnote{\url{https://www.owasp.org/index.php/Separation_of_duties}}. Este princípio está diretamente relacionado com os princípios de \emph{design} orientado à objetos tais como coesão e separação de interesses. Por outro lado, também mantém forte relação com o princípio de \emph{design} seguro \emph{Economy of mechanism}, pois proporciona código mais limpo e que podem ser mantidos separadamente.
 \end{itemize}
 
 Um estudo mais aprofundado sobre a relação existente entre os princípios de segurança e de \emph{design} pode ser encontrado no Apêndice \ref{Att:design-security}, na Seção \ref{sec-security-application}.

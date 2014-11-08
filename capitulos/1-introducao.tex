@@ -21,10 +21,12 @@ Essas comunidades adotam a padronização de código e testes automatizados para
 
 A melhoria da qualidade interna do código apoia a melhoria contínua do processo oferecendo subsídios para que a equipe de desenvolvimento aumente sua produtividade e implemente novas funcionalidades com maior facilidade. Beck (\citeyear{beck2007}) corrobora essa afirmação ao destacar que a maior parte do tempo utilizado por um Programador ao inserir novas funcionalidades é destinado ao entendimento do código em manutenção. 
 %
-Diretamente relacionado a qualidade de código está a sua segurança \cite{tsipenyuk2005}. A segurança de software está relacionada a confiabilidade, disponibilidade e integridade dos diversos componentes que compõe o software.
+Diretamente relacionado a qualidade de código está a sua segurança \cite{tsipenyuk2005}. A segurança de software está relacionada a confidencialidade, disponibilidade e integridade dos diversos componentes que compõe o software.
 
 Dados do ICAT/NIST\footnote{ ICAT foi um motor de busca de vulnerabilidades, desenvolvido pelo NIST(\emph{National Institue of Standards and Technology}), catalogadas no padrão CVE. O ICAT foi substituido pelo NVD (\emph{National Vulnerability Database }), que além de possuir o mesmo mecanismo de busca, é um repositório governamental dos Estados Unidos que armazena diversas informações sobre vulnerabilidades de software (nomenclaturas, métricas, checklists, etc).} de 2005 já apontavam que 80\% das vulnerabilidades remotamente exploráveis estavam ligadas a má codificação do programa \cite{duarte2005}.
+
 %
+
 Embora a segurança de uma aplicação também estejam relacionadas a aspectos externos ao software como a redes e componentes de hardware, o elo mais fraco continua sendo o próprio software. Dessa forma, cabe aos projetistas e desenvolvedores a responsabilidade do desenvolvimento de software seguro, sem prejuízos aos seus usuários.
 
 %
@@ -60,7 +62,7 @@ Alternativamente, o ambiente de \emph{Data Warehousing} (DWing) é uma solução
 
 %
 
-Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software. A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do desenvolvimento e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de relação e correlação entre métricas. Tal correlação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
+Portanto, neste trabalho serão exploradas a utilização de métricas para o monitoramento de código-fonte para compreender e estabelecer possíveis relações existentes entre as mesmas no que diz respeito a vunerabilidades e qualidade de software. A partir do estabelecimento de cenários esperamos identificar oportunidades de utilização de métricas na melhoria contínua do desenvolvimento e, consequentemente, na qualidade interna do produto. Com o objetivo de facilitar a interpretação e evitar possíveis equívocos, que são baseados em análises errôneas sobre métricas isoladas, correlações inexistes ou até mesmo a escolha de métricas inadequadas cujo problemas são discutidos em \cite{chidamber1994}, estes cenários serão compostos a partir da análise de relação entre métricas. Tal relação buscará evidenciar boas e más características de bom \emph{design} de um projeto que impactam em vulnerabilidades no sistema.
 %
 Para auxiliar no monitoramento e na tomada de decisão, será explorado o uso de plataforma de monitoramento de código-fonte Mezuro e um ambiente de \emph{DWing}.
 
@@ -74,7 +76,7 @@ Como utilizar métricas de código-fonte para apoiar práticas de melhoria cont�
 
 \section{Objetivos}
 
-O objetivo deste trabalho consite na proposta e implementação da técnica de construção de Cenários de Decisões como técnica de monitoramento do código-fonte que consiste na caracterização de determinado componente do sistema baseado na sua observação através de métricas, para orientar a aplicação de práticas e tomada de decisões sobre o software. Portanto, serão propostos algumas cenários através do uso desta técnica sobre características de segurança de software, a partir do estudo teórico e estatísticos sobre métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software.
+O objetivo deste trabalho consite na proposta e implementação da técnica de construção de Cenários de Decisões como técnica de monitoramento do código-fonte que consiste na caracterização de determinado componente do sistema baseado na sua observação através de métricas, para orientar a aplicação de práticas e tomada de decisões sobre o software. Portanto, serão propostos algumas cenários através do uso desta técnica sobre características de segurança de software, a partir do estudo teórico e estatísticos sobre métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software. Além disso, como estudos de casos, será demonstrado os passos de reprodução de Cenários de Decisão no Mezuro e em um ambiente DWing.
 
 \section{Contribuições}
 %
@@ -86,17 +88,15 @@ O objetivo deste trabalho consite na proposta e implementação da técnica de c
 				\begin{itemize}
 					\item Evoluir a arquitetura do Mezuro para melhorar sua modularização e flexibilidade.
 					\item Evoluir a configuração de métricas do Mezuro
-					\item Implementar mecanismos de definição de celos/cenários no Mezuro
 					\item Evoluir mecanismos de visualização de software do Mezuro
 				\end{itemize}
-			\item \textbf{CT2} - Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.	
+			\item \textbf{CT2} - Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.
 	        	\begin{itemize}
 	        		\item Implementar extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática na plataforma de \emph{Bussines Inteligence} (BI) Pentaho.
 	        		\item Criar modelo dimensional que, diferente de um modelo relacional utilizado para modelagem de banco de dados, permitirá melhor performance para processamento analítico dos dados.
 	        		\item Gerar Cubo de dados, que consiste em agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
 					\item Configurar mecanismos de visualização do cubo de dados na plataforma de BI Pentaho.
 	        	\end{itemize}
-			\item \textbf{CT3} - Evoluir extração de métricas de vulnerabilidade para a ferramenta Analizo
 		\end{itemize}
 \begin{description}
 	\item [Contribuições Científicas]\
@@ -104,34 +104,26 @@ O objetivo deste trabalho consite na proposta e implementação da técnica de c
 	 	\begin{itemize}
 			\item \textbf{CC1} - Catálogar definições teóricas a respeito dos principais conceitos relacionados à vulnerabilidades de software.
 			\item \textbf{CC2} - Estudo teórico sobre a relação de vulnerabilidades de software com o \emph{design}
-			\item \textbf{CC3} - Análise estatísticas de dados de softwares livres a fim de comprovar correlação entre vunerabilidades e \emph{design} de software.
-			\item \textbf{CC4} - Propor um modelo baseado em sequência de passos para o Engenheiro de Software no desenvolvimento de softwares robustos.
-			\item \textbf{CC5} - Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
+			\item \textbf{CC3} - Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte.
 	 	\end{itemize}
 
 %------------------------------------------------------------------------------%
 
 \section{Metodologia e Pesquisa}
 
-Dado o objetivo principal desta monografia, serão realizados estudos teóricos através de revisão bibliográfica para compreensão e definição dos conceitos básicos sobre características de \emph{design}  e de vulnerabilidades de software, referindo-se às contribuições científicas CC1 e CC2.
-
-Além das discussões obtidas a partir da revisão bibliográfica, para se alcançar o CC3 será projetado um estudo para se avaliar a relação entre características de \emph{design} e vulnerabilidades de software.
-%
-Esse estudo consistirá em uma coleta de métricas em diversos projetos de software livre e a análise estatística de correlação entre essas métricas. Para tanto, será utilizado um modelo estatístico de regressão múltipla (a ser definido na segunda etapa deste trabalho) para verificar a correlação entre os dados.
-%
-Iremos, então, determinar o impacto de métricas de \emph{design} (variáveis independentes) com a ocorrência de  vulnerabilidades específicas (varíaveis dependentes).
-%
-Este estudo será projetado através de um protocolo de estudo experimental, contemplando a definição de hipóteses, seleção da amostra, desenho do estudo, estratégia de condução e análise de dados conforme proposto por Luna (\citeyear{luna1998}).
+Dado o objetivo principal desta monografia, serão realizados estudos teóricos através de revisão bibliográfica para compreensão e definição dos conceitos básicos sobre características de \emph{design}  e de vulnerabilidades de software, referindo-se às contribuições científicas CC1 e CC2. Este estudo é o insumo principal para a concepção da técnica Cenário de Decisão.
 
 %
 
-Por fim, baseado principalmente na revisão bibliográfica sobre \emph{design}, segurança e métricas estáticas de software, as duas ferramentas propostas, Mezuro e ambiente DWing, serão configuradas e evoluídas.
+Por fim, a  partir da definição e discussão a respeito da técnica Cenário de Decisão, baseado principalmente na revisão bibliográfica sobre \emph{design}, segurança e métricas estáticas de software, serão apresentados dois estudos de casos da evolução de ferramentas de monitoramento de código-fonte para suportar Cenários de Decisões. Os estudos serão sobre as duas ferramentas propostas, Mezuro e ambiente DWing.
 %
-Essa atividade está relacionado aos contribuições tecnológicos deste trabalho de conclusão de curso, onde técnicas, métodos e padrões de Engenharia de Software poderão ser aplicados.
+Essa atividade está relacionado às contribuições tecnológicas deste trabalho de conclusão de curso, onde técnicas, métodos e padrões de Engenharia de Software poderão ser aplicados.
 
 
 %------------------------------------------------------------------------------%
 
 \section{Organização do Trabalho}
 
-Esta monografia está dividida em mais outros 4 capítulos. A seguir, o leitor encontrará o Capítulo \ref{cap-metrics} onde são estruturados e discutidos os principais conceitos relacionados à \emph{design}, vulnerabilidade e métricas de código-fonte. Posteriormente, no Capítulo \ref{cap-decision-making-environment} serão apresentados conceitos a fim de definir e descrever características dos dois ambientes de tomada de decisão citados a introdução: a plataforma de monitoramento de código-fonte Mezuro e o \emph{Data Warehousing}. Ambas serão exploradas no contexto deste trabalho como solução para utilização de métricas de código-fonte para o monitoramento de projetos e tomada de decisão. No Capítulo \ref{cap-cenarios} serão apresentados o conceito de Cenários de Decisões e algumas propostas que podem ser utilizadas no monitoramento de projetos. Por fim, no Capítulo \ref{cap-consideracoesFinais} serão realizadas as principais considerações e ponderações a respeito deste trabalho, além de apresentar um cronograma de passos futuros para sua complementação.
+Esta monografia está dividida em mais outros 4 capítulos. A seguir, o leitor encontrará o Capítulo \ref{cap-metrics} onde são estruturados e discutidos os principais conceitos relacionados à \emph{design} e segurança, principalmente relacionado à vulnerabilidades de software. No Capítulo \ref{cap-metrics-esw} são introduzidos os principais conceitos de métricas de software, principalmente métricas estáticas de código-fonte, além de serem listadas e explicadas métricas de \emph{design} e métricas de vulnerabilidades.Posteriormente, no Capítulo \ref{cap-cenarios}  serão apresentados o conceito de Cenários de Decisões e algumas propostas que podem ser utilizadas no monitoramento de projetos. No Capítulo \ref{cap-case-study} iremos apresentar dois estudos de casos relacionados à evolução de plataformas de monitoramente de código-fonte para a adoção de Cenários de Decisões. Neste mesmo capítulo, serão definidas e descritas características, evoluções e configurações dos dois ambientes de tomada de decisão citados na Introdução: a plataforma de monitoramento de código-fonte Mezuro e o \emph{Data Warehousing}. Por fim, no Capítulo \ref{cap-consideracoesFinais} serão realizadas as principais considerações e ponderações a respeito deste trabalho, além de apresentar possíveis passos futuros para a evolução da técnica Cenário de Decisão e das ferramentas envolvidas.
+
+No fim desta monografia existem três apêncides que complementam e detalham os aspectos do presente trabalho. No Apêndice \ref{Att:design-security} são aprofundados em mais detalhes todos os conceitos estudos sobre \emph{design} e segurança de Software. O Apêndice \ref{Att:dw} apresenta detalhes técnicos sobre DWing, assim como Apêndice \ref{Att:mezuro} apresenta os detalhes técnicos sobre o Mezuro.

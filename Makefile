@@ -43,6 +43,7 @@ SOURCES = $(FIXOS_FILES) $(EDITAVEIS_FILES) $(CHAPTERS_FILES)
 
 all: 
 	@make $(TARGET)
+	evince TCC_ArthurCarlos.pdf
      
 $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 	$(LATEX) $(MAIN_FILE) $(SOURCES)

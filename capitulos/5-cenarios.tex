@@ -12,11 +12,11 @@ A ideia de definição de cenários para tomada de decisões é advinda do estud
 
 \item \textbf{Métricas Envolvidas}: Identifica as métricas necessárias para a caracterização do cenário, sem definir relações entre essas métricas.
 
-\item \textbf{Nível}: Define abstração de software que pode ser caracterizada pelo cenário, por exemplo: Projeto; Estrutura de Herança; Classe; Método;
+\item \textbf{Nível}: Define o nível de abstração de software que pode ser caracterizada pelo cenário, por exemplo: Projeto; Estrutura de Herança; Classe; Método;
 
 \item \textbf{Descrição}: Discuti os problemas, princípios envolvidos e a caracterização
 
-\item \textbf{Caracterização com Métricas}: Define matematicamente como caracterizar o cenários com as métricas envolvidas. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
+\item \textbf{Caracterização com Métricas}: Define matematicamente como caracterizar o cenário com as métricas envolvidas. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
 
 \item \textbf{Ações sugeridas}: Propõe um conjunto de ações específicas tais como uma refatoração, a utilização de um padrão de projeto, prática e aplicação de princípios.
 \end{itemize}
@@ -42,37 +42,44 @@ O objetivo da definição de Cenários é minimizar as principais dificuldades e
 
 \item \textbf{Interpretações Isoladas}: Podem existir métricas que possam ser utilizadas para a identificação de um cenário específico sem a necessidade de uso de outras métricas. Entretanto, na maioria dos casos uma métrica não provê informação suficiente a ponto de poder ser interpretada isoladamente. Assim, Cenários de Decisões diminuem o risco de interpretações isoladas inadequadas, pois reunem um conjunto de métricas necessários para sua caracterização. Mesmo quando um cenário é definido por uma métrica específica, ele oferece um nível de abstração e interpretação que diminui as possibilidades de erros de interpretação.
 
-\item \textbf{Parâmetros de Comparação}: Os cenários definem uma interpretação a partir de um conjunto de métricas, mas não especificando valores de intervalos necessários para caracterizar este cenário. Assim, um cenário deve ser adaptável para diferentes contextos devido a importância de se flexibilizar as interpretações de métricas, tema discutido e defendido por Meirelles (\citeyear{meirelles2013metrics}). Sugere-se que a escolha dos parâmetros adequados para caracterização do cenário deve ser feita por especialistas que compreendam as necessidades de seus projetos e as limitações e recursos da linguagem e paradigma de programação utilizados no software. Portanto, a escolha dos valores para caracterização de um cenário é a instanciação deste cenário para um contexto específico. Nesta monografia, além da proposta de cenários, também iremos propor instâncias destes cenários para determinados contextos.
+\item \textbf{Parâmetros de Comparação}: Os cenários definem uma interpretação a partir de um conjunto de métricas cujos valores podem ser especificados a partir do contexto envolvido, como por exemplo, variar de acordo com a linguagem de programação. Assim, um cenário deve ser adaptável para diferentes contextos devido a importância de se flexibilizar as interpretações de métricas, tema discutido e defendido por Meirelles (\citeyear{meirelles2013metrics}). Sugere-se que a escolha dos parâmetros adequados para caracterização do cenário deve ser feita por especialistas que compreendam as necessidades de seus projetos e as limitações e recursos da linguagem e paradigma de programação utilizados no software. Portanto, a escolha dos valores para caracterização de um cenário é a instanciação deste cenário para um contexto específico. Nesta monografia, além da proposta de cenários, também iremos propor instâncias destes cenários para projetos em C++.
 \end{itemize}
 
-Com os Cenários de Decisões introduzimos um novo conceito a ser utilizado na medição de software. Espera-se que o esforço destinado a medição de software em um projeto seja concentrado sobre a instanciação desses cenários, diminuindo-se o esforço necessário para coleta, interpretação e visualização de dados. Entretanto, os benefícios dos Cenários de Decisões são passíveis de experimentação, experimentos esses que estão fora do escopo deste trabalho, neste momento, 
-em que apenas concebemos um conjunto inicial de cenários.
+Com os Cenários de Decisões introduzimos um novo conceito a ser utilizado na medição de software. Espera-se que o esforço destinado a medição de software em um projeto seja concentrado sobre a instanciação desses cenários, diminuindo-se o esforço necessário para coleta, interpretação e visualização de dados. Entretanto, os benefícios dos Cenários de Decisões são passíveis de experimentação, experimentos esses que estão fora do escopo deste trabalho.
 
 %------------------------------------------------------------------------------%
 
-\section{Definição de Cenários de Decisão para Vulnerabilidades de Software}
+\section{Definição de Cenários de Decisão para Segurança de Software}
 \label{cap-cenarios-sec-definicaocenarios}
 
-A revisão teórica feita nesta monografia encontrada no capítulo (\ref{cap-metrics}) a respeito de características de bom \emph{design} e vulnerabilidades de software nos permite afirmar que a qualidade do código está diretamente relacionada a vulnerabilidades, visto que um código que possui alta complexidade, baixa modularização, alto acoplamento, entre outras caracteristicas apresentadas na seção (\ref{sec-principles-practises}) são mais fáceis de inserir vulnerabilidades e dificultam a descoberta de vulnerabilidades já existentes. Na seção (\ref{sec-security-principles}) foi visto também que muitos princípios de segurança de software estão relacionados ao \emph{design} do código. Visto isso, a aplicação de boas práticas de \emph{design} de código se torna essencial para o desenvolvimento de softwares seguros.
+A revisão teórica feita nesta monografia encontrada no capítulo \ref{cap-metrics} a respeito de características de bom \emph{design} e vulnerabilidades de software nos permite afirmar que a qualidade do código está diretamente relacionada a vulnerabilidades, visto que um código que possui alta complexidade, baixa modularização, alto acoplamento, entre outras caracteristicas apresentadas na seção \ref{sec-principles-practises} são mais fáceis de inserir vulnerabilidades e dificultam a descoberta de vulnerabilidades já existentes. Na seção (\ref{sec-security-principles}) foi visto também que muitos princípios de segurança de software estão relacionados ao \emph{design} do código. Visto isso, a aplicação de boas práticas de \emph{design} de código se torna essencial para o desenvolvimento de softwares seguros.
 
-Porém, vulnerabilidades de software não ocorrem somente em códigos com mal \emph{design}. Na seção (\ref{subsec-vulnerabilities-taxonomy}) foi visto que existe uma gama de vulnerabilidades específicas catalogadas pela comunidade, e muitas destas vulnerabilidades foram descobertas e reportadas por grandes empresas de softwares renomados no mercado, que muito provavelmente são bem maduras em relação a qualidade de seus produtos. Foi visto também que muitas das vulnerabilidades de software que são identificadas por ferramentas de análise estática (seção \ref{subsec-security-metrics}) são vulnerabilidaddes específicas de uso de códigos, funções ou práticas consideradas perigosas para segurança da aplicação. Tais vulnerabilidades podem ser encontradas no código-fonte indepentente da aplicação de boas práticas de \emph{design}, pois são difíceis de identificar e necessitam do conhecimento mais aprofundado do Engenheiro de Software para que este saiba se está inserindo ou não uma vulnerabilidade no código.
+Porém, vulnerabilidades de software não ocorrem somente em códigos com mal \emph{design}. Na seção \ref{subsec-vulnerabilities-taxonomy} foi visto que existe uma gama de vulnerabilidades específicas catalogadas pela comunidade, e muitas destas vulnerabilidades foram descobertas e reportadas por grandes empresas de softwares renomados no mercado, que são bem maduras em relação a qualidade de seus produtos. Foi visto também que muitas das vulnerabilidades de software que são identificadas por ferramentas de análise estática seção \ref{subsec-security-metrics} são vulnerabilidades específicas de uso de códigos, funções ou práticas consideradas perigosas para segurança da aplicação. Tais vulnerabilidades podem ser encontradas no código-fonte indepentente da aplicação de boas práticas de \emph{design}, pois são difíceis de identificar e necessitam do conhecimento mais aprofundado do Engenheiro de Software para que este saiba se está inserindo ou não uma vulnerabilidade no código.
 
-Dessa forma, para o contexto de vulnerabilidades do software, podemos definir dois tipos de cenários de decisão:
+Dessa forma, para o contexto de segurança do software, podemos definir dois tipos de cenários de decisão:
 
 \begin{itemize}
-\item \textbf{Cenários de Decisão para Caracterização da Qualidade de Código}: Estes cenários buscam identificar caracteristicas de software relacionadas a qualidade e \emph{design} de código que podem influenciar em sua segurança, como complexidade, acoplamento, etc.
+\item \textbf{Cenários de Decisão para Caracterização da Qualidade de Código}: Estes cenários buscam identificar caracteristicas de software relacionadas a qualidade e \emph{design} de código que podem influenciar em sua segurança, como complexidade, acoplamento, entre outros.
 
-\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades específicas de código}: Estes cenários buscam identificar vulnerabilidades de software que podem ser encontradas em código-fonte indepente que este esteja em um bom nível de qualidade e \emph{design}. São cenários relacionados mais a erros que podem ser cometidos pelos desenvolvedores no momento da implementação;
+\item \textbf{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}: Estes cenários buscam identificar vulnerabilidades de software que podem ser encontradas em código-fonte indepente que este esteja em um bom nível de qualidade e \emph{design}. São cenários relacionados mais a erros que podem ser cometidos pelos desenvolvedores no momento da implementação;
 \end{itemize}
 
 
 O estudo sobre vulnerabilidades de software nos mostrou que grande parte das vulnerabilidades são encontradas na linguagem de programação C/C++. Além disso, existem uma quantidade expressiva de projetos livres desenvolvidos em C++, que incluem grandes projetos renomados como Chrome, Firefox, MySQL e OpenOffice. Vale ressaltar também que ambas as ferramentas que utilizaremos para demonstrar o uso dos cenários já suportam a coleta da maior parte das métricas introduzidas no Capítulo \ref{cap-metrics} para C++.
 
-Dessa forma, decidirmos por usar a linguagem C++ como base para instanciação dos cenários propostos a seguir. Como se trata de uma linguagem orientada a objetos, permitirá aplicarmos tanto os conceitos estudados a respeito de \emph{design} de código quanto os conceitos estudados a respeito de vulnerabilidades específicas.
+Dessa forma, decidimos por usar a linguagem C++ como base para instanciação dos cenários propostos a seguir. Como se trata de uma linguagem orientada a objetos, permitirá aplicarmos tanto os conceitos estudados a respeito de \emph{design} de código quanto os conceitos estudados a respeito de vulnerabilidades específicas.
 
 \subsection{Cenários de Decisão para Caracterização da Qualidade do Código }
 
 A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}).
+
+Nesta seção propomos quatro Cenários de Decisões. Um estudo muito interessante realizado por Chowdhury e colaboradores (\citeyear{chowdhury}), apresenta três novas formas de medir aspectos de segurança de um software a partir de suas estruturas estáticas, que poderiam ser representadas e evoluídas para Cenários de Decisões:
+
+\begin{itemize}
+\item \textbf{\emph{Stall Ratio}}: representa o quanto o progresso de um programa é impedido por atividades sem importância dentro do código. Os autores afirma que linhas de código que não contribuem para o objetivo principal do programa provocam atrasos consideráveis para que o mesmo assuma um estado estável e aceitável. Além disso, os autores enfatiza que esse tipo de problema é mais crítico quando encontrado dentro de laços de repetição.
+\item \textbf{\emph{Coupling Corruption Propagation}}: caracteriza o impacto no total de métodos que poderiam ser afetados por erros existentes em métodos originais, herdados por exemplo.
+\item \textbf{\emph{Critical Element Ratio}}: representa a proporção de elementos críticos de um objeto em relação ao total de elementos daquele mesmo objeto. Neste sentido, os autores caracterizam elementos críticos como elementos que serão manipulados ao longo do programa e não só no contexto do objeto criado.
+\end{itemize}
 
 \subsubsection{Alta Superfície de Ataque a Atributos Internos}
 %-------------------------------------------------------------------------------
@@ -107,7 +114,7 @@ Quadro resumo:
 \subsubsection{Alta Superfície de Ataque Operacional}
 %-------------------------------------------------------------------------------
 
-Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}), o que aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
+Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}) e aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
 
 Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque através de operações acessíveis de uma classe e os parâmetros necessários para sua realização. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos públicos e que tenham grande quantidade de parâmetros. 
 
@@ -164,15 +171,13 @@ Quadro resumo:
 
 %http://www.mccabe.com/pdf/More%20Complex%20Equals%20Less%20Secure-McCabe.pdf
 
-%	
-
 %https://www.schneier.com/books.html
 %https://www.schneier.com/cryptography.html
 
 \subsubsection{Risco Elevado de Segurança}
 %-------------------------------------------------------------------------------
 
-Este cenário busca identificar métodos que, devido sua estrutura interna, aumentam os riscos relacionados à segurança, principalmente por dificultarem a realização de testes, a busca de \emph{bugs} existentes e a compreensão do sofware. Em outras palavras, quanto maior a complexidade de um método, mais complexas são suas interações, verificações e mecanismos de segurança. Além disso, o aumento da complexidade tem como consequência a dificuldade de se entender o módulo em análise. Assim, quanto mais complexo um método ou classe, menos pessoas vão compreendê-los completamente, reduzirando as chances dos envolvidos no projeto encontrarem inconformidades e vulnerabilidades.
+Este cenário busca identificar métodos que, devido sua estrutura interna, aumentam os riscos relacionados à segurança, principalmente por dificultarem a realização de testes, a busca de \emph{bugs} existentes e a compreensão do sofware. Em outras palavras, quanto maior a complexidade de um método, mais complexas são suas interações, verificações e mecanismos de segurança. Além disso, o aumento da complexidade tem como consequência a dificuldade de se entender o módulo em análise. Assim, quanto mais complexo um método ou classe, menos pessoas vão compreendê-los completamente, reduzindo as chances dos envolvidos no projeto encontrarem inconformidades e vulnerabilidades.
 
 %
 
@@ -180,7 +185,7 @@ O problema com a complexidade de módulos do software está diretamente relacion
 
 %
 
-Em termos de métricas de código-fonte, este cenário busca medir a complexidade dos métodos das classes do projeto de software. Estão inclusos nesse cenário classes com métodos com alta complexidade. 
+Em termos de métricas de código-fonte, este cenário busca medir a complexidade dos métodos das classes do projeto de software. Idealmente, este cenário poderia ser caracterizado à nível de método, porém, optou-se por manter a nível de classe. Estão inclusos nesse cenário classes com métodos com alta complexidade. 
 
 %
 
@@ -205,13 +210,15 @@ Quadro resumo:
 \end{itemize}
 
 
+
+
 \subsection{Cenários de Decisão para Caracterização de Vulnerabilidades Específicas de Código}
 
 A seguir serão apresentados instâncias de cenários de decisão que buscam identificar vulnerabilidades específicas de código. Observamos que instâncias desse tipo de cenário são particulares para cada linguagem de programação ou contexo, pois cada tecnologia envolvida na criação de software possui suas particularidades e com elas, vulnerabilidades específicas. Nesse sentido, como dito no início desse capítulo, iremos abordar apenas vulnerabilidades presentes na linguagem C++, tornando os cenários a seguir aplicáveis apenas nesse contexto.
 
 Com o estudo sobre as \emph{CWE's}, percebemos que vulnerabilidades específicas já descrevem um cenário específico pois cada vulnerabilidade caracteriza um problema e um estado do código fonte. Porém, vimos com o estudo das taxonomias que algumas vulnerabilidades estão relacionadas à um problema mais geral. Dessa forma, os cenários propostos a seguir buscam agrupar algumas vulnerabilidades para descrever uma estado de código mais alto nível.
 
-Em relação aos valores de métricas destes cenários, como cada métrica conta quantas ocorrencias daquela vulnerabilidade ocorre no código, basta então apenas uma ocorrência para que o código se torne vulnerável. Porém, sabemos que até mesmo grandes software estão em produção e possuem suas vulnerabilidades, deixando a idéia de que possa existir uma quantidade \"aceitável\" de determinada vulnerabilidade. Mas isso cabe a um estudo a parte definir esse valor. Nesta monografia, iremos considerar que vulnerabilidades não podem existir, e devem ser combatidas a todo momento.
+Em relação aos valores de métricas destes cenários, como cada métrica conta quantas ocorrencias daquela vulnerabilidade ocorre no código, basta então apenas uma ocorrência para que o código se torne vulnerável. Porém, sabemos que até mesmo grandes software estão em produção e possuem suas vulnerabilidades, deixando a idéia de que possa existir uma quantidade "aceitável" de determinada vulnerabilidade. Mas isso cabe a um estudo a parte definir esse valor. Nesta monografia, iremos considerar que vulnerabilidades não podem existir, e devem ser combatidas a todo momento.
 
 Feitas essas observações, vamos aos cenários definidos.
 
@@ -234,16 +241,16 @@ Quadro resumo:
 \begin{itemize}
 \item \textbf{Nome}: Uso de Variáveis não inicializadas
 \item \textbf{Classificação}: Composta;
-\item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}),ROGU (\emph{Result of operation is garbage or undefined}),AUV (\emph{Assinged Value is garbage or undefined});
+\item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}), ROGU (\emph{Result of operation is garbage or undefined}), AUV (\emph{Assinged Value is garbage or undefined});
 \item \textbf{Nível}: Método;
-\item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informaçãõ não autorizado.
+\item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informação não autorizado.
 \item \textbf{Caracterização com Métricas}: 
 	\begin{itemize}
 	\item \textbf{Composição AUV + UAV + ROGU} - Este cenário ocorre quando o valor da soma dessas métricas está acima do aceitável.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
-	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, inicializando variáveis no momento em que são instanciadas.
+	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, \emph{Mediate completely}, inicializando variáveis no momento em que são instanciadas.
 	\end{itemize}
 \end{itemize}
 
@@ -252,7 +259,7 @@ Quadro resumo:
 %-------------------------------------------------------------------------------
 Este cenário busca identificar possíveis locais no código fonte em que é feito o mau uso de ponteiros, e que consequentimente podem gerar falhas na aplicação. 
 
-Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{\"segmentation fault\"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar.
+Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{"segmentation fault"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar.
 
 Em termos de métricas de código-fonte, este cenário é composto pelas métricas:
 \begin{itemize}
@@ -270,7 +277,7 @@ Quadro resumo:
 \begin{itemize}
 \item \textbf{Nome}: Alta possibilidade de Falha por mau uso de ponteiros
 \item \textbf{Classificação}: Composta;
-\item \textbf{Métricas Envolvidas}: DNP (\emph{Dereference of null pointer}); DF (\emph{Double free}).,AUF (\emph{Use After free}), DUPV (\emph{Dereference of undefined pointer value}), BD (\emph{Bad deallocator});
+\item \textbf{Métricas Envolvidas}: DNP (\emph{Dereference of null pointer}); DF (\emph{Double free}); AUF (\emph{Use After free}); DUPV (\emph{Dereference of undefined pointer value}); BD (\emph{Bad deallocator});
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de ponteiros de maneira não segura, que podem gerar falha na aplicação.
 \item \textbf{Caracterização com Métricas}: 
@@ -289,7 +296,7 @@ Quadro resumo:
 
 Este cenário busca no código fonte situações que podem gerar a vulnerabilidade de \emph{Buffer Overflow}. Como já mencionado na sessão \ref{sec-metrics-security}, o \emph{Buffer Overflow} é um caso comum de violação da segurança a memória, e ocorre normalmente quando escrevemos dados cujo tamanho  ultrapasse o tamanho do \emph{buffer} definido para ele. Essa situação pode gerar  mau funcionamento do sistema, pois a informação que estourou o \emph{buffer} pode corromper outras informações ou processos que tiveram sua região de memória invadida; como também pode ser usado para injetar códigos malicioso e alterar o fluxo de execução da aplicação.
 
-Em termos de métricas de código fonte, este cenário é composto pelas métricas FGBO (\emph{Potential buffer overflow in call to \"gets\"}) e pela métrica ASOM (\emph{Allocator sizeof operand mismatch}). Ambas métricas identificam vulnerabilidades que podem gerar \emph{buffer overflow}. A métrica FGBO identifica a utilização da função \emph{\"gets\"} na linguagem C/C++. Essa função não garante garante que o tamanho da variável de entrada será do tamanho da variável a ser atribuída, se tornando um risco a ser explorado pelos atacantes. A métrica ASOM identifica situações no código em que é passado o operador inadequando no momento que se aloca memória para uma variável. Isso acontece, por exemplo na linguage C, quando declaramos um ponteiro do tipo inteiro e no momento do alocação de memória é passado um tamanho refente a uma variável do tipo \emph{char}. Logo, o espaço alocado não corresponde ao tamanho do dado que é esperado receber, podendo causar o estouro de \emph{buffer}.
+Em termos de métricas de código fonte, este cenário é composto pelas métricas FGBO (\emph{Potential buffer overflow in call to "gets"}) e pela métrica ASOM (\emph{Allocator sizeof operand mismatch}). Ambas métricas identificam vulnerabilidades que podem gerar \emph{buffer overflow}. A métrica FGBO identifica a utilização da função \emph{"gets"} na linguagem C/C++. Essa função não garante garante que o tamanho da variável de entrada será do tamanho da variável a ser atribuída, se tornando um risco a ser explorado pelos atacantes. A métrica ASOM identifica situações no código em que é passado o operador inadequando no momento que se aloca memória para uma variável. Isso acontece, por exemplo na linguage C, quando declaramos um ponteiro do tipo inteiro e no momento do alocação de memória é passado um tamanho refente a uma variável do tipo \emph{char}. Logo, o espaço alocado não corresponde ao tamanho do dado que é esperado receber, podendo causar o estouro de \emph{buffer}.
 
 Quadro resumo:
 
@@ -314,7 +321,7 @@ Quadro resumo:
 \subsubsection{Confidencialidade Ameaçada}
 %-------------------------------------------------------------------------------
 
-Este cenário busca identificar situações no código fonte onde informações podem ser expostas sem a devida permissão, impactando diretamente em um dos principais aspectos quando falamos de segurança de software, que é a confidencialidade dos dados.
+Este cenário busca identificar situações no código fonte onde informações podem ser expostas sem a devida permissão, impactando diretamente em um dos principais aspectos quando falamos de segurança de software: a confidencialidade dos dados.
 
 Um código seguro não pode dar brecha para que o atacante ou qualquer outro usuário possa ver informações que não eram para serem vistas. Alguns erros na codificação, como por exemplo, acessar uma posição de uma \emph{array} fora de seu intervalo, podem acabar mostrando informações de outras regiões de memória, podendo ser essa inforamção crítica ou não para a segurança do sistema.
 

@@ -2,7 +2,7 @@
 \label{cap-metrics-esw} 
 
 
-Tanto a existência de um bom \emph{design} quanto a de testes automatizados que exercitem as funcionalidades são características desejáveis em projetos de software. Boa parte das técnicas modernas da Engenharia de Software são voltadas para desenvolvimento com design que proporcione simplicidade, manutenibilidade e testabilidade. Mesmo que a maior parte dessas técnicas tenham sido disseminadas a partir do advento dos Métodos Ágeis e do Software Livre, cujo foco central está em atividades relacionadas ao código-fonte, elas são aplicáveis independentemente da metodologia de desenvolvimento utilizada \cite{meirelles2013metrics}. A valorização por softwares que atendam esses parâmetros de qualidade deve-se ao fato de sempre que o Engenheiro de Software está escrevendo novas linhas de código, um tempo significativo é gasto por ele na leitura e entendimento do código existente, muitas vezes desenvolvidos por outros Engenheiros. Martin (\citeyear{martin2008}) destaca que o código-fonte deve ser escrito para ser entendido principalmente por pessoas, e não pela máquina.
+Tanto a existência de um bom \emph{design} quanto a de testes automatizados que exercitem as funcionalidades são características desejáveis em projetos de software. Boa parte das técnicas modernas da Engenharia de Software são voltadas para desenvolvimento com \emph{design} que proporcione simplicidade, manutenibilidade e testabilidade. Mesmo que a maior parte dessas técnicas tenham sido disseminadas a partir do advento dos Métodos Ágeis e do Software Livre, cujo foco central está em atividades relacionadas ao código-fonte, elas são aplicáveis independentemente da metodologia de desenvolvimento utilizada \cite{meirelles2013metrics}. A valorização por softwares que atendam esses parâmetros de qualidade deve-se ao fato de sempre que o Engenheiro de Software está escrevendo novas linhas de código, um tempo significativo é gasto por ele na leitura e entendimento do código existente, muitas vezes desenvolvidos por outros Engenheiros. Martin (\citeyear{martin2008}) destaca que o código-fonte deve ser escrito para ser entendido principalmente por pessoas, e não pela máquina.
 
 %
 
@@ -95,7 +95,7 @@ As últimas métricas que serão apresentadas nesta seção buscam medir caracte
 
 Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na Seção \ref{sec-metrics-security}, o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer Overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer Overflow}, dessa forma, cada maneira diferente compõe uma vulnerabilidade específica. As ferramentas de análise estática buscam  encontrar essas vulnerabilidades específicas e quantificar o seu número de ocorrências. 
 
-O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha (\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
+O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades, como bem explanado em \cite{chess2007}, é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha (\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
 
 %
 
@@ -126,36 +126,36 @@ Esta vulnerabilidade acontece quando uma função retorna um endereço para uma 
 
 \item \textbf{PITFC (\emph{Potential insecure temporary file in call "mktemp" } - Arquivo temporário pontencialmente inseguro pelo uso da chamada "mktemp")}:
 %
-Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vuneráveis a ataques.Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
+Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vulneráveis a ataques. Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
 
-\item \textbf{FGBO (\emph{Potential buffer overflow in call to "gets" } - Possível \emph{Buffer Overflow} ao chamar a função "gets")}: Esta vulnerabilidade está relacionada ao uso da função "gets" da linguagem C que copia toda informação passada pela entrada do programa para um buffer sem checar se o tamanho da entrada é equivalente ao tamanho do buffer. Dessa forma, caso a entrada seja maior que o buffer, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
+\item \textbf{FGBO (\emph{Potential buffer overflow in call to "gets" } - Possível \emph{Buffer Overflow} ao chamar a função "gets")}: Esta vulnerabilidade está relacionada ao uso da função "gets" da linguagem C que copia toda informação passada pela entrada do programa para um \emph{buffer} sem checar se o tamanho da entrada é equivalente ao tamanho do \emph{buffer}. Dessa forma, caso a entrada seja maior que o \emph{buffer}, haverá a sobrescrita da memória adjacente. Isso pode resultar em comportamento errado do programa, incluindo erros de acesso à memória, resultados incorretos, parada total do sistema, ou uma brecha num sistema de segurança.
 
 
 \item \textbf{ASOM (\emph{Allocator sizeof operand mismatch } - Operador de alocação de \emph{sizeof} não correspondente)}:
 %
-Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vulnerabilidade ocorre quando temos um ponteiro para int e no momento de alocarmos a memória passarmos no sizeof um tipo char. Esse tipo de situação pode gerar um buffer overflow no momento da atribuição da variável.
+Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de uma alocação de memória. Por exemplo, a vulnerabilidade ocorre quando temos um ponteiro para \emph{int} e no momento de alocarmos a memória passarmos no \emph{sizeof} um tipo \emph{char}. Esse tipo de situação pode gerar um \emph{buffer overflow} no momento da atribuição da variável.
 
 \item \textbf{DUPV (\emph{Dereference of undefined pointer value } - Acessar o valor de um ponteiro não definido)}:
 %
-Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo pois não foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
+Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo, uma vez que não foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
 
 \item \textbf{DBZ (\emph{Divisions by zero } - Divisão por zero)}:
 %
-Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de excessoes.
+Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de exceções.
 
 \item \textbf{MLK (\emph{Memory leak } - Estouro de memória)}:
 %
 O software não gerencia o uso de memória, provocando o consumo exessivo desta, podendo haver a falta de memória para a aplicação. Sem memória, a aplicação consegue funcionar corretamente, podendo gerar resultados inesperados como também a falha da aplicação.
 
-\item \textbf{OBAA (\emph{Out-of-bound array access } - Acesso de posição de um \emph{array} fora do range)}:
+\item \textbf{OBAA (\emph{Out-of-bound array access } - Acesso de posição de um \emph{array} fora do \emph{range})}:
 %
-Esta vulnerabilidade acontece quando a aplicação tenta acessar um indice de array que está fora de seu range. O acesso de uma posição fora do array pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter condigo a ser executado ou até outras informações, impactando na confidencialidade de dados.
+Esta vulnerabilidade acontece quando a aplicação tenta acessar um índice de \emph{array} que está fora de seu \emph{range}. O acesso de uma posição fora do \emph{array} pode causar falha na execução (por exemplo, na linguagem C, falha de segmentação) como também a execução de código, pois a região de memória acessada pode conter código a ser executado ou até outras informações, impactando na confidencialidade de dados.
 
 \item \textbf{DF (\emph{Double free } - Liberar memória duas vezes)}:
 %
 Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
 
-\item \textbf{AUV (\emph{Assigned value is garbage or undefined} - Valor atribuído é lixo ou indefinido}:
+\item \textbf{AUV (\emph{Assigned value is garbage or undefined} - Valor atribuído é lixo ou indefinido}):
 %
 Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido existe. Esta vulnerabilidade ocorre quando uma variável recebe um valor cujo a origem vem de entrada do usuário no sistema. Caso não seja feito a verificação desse parâmetro de entrada, a variável poderá receber lixo ou um valor indefinido e sua posterior utilização pode causar desde quebra da aplicação como também resultados inesperados de comportamento de software.
 
@@ -203,9 +203,6 @@ Para que as práticas destacadas na Figura~\ref{fig:agile-design-metrics} possam
 
 %
 
-Tendo em vista os benefícios de se utilizar métricas no processo de desenvolvimento de software, buscamos com este trabalho estudar como métricas podem ser utilizadas em projetos de software. Além disso, queremos estudar mecanismos e ferramentas que diminuam as dificuldades inerentes à medição de software, suportando, por exemplo, o trabalho de Engenheiro de Software para tomada de decisões sobre a segurança do código. Neste sentido, no próximo capítulo exploramos dois ambientes diferentes para monitoramento de código-fonte como soluções que podem ser utilzadas por equipes de software.
-
-%
 
 Em busca de mecanismos que facilitem a adoção da medição como prática constante no desenvolvimento de software, no Capítulo \ref{cap-cenarios} é proposto a técnica Cenários de Decisões para utilização de métricas de código-fonte que visa abstrair as métricas para cenários que caracterizem o estado de um código, suportando a tomada de decisões. Ainda neste capítulo fazemos algumas propostas de cenários que utilizam tanto métricas de \emph{design} quanto de segurança para caracterizar estados indesejáveis para a segurança do código.
 

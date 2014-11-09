@@ -1,63 +1,134 @@
-\chapter{Arquitetura e Características do Mezuro}
+\chapter{Mezuro: Uma plataforma de Monitoramento de Código-Fonte}
 \label{Att:mezuro}
 
+No Capítulo \ref{cap-metrics} discutimos as principais questões de \emph{design}, segurança e métricas no contexto da Engenharia de Software. As métricas estáticas de código-fonte são recursos que podem ser utilizados para a compreensão da qualidade e identificação de vulnerabilidades do código-fonte. Entretanto, como discutido no mesmo capítulo, avaliar a qualidade de um software envolve um processo dispendioso e não trivial. No Capítulo \ref{cap-metrics-esw}, apresentamos um conjunto de métricas estáticas cujo propósito é medir alguns atributos do software tais como complexidade, acoplamento e tamanho. 
 
-\begin{description}
-	\item[Sistemas de Fonte de Dados Operacionais - OSS]
-\end{description}
 %
 
-O Sistemas de Fonte de Dados Operacionais (OSS - \emph{Operational Source Systems}) são as fontes dos dados de negócio que irão compor o ambiente de DW.
+Entretanto, o esforço necessário para extrair as métricas estáticas manualmente é imensurável, dificultando ainda mais a adoção dessas métricas em projetos de software.
 %
-Pode ser de origem de várias aplicações que compõe o sistema corporativo de uma instituição, podendo ser unificada com uma única ou várias bases de dados.
+Portanto, faz-se necessário a utilização de ferramentas que auxiliem a utilização de métricas de código-fonte, automatizando a extração e visualização dessas métricas.
 %
-Não podem ser consideradas dentro do escopo do \emph{DWing}, pois  não se tem nenhum controle sobre o conteúdo ou sobre o formato de dados provenientes da fonte \cite{kimball2002}.
+Porém, existem poucas ferramentas disponíveis, e muitas delas nem sempre são adequadas para análise de determinados projetos de software ~\cite{meirelles2010mezuro}.
 %
-Essas bases de dados não precisam utilizar necessariamente da mesma tecnologia, podendo ser um banco de dados transacionais, arquivos de texto, planilhas, arquivos XML ou qualquer outra forma de se armazenar e representar informações de negócio.
+Isso também decorre devido a existência de várias ferramentas extratoras independentes, que seguem seus próprios padrões e oferecem um conjunto de métricas limitados que podem não se adequar para determinados contextos.
 
-\begin{description}
-\item[Área de Preparação dos Dados - DSA]
-\end{description}
 %
 
-A Área de Preparação dos Dados (DSA - \emph{Data Staging Area}) é o ambiente no qual é feita a extração, transformação e carga dos dados operacionais, processo comumente chamado de ETL (\emph{Extract, Transform, Load}).
-%
-Essa área de preparação, denominada por Kimball (\citeyear{kimball2002}), utiliza arquivos simples ou tabelas relacionais temporários, não acessíveis aos usuários, para armazenamento e manipulação das informações durante o processo de ETL.
-%
-Assim que os dados estiverem prontos é feito a carga na base de dados dimensional, base essa acessível ao usuário.
-%
-A etapa de extração dos dados consiste em ler e entender as fontes de dados e extrair apenas os dados necessários para o DW.
-%
-Os dados extraidos na camada OSS não são integrados, e, segundo Inmon (\citeyear{inmon2002}), esses dados, dessa forma, não podem ser utilizados para dar suporte a uma visão corporativa, que é uma das essências do ambiente de \emph{DWing}.
-%
-Dessa forma, uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}.
-%
-Ao final da transformação, as informações necessárias são selecionadas e incluídas na base de dados multidimensional, encontrada na área de apresentação que será tratada em seguida.
+Em virtude do que foi mencionado foi criado o Mezuro\footnote{\url{http://mezuro.org/}}, uma plataforma livre para monitoramento completo de código-fonte. O Mezuro busca auxiliar em vários problemas relacionados à utilização de métrica, visando ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licensiado como AGPLv3\footnote{\url{http://www.gnu.org/licenses/agpl-3.0.html}} \cite{manzo2014}. O Mezuro é uma plataforma concebida através do amadurecimento de diversas ferramentas, inicializada através do projeto Qualipso\footnote{Quality Platform for Open Source: \url{http://qualipso.icmc.usp.br/}}. Dentre estas ferramentas, destaca-se o Analizo\footnote{\url{http://analizo.org/}}, uma das ferramentas utilizadas pelo Mezuro para extração de métricas de código-fonte em C/C++ e Java.
 
-\begin{description}
-\item[Área de Apresentação - DPA]
-\end{description}
 %
 
-A Área de Apresentação dos dados (DPA - \emph{Data Presentation Area}) é onde os dados são organizados, armazenados e disponibilizados para consultas á usuários ou ferramentas de geração de relatórios ou análises. Esse ambiente pode ser materializado no DW em si \cite{kimball2002}. 
+A primeira versão do Mezuro foi criada a partir da plataforma web chamada Noosfero\footnote{\url{http://noosfero.org/}}. O Noosfero é uma plataforma de criação de redes sociais livre, disponível sob licença AGPL\footnote{Licença de software GNU Affero General Public License} V3, que facilita a criação de redes sociais personalizadas e geração de conteúdo colaborativo. O Participa BR \footnote{\url{https://www.participa.br/}}, o Stoa\footnote{\url{http://stoa.usp.br/}} e o Portal da FGA\footnote{\url{http://fga.unb.br/}} são exemplos de portais que utilizam o Noosfero. 
+
+%
+
+O Noosfero é construído em Ruby, implementando a arquitetura MVC através do \emph{framework} Rails. A arquitetura do Noosfero ainda permite a implementação de novas funcionalidades através da criação de \emph{plugins} que podem ser habilitados no ambiente instanciado. Assim, na primeira versão do Mezuro, foi implementado um \emph{plugin} que adicionava as funcionalidades específicas para o monitoramento de código-fonte e realizava a conexão com os outros componentes necessários (explicados a seguir na Seção \ref{sec-mezuro-design}).
+
+%
+
+Entretanto, o Mezuro tem sido evoluído como uma plataforma independente. Isto ocorreu devido à algumas dificuldades existentes inerentes ao acoplamento com o Noosfero, principalmente relacionados às versões das tecnologias ainda utilizadas pelo Noosfero. Além disso, atualmente o Mezuro já possui uma pequena comunidade de colaboradores o que favorece o desacoplamento do código do Mezuro, uma vez que os \emph{plugins} do Noosfero são mantidos junto com o código principal. Com isto, o Mezuro está sendo desenvolvido atualmente com as versões estáveis do Ruby 2\footnote{\url{https://www.ruby-lang.org/}} e Rails 4\footnote{\url{http://rubyonrails.org/}}. A Figura~\ref{mezuro} apresenta a tela principal da nova versão do Mezuro.
+
+%
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{mezuro-standalone}
+\caption{Tela principal do Mezuro. Disponível em \url{http://mezuro.org/}}
+\label{mezuro}
+\end{figure}
+
+%
+
+Listamos a seguir duas plataformas semelhantes ao Mezuro, ferramentas identificadas e detalhadas  através de outros trabalhos \cite{meirelles2010mezuro}\cite{vieira2013}\cite{manzo2014}:
+
+%
+
+\begin{itemize}
+\item \textbf{SonarQube}\footnote{\url{http://www.sonarqube.org/}} - Plataforma livre de gerenciamento de qualidade de código que classifica problemas encontrados e calcula métricas simples relacionados a testes e dívidas técnicas.
+\item \textbf{CodeClimate}\footnote{\url{https://codeclimate.com/}} - Ferramenta que procura identificar \emph{code smells} no software em análise e classificá-los a partir de notas que varia de \emph{A} a \emph{F}. Esta ferramenta fornece análise sobre códigos JavaScript e Ruby.
+\end{itemize}
+
+%
+
+Destacamos as principais características do Mezuro, que também serão discutidas durante a apresentação da arquitetura da ferramenta:
+
+%
+
+\begin{itemize}
+\item Coletar dados a partir de diversos extratores, possibilitando a escolha  rica de diversas métricas. Além disso, o Mezuro é extensível para a inserção de extratores diferentes.
+
+\item Criação de configurações que são um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Esta característica permite que especialistas definam os parâmetros e métricas adequadas para um determinado contexto, sendo que uma configuração também pode ser aplicado em outros projetos a depender da necessidade de quem utilizará a ferramenta.
+
+\item Criação de intervalos qualitativos associado a valores de métricas. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim.
+
+\item Criação de métricas mais complexas a partir da combinação de métricas nativas, flexibilizando e estendendo a utilização da ferramenta.
+
+\item Monitoramento de projetos a partir de repositórios ou arquivos compactados. As opções de repositórios possíveis incluem o GIT, Subversion e o Bazaar. Vale ressaltar que os resultados dos monitoramentos são públicos a acessíveis à comunidade.
+
+\item Monitoramento de projetos com periodicidade definido pelo usuário.
+
+\item Escolha de qual configuração um determinado projeto irá utilizar.
+\end{itemize}
+
+%
+
+\subsection{Arquitetura do Mezuro}
+\label{sec-mezuro-design}
+
+Como mencionado, o Mezuro está evoluindo para uma aplicação independente. Nesse sentido, a arquitetura da plataforma como um todo está sendo modificada, visando principalmente maior modularização em diversos serviços independentes. A Figura~\ref{fig:mezuro-current-design} apresenta a arquitetura atual da plataforma.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{MezuroAtual.eps}
+\caption{Arquitetura Atual do Mezuro. Extraído de \cite{manzo2014}}
+\label{fig:mezuro-current-design}
+\end{figure}
 
 
-Um dos principais propósitos de um DW é ter uma navegação intuitiva e de alta performance \cite{kimball2002}. A visualização das informações de um DW é resultado de agregações de dados, ou seja, diferentes formas de agrupamentos de dados que geram diferentes tipos de informações. Essas agregações são caracterizadas pelas consultas OLAP. Dessa forma, a modelagem relacional, normalmente utilizadas em bancos de dados transacionais, não dão suporte esses propósitos, pois a base de dados é normalizada e a agregação de grande número de dados torna-se custosa em termos de performance. O processo de normalização foi inicialmente proposto por Byce Codd  que consiste em esquematizar as relações de uma base de dados relacional, minimizando redundância de informações e anomalias de inserção, exclusão e alteração, no que diz respeito a manter a consistência de dados caso haja a duplicidade deste. Dessa forma, uma base de dados relacional normalizada oferece mais segurança em transações de acesso e alteração/inclusão/deleção de dados pois possui esquemas menores e consistentes \cite{elmasri2006}. O problema de esquemas menores é a performance, pois a realização consultas exige a navegação  entre várias tabelas, e se tratando de uma consulta que envolve grande quantidades de dados, como em um \emph{DWing}, a performance se torna um fator muito importante para a qualidade do ambiente.
+O Mezuro utiliza o WebService Kalibro Metrics~\footnote{\url{http://kalibro.org}} para fornecer a funcionalidade de análise e avaliação de métricas de código-fonte.
+%
+O Kalibro é um WebService SOAP\footnote{Simple Object Access Protocol}, baseado em mensagens XML\footnote{Linguagem de Marcação Extensível} cujos componentes correspondem Kalibro WebService.
+%
+O principal objetivo do Kalibro é se conectar com ferramentas extratoras de métricas, como o Analizo, executando-as para realizar a coleta de dados.
+%
+Outro módulo é representado pela elipse Kalibro Processor cujo objetivo é centralizar o processamento de métricas.
+%
+Por último, a comunicação entre todos esses módulos principais é intermediada pelo módulo correspondente à elipse Kalibro Gatekeeper, conforme apresentado
+na Figura~\ref{fig:mezuro-current-design}
 
-Kimball (\citeyear{kimball2002}) então propõe o uso da modelagem dimensional, que possui as mesmas informações que as bases normalizadas, porém em um formato diferente, atendendo a facilidade na navegação e na performance das consultas. Mais detalhamento sobre a modelagem dimensional será vista na Seção (\ref{sec-dimensional-modeling}).
+%
 
-\begin{description}
-\item[Ferramentas de Acesso de dados – Visualização de dados:]
-\end{description}
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{MezuroNovaArquitetura.eps}
+\caption{Arquitetura Futura do Mezuro. Extraído de \cite{manzo2014}}
+\label{fig:mezuro-future-design}
+\end{figure}
 
-As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de Apresentação. Elas podem variar desde simples ferramentas de consulta \emph{ad-hoc} até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
+Dentre os objetivos da evolução desta arquitetura, tem-se a reescrita do Kalibro e sua modularização em três serviços principais, que pode ser observada na Figura~\ref{fig:mezuro-future-design}.
+%
+O primeiro módulo já está em uso, sendo também represetado na Figura~\ref{fig:mezuro-current-design}, é o módulo Kalibro Processor.
+%
+Assim, a contemplação desta nova arquitetura consiste na reescrita de serviços do Kalibro, de Java para Ruby, para concepção de dois novos módulos: Kalibro Project e Kalibro Configuration, responsáveis pelo processamento de projetos e configuração respectivamente.
+%
+Essa nova proposta apoia a modularização e o baixo acoplamento, utilizando-se principalmente o conceito de orquestração de serviços que podem ser encontrados em Arquiteturas Orientadas à Serviço - SOA \cite{thomaserl2007}. Esta nova arquitetura proporcionará que novos extratores possam ser mais facilmente acoplados à plataforma, além de proporcionar que as funcionalidades e processamento dos projetos e configurações evoluam independentemente.
 
-Ferramentas de visualização são muito importantes em um ambiente de \emph{DWing}, pois são essas ferramentas que irão facilitar o acesso a informação coletada, que é o primeiro requisito de um abiente de \emph{DWing} listado por Kimball (\citeyear{kimball2002}). Um dos modos de se apresentar os dados é através de relatórios, que são vistas agregadas da informação que sejam relevantes para a tomada de decisão. Muitas ferramentas permitem a realização de consultas OLAP \emph{ad-hoc} para a criação de relatórios customizados ou até mesmo a definição de relatórios definidos que são utilizados com frequência. A partir desses relatórios podem ser extraídos gráficos, sendo este mais um meio de facilitar a visualização da informação. 
-%TODO: Achei as explicações acima muito longas. Tentar ser mais objetivo, uma vez que agora estamos usando tais descrições para explicar a figura citada acima.
-%Carlos: Acredito que tais descrições são necessárias pois revelam algumas caracteríticas importantes do DW que são tratadas em cada componente, como a preocupação com a performance, redundancia entre outros aspectos. Fiz uma descrição breve da figura e fiz um link para os detalhes, ok?
+%
 
-Outra forma de visualização de dados é dada através  de \emph{dashboards}, que são muito úteis para o monitoramento de indicadores por ser basicamente uma tela com informações resumidas com diferentes elementos de exploração como tabelas, graficos, manometros, entre outros.
-%TODO: acho que não precisa de figura e explicação sobre dashboard (pelo menos da forma como está)
-%TODO: ver se concorda em retirarmos/comentarmos
-%Carlos: eu acho que seria interessante falar sobre dashboards pois é um mecanismos de visualização que pode ser muito útil para o monitoramento
 
+Os objetivos tecnológicos deste trabalho estão diretamente relacionados com os objetivos de evolução arquitetural da comunidade do Mezuro. Portanto, já iniciamos a contribuição com esta evolução, buscando viabilizar as melhorias necessárias para que o Mezuro contemple os objetivos desde trabalho. Dentre as futuras contribuições, pretendemos trabalhar principalmente sobre as funcionalidades de configuração de métricas do Mezuro, pois desejamos melhorar os mecanismos de configuração e visualização de métricas, viabilizando a utilização da estrutura de Cenários de Decisões que será apresentada no próximo Capítulo.
+
+%
+
+O Mezuro já possui as métricas de \emph{design} listadas no Capítulo \ref{cap-metrics-esw}. Atualmente, métricas de vulnerabilidades específicas tais quais as mencionadas no Capítulo \ref{cap-metrics-esw} já estão sendo coletadas pelo Analizo. Portanto, nossas contribuições também serão direcionadas para que estas métricas sejam tratadas e processadas na plataforma Mezuro. 
+
+%
+
+Com estas contribuições, o Mezuro será avaliado como proposta de plataforma de monitoramento de código-fonte para utilização de métricas na tomada de decisão de projetos de software.
+
+%
+%TODO: falta explicar melhor o Mezuro, especial a parte de configuração, relacionar com o Analizo e concluir o capítulo/seção em si, relacionando com a questão dos cenários e sinalizar alguns próximos passos.

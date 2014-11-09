@@ -36,6 +36,33 @@ Estes passos metodológicos devem ser reproduzidos para cada ferramenta utilizad
 \section{Criação dos Cenários do Mezuro}
 \label{mezuro-cenarios}
 
+O Mezuro é uma plataforma livre para monitoramento de código-fonte que busca auxiliar em vários problemas relacionados à utilização de métrica, visando ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licensiado como AGPLv3\footnote{\url{http://www.gnu.org/licenses/agpl-3.0.html}} \cite{manzo2014}. O Mezuro é uma plataforma concebida através do amadurecimento de diversas ferramentas, inicializada através do projeto Qualipso\footnote{Quality Platform for Open Source: \url{http://qualipso.icmc.usp.br/}}. Dentre estas ferramentas, destaca-se o Analizo\footnote{\url{http://analizo.org/}}, uma das ferramentas utilizadas pelo Mezuro para extração de métricas de código-fonte em C/C++ e Java.
+
+A arquitetura do Mezuro atual é composta por vários serviços. Essa arquitetura está evoluindo para uma arquitetura de composição de cinco serviços que se resumem em:
+
+\begin{itemize}
+\item \textbf{Prezento}: Camada de apresentação da plataforma desenvolvida em Ruby on Rails.
+
+\item \textbf{Kalibro Gatekeeper}: Serviço que faz a intermediação e orquestração das outras camadas com o Prezento.
+
+\item \textbf{Kalibro Processor}: Serviço que centraliza o processamento de métricas de projetos.
+
+\item \textbf{Kalibro Project}: Serviço que realiza todo processamento relacionado aos projetos analisados.
+
+\item \textbf{Kalibro Configuration}: Serviço responsável pelo processamento de configurações.
+\end{itemize}
+
+Uma explicação mais detalhada desta arquitetura e de cada serviço pode ser obtida no Apêndice \ref{Att:mezuro}.
+
+Três destes serviços agregam conceitos fundamentais dentro da plataforma, que também serão muito importantes para a representação de cenários dentro da plataforma. 
+
+O Kalibro Project contempla o conceito de projeto, onde são mantidos os códigos e informações de projetos que serão analisados. Atualmente, o Mezuro realiza o download de projetos que estão em repositórios GIT ou SVN. Além disso, o Mezuro pode monitorar projetos em C, C++ e Java uma vez que utiliza o Analizo como seu principal extrator de métricas. Entretanto, com a evolução da plataforma, pretende-se acoplar novos extratores na ferramenta para outras linguagens de programação.
+
+O Kalibro Configuration contempla o conceito de configuração que é um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Uma configuração consiste, portanto, na composição de métricas cujos valores de referência são flexíveis e podem ser determinados separadamente para cada configuração criada. Associado ao conceito de configuração, está a criação de intervalos qualitativos associado a valores de métricas. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim. Assim, tem-se a flexibilidade de ter parâmetros que variam de acordo com a linguagem, natureza do software, dentre outras coisas, apenas pela criação de diferentes configurações.
+
+O Kalibro Processor contempla o módulo de extração e processamento de métricas de código-fonte. Para que esse processamento seja realizado, o Kalibro Processor utiliza uma ou mais ferramentas de extração de métricas, como mencionado anteriormente. Assim, obtem-se a partir da análise estática do código-fonte um conjunto de métricas nativas que podem ser compostas para formular métricas mais complexas e de maior valor interpretativo. Dentro do Mezuro, esta abordagem é realizada através da criação de métricas compostas as quais serão muito importantes para a definição de Cenários de Decisões.
+
+
 explicar primeiro como o Mezuro foi utilizado para suportar os Cenários, o que foi adaptado e melhorado para melhor suportar cenários, etc.
 
 Depois deve-se mostrar a estrutura de cada cenário dentro da ferramenta (scripts e configuração)

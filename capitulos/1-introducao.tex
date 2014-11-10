@@ -76,7 +76,7 @@ Como utilizar métricas de código-fonte para apoiar práticas de melhoria cont�
 
 \section{Objetivos}
 
-O objetivo deste trabalho consite na proposta e implementação da técnica de construção de Cenários de Decisões como técnica de monitoramento do código-fonte que consiste na caracterização de determinado componente do sistema baseado na sua observação através de métricas, para orientar a aplicação de práticas e tomada de decisões sobre o software. Portanto, serão propostos algumas cenários através do uso desta técnica sobre características de segurança de software, a partir do estudo teórico e estatísticos sobre métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software. Além disso, como estudos de casos, será demonstrado os passos de reprodução de Cenários de Decisão no Mezuro e em um ambiente DWing.
+O objetivo deste trabalho consite na proposta e implementação da técnica de construção de Cenários de Decisões como técnica de monitoramento do código-fonte que consiste na caracterização de determinado componente do sistema baseado na sua observação através de métricas, para orientar a aplicação de práticas e tomada de decisões sobre o software. Portanto, serão propostos algumas cenários através do uso desta técnica sobre características de segurança de software, a partir do estudo teórico sobre métricas de monitoramento de código-fonte buscando relacionar características de bom \emph{design}, como Código Limpo e Bad Smells no contexto de vunerabilidades de software. Além disso, como estudos de casos, será demonstrado os passos de reprodução de Cenários de Decisão no Mezuro e em um ambiente DWing.
 
 \section{Contribuições}
 %
@@ -90,12 +90,12 @@ O objetivo deste trabalho consite na proposta e implementação da técnica de c
 					\item Evoluir a configuração de métricas do Mezuro
 					\item Evoluir mecanismos de visualização de software do Mezuro
 				\end{itemize}
-			\item \textbf{CT2} - Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software.
+			\item \textbf{CT2} - Criar ambiente de Data Warehousing para monitoramento dos cenários de decisão no contexto de vulnerabilidade de software:
 	        	\begin{itemize}
-	        		\item Implementar extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática na plataforma de \emph{Bussines Inteligence} (BI) Pentaho.
 	        		\item Criar modelo dimensional que, diferente de um modelo relacional utilizado para modelagem de banco de dados, permitirá melhor performance para processamento analítico dos dados.
-	        		\item Gerar Cubo de dados, que consiste em agrupar informações em formato de cubo, relacionando arestas e fornecendo diferentes opções de visualização e manipulação da informação.
-					\item Configurar mecanismos de visualização do cubo de dados na plataforma de BI Pentaho.
+	        		\item Implementar mecanismos de extração, transformação e carregamento da base de dados a partir dos resultados das ferramentas de análise estática.
+	        		\item Gerar Cubo de dados, onde serão definidas as agregações que poderão ser feitas para a manipulação dos dados do \emph{Data Warehouse}.
+					\item Configurar mecanismos de visualização do cubo e geraçãp de relatórios.
 	        	\end{itemize}
 		\end{itemize}
 \begin{description}

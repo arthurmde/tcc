@@ -70,6 +70,76 @@ Depois deve-se mostrar a estrutura de cada cenário dentro da ferramenta (script
 \section{Criação dos Cenários do DWing}
 \label{dw-cenarios}
 
+Como o nome sugere, \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. 
+%
+O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)
+%
+\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferencendo suporte a gestão de negócios}. 
+%
+
+Neste trabalho procuramos desenvolver mecanismos que nos permitam monitorar e analisar o código fonte através de métricas de forma automatizada e que nos auxilie na tomada de decisão de refatorar ou não refatorar determinadas partes do código. 
+%
+Nesse sentido, foram encontrados alguns trabalhos na literatura que utilizaram o DW para monitorar métricas de processos e produtos de software \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011}. Dentre estes, o que se destaca é o trabalho de  \cite{Silveira2010} que propõe um processo automatizado de extração e carga em um repositório central de métricas de qualidade de software. O autor também oferece suporte a monitoração dos projetos utilizando a técnica EVA e a análise da qualidade interna do software para o auxilio a tomada de decisões sobre os projetos analisados. O trabalho de Baufaker propõe a utilização de um ambiente de DWing para o monitoramento de métricas e cenários
+
+% 
+O fato de o DW oferecer um alto poder de análise e poder tratar uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. Entretanto, temos a hipótese de que o DW seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão validadas com a real comparação entre os dois ambientes implementados.
+
+O conjunto de ferramentas de manipulação de dados, desde sua extração até a visualização para o apoio a consultas e tomada de decisição é denominado de \emph{Data Warehousing} (DWing). Portanto,  \emph{DWing} não são as tecnologias em si envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de \emph{DWing} são:
+
+
+\begin{itemize}
+\item SGBDS – Gerenciadores de bases de dados
+\item Sistemas de conversão e transformação de dados (ferramentas de ETL)
+\item Tecnologias cliente e servidor para dar acesso aos dados a múltiplos clientes
+\item Ferramentas de análise e geração de relatórios.
+\end{itemize}
+
+
+Kimball (\citeyear{kimball2002}) define os componentes básicos de um ambiente de \emph{DWing} conforme a Figura \ref{componentesdw}.
+
+ \begin{figure}[!htb]
+ 	\centering
+ 		\includegraphics[scale=0.5]{figuras/componentesDW}
+ 		\caption{Componentes de um \emph{DWing}. Adaptação de \cite{kimball2002}}.
+ 		\label{componentesdw}
+ \end{figure}
+
+
+%TODO: ver se concorda com o fato de não termos subseções aqui
+% a figura acima estava sem explicação/interpretação "explicita"
+ A extração dos dados que irão compor o DW é feita de fonte de dados de sistemas, podendo ser de um ou vários sistemas relacionados. Esses dados são tratados na DSA, onde podem ser combinados, limpados ou transformados, tornado-os mais consistentes para que possam então ser amazenados na DPA, que seriam o DW ou \emph{Data Mart's}
+ %
+ \footnote{\emph{Data Mart} é um subconjunto de dados de um DW. Foca em uma ou mais áreas específicas \cite{kimball2002}}. 
+ %
+ As ferramentas de acesso são as responsáveis pela análise dos dados, podendo realizar consultas, gerar relatórios entre outros mecanismos de visualização.
+
+Dado cada componente que compõe um ambiente de DWing, a seguir iremos detalhar algumas características de cada um deles já aplicando a criação do ambiente de DWing construido neste trabalho.
+
+\subsection{Sistemas de fonte de Dados}
+
+Os Sistemas de Fonte de Dados são os sistemas que irão fornecer os dados para o ambiente de DWing. No contexto dessa monografia, queremos colher métricas de software para fazer a análise e identificar a existência dos cenários definidos. Dessa forma, o Analizo é considerado um sistema de fonte de dados, pois fornece um relatório CSV com os valores das métricas de um projeto. O Analizo fornece tanto as métricas de qualidade quanto as métricas de vulnerabilidades utilizadas nos cenários propostos. 
+
+Porém, foi identificado um problema com o Analizo de forma com que, para projetos maiores, ele não consegue gerar as métricas de vulnerabilidade. Esse problema será explicado mais adiante na seção (\ref{data-colect}). Mas uma característica de um ambiente de DWing é ser integrado. Isso quer dizer que um DWing é capaz de integrar dados de diversas fontes. Dessa forma, foi utilizado o clang-static-analyzer para coleta das métricas de vulnerabilidades usadas nos cenários propostos.
+
+
+\subsection{Area de Apresentação - DPA}
+
+Explicar modelo, maria DB, msqlworkbench
+
+
+\subsection{Área de Armazenamento - DSA}
+
+explicar uso do PDI,ETL, nao entrar em muitos detalhes do ETL, porém falar sobre os passos onde foram feitas as identificações dos cenários
+
+
+\subsection{Ferramentas de Acesso aos dados - DAT}
+
+Explicar o uso do BI server, como visualizar os cenários, mostrar a criação das hierarquias de agregação
+
+
+
+
+
 explicar primeiro como o DW foi utilizado para suportar os Cenários, o que foi adaptado e melhorado para melhor suportar cenários, etc.
 
 Depois deve-se mostrar a estrutura de cada cenário dentro da ferramenta (scripts e configuração)
@@ -112,6 +182,7 @@ Projeto a ser analisado somente através do DWing
 
 
 \section{Coleta de Dados}
+\label{data-colect}
 
 O Mezuro já trabalha em conjunto com o Analizo\footnote{\url{http://www.analizo.org/}}. O Analizo é uma ferramenta de análise estática de código e dá suporte a diversas métricas, inclusive as métricas discutidas no cápitulo 2, tanto de \emph{design} quanto de vulnerabilidade. Um ambiente de DW não está atrelado a apenas uma fonte de dados, podendo utilizar diversas fontes. Dessa forma, utilizamos o Analizo para coletar as métricas e gerar o insumo para a análise dos cenários em ambas as ferramentas.
 

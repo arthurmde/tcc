@@ -216,11 +216,11 @@ Quadro resumo:
 
 A seguir serão apresentados instâncias de cenários de decisão que buscam identificar vulnerabilidades específicas de código. Observamos que instâncias desse tipo de cenário são particulares para cada linguagem de programação ou contexo, pois cada tecnologia envolvida na criação de software possui suas particularidades e com elas, vulnerabilidades específicas. Nesse sentido, como dito no início desse capítulo, iremos abordar apenas vulnerabilidades presentes na linguagem C++, tornando os cenários a seguir aplicáveis apenas nesse contexto.
 
-Com o estudo sobre as \emph{CWE's}, percebemos que vulnerabilidades específicas já descrevem um cenário específico pois cada vulnerabilidade caracteriza um problema e um estado do código fonte. Porém, vimos com o estudo das taxonomias que algumas vulnerabilidades estão relacionadas à um problema mais geral. Dessa forma, os cenários propostos a seguir buscam agrupar algumas vulnerabilidades para descrever uma estado de código mais alto nível.
+Com o estudo sobre as \emph{CWE's}, percebemos que vulnerabilidades específicas já descrevem um cenário específico pois cada vulnerabilidade caracteriza um problema e um estado do código fonte. Porém, vimos com o estudo das taxonomias que algumas vulnerabilidades estão relacionadas à um problema mais geral. Dessa forma, os cenários propostos a seguir buscam agrupar algumas vulnerabilidades para descrever uma estado de código de maneira mais alto nível.
 
 Em relação aos valores de métricas destes cenários, como cada métrica conta quantas ocorrencias daquela vulnerabilidade ocorre no código, basta então apenas uma ocorrência para que o código se torne vulnerável. Porém, sabemos que até mesmo grandes software estão em produção e possuem suas vulnerabilidades, deixando a idéia de que possa existir uma quantidade "aceitável" de determinada vulnerabilidade. Mas isso cabe a um estudo a parte definir esse valor. Nesta monografia, iremos considerar que vulnerabilidades não podem existir, e devem ser combatidas a todo momento.
 
-Feitas essas observações, vamos aos cenários definidos.
+Feitas essas observações, definimos 4 cenários nessa seção.
 
 
 \subsubsection{Uso de variáveis não inicializadas}
@@ -228,29 +228,30 @@ Feitas essas observações, vamos aos cenários definidos.
 
 Este cenário busca identificar o uso de variáveis não inicializadas. Este cenário também é definido pela CWE-457 \footnote{http://cwe.mitre.org/data/definitions/457.html}.
 %
-A declaração de variáveis em algumas linguagens, como C, Perl e PHP, não inicializam essas variáveis com valores padrão. Com isso, variáveis que são criadas na pilha de memória podem conter em seus valores lixo ou até comandos, bem como valores de outras funções e variáveis que também utilizaram da mesma área de memória em outro instante.
+A declaração de variáveis em algumas linguagens, como C, Perl e PHP, não as pŕe-inicializam com valores padrão. Com isso, variáveis que são criadas na pilha de memória podem conter em seus valores lixo ou até comandos, bem como valores de outras funções e variáveis que também utilizaram da mesma área de memória em outro momento de execução da aplicação.
 %
 Essa situação é perigosa, pois tanto a aplicação pode apresentar resultados inesperados como também um atacante pode visualizar informações contidas nessa variável que ele não estaria autorizado a ver. 
 
 Muitas vezes podem ocorrer de existir uma estrutura de controle de fluxo de execução de código (como \emph{if else} e \emph{switch case}) que definem a situação em que a variável irá ser inicializada e, ao sair dessa estrutura de controle de fluxo, a variável é finalmente utilizada. Nessa situação, pode ocorrer da aplicação não passar pelo fluxo que inicializa a variável. Dessa forma, ao sair do fluxo, o programa irá usar a variável que não foi inicializada.
 
-Em termos de métricas de código-fonte, este cenário busca medir a quantidade de variáveis não inicializadas. A métrica UAV (\emph{Uninitialized Argument Value}) busca medir argumentos passado como parâmetros de chamada de funções que não foram inicializados. A métrica ROGU (\emph{Result of operation is garbage or undefined}) busca verificar situações onde usamos variáveis não inicializadas em operações lógicas. A métrica AUV (\emph{Assinged Value is garbage or undefined}) busca verificar situações que uma variável recebe o valor de outra variável que não foi inicializada. Essas três métricas podem ser utilizadas em conjunto, e um alto valor da ocorrências delas pode indicar a existência desse cenário.
+Em termos de métricas de código-fonte, este cenário busca medir ocorrências do uso de variáveis não inicializadas. A métrica UAV (\emph{Uninitialized Argument Value}) busca medir argumentos passado como parâmetros de chamada de funções que não foram inicializados. A métrica ROGU (\emph{Result of operation is garbage or undefined}) busca verificar situações onde usamos variáveis não inicializadas em operações lógicas. A métrica AUV (\emph{Assinged Value is garbage or undefined}) busca verificar situações que uma variável recebe o valor de outra variável que pode não ter sido inicializada. Essas três métricas podem ser utilizadas em conjunto, e a ocorrência de qualquer uma delas podem indicar este cenário no cógido fonte.
 
 Quadro resumo:
 
 \begin{itemize}
-\item \textbf{Nome}: Uso de Variáveis não inicializadas
+\item \textbf{Nome}: Uso de Variáveis não Inicializadas
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}), ROGU (\emph{Result of operation is garbage or undefined}), AUV (\emph{Assinged Value is garbage or undefined});
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informação não autorizado.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: AUV + UAV + ROGU >= 1
 	\begin{itemize}
-	\item \textbf{Composição AUV + UAV + ROGU} - Este cenário ocorre quando o valor da soma dessas métricas está acima do aceitável.
+	\item Este cenário ocorre quando qualquer uma dessas métricas é maior ou igual a um, caracterizando a ocorrência de pelo menos uma vulnerabilidade relacionada ao conceito do cenário.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
-	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, \emph{Mediate completely}, inicializando variáveis no momento em que são instanciadas.
+	\item \textbf{Princípios aplicáveis} - \emph{Fail Securery} criando verificações para que não haja erros nem quebra da aplicação por utilizar uma variável não inicializada .
+	\item \textbf{Refatorações}: Criar mecanismos para garantir que a variável será inicializada antes de ser usada.
 	\end{itemize}
 \end{itemize}
 
@@ -259,7 +260,7 @@ Quadro resumo:
 %-------------------------------------------------------------------------------
 Este cenário busca identificar possíveis locais no código fonte em que é feito o mau uso de ponteiros, e que consequentimente podem gerar falhas na aplicação. 
 
-Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{"segmentation fault"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar.
+Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{"segmentation fault"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar. Além disso, existem diferentes situações em que o desenvolvedor pode estar gerando uma falha por mau uso de ponteiros.
 
 Em termos de métricas de código-fonte, este cenário é composto pelas métricas:
 \begin{itemize}
@@ -280,13 +281,16 @@ Quadro resumo:
 \item \textbf{Métricas Envolvidas}: DNP (\emph{Dereference of null pointer}); DF (\emph{Double free}); AUF (\emph{Use After free}); DUPV (\emph{Dereference of undefined pointer value}); BD (\emph{Bad deallocator});
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de ponteiros de maneira não segura, que podem gerar falha na aplicação.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: NP + DF + AUF + DUPV + BD >=1
 	\begin{itemize}
-	\item \textbf{Composição DNP + DF + AUF + DUPV + BD} - Este cenário ocorre quando o valor da soma dessas métricas está acima do valor aceitável.
+	\item Este cenário ocorre quando há a ocorrência de pelo menos uma dessas vulnerabilidade.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
-	\item \textbf{Princípios aplicáveis} - Redução da superfície de ataque, inicializando variáveis no momento em que são instanciadas.
+	\item \textbf{Refatorações}: Para cada métrica, deve se tomar uma ação específica para resolve-la. Então, caso ocorra este cenário, devemos observar qual das vulnerabilidades ocorreu trabalhar para reduzir o valor dessa métrica. Por exemplo, se a métrica encontrada for a DNP, sabemos que existe um ponteiro nulo que está sendo desreferenciado, então deve-se tomar providências, de acordo com cada lógica de programa para que isso não aconteça.
+		\begin{itemize}
+			\item DNP
+		\end{itemize}
 	\end{itemize}
 \end{itemize}
 
@@ -296,7 +300,7 @@ Quadro resumo:
 
 Este cenário busca no código fonte situações que podem gerar a vulnerabilidade de \emph{Buffer Overflow}. Como já mencionado na sessão \ref{sec-metrics-security}, o \emph{Buffer Overflow} é um caso comum de violação da segurança a memória, e ocorre normalmente quando escrevemos dados cujo tamanho  ultrapasse o tamanho do \emph{buffer} definido para ele. Essa situação pode gerar  mau funcionamento do sistema, pois a informação que estourou o \emph{buffer} pode corromper outras informações ou processos que tiveram sua região de memória invadida; como também pode ser usado para injetar códigos malicioso e alterar o fluxo de execução da aplicação.
 
-Em termos de métricas de código fonte, este cenário é composto pelas métricas FGBO (\emph{Potential buffer overflow in call to "gets"}) e pela métrica ASOM (\emph{Allocator sizeof operand mismatch}). Ambas métricas identificam vulnerabilidades que podem gerar \emph{buffer overflow}. A métrica FGBO identifica a utilização da função \emph{"gets"} na linguagem C/C++. Essa função não garante garante que o tamanho da variável de entrada será do tamanho da variável a ser atribuída, se tornando um risco a ser explorado pelos atacantes. A métrica ASOM identifica situações no código em que é passado o operador inadequando no momento que se aloca memória para uma variável. Isso acontece, por exemplo na linguage C, quando declaramos um ponteiro do tipo inteiro e no momento do alocação de memória é passado um tamanho refente a uma variável do tipo \emph{char}. Logo, o espaço alocado não corresponde ao tamanho do dado que é esperado receber, podendo causar o estouro de \emph{buffer}.
+Em termos de métricas de código fonte, este cenário é composto pelas métricas FGBO (\emph{Potential buffer overflow in call to "gets"}) e pela métrica ASOM (\emph{Allocator sizeof operand mismatch}). A métrica FGBO identifica a utilização da função \emph{"gets"} na linguagem C/C++. Essa função não garante garante que o tamanho da variável de entrada será do tamanho da variável a ser atribuída, se tornando um risco a ser explorado pelos atacantes. A métrica ASOM identifica situações no código em que é passado o operador inadequando no momento que se aloca memória para uma variável. Isso acontece, por exemplo na linguagem C, quando declaramos um ponteiro do tipo inteiro e no momento do alocação de memória é passado um tamanho refente a uma variável do tipo \emph{char}. Logo, o espaço alocado não corresponde ao tamanho do dado que é esperado receber, podendo causar o estouro de \emph{buffer}.
 
 Quadro resumo:
 
@@ -306,10 +310,9 @@ Quadro resumo:
 \item \textbf{Métricas Envolvidas}: FGBO (\emph{Potential buffer overflow in call to \"gets\"}) e ASOM (\emph{Allocator sizeof operand mismatch})
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar situações no código fonte que podem gerar a vulnerabilidade de \emph{Buffer Overflow} (Estouro de memória);
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: ASOM + FGBO >=1
 	\begin{itemize}
-	\item \textbf{ASOM} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
-	\item \textbf{FGBO} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item Este cenários ocorre quando pelo menos uma dessas vulnerabilidades ocorrem no código.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
@@ -335,14 +338,14 @@ Quadro resumo:
 \item \textbf{Métricas Envolvidas}: OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) 
 \item \textbf{Nível}: Método;
 \item \textbf{Descrição}: Este cenário busca identificar trechos de código fonte que podem fornecer informações não autorizadas, impactando na confidencialidade do sistema. O acesso a informação não autorizada se dá pela leitura de regiões de memória que não estão no contexto da variável em questão.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Caracterização com Métricas}: OBAA + DUPV >=1
 	\begin{itemize}
-	\item \textbf{OBAA} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
-	\item \textbf{DUPV} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item Este cenário ocorre quando pelo menos uma dessas vulnerabilidades é encontrada.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
 	\item \textbf{Especificar e verificar o range o \emph{array} antes de acessa-lo} - identificar o trecho de código que métrica OBAA aponta e criar mecanismos que garantem o limite do índice de acesso do array, dessa forma iremos garantir que somente a região de memória pertencente ao \emph{array} é acessada e lida.  
+	\item \textbf{Garantir que o ponteiro não seja indefinido antes de desreferencia-lo} - Identificar locais em que ponteiros indefinidos são desreferenciados e garantir que eles tenham um valor no momento da leitura.  
 	 
 	\end{itemize}
 \end{itemize}
@@ -380,11 +383,10 @@ A métrica ROGU busca identificar operações em que o resultado pode ser lixo o
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) 
 \item \textbf{Nível}: Método;
-\item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variaveis indefinidas ou não inicializadas, compromentendo então a integridade da operação.
-\item \textbf{Caracterização com Métricas}: 
+\item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variáveis indefinidas ou não inicializadas, compromentendo então a integridade da operação.
+\item \textbf{Caracterização com Métricas}: DBZ + ROGU >=1
 	\begin{itemize}
-	\item \textbf{DBZ} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
-	\item \textbf{ROGU} - Este cenário ocorre quando o valor dessa métrica está acima do valor aceitável.
+	\item Este cenário ocorre quando é encontrado pelo menos uma ocorrência de uma dessas vulnerabilidades.
 	\end{itemize}
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}

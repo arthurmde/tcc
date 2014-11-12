@@ -126,7 +126,47 @@ Porém, foi identificado um problema com o Analizo de forma com que, para projet
 
 \subsection{Area de Apresentação - DPA}
 
-Explicar modelo, maria DB, msqlworkbench
+Antes de falar do DSA, vamos falar do DPA que é a camada que é definida pelo \emph{Data Warehouse} em si. É preciso ter uma base de dados onde irá ser armazenado todos os dados que é de interesse do negócio que se quer monitorar. Isso revela uma outra característica importante de um ambiente de DWing, que é ser orientado a assuntos, ou seja, fornecer apenas os dados que são interessantes para o negócio.
+
+A base de dados de um DW difere de uma base de dados que é utilizada normalmente em aplicações, que são derivadas muitas vezes de uma modelagem relacional. Essas bases são modeladas e construídas de maneira normalizada, buscando relacionar os dados de maneira que não haja redundância de informação e que facilite operações OLTP (operações transacionais) como inserção de dados, alteração e exclusão. Porém, um DW é construído baseado em outro tipo de modelagem, que é conhecida como Modelagem Dimensioal.
+
+Segundo Kimball \citeyear{kimball2002} a modelagem dimensional é a única técnica viável para banco de dados  que devem responder a consultas em um DW.
+
+A modelagem dimensional é mais simples, mais expressiva e mais fácil de compreender do que a modelagem relacional \cite{ballard1998}. A modelagem dimensional busca obter um modelo que representa um conjunto de medidas que são descritas por aspectos comuns de negócio.
+%
+Os conceitos básicos da modelagem dimensional são "fatos", "dimensões" e "medidas". Resumidamente, "fatos" são os dados que contém as medidas do contexto, ou seja são instâncias da realidades que podem ser mensuradas de maneira quantitativa \cite{kimball2002}. No contexto dessa monografia, estamos querendo identificar os cenários de decisões encontrados em um projeto, sendo assim, o "fato" que queremos é a quantidade cenários encontradas em um projeto, em uma determinada release, coletado em uma data específica, etc. Outro "fato" interessante é saber a qual o valor de algumas métricas que compõe os cenários daquele projeto em determinado período. 
+
+O conceito de "Dimensões" está relacionado aos dados que determinam alguns detalhes a respeito do fato colhido. Nesse sentido, o nome do projeto, a data em que foi coletado a quantidade de cenários, a release em que foi feito a análise, qual foi o cenário em si que foi contado, efim, todas essas informações caracterizam o "fato" de quantidade de cenários obtida em uma classe, por exemplo.  
+
+
+O conceito de "medidas" fica explícito no "fato", sendo o atributo numérico do fato, que no caso é a quantidade de cenários de decisões e o valor das métricas em cada classe. 
+
+
+A modelagem dimensional utiliza esses conceitos de "fatos" e "dimensões", de forma que existe uma tabela central do esquema que serve para armazenar os fatos e esta se relaciona com as demais tabelas dimensões, que fornecem as características dos fatos. Dessa forma, a tabela fato é composta apenas pela medida coletada e as chaves para as demais dimensões que possuem dados que caracterizam essa medida. Esse tipo de esquema gerado pela modelagem dimensional é chamado de esquema estrela (star-scheme). Mais detalhes sobre características de fatos e dimensões podem ser encontradas no apendice.
+
+
+
+As vantagens desse tipo de modelagem é que os dados não são normalizados, e isso traz performance para consultas OLAP, que são consultas de caráter analítico. As dimensões são desnormalizadas, gerando redundancia de dados. Por exemplo, o nome de um cenário é uma caracterísca do fato de quantidade de cenários encontrados. Como definido nessa monografia, temos cenários de dois tipos: que identificam características de qualidade e que identificam vulnerabilidades específicas. Logo, podemos perceber que a dimensão "Cenário" terá atributos como o nome do cenário e tipo do cenário. O atributo "tipo do cenário" ficará repedindo em diferentes tuplas da tabela dimensão, porém isso irá evitar a realização de joins que seriam feitos para combinar esses dados. Joins são operações muito custosas, e se tratando de consultas de caráter analítico, que processam uma grande quantidade de dados, essa característica não se torna interessante para um ambiente de DWing.
+
+
+Para partirmos para modelagem de nosso DW,  precisamos então ter definido as necessidades do negócio. No caso dessa monografia, queremos conseguir monitorar e visualizar quais os cenários estão ocorrendo no projeto e também monitorar o valor de suas métricas que estão envolvidas nos cenários, de modo que, ao identificar que um determinado cenário está acontecendo, eu possa também identificar as métricas que estão relacionadas com a ocorrência do cenário, ajudando assim a identificar quais ações devemos tomar para solucionar essa ocorrência. Dessa forma, temos dois fatos claros: (1) um fato para registrar a quantidade de cenários e (2) outro para registrar o valor das métricas.
+
+No trabalho de Rego \citeyear{rego2014} podemos ver que a modelagem proposta atende muitos aspectos da modelagem que se pretendia chegar nesta monografia. Baseado nisso, chegamos a essa modelagem mostrada na figura TAL para o DW deste trabalho.
+
+=================COLOCAR FIGURA dos esquemas ====================
+
+
+Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários foi modelada de maneira muito semelhante a do trabalho de Rego. Porém, foram adicionadas a dimensão tempo e de sprints. Uma das principais características de um ambiente de DWing é permitir a análise temporal dos dados, logo viu-se a necessidade da inclusão da dimensão tempo. Dessa forma, será permitido analisar os cenários ao longo do tempo. 
+
+Outra modificação importante foi feita na dimensão cenários. Para representar os cenários de decisões achamos importante colocar os atributos que definem a estrutura de um cenário proposta nesse trabalho. Dessa forma, incluimos os atributos tipo do cenário, métricas envolvidas, formula e uma descrição. Uma limitação do trabalho de Rego foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou os metadados para definir quais métricas estavam envolvidas a cada cenário. No nosso caso, levando em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo "metricas\_envolvidas" na dimensao d\_scenario, permitindo assim acesso ao usuário em saber quais métricas estão relacionadas à aquele cenário, permitindo que ele possa verificar os valores dessas métricas nos outros fatos de métrica, e também que um cenário possa ser definido independente do número de métricas envolvidas. O atributo formula por sua vez, indica a relação entre as métricas envolvidas para a caracterização do cenário.
+
+
+Rego também criou outro fato para armazenar os valores percentis das métricas do projeto. Para este trabalho, achamos que seria melhor o fato de métricas ser no nível de módulo. Dessa forma, permite ao usuário que possa identificar a causa de um cenário. Por exemplo, suponhamos que o usuário tenha identificado a ocorrencia do cenário "Ponto crítico de falha" em um determinado módulo. Posteriormente, o usuário pode verificar qual foi o valor das métricas ACC e NOC nesse módulo e tomar uma decisão de refatoração baseado nos valores dessas métricas. No trabalho de Rego, como os valores das métricas estariam disponíveis ao nível de projeto apenas, esse tipo de análise não poderia ser feito.
+
+Em nossa modelagem, preferimos semparar em dois fatos as métricas de qualidade e as métricas de segurança. A motivação foi que esses dois tipos de métricas possuem natureza diferente. Métricas de vulnerabilidade contam o número de ocorrência de uma determinada vulnerabilidade no código. Logo, podemos realizar agregações e descobrir a quantidade de vulnerabilidade por arquivo, por projeto, etc. Já com métricas de qualidade, não podemos fazer agregações. Não faz sentido, por exemplo, somar o valor de complexidade ciclomatica de todas os módulos para obter o valor do projeto. A média seria a único tipo de agregação que poderia ser feita, porém o uso da média é confrontado pela tese de Meireles, fazendo que nem esse tipo de agregação possa ser feito em cima das métricas de qualidade. E como discutido no capítulo de CENÀRIOS, nao temos um índice de qualidade para métricas de vulnerabilidade, fazendo que essa dimensão não seja utilizada na fato f\_security\_metrics. Por outro lado, é possível chegar ao nível de linha para caracterizar uma vulnerabilidade, incluindo então a dimensão d\_line\_number a esse fato.
+
+Dado o modelo, decidimos por usar o banco de dados MariaDB para a implementação deste.
+
 
 
 \subsection{Área de Armazenamento - DSA}

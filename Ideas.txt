@@ -66,3 +66,13 @@ Pergunta de pesquisa: Código mais complexo (métricas de produtos) são mais su
 
 =======================================================
 Carlos: Deixar mais claro qual é a regra para a ocorrencia do cenário. Por exemplo, quando o cenário possui duas métricas, devemos deixar claro quando ele ocorre, como por exemplo se é quando as duas métricas estão ruim, ou quando pelo menos uma está ruim, ou quando uma ruim e a outra boa...
+
+
+
+
+===============
+
+Mezuro TAGS
+
+prezento -> v0.0.1.beta4
+

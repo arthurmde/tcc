@@ -171,13 +171,32 @@ Dado o modelo, decidimos por usar o banco de dados MariaDB para a implementaçã
 
 \subsection{Área de Armazenamento - DSA}
 
-explicar uso do PDI,ETL, nao entrar em muitos detalhes do ETL, porém falar sobre os passos onde foram feitas as identificações dos cenários
+A área de armazenamento é responsável pela extração, transformação e carga dos dados provenientes das fontes de dados para o DW em si. Esse processo é comummente conhecido como ETL. Uma série de transformações podem ser feitas buscando a limpeza de dados (resolução de conflitos, tratamento de informações não existente, conversão de dados para um formato padronizado), combinação de dados de diversas fontes, remoção de dados duplicados e atribuições de chaves que serão utilizadas no DW \cite{kimball2002}.
 
+%
+No nosso ambiente de DWing, os dados são disponibilizados na forma de arquivos CSV. O relatória de métricas do clang é disponibilizado em formato html, porém, a fim de facilitar a extração desses dados, foi criado um parser para transformar esse relatório em um arquivo CSV.
+
+
+Para o processo de ETL foi utilizado uma ferramenta da suíte de ferramentas Pentaho, chamada de \emph{Pentaho Data Integration} (PDI). O PDI aceita diversos formatos de entrada de Dados, além de fazer integração com diversos banco de dados, incluindo o MariaDB, que foi utilizado para a implementação do DW.
+
+
+O PDI possui dois tipos de componentes, que são Job e Transformation. Os Jobs permitem executar tarefas como estabelecer um fluxo de controle, executar Transformations, mandar um email em caso de falha, entre outros. As Transformations são responsáveis por implementar os mecanismos de ETL, possibilitando a extração de arquivos de diversos formatos, manipulação dos dados de diversas formas e carga em bases de dados que compõe o DW.
+
+
+Neste trabalho não conseguimos criar Jobs para fornecer as facilidades e vantagens que ele oferece. Criamos apenas Transformations que são responsáveis pela extração e carga dos dados das dimensões do modelo e dos fatos. Dessa forma, as Transformations que tem a responsabilidade de identificar os cenários de decisões e carrega-los na tabela de fatos. A figura TAL mostra um trecho da Tranformation criada para identificação de cenários de decisões.
+
+
+COLCAR FIGURA DA TRANSFORMACAO DE CENARIOS
+
+
+Cada componente de uma transformation é denominado um step. De maneira resumida, os dados são extraidos de arquivos CSV. Esses dados contém as classes ( modulos) e o valor das métricas para cada classe. Para cada cenário, são selecionadas apenas as métricas de interesse para verificar se o cenário existe o não. Então, basicamente a definição de um cenário de decisão é feita em um step "formula". É lá onde colocamos a formula de identificação do cenário. Dessa forma, quando o cenário é identificado, este é atribuído a aquela classe. Os passso posteriores consistem em selecionar apenas as classes que ocorreram os cenários, buscar as chaves de seus atributos nas dimensões para então carregar uma tupla na tabela de fatos. Mais detalhes sobre o processo de ETL pode ser vista no apendice TAL.
+
+
+Os processos de ETL para carregar os fatos relacionado aos valores das métricas foram mais simples, pois foi basicamente armazenar o relatório fornecido pelas ferramentas. A única diferença é que foram selecionados apenas as métricas de interesse, que estão sendo utilizadas pelos cenários implementados.
 
 \subsection{Ferramentas de Acesso aos dados - DAT}
 
-Explicar o uso do BI server, como visualizar os cenários, mostrar a criação das hierarquias de agregação
-
+A DAT é composta pelas ferramentas 
 
 
 

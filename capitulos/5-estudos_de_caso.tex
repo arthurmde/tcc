@@ -196,14 +196,22 @@ Os processos de ETL para carregar os fatos relacionado aos valores das métricas
 
 \subsection{Ferramentas de Acesso aos dados - DAT}
 
-A DAT é composta pelas ferramentas 
+A DAT é composta pelas ferramentas que dão acesso aos dados e permitem fazer consultas OLAP. As Ferramentas de Acesso a Dados são ferramentas que tem a capacidade de realizar consulta aos dados da Área de Apresentação. Elas podem variar desde simples ferramentas de consulta \emph{ad-hoc} até ferramentas de análises complexas e de mineração de dados \cite{kimball2002}.
 
 
+Para visualizar os dados e realizar consultas OLAP e gerar relatórios, foi utilizado a ferramenta Pentaho Business Inteligence Server (conhecida como BI sever). Essa ferramenta ainda inclui a tecnologia de cliente e servidor, possibilitando o acesso de diversos usuários a um sistema de consultas e análise em rede. Ela conta com diversos plugins que realizam diversas operações, tais como, geração de gráficos, visualização de dados em tabelas, etc. O Plugin utilizado para a visualizãção dos dados e geração de consultas OLAP foi o Saiku Analytics.
+
+Porém, para visualizar os dados, é necessário primeiramente criar cubos de dados. Criar um Cubo de dados consiste em definir quais serão os fatos e dimensões envolvidos, como também definir as hierarquias e agregações que serão feitas em cima dos dados no momento das análise. A modelagem dimensional busca representar os dados no formato de cubos. Tomando como exemplo um cubo mágico, um cubo de dados teria os lados como as dimensões e cada célula do cubo seria um fato que estaria relacionado com um valor de cada uma dessas dimensões associadas.
 
 
-explicar primeiro como o DW foi utilizado para suportar os Cenários, o que foi adaptado e melhorado para melhor suportar cenários, etc.
+Para criação e publicação do cubos de dados, foi utilizado a ferramenta mondrian. Esta gera um arquivo XML com todas as configurações definidas do cubo, que é usado pelo BI server para gerar os relatórios e fazer as conultas OLAP à base de dados.
 
-Depois deve-se mostrar a estrutura de cada cenário dentro da ferramenta (scripts e configuração)
+
+\subsection{Resumo do Ambiente de DWing Criado}
+
+Na figura TAL, é apresentado como cada ferramenta ficou disposta a arquitetura de componentes de um ambiente de DWing apresentada no inicio dessa sessão.
+
+
 
 \section{Projetos analisados}
 \label{cap-projects}

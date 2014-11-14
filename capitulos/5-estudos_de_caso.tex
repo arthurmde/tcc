@@ -38,7 +38,7 @@ Estes passos metodológicos devem ser reproduzidos para cada ferramenta utilizad
 
 O Mezuro é uma plataforma livre para monitoramento de código-fonte que busca auxiliar em vários problemas relacionados à utilização de métrica, visando ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licensiado como AGPLv3\footnote{\url{http://www.gnu.org/licenses/agpl-3.0.html}} \cite{manzo2014}. O Mezuro é uma plataforma concebida através do amadurecimento de diversas ferramentas, inicializada através do projeto Qualipso\footnote{Quality Platform for Open Source: \url{http://qualipso.icmc.usp.br/}}. Dentre estas ferramentas, destaca-se o Analizo\footnote{\url{http://analizo.org/}}, uma das ferramentas utilizadas pelo Mezuro para extração de métricas de código-fonte em C/C++ e Java.
 
-A arquitetura do Mezuro atual é composta por vários serviços. Essa arquitetura está evoluindo para uma arquitetura de composição de três serviços principais que se resumem em:
+A arquitetura do Mezuro atual é composta por vários serviços. Essa arquitetura está evoluindo para uma arquitetura de composição de quatro serviços principais que se resumem em:
 
 \begin{itemize}
 \item \textbf{Prezento}: Camada de apresentação da plataforma, desenvolvida em Ruby on Rails.
@@ -77,22 +77,50 @@ A criação de um \emph{Reading Group} para abstrair a interpretação do cenár
 \end{figure}
 
 \begin{description}
-	\item[Criação de uma Configuração para uma categoria de Cenários]
+	\item[Criação de uma Configuração para uma Categoria de Cenários]
 \end{description}
 
-Nesta etapa deve-se criar uma configuração onde serão definidos todos os cenários que queremos avaliar em conjunto. Como exemplo, teríamos a opção de criar um único cenário que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração. 
+Nesta etapa deve-se criar uma configuração onde serão definidos todos os cenários que queremos avaliar em conjunto. No contexto do Mezuro, os cenários serão definidos a partir do recurso de criação de Métricas Compostas que será explicado adiante.
+
+Um configuração portanto vai conter um conjunto de métricas e cenários caracterizados a partir dessas métricas. Como alternativas de criação de configurações como agregadores de cenários, teríamos a opção de criar um único cenário que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro caso o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração. 
 
 Sugere-se que a segunda abordagem seja utilizada, pois flexibiliza mais o monitoramento a partir de cenários, uma vez que existem diversos projetos com diversos interesses diferentes. Além disso, vale ressaltar que uma configuração deve contemplar apenas uma linguagem de programação e domínio, uma vez que os parâmetros de avaliação dos Cenários irão variar de acordo com o contexto.
 
-A criação de uma configuração é bem simples, pois deve-se informar apenas o nome e a descrição da configuração\footnote{\url{http://mezuro.org/mezuro_configurations}}. Assim, criou-se a configuração entitulada "Cenários de Decisões - Design Seguro para C++" para a categoria de cenários descrita em (\ref{cenarios-design}).
+A criação de uma configuração é bem simples, pois deve-se informar apenas o nome e a descrição da configuração\footnote{\url{http://mezuro.org/mezuro_configurations}}. Assim, criou-se a configuração entitulada "Cenários de Decisões - Design Seguro para C++" para a categoria de cenários descrita em (\ref{cenarios-design}) como apresentado na Figura \ref{cenario_design}.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{cenario_design}
+\caption{Configuração criada para Cenários de Design Seguro. Disponível no Mezuro.org \url{http://mezuro.org/mezuro_configurations/24}}
+\label{cenario_design}
+\end{figure}
+
+Na visualização de uma configuração pode-se também ver a lista de métricas que compõem a configuração. Caso o usuário logado no Mezuro tenha a permissão  necessária de edição de uma determinada configuração, na tela de apresentação ainda pode ser vista a opção de Adicionar Métrica (\emph{Add Metric}), assim como apresentada na Figura \ref{cenario_design}. 
+
+A opção de Adicionar Métrica é fundamental para a segunda etapa da criação da configuração. Portanto, após criada uma configuração, deve-se adicionar todas as métricas básicas que são utilizadas nas caracterizações dos cenários que irão compor essa configuração. Para isso, basta ir em \emph{Add Metric} na página da configuração, onde será aberta a lista de ferramentas coletoras utilizadas pelo Mezuro e as respectivas métricas suportadas por cada uma dessas ferramentas. 
+
+No contexto da configuração criada para esta monografia foram adicionadas todas as métricas envolvidas nos Cenários de Decisões listados em (\ref{cenarios-design}). Todas as métricas escolhidas utilizam o Analizo como ferramenta extratora. A própria definição da métrica escolhida a partir de uma ferramenta também já define o escopo da métrica e as linguagens de programação para as quais a métrica pode ser calculada, conforme demonstrado na Figura \ref{metric_example}.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{metric_example}
+\caption{Visualização da Métrica NOC no Mezuro. Disponível no Mezuro.org \url{http://mezuro.org/mezuro_configurations/24/metric_configurations/69}}
+\label{metric_example}
+\end{figure}
+
+Como pode ser visto na Figura \ref{metric_example}, para cada métrica selecionada deve-se ainda definir o peso da métrica dentro da configuração (campo \emph{Weight}) e a forma de agregação da métrica (campo \emph{Aggregation Form}), que são informações importantes para a visualização da métrica em níveis de abstração maiores, principalmente a nível de pacotes e módulos. Para o contexto deste trabalho, mantivemos os valores 1.0 e Média para essas informações, tendo em vista que não são importantes neste caso, pois queremos obervar nosso software a partir dos cenários e não dos valores das métricas puramente. Pelo mesmo motivo, não é necessário definir os intervalos para avaliação qualitativa dessas métricas básicas.
+
+\begin{description}
+	\item[Criação de Cenários]
+\end{description}
 
 
+\begin{description}
+	\item[Criação dos Cenários Desenvolvidos]
+\end{description}
 
-
-
-explicar primeiro como o Mezuro foi utilizado para suportar os Cenários, o que foi adaptado e melhorado para melhor suportar cenários, etc.
-
-Depois deve-se mostrar a estrutura de cada cenário dentro da ferramenta (scripts e configuração)
 
 \section{Criação dos Cenários do DWing}
 \label{dw-cenarios}

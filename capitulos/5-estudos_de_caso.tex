@@ -7,7 +7,7 @@ Neste capítulo será apresentada a utilização dos Cenários de Decisões em p
 
 Para tanto, será apresentada a avaliação de três projetos de softwares livres em C++. Além disso, iremos explicar os passos necessários para reproduzir a estrutura de cenários nos dois ambientes de tomadas de decisões abordados nesta monografia. Assim, será apresentado as principais evoluções e adaptação de cada ferramenta e os detalhes específicos da observação de cada cenário.
 
-O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e DWing.
+O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e DWing. Esta mesma metodologia pode ser usada para o desenvolvimento de estudos de casos semelhantes com outras ferramentas ou até mesmo reproduzir os estudos de casos que serão apresentados neste capítulo.
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
@@ -60,13 +60,13 @@ O Kalibro Processor contempla o módulo de extração e processamento de métric
 
 Atualmente, o Mezuro pode monitorar projetos em C, C++ e Java uma vez que utiliza o Analizo como seu principal extrator de métricas. Entretanto, com a evolução da plataforma, pretende-se acoplar novos extratores na ferramenta para outras linguagens de programação.
 
-Descrevemos a seguir os passos necessários para a utilização de Cenários de Decisões no Mezuro referente a realização da etapa Reproduzir Cenários do estudo de caso. Todas as etapas exigem que haja um usuário autenticado no sistema.
+Descrevemos a seguir os passos necessários para a utilização de Cenários de Decisões no Mezuro referente a realização das etapas Adaptar e Evoluir Ferramentas  e Reproduzir Cenários do estudo de caso. Todas as etapas exigem que haja um usuário autenticado no sistema.
 
 \begin{description}
 	\item[Criação do \emph{Reading Group} para os Cenários]
 \end{description}
 
-A criação de um \emph{Reading Group} para abstrair a interpretação do cenário é o primeiro passo para adaptação de cenários na ferramenta. Portanto, foi criado um grupo\footnote{\url{http://mezuro.org/reading_groups}} que define duas opções para a leitura de resultados binários, a fim de mostrar se existe ou não um cenário, usando a cor verde para a resposta falsa e vermelho para a resposta verdadeira. Este grupo é criado independente de configurações ou projetos dentro do Mezuro, de tal forma que pode ser utilizado por qualquer configuração que venha a reproduzir cenários. O grupo criado por de ser visto na Figura \ref{reading_group}.
+A criação de um \emph{Reading Group} para abstrair a interpretação do cenário é o primeiro passo para adaptação de cenários na ferramenta. Portanto, foi criado um grupo\footnote{\url{http://mezuro.org/reading_groups}} que define duas opções para a leitura de resultados binários, a fim de mostrar se existe ou não um cenário, usando a cor verde para a resposta falsa e vermelho para a resposta verdadeira. Este grupo é criado independente de configurações ou projetos dentro do Mezuro, de tal forma que pode ser utilizado por qualquer configuração que venha a reproduzir cenários. O grupo criado pode ser visto na Figura \ref{reading_group}.
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
@@ -82,7 +82,7 @@ A criação de um \emph{Reading Group} para abstrair a interpretação do cenár
 
 Nesta etapa deve-se criar uma configuração onde serão definidos todos os cenários que queremos avaliar em conjunto. No contexto do Mezuro, os cenários serão definidos a partir do recurso de criação de Métricas Compostas que será explicado adiante.
 
-Um configuração portanto vai conter um conjunto de métricas e cenários caracterizados a partir dessas métricas. Como alternativas de criação de configurações como agregadores de cenários, teríamos a opção de criar um único cenário que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro caso o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração. 
+Uma configuração, portanto, vai conter um conjunto de métricas e cenários caracterizados a partir dessas métricas. Como alternativas de criação de configurações como agregadores de cenários, teríamos a opção de criar uma única configuração que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro caso o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração. 
 
 Sugere-se que a segunda abordagem seja utilizada, pois flexibiliza mais o monitoramento a partir de cenários, uma vez que existem diversos projetos com diversos interesses diferentes. Além disso, vale ressaltar que uma configuração deve contemplar apenas uma linguagem de programação e domínio, uma vez que os parâmetros de avaliação dos Cenários irão variar de acordo com o contexto.
 
@@ -115,6 +115,50 @@ Como pode ser visto na Figura \ref{metric_example}, para cada métrica seleciona
 \begin{description}
 	\item[Criação de Cenários]
 \end{description}
+
+Uma vez criada a configuração que irá conter os cenários e já adicionadas todas as métricas necessárias, o próximo passo é a criação dos Cenários de Decisões. Nesta etapa foi preciso estudos e evoluções sobre o Mezuro para determinar qual a melhor forma de representação dos cenários. Poderia-se adotar a estratégia de desenvolver uma estrutura de cenários novas, mas a partir da interação com a comunidade de desenvolvedores do Mezuro, optou-se por utilizar e evoluir o recurso de Métricas Compostas.
+
+Dentro da ferramenta, Métricas Compostas são métricas que podem ser criadas a partir da composição das Métricas Bases das ferramentas extratoras adicionadas à uma configuração. Esta funcionalidade é muito interessenta uma vez que flexibiliza a extensão da utilização do Mezuro para análise mais complexas que envolvem a composição matemática de outras métricas que não são diretamente extraídas dos projetos. Muitos estudos científicos apresentados ao longo desta monografia propõem novas métricas a partir da composição de métricas básicas conhecidas.
+
+Para a definição de como a métrica composta deve ser calculada, o usuário deve escrever um \emph{script} simples em Javascript que retorne o valor desejado. Como é definido um identificador para cada métrica básica adicionada na configuração (campo \emph{Code} visível na Figura \ref{metric_example}), nos \emph{scripts} para métricas compostas pode-se acessar os valores das métricas extraídas a partir de uma chamada de método cujo nome é o mesmo do código da métrica. Para exemplo, dentro do \emph{script} poderia-se acessar o valor da métrica \emph{Number of Children} através da chamada \emph{noc()}, onde \emph{noc} é o código dessa métrica.
+
+Além da utilização de \emph{scripts}, assim como as Métricas Básicas, as Métricas Compostas ainda possuem informações de nome e descrição que são essenciais para a definição do quadro resumo do cenário. A utilização de heranças e polimorfismo relacionados às métricas no \emph{design} do Mezuro são muito importantes para a extensão de outros tipos de métricas. Neste sentido, algumas contribuições foram realizadas ao serviço Prezento relacionadas à refatorações que apoiam a extensão de outros tipos de métricas. 
+
+No futuro, com a adoção de novos extratores na plataforma e novas métricas, será necessário o estelecimento de um novo tipo de métrica (\emph{hot spot}) cuja natureza não está na quantificação e sim na existência ou não de determinada característica no código-fonte. Exemplos desse novo tipo de métrica são métricas de vulnerabilidade e até mesmo os Cenários de Decisões. Entretanto, como dito anteriormente, optou-se por utilização de Métricas Compostas para a definição dos cenários e não na criação de um novo tipo de métrica.
+
+Na maior parte dos casos de utilização de Métricas Compostas, os \emph{scripts} são simples e retornam apenas o resultado de uma operação matemática simples entre métricas e números. Entretanto, devido as características de definição dos cenários, principalmente dos cenários Polimétricos, deve-se utilizar outras estruturas nesses \emph{scripts} tal como estruturas condicionais.
+
+Como mencionado anteriormente, os Cenários de Decisões possuem características de métricas \emph{hot spots} cujo valor medido é booleano baseado na existência ou não do cenário. Como ainda não há suporte a valores do tipo verdadeiro ou falso no Mezuro, os \emph{scripts} de Cenários devem retornar 1 no caso de existência do cenário e 0 no caso de não existência.
+
+Em resumo, a criação da uma Métrica Composta para um Cenário de Decisão deve conter um script que siga uma estrutura semelhante à listada a seguir:
+
+\begin{lstlisting}[caption={Estrutura de script básica para Cenários de Decisões}, label=script_example]
+if(cenario_existente)
+{
+  return 1;
+}
+else
+{
+  return 0;
+}
+\end{lstlisting}
+
+\begin{description}
+	\item[Associando o \emph{Reading Group} ao Cenário]
+\end{description}
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{cenario_completo}
+\caption{Cenário Completo representado no Mezuro. Disponível no Mezuro.org \url{http://mezuro.org/mezuro_configurations/24/compound_metric_configurations/67}}
+\label{cenario_completo}
+\end{figure}
+
+Após criada a Métrica Composta para um cenário, a última etapa que resta é associar os valores que podem ser obtidos pela Métrica Composta às interpretações qualitativas do \emph{Reading Group} criado na primeira etapa descrita na presente seção. Portanto, associaremos os valor obtido 1 ao grupo \emph{Existint Scenario} (em vermelho) e o valor 0 ao grupo \emph{Inexistint Scenario} (em verde) que podem ser vistos na Figura \ref{reading_group}.
+
+Para realizar esta etapa basta ir na visualização pública da Métrica Composta criada e adicionar dois intervalos, como mencionado. Como pode ser observado na Figura \ref{cenario_completo}, para o valor qualitativo \emph{Inexistint Scenario} definiu-se o valor -0.9 à 0.1, enquanto para o valor \emph{Existint Scenario} definiu-se o intervalo de 0.9 à 1.1. Essa definição de intervalos é necessária uma vez o Mezuro não suporta valores de métricas booleanos, conforme discutido anteriormente. A Figura \ref{cenario_completo} apresenta a visualização pública de um Cenário de Decisão criado através de uma Métrica Composta no Mezuro.
+
 
 
 \begin{description}

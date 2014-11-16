@@ -372,7 +372,7 @@ O Athom Shell é um framework desenvolvido em C++ que permite escrever aplicaç�
 
 A documentação oficial do projeto pode ser encontrada no próprio repositório principal\footnote{\url{https://github.com/atom/atom-shell}} através da url: \url{https://github.com/atom/atom-shell/tree/master/docs}.
 
-Avaliação através do mezuro pode ser vista em: \url{http://mezuro.org/projects/33/repositories/58}
+Avaliação através do Mezuro pode ser vista em: \url{http://mezuro.org/projects/33/repositories/58}
 
 \subsection{Synergy}
 \label{section-synergy}
@@ -407,10 +407,63 @@ Uma vez salvo um repositório com a devida configuração e endereço para o rep
 
 Nesta seção será apresentada a visualização dos cenários nas duas ferramentas apresentadas através do monitoramento dos projetos apresentados na Seção \ref{cap-projects}.
 
+O projeto GNU Octave foi monitorado através do Mezuro e do ambiente DWing. O projeto Athom Shell foi analisado somente através do Mezuro, enquanto o projeto Synergy foi monitorado somente através do ambiente DWing.
+
 \subsection{Visualização no Mezuro}
 \label{vision-mezuro}
 
-A visualização de qualquer monitoramento realizado no Mezuro segue uma apresentação semelhante. Primeiro são apresentadas as informações do projeto, seguido das informações sobre o \emph{status} do monitoramento e data de realização. Logo após é apresentada uma árvore contendo os módulos e classes do projeto e o resultado agregado das métricas medidas. A medida que se realiza uma navegação sobre a árvore de módulos, diminui-se a granulalidade dos resultados e tem-se os resultados das medições para cada unidade de software analisada.
+A visualização de qualquer monitoramento realizado no Mezuro segue uma apresentação semelhante. Primeiro são apresentadas as informações do projeto, seguido das informações sobre o \emph{status} do monitoramento e data de realização (Figura \ref{proc_info}). Logo após é apresentada uma árvore contendo os módulos e classes do projeto e o resultado agregado das métricas medidas  (Figura \ref{modules_info}). A medida que se realiza uma navegação sobre a árvore de módulos, diminui-se a granulalidade dos resultados e tem-se os resultados das medições para cada unidade de software analisada (Figura \ref{metrics_info}).
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{figuras/proc_info}
+		\caption{Apresentação do processo de coleta de métricas no Mezuro}
+		\label{proc_info}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{figuras/modules_info}
+		\caption{Apresentação da árvore de módulos do Mezuro}
+		\label{modules_info}
+\end{figure}
+
+
+Caso algum erro ocorre durante o processo de medição, o erro será informado na aba \emph{Processing information}, apresentada na Figura \ref{proc_info}. 
+
+A segunda aba \emph{Modules Tree}, destacada na Figura \ref{modules_info}, apresenta todos os módulos encontrados no projeto e seus respectivos níveis de granulalidade. Cada item apresentado é um link para o respectivo módulo, onde são apresentados somente os sub-módulos e as medições daquele módulo. Portanto, a navegação entre os módulos e os resultados individuais de cada módulo é bem simples dentro da plataforma, permitindo uma análise detalhada e aprofundada.
+
+A última aba \emph{Metrics Results}, apresentada na Figura \ref{metrics_info}, lista as métricas básicas medidas e as métricas compostas, com seus resultados agregados, no caso de visualização de pacotes, ou com seus resultados medidos, no caso de visualização de unidades ou classes. 
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{figuras/metrics_info}
+		\caption{Apresentação das medições do Mezuro}
+		\label{metrics_info}
+\end{figure}
+
+No Mezuro, o conceito de agregação é aplicado nas métricas básicas, mas não nas métricas compostas. Na visualização de um pacote (root, da Figura \ref{modules_info}), os valores das métricas básicas são agregadas de acordo com a escolha feita na criação de cada uma (média, mediana, desvio padrão, máximo e mínimo). Entretanto, as métricas compostas, como não possuem agregação, são calculadas sobre os valores agregados das métricas bases que elas utilizam. Para os Cenários de Decisões esta característica não é muito interessante uma vez que pode apresentar falsos negativos. Como exemplo, se o valor agregado das métricas básicas utilizadas por um cenário não corresponderem à existência do cenário, na visualização geral será informado que o cenário não existe, enquanto na verdade ele pode exister em alguns poucos módulos do software. 
+
+Por outro lado, como pode ser observado na Figura \ref{metrics_info}, o cenário Alta Superfície de Ataque a Atributos Internos é o único que é apresentado como existente no projeto, pois as métricas de Atributos Públicos tiveram uma média alta. Nesse sentido, esse cenário deve ser recorrente no projeto e deve ser o foco de melhorias futuras, uma vez que deve se repetir em várias classes. Entretanto, para esse tipo de análise, seria mais interessenta ter-se utilizado a agregação por mediana nas métricas básicas, identificando mais adequadamente se os cenários ocorrem na maior parte das classes.
+
+O mais adequado seria o Mezuro apresentar quantas ocorrências do cenário existem para um pacote, ou seja, as métricas compostas terem suas próprias agregações do tipo SOMA. Alguns passos foram dados no contexto do presente trabalho, onde implementamos o suporte à esse tipo de agregação dentro do Kalibro Processor. 
+
+A visualização da ocorrência dos cenários dentro de cada classe se torna bem interessante. A Figura \ref{message_box_class} apresenta os resultados da classe MessageBox do projeto Athom Shell, avaliado a partir da configuração de cenários criados. O principal foco dos resultados está nos cenários, onde é possível observar claramente que essa classe possui os cenários Risco Elevado de Segurança e Alta Superfície de Ataque Operacional. Além disso, pode-se ainda observar os valores reais obtidos por cada métrica básica para as quais não são providas nenhuma interpretação, uma vez que o foco interpretativo deve estar na natureza do cenário. Pode-se observar ainda que outros dois cenários não caracterizam essa classe.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figuras/message_box_class}
+	\caption{Resultado da classe MessageBox do projeto Athom Shell}
+	\label{message_box_class}
+\end{figure}
+
+
+
+
+
+
+
+
 
 \subsection{Visualização no DWing}
 \label{vision-dw}

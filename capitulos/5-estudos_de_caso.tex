@@ -467,8 +467,21 @@ A visualização da ocorrência dos cenários dentro de cada classe se torna bem
 \subsection{Visualização no DWing}
 \label{vision-dw}
 
-\subsection{Resultados Observados nos Projetos}
-\label{results-projects}
-
 \subsection{Análise e Discussão}
 \label{ana-disc}
+
+Os dois estudos de casos desenvolvidos no contexto deste trabalho tiverem como objetivo representar os Cenários de Decisões em ferramentas de tomada de decisão. O primeiro estudo foi baseado no projeto Mezuro, enquanto o segundo foi baseado em um ambiente DWing para os quais a mesma metodologia de desenvolvimento de estudo de caso foi aplicada. 
+
+O Mezuro, sendo uma plataforma já utilizada para monitoramento de projetos livres, foi adaptada para suportar os cenários a partir da evolução das métricas compostas, funcionalidade já existente no Mezuro. Esta evolução se apresentou como uma boa opção dado o tempo e complexidade de se implementar uma estrutura completa de Cenário de Decisão na ferramenta. Além disso, as métricas compostas contém informações fundamentais para a identificação e descrição dos cenários, além de oferecer o recurso de criação de \emph{scripts} para definição dos cenários.
+
+Algumas contribuições técnicas puderam ser feitas à plataforma Mezuro. É importante enfatizar que as evoluções propostas à plataforma sempre foram discutidas e adaptadas com a comunidade de desenvolvedores. Neste sentido, alinhou-se as necessidade deste trabalho às expectativas de melhorias na comunidade.
+
+No Mezuro, a criação de configurações e o monitoramento de projetos pode ser realizado com passos simples, comparado aos passos necessários para reprodução no DW. Da mesma forma, o Mezuro visa oferecer uma interface simples para apresentação dos resultados de medições, oferecendo navegabilidade entre os módulos do software, agregação de valores de métricas e interpretações qualitativas para as métricas.
+
+Entretanto, o fato de não existir agregação para métricas compostas limita a visualização de cenários a nível de pacotes e projetos, uma vez que pode dar margem à erros interpretativos e dificulta um planejamento a partir de uma visão geral sobre o projeto. Por outro lado, a visualização da cenários dentro das classes é simples, completa e informativa, apoiando a tomada de decisões, principalmente para os desenvolvedores, uma vez que o nível de granularidade é menor.
+
+Por fim, vale ressaltar que o recurso de análise periódica oferecida pela plataforma complementa a interpretação através de Cenários de Decisões, podendo apoiar o desenvolvimento e evolução do software diariamente.
+
+======= DISCUTIR O DWING =======
+
+Apesar do objetivo da realização dos estudos de caso não ser realizar comparações entre as ferramentas, observou-se que as duas podem ser utilizadas em conjunto para apoiar o monitoramento de código-fonte. Isso se deve ao fato do Mezuro prover mecanismos de rápido e fácil monitoramento de projetos e ser excelente para análises individuais dos módulos do projeto e do ambiente DWing prover um conjunto de mecanismos que facilitam o planejamento e tomada de decisões gerenciais. Em outras palavras, a utilização de Cenários de Decisões no DWing poderia ser utilizado para a realização da prática Medição do Projeto, enquanto o Mezuro poderia apoiar a prática Medição Rápida, ambas descritas na Figura~\ref{fig:agile-design-metrics}.

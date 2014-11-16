@@ -62,9 +62,7 @@ Atualmente, o Mezuro pode monitorar projetos em C, C++ e Java uma vez que utiliz
 
 Descrevemos a seguir os passos necessários para a utilização de Cenários de Decisões no Mezuro referente a realização das etapas Adaptar e Evoluir Ferramentas  e Reproduzir Cenários do estudo de caso. Todas as etapas exigem que haja um usuário autenticado no sistema.
 
-\begin{description}
-	\item[Criação do \emph{Reading Group} para os Cenários]
-\end{description}
+\subsection{Criação do \emph{Reading Group} para os Cenários}
 
 A criação de um \emph{Reading Group} para abstrair a interpretação do cenário é o primeiro passo para adaptação de cenários na ferramenta. Portanto, foi criado um grupo\footnote{\url{http://mezuro.org/reading_groups}} que define duas opções para a leitura de resultados binários, a fim de mostrar se existe ou não um cenário, usando a cor verde para a resposta falsa e vermelho para a resposta verdadeira. Este grupo é criado independente de configurações ou projetos dentro do Mezuro, de tal forma que pode ser utilizado por qualquer configuração que venha a reproduzir cenários. O grupo criado pode ser visto na Figura \ref{reading_group}.
 
@@ -76,9 +74,7 @@ A criação de um \emph{Reading Group} para abstrair a interpretação do cenár
 \label{reading_group}
 \end{figure}
 
-\begin{description}
-	\item[Criação de uma Configuração para uma Categoria de Cenários]
-\end{description}
+\subsection{Criação de uma Configuração para uma Categoria de Cenários}
 
 Nesta etapa deve-se criar uma configuração onde serão definidos todos os cenários que queremos avaliar em conjunto. No contexto do Mezuro, os cenários serão definidos a partir do recurso de criação de Métricas Compostas que será explicado adiante.
 
@@ -112,9 +108,7 @@ No contexto da configuração criada para esta monografia foram adicionadas toda
 
 Como pode ser visto na Figura \ref{metric_example}, para cada métrica selecionada deve-se ainda definir o peso da métrica dentro da configuração (campo \emph{Weight}) e a forma de agregação da métrica (campo \emph{Aggregation Form}), que são informações importantes para a visualização da métrica em níveis de abstração maiores, principalmente a nível de pacotes e módulos. Para o contexto deste trabalho, mantivemos os valores 1.0 e Média para essas informações, tendo em vista que não são importantes neste caso, pois queremos obervar nosso software a partir dos cenários e não dos valores das métricas puramente. Pelo mesmo motivo, não é necessário definir os intervalos para avaliação qualitativa dessas métricas básicas.
 
-\begin{description}
-	\item[Criação de Cenários]
-\end{description}
+\subsection{Criação de Cenários}
 
 Uma vez criada a configuração que irá conter os cenários e já adicionadas todas as métricas necessárias, o próximo passo é a criação dos Cenários de Decisões. Nesta etapa foi preciso estudos e evoluções sobre o Mezuro para determinar qual a melhor forma de representação dos cenários. Poderia-se adotar a estratégia de desenvolver uma estrutura de cenários novas, mas a partir da interação com a comunidade de desenvolvedores do Mezuro, optou-se por utilizar e evoluir o recurso de Métricas Compostas.
 
@@ -140,12 +134,10 @@ if(cenario_existente)
 else
 {
   return 0;
-}
+};
 \end{lstlisting}
 
-\begin{description}
-	\item[Associando o \emph{Reading Group} ao Cenário]
-\end{description}
+\subsection{Associando o \emph{Reading Group} ao Cenário}
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
@@ -159,13 +151,93 @@ Após criada a Métrica Composta para um cenário, a última etapa que resta é 
 
 Para realizar esta etapa basta ir na visualização pública da Métrica Composta criada e adicionar dois intervalos, como mencionado. Como pode ser observado na Figura \ref{cenario_completo}, para o valor qualitativo \emph{Inexistint Scenario} definiu-se o valor -0.9 à 0.1, enquanto para o valor \emph{Existint Scenario} definiu-se o intervalo de 0.9 à 1.1. Essa definição de intervalos é necessária uma vez o Mezuro não suporta valores de métricas booleanos, conforme discutido anteriormente. A Figura \ref{cenario_completo} apresenta a visualização pública de um Cenário de Decisão criado através de uma Métrica Composta no Mezuro.
 
-
+A seguir será apresentado os scripts utilizadas na criação de cada Cenário de Decisão de Design Seguro no Mezuro. Os códigos utilizados em chamadas de métodos representam as métricas basícas envolvidas no cenário, conforme explorado na explicação de cada cenário.
 
 \begin{description}
-	\item[Criação dos Cenários Desenvolvidos]
+	\item[Alta Superfície de Ataque a Atributos Internos]
 \end{description}
 
+\begin{lstlisting}[caption={\emph{Script} do Cenário \emph{High Surface Attack to Internal Attributes}}, label=hsaia]
+if(noa() == 0) 
+{
+  return 0;
+}
+else
+{
+  var result = npa()/noa();
+  var value = (result < 0.2) ? 0 : 1; 
+  return value;
+};
+\end{lstlisting}
 
+\begin{itemize}
+	\item \textbf{npa} - Número de Atributos Públicos
+	\item \textbf{noa} - Número de Atributos
+\end{itemize}
+
+\begin{description}
+	\item[Alta Superfície de Ataque Operacional]
+\end{description}
+
+\begin{lstlisting}[caption={\emph{Script} do Cenário \emph{High Surface Operational Attack}}, label=hsoa]
+if(npm() > 10 || anpm() > 3)
+{
+  return 1;
+}
+else
+{
+  return 0;
+};
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textbf{npm} - Número de Métodos Públicos
+	\item \textbf{anpm} - Média de Parâmetros por Método
+\end{itemize}
+
+\begin{description}
+	\item[Ponto Crítico de Falha]
+\end{description}
+
+\begin{lstlisting}[caption={\emph{Script} do Cenário \emph{Critical Point of Failure}}, label=cpf]
+if(acc() + noc() > 5)
+{
+  return 1;
+}
+else
+{
+  return 0;
+};
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textbf{acc} - Número de Classes Aferentes
+	\item \textbf{noc} - Número de Filhos
+\end{itemize}
+
+\begin{description}
+	\item[Risco Elevado de Segurança]
+\end{description}
+
+\begin{lstlisting}[caption={\emph{Script} do Cenário \emph{High Risk Security}}, label=cpf]
+if(accm() > 4 || amloc() > 10)
+{
+  return 1;
+}
+else
+{
+  return 0;
+};
+\end{lstlisting}
+
+<<<<<<< HEAD
+=======
+\begin{itemize}
+	\item \textbf{accm} - Média de Complexidade Ciclomática por Método
+	\item \textbf{amloc} - Média de Número de Linhas por Método
+\end{itemize}
+
+>>>>>>> Finish DW's Description
 \section{Cenários de Decisão e \emph{Data Warehousing}}
 \label{dw-cenarios}
 
@@ -212,6 +284,7 @@ Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessi
  \end{figure}
 
  
+<<<<<<< HEAD
 
  \begin{figure}[H]
  	\centering
@@ -223,15 +296,39 @@ Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessi
  
 
 No trabalho de Rego \citeyear{rego2014} observamos que a modelagem proposta pelo autor está proxima de atender as necessidades dessa monografia. A modelagem de Rego \citeyear{rego2014} permite que o usuário possa identificar cenários de limpeza ao nível de classe de código fonte e também monitorar os percentis dos valores de métricas de qualidade do projeto. Baseado nisso, chegamos na modelagem mostrada nas Figuras (\ref{dw-model1}) (\ref{dw-model2}) e (\ref{dw-model3}) para o DW deste trabalho.
+=======
 
+ \begin{figure}[H]
+ 	\centering
+ 		\includegraphics[scale=0.5]{figuras/dw-fato-security-metrics}
+ 		\caption{Modelo dimensional do fato \emph{f\_security\_metrics\_values} que irá armazenar os valores das métricas de segurança de cada arquivo do projeto.}
+ 		\label{dw-model3}
+ \end{figure}
 
+ 
+>>>>>>> Finish DW's Description
+
+No trabalho de Rego \citeyear{rego2014} observamos que a modelagem proposta pelo autor está proxima de atender as necessidades dessa monografia. A modelagem de Rego \citeyear{rego2014} permite que o usuário possa identificar cenários de limpeza ao nível de classe de código fonte e também monitorar os percentis dos valores de métricas de qualidade do projeto. Baseado nisso, chegamos na modelagem mostrada nas Figuras (\ref{dw-model1}) (\ref{dw-model2}) e (\ref{dw-model3}) para o DW deste trabalho.
+
+<<<<<<< HEAD
 Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluidas para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários (\emph{f\_qtd\_scenarios}) que pode ser vista na Figura \ref{dw-model1}  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de sprints. Uma das principais características de um ambiente de \emph{DWing} é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão sprint permitirá o usuário a fazer análise da quantidade de cenários por sprint. 
 
 Outra modificação importante foi feita na dimensão \emph{d\_scenarios}. Novos atributos foram inclusos para contemplar a estrutura de cenários de decisões proposta nessa monografia. Foram inclusos os atributos tipo do cenário, métricas envolvidas, fórmula e uma descrição. Uma limitação do trabalho de Rego (\citeyear{rego2014}) foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou  metadados para definir quais métricas estavam envolvidas a cada cenário e automatizar de maneira mais eficiente a identificação de novos cenários. No nosso caso, levamos em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo \emph{involved\_metrics} e \emph{formula} na dimensao \emph{d\_scenario}, permitindo assim que o usuári possa saber quais métricas compõe cada cenário e como elas definem a existência ou não do cenário. Como se trata de um atributo de natureza descritiva, podemos ter cenários que possuem várias métricas envolvidas.
+=======
 
+Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluidas para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários (\emph{f\_qtd\_scenarios}) que pode ser vista na Figura \ref{dw-model1}  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de sprints. Uma das principais características de um ambiente de \emph{DWing} é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão sprint permitirá o usuário a fazer análise da quantidade de cenários por sprint. 
+>>>>>>> Finish DW's Description
+
+Outra modificação importante foi feita na dimensão \emph{d\_scenarios}. Novos atributos foram inclusos para contemplar a estrutura de cenários de decisões proposta nessa monografia. Foram inclusos os atributos tipo do cenário, métricas envolvidas, fórmula e uma descrição. Uma limitação do trabalho de Rego (\citeyear{rego2014}) foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou  metadados para definir quais métricas estavam envolvidas a cada cenário e automatizar de maneira mais eficiente a identificação de novos cenários. No nosso caso, levamos em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo \emph{involved\_metrics} e \emph{formula} na dimensao \emph{d\_scenario}, permitindo assim que o usuári possa saber quais métricas compõe cada cenário e como elas definem a existência ou não do cenário. Como se trata de um atributo de natureza descritiva, podemos ter cenários que possuem várias métricas envolvidas.
+
+<<<<<<< HEAD
+Rego também criou outro fato para armazenar os valores percentis das métricas de um determindado projeto. Para este trabalho, achamos que seria melhor o fato relacionado aos valores das métricas ser a nível de módulo. Dessa forma, o usuário tem mais insumo para identificar a causa de um cenário em uma classe especifica. Por exemplo, suponhamos que o usuário tenha identificado a ocorrencia do cenário \emph{Ponto crítico de falha} em uma determinada classe. Posteriormente, o usuário pode verificar qual foi o valor das métricas ACC e NOC nesse módulo e tomar uma decisão de refatoração baseado nos valores dessas métricas. No trabalho de Rego (\citeyear{rego2014}), como os valores das métricas estariam disponíveis ao nível de projeto apenas, esse tipo de análise não poderia ser feito.
+
+=======
 
 Rego também criou outro fato para armazenar os valores percentis das métricas de um determindado projeto. Para este trabalho, achamos que seria melhor o fato relacionado aos valores das métricas ser a nível de módulo. Dessa forma, o usuário tem mais insumo para identificar a causa de um cenário em uma classe especifica. Por exemplo, suponhamos que o usuário tenha identificado a ocorrencia do cenário \emph{Ponto crítico de falha} em uma determinada classe. Posteriormente, o usuário pode verificar qual foi o valor das métricas ACC e NOC nesse módulo e tomar uma decisão de refatoração baseado nos valores dessas métricas. No trabalho de Rego (\citeyear{rego2014}), como os valores das métricas estariam disponíveis ao nível de projeto apenas, esse tipo de análise não poderia ser feito.
 
+>>>>>>> Finish DW's Description
 Em nossa modelagem, preferimos semparar em duas tablas fatos as métricas de qualidade e as métricas de segurança. A motivação foi que esses dois tipos de métricas possuem natureza diferente. Métricas de vulnerabilidade contam o número de ocorrência de uma determinada vulnerabilidade no código. Logo, podemos realizar agregações e descobrir a quantidade de vulnerabilidade do mesmo tipo por arquivo, por projeto, etc. Já com métricas de qualidade, não podemos fazer agregações. Não faz sentido, por exemplo, somar o valor de complexidade ciclomatica de todas os módulos para obter o valor total do projeto. A média seria a único tipo de agregação que poderia ser feita, porém o uso da média é confrontado pela tese de Meireles, fazendo que nem esse tipo de agregação não seja muito representativo. Outro aspecto desses dois fatos é que, como discutido no capítulo \ref{cap-cenarios}, não temos um índice de qualidade para métricas de vulnerabilidade, fazendo que essa dimensão não seja utilizada na fato \emph{f\_security\_metrics\_values}. Por outro lado, é possível chegar ao nível de linha para caracterizar uma vulnerabilidade, incluindo então a dimensão \emph{d\_line\_number} a esse fato.
 
 Dado o modelo, decidimos por usar o banco de dados MariaDB para a implementação deste.
@@ -321,14 +418,25 @@ Este projeto será analizado somente no \emph{DWing}.
 \label{data-colect}
 
 O Mezuro já trabalha em conjunto com o Analizo\footnote{\url{http://www.analizo.org/}}. O Analizo é uma ferramenta de análise estática de código e dá suporte a diversas métricas, inclusive as métricas discutidas no cápitulo 2, tanto de \emph{design} quanto de vulnerabilidade. Um \emph{DWing} não está atrelado a apenas uma fonte de dados, podendo utilizar diversas fontes. Dessa forma, utilizamos o Analizo para coletar as métricas e gerar o insumo para a análise dos cenários em ambas as ferramentas.
+<<<<<<< HEAD
+=======
 
-Porém, identificamos um problema com o Analizo em relação as coleta de métricas de vulnerabilidade. Para projetos pequenos e simples as métricas de vulnerabilidade podem ser coletadas.  Contudo, para projetos maiores e mais complexos, com arquitetura bem definida, o Analizo não consegue gerar tais métricas. Isso se deve ao fato do Analizo utilizar o \emph{Clang Static Analizer}\footnote{\url{http://clang-analyzer.llvm.org/}}, que é outra ferramenta livre que faz análise estática para identificação de bugs em projetos C/C++, para a geração das métricas de vulnerabilidade. A utilização do \emph{clang} consiste em chamar o comando \emph{scan-build}  e o comando de compilação do programa, por exemplo \emph{\"scan-build gcc myprog.c\"}. Foi verificado que o Analizo chama o \emph{clang} em seu código para cada arquivo, usando apenas o comando \emph{gcc} em cada um deles. Isso pode funcionar para projetos simples, porém projetos mais complexos são compilados geralmente com \emph{\"Makefile\"}, com diversas linhas de compilação. Não consguindo compilar o código, o \emph{clang} não consegue executar, fazendo com que o Analizo, por sua vez, não consiga extrair as métricas de vulnerabilidade. 
+Porém, foi identificado um problema com o Analizo em relação as coleta de métricas de vulnerabilidade. Para projetos pequenos e simples as métricas de vulnerabilidade podem ser coletadas.  Contudo, para projetos maiores e mais complexos, com arquitetura bem definida, o Analizo não consegue gerar tais métricas. Isso se deve ao fato do Analizo utilizar o \emph{Clang Static Analizer}\footnote{\url{http://clang-analyzer.llvm.org/}}, que é outra ferramenta livre que faz análise estática para identificação de bugs em projetos C/C++, para a geração das métricas de vulnerabilidade. A utilização do \emph{Clang} consiste em chamar o comando \emph{scan-build}  e o comando de compilação do programa, por exemplo \emph{\"scan-build gcc myprog.c\"}. Foi verificado que o Analizo chama o \emph{clang} em seu código para cada arquivo, usando apenas o comando \emph{gcc} em cada um deles. Isso pode funcionar para projetos simples, porém projetos mais complexos possuem linhas de compilação mais complexas, geralmente gerenciadas em um \emph{\"Makefile\"}, com diversas linhas de compilação. Não consguindo compilar o código, o \emph{Clang} não consegue executar, fazendo com que o Analizo, por sua vez, não consiga extrair as métricas de vulnerabilidade. 
+>>>>>>> Finish DW's Description
 
 Grandes alterações deveriam ser feitas para fazer com que o Analizo pudesse gerar os valores dessas métricas para projetos grantes, não cabendo ao escopo e tempo desta monografia. Esse problema afeta diretamente ao Mezuro, pois, dependente do relatório gerado pelo Analizo, não consegue os valores de métricas de vulnerabilidade para projetos maiores. Como o ambiente de \emph{DWing} pode ter diversas fontes de dados, podemos recorrer a outra fonte de dados que ofereça apenas as métricas de segurança.
 
+<<<<<<< HEAD
+Grandes alterações deveriam ser feitas para fazer com que o Analizo pudesse gerar os valores dessas métricas para projetos grantes, não cabendo ao escopo e tempo desta monografia. Esse problema afeta diretamente ao Mezuro, pois, dependente do relatório gerado pelo Analizo, não consegue os valores de métricas de vulnerabilidade para projetos maiores. Como o ambiente de \emph{DWing} pode ter diversas fontes de dados, podemos recorrer a outra fonte de dados que ofereça apenas as métricas de segurança.
+
+Dessa forma, decidimos em usar o \emph{clang} para extrair as métricas de vulnerabilidade. O \emph{clang} gera um relatório no formato HTML. Foi feito um parser para transformar o HTML em um arquivo CSV, com a mesma estrutura fornecida pelo Analizo. Assim, o ambiente de \emph{DWing} pode utilizar desse arquivo CSV gerado pelo parser para se alimentar das métricas de vulnerabildade da mesma maneira que trata o CSV gerado pelo próŕio Analizo. O parser foi desenvolvido na linguagem perl justamente para aproveitarmos das lógicas de programação e códigos do próprio Analizo.
+=======
 Dessa forma, decidimos em usar o \emph{clang} para extrair as métricas de vulnerabilidade. O \emph{clang} gera um relatório no formato HTML. Foi feito um parser para transformar o HTML em um arquivo CSV, com a mesma estrutura fornecida pelo Analizo. Assim, o ambiente de \emph{DWing} pode utilizar desse arquivo CSV gerado pelo parser para se alimentar das métricas de vulnerabildade da mesma maneira que trata o CSV gerado pelo próŕio Analizo. O parser foi desenvolvido na linguagem perl justamente para aproveitarmos das lógicas de programação e códigos do próprio Analizo.
 
-======== EXPLICAR COMO O MEZURO UTILIZA OS DADOS do Analizo, Como funciona a Integração(brevemente)=====
+No Mezuro, para se analisar um projeto, deve-se criar um projeto informando o seu nome e descrição\footnote{\url{http://mezuro.org/projects}}. Para cada projeto pode-se fazer diferentes análises, utilizando diferentes configurações, através da criação de Repositórios dentro do Mezuro onde devem ser informados o nome, descrição, a licença, tecnologia de versionamento utilizada, o endereço para o repositório e a configuração desejada. Além disso, o Mezuro possui um recurso interessante para acompanhamento de projetos: a definição da periodicidade para coletas periódicas que varia desde periodicidade diária à mensal, sendo este um recurso opcional.
+>>>>>>> Finish DW's Description
+
+Uma vez salvo um repositório com a devida configuração e endereço para o repositório, o Mezuro realiza o download do projeto e, através do Kalibro Processor, executa os extratores envolvidos na configuração utilizada sobre o projeto. Assim, o relatório gerado pelas ferramentas são tratados e enviados de volta para o Prezento, onde são apresentados os resultados das medições. Caso a opção de coleta periódica seja utilizada, o Mezuro irá sempre fazer o download da versão mais recente.
 
 
 ======== EXPLICAR BREVEMENTE ETL DW =====
@@ -337,9 +445,18 @@ Dessa forma, decidimos em usar o \emph{clang} para extrair as métricas de vulne
 
 \section{Análise dos Cenários nas Ferramentas}
 
-Nesta seção será apresentada Aqui, mostrar os cenários nos projetos, como podem ser visualizados, etc
+Nesta seção será apresentada a visualização dos cenários nas duas ferramentas apresentadas através do monitoramento dos projetos apresentados na Seção \ref{cap-projects}.
 
+\subsection{Visualização no Mezuro}
+\label{vision-mezuro}
 
-\section{Conclusões}
+A visualização de qualquer monitoramento realizado no Mezuro segue uma apresentação semelhante. Primeiro são apresentadas as informações do projeto, seguido das informações sobre o \emph{status} do monitoramento e data de realização. Logo após é apresentada uma árvore contendo os módulos e classes do projeto e o resultado agregado das métricas medidas. A medida que se realiza uma navegação sobre a árvore de módulos, diminui-se a granulalidade dos resultados e tem-se os resultados das medições para cada unidade de software analisada.
 
-Descrever as conclusoes obtidas com a execução do estudo de caso
+\subsection{Visualização no DWing}
+\label{vision-dw}
+
+\subsection{Resultados Observados nos Projetos}
+\label{results-projects}
+
+\subsection{Análise e Discussão}
+\label{ana-disc}

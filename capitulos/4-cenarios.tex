@@ -72,15 +72,7 @@ Dessa forma, decidimos por usar a linguagem C++ como base para instanciação do
 \subsection{Cenários de Decisão para Caracterização da Qualidade do Código }
 \label{cenarios-design}
 
-A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}).
-
-Nesta seção propomos quatro Cenários de Decisões. Um estudo muito interessante realizado por Chowdhury e colaboradores (\citeyear{chowdhury}), apresenta três novas formas de medir aspectos de segurança de um software a partir de suas estruturas estáticas, que poderiam ser representadas e evoluídas para Cenários de Decisões:
-
-\begin{itemize}
-\item \textbf{\emph{Stall Ratio}}: representa o quanto o progresso de um programa é impedido por atividades sem importância dentro do código. Os autores afirma que linhas de código que não contribuem para o objetivo principal do programa provocam atrasos consideráveis para que o mesmo assuma um estado estável e aceitável. Além disso, os autores enfatiza que esse tipo de problema é mais crítico quando encontrado dentro de laços de repetição.
-\item \textbf{\emph{Coupling Corruption Propagation}}: caracteriza o impacto no total de métodos que poderiam ser afetados por erros existentes em métodos originais, herdados por exemplo.
-\item \textbf{\emph{Critical Element Ratio}}: representa a proporção de elementos críticos de um objeto em relação ao total de elementos daquele mesmo objeto. Neste sentido, os autores caracterizam elementos críticos como elementos que serão manipulados ao longo do programa e não só no contexto do objeto criado.
-\end{itemize}
+A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}). Nesta seção propomos quatro Cenários de Decisões. 
 
 \subsubsection{Alta Superfície de Ataque a Atributos Internos}
 %-------------------------------------------------------------------------------

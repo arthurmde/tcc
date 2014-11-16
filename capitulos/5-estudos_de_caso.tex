@@ -3,11 +3,11 @@
 
 %
 
-Neste capítulo será apresentada a utilização dos Cenários de Decisões em projetos reais, com o principal objetivo de demonstrar a reprodução de cenários em ambientes de tomada de decisão. Assim, este Capítulo é destinado ao Estudo de Caso de utilização das ferramentas Mezuro e DWing para observação de Cenários de Decisões em projetos de software.
+Neste capítulo será apresentada a utilização dos Cenários de Decisões em projetos reais, com o principal objetivo de demonstrar a reprodução de cenários em ambientes de tomada de decisão. Assim, este Capítulo é destinado ao Estudo de Caso de utilização da ferramenta Mezuro e de um \emph{DWing} para observação de Cenários de Decisões em projetos de software.
 
 Para tanto, será apresentada a avaliação de três projetos de softwares livres em C++. Além disso, iremos explicar os passos necessários para reproduzir a estrutura de cenários nos dois ambientes de tomadas de decisões abordados nesta monografia. Assim, será apresentado as principais evoluções e adaptação de cada ferramenta e os detalhes específicos da observação de cada cenário.
 
-O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e DWing. Esta mesma metodologia pode ser usada para o desenvolvimento de estudos de casos semelhantes com outras ferramentas ou até mesmo reproduzir os estudos de casos que serão apresentados neste capítulo.
+O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e \emph{DWing}. Esta mesma metodologia pode ser usada para o desenvolvimento de estudos de casos semelhantes com outras ferramentas ou até mesmo reproduzir os estudos de casos que serão apresentados neste capítulo.
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
@@ -21,7 +21,7 @@ Os passos da Figura~\ref{method} são melhor descritos a seguir:
 
 \begin{enumerate}
 \item \textbf{Adaptar e Evoluir Ferramentas} - Este passo consiste em evoluir as estruturas, modelos, componentes e camada de apresentação das ferramentas que serão utilizadas com o objetivo de melhor suportar a utilização de Cenários de Decisão.
-\item \textbf{Reproduzir Cenários} - Uma vez que as ferramentas utilizadas já suportam a reprodução de Cenários, deve-se utilizar dessa estrutura para definir cenários reais para avaliação de projetos de software. No contexto dessa monografia, esse passo consiste em reproduzir os Cenários de Segurança criados no Mezuro e no DWing.
+\item \textbf{Reproduzir Cenários} - Uma vez que as ferramentas utilizadas já suportam a reprodução de Cenários, deve-se utilizar dessa estrutura para definir cenários reais para avaliação de projetos de software. No contexto dessa monografia, esse passo consiste em reproduzir os Cenários de Segurança criados no Mezuro e no \emph{DWing}.
 \item \textbf{Selecionar Projetos} - Esta etapa consiste em definir quais projetos serão avaliados a partir dos cenários definidos e pode ser executada independente das ferramentas de tomada de decisão, variando de acordo com os objetivos de utilização dos Cenários.
 \item \textbf{Obter Código-Fonte} - Uma vez selecionados os projetos, o próximo passo é obter o código-fonte referente aos projetos escolhidos. Algumas ferramentas. como o Mezuro, já possuem bom suporte para automatizar esse passo.
 \item \textbf{Executar Coleta} - Esta etapa consiste na obtenção dos valores de métricas dos códigos-fontes dos projetos selecionados que deve ser automatizado. A saída desta etapa deverá ser processada pelas ferramentas trabalhadas para proporcionar a análise dos projetos. O esforço nessa etapa deve-se reduzir a coletar somente as métricas necessárias para composição dos Cenários de Decisão utilizados.
@@ -33,7 +33,7 @@ Os passos da Figura~\ref{method} são melhor descritos a seguir:
 Estes passos metodológicos devem ser reproduzidos para cada ferramenta utilizada, sendo que uma vez que uma ferramenta já suporta adequadamente a observação de Cenários de Decisão, os passos 1 e 2 não precisam ser repetidos para análise de novos projetos.
 
 
-\section{Criação dos Cenários do Mezuro}
+\section{Cenários de Decisões no Mezuro}
 \label{mezuro-cenarios}
 
 O Mezuro é uma plataforma livre para monitoramento de código-fonte que busca auxiliar em vários problemas relacionados à utilização de métrica, visando ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licensiado como AGPLv3\footnote{\url{http://www.gnu.org/licenses/agpl-3.0.html}} \cite{manzo2014}. O Mezuro é uma plataforma concebida através do amadurecimento de diversas ferramentas, inicializada através do projeto Qualipso\footnote{Quality Platform for Open Source: \url{http://qualipso.icmc.usp.br/}}. Dentre estas ferramentas, destaca-se o Analizo\footnote{\url{http://analizo.org/}}, uma das ferramentas utilizadas pelo Mezuro para extração de métricas de código-fonte em C/C++ e Java.
@@ -52,7 +52,7 @@ A arquitetura do Mezuro atual é composta por vários serviços. Essa arquitetur
 
 Uma explicação mais detalhada desta arquitetura e de cada serviço pode ser obtida no Apêndice \ref{Att:mezuro}.
 
-Dois destes serviços agregam conceitos fundamentais dentro da plataforma, que também serão muito importantes para a representação de cenários dentro da plataforma. 
+Dois destes serviços agregam conceitos fundamentais dentro da plataforma, que também serão muito importantes para a representação de cenários. 
 
 O Kalibro Configuration contempla o conceito de configuração que é um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Uma configuração consiste, portanto, na composição de métricas cujos valores de referência são flexíveis e podem ser determinados separadamente para cada configuração criada. Associado ao conceito de configuração, está a criação de intervalos qualitativos associado a valores de métricas. Este módulo ainda é complementado por \emph{Reading Gropus} que são grupos de leituras definidos por usuários que associam nomes qualitativos à cores que podem ser utilizados em configurações a partir na definição de intervalos de valores. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim. Assim, tem-se a flexibilidade de ter parâmetros que variam de acordo com a linguagem, natureza do software, dentre outras coisas, apenas pela criação de diferentes configurações. 
 
@@ -166,59 +166,82 @@ Para realizar esta etapa basta ir na visualização pública da Métrica Compost
 \end{description}
 
 
-\section{Criação dos Cenários do DWing}
+\section{Cenários de Decisão e \emph{Data Warehousing}}
 \label{dw-cenarios}
 
-\emph{Data Warehousing} (DWing) é um ambiente constituído pelo \emph{Data Warehouse} (DW) e as demais ferramentas relacionadas a manipulação de dados, desde a extração até a visualização. Um ambiente de DWing não se diz respeito apenas das tecnologias envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de \emph{DWing} são SGBDs, Sistemas de conversão e transformação de dados (ferramentas de ETL), tecnologias cliente e servidor para dar acesso aos dados a múltiplos clientes e ferramentas de análise e geração de relatórios.
+\emph{Data Warehousing} (\emph{DWing}) é um ambiente constituído pelo \emph{Data Warehouse} (\emph{DW}) e as demais ferramentas relacionadas a manipulação de dados, desde a extração até a visualização. Um ambiente de \emph{DWing} não se diz respeito apenas das tecnologias envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de \emph{DWing} são SGBDs, Sistemas de conversão e transformação de dados (ferramentas de ETL), tecnologias cliente e servidor para dar acesso aos dados a múltiplos clientes e ferramentas de análise e geração de relatórios.
 
-Como o nome sugere, um \emph{Data Warehouse} (DW), em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. 
+Como o nome sugere, um \emph{Data Warehouse} , em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma coorporação que tem como objetivo dar suporte a tomada de decisão. 
 %
 O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)
 %
 \footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferencendo suporte a gestão de negócios}. 
 %
-Os conceitos relacionados a um ambiente de DWing estão explicados de maneira mais detalhada no apêncie TAL.
+Uma explicação mais detalhada sobre os  conceitos relacionados a um ambiente de \emph{DWing} pode ser obtida no  apêncie \ref{Att:dw}.
 
 Neste trabalho procuramos desenvolver mecanismos que nos permitam monitorar e analisar o código fonte através de métricas de forma automatizada e que nos auxilie na tomada de decisão de refatorar ou não refatorar determinadas partes do código. 
 %
-Nesse sentido, foram encontrados alguns trabalhos na literatura que utilizaram o DW para monitorar métricas de processos e produtos de software \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011} \cite{rego2014}. Dentre estes, o trabalho que se destaca e que serviu como ponto de partida para a criação do modelo dimensional do ambiente de DWing desta monografia foi o trabalho de \cite{rego2014}. Nele, o autor propõe um ambiente de DWing que além de monitorar métricas de um projeto,  identifica e monitora cenários de limpeza de código fonte compostos por métricas relacionados a qualidade de software.
+Nesse sentido, foram encontrados alguns trabalhos na literatura que utilizaram um \emph{DWing} para monitorar métricas de processos e produtos de software \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011} \cite{rego2014}. Dentre estes, o trabalho que se destaca e que serviu como ponto de partida para a criação do modelo dimensional do DW desta monografia foi o trabalho de Rego (\citeyear{rego2014}). Nele, o autor propõe um \emph{DWing} que além de monitorar métricas de um projeto,  identifica e monitora cenários de limpeza de código fonte compostos por métricas relacionados a qualidade de software.
 
 % 
-O fato de o DW oferecer um alto poder de análise e permitir o tratamento de uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. Nesse sentido, temos a hipótese de que o DW seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão validadas com a real comparação entre os dois ambientes implementados.
+O fato de o DW oferecer um alto poder de análise e permitir o tratamento de uma grande quantidade de dados nos faz ter uma espectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. Nesse sentido, temos a hipótese de que um \emph{DWing} seja uma solução mais adequada para o uso por gerentes ou líderes de projeto, diferente do Mezuro que poderia ser melhor utilizado no uso cotidiano dos desenvolvedores. Mas essas são apenas hipóteses que serão melhor discutidas ao fim da realização desse estudo de caso.
 
-(ESCREVER ALGUMAS REGRAS DE NEGOCIO para o ambiente de DW, por exemplo: queremos construir um ambiente que permita identificar os cenários de decisão, e poder visualizar esses dados por sprint)
-
-
-Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessidades do negócio. No caso dessa monografia, queremos conseguir monitorar e visualizar quais os cenários estão ocorrendo no projeto e também monitorar o valor de suas métricas que estão envolvidas nos cenários, de modo que, ao identificar que um determinado cenário está acontecendo, eu possa também identificar as métricas que estão relacionadas com a ocorrência do cenário, ajudando assim a identificar quais ações devemos tomar para solucionar essa ocorrência. Dessa forma, temos dois fatos claros: (1) um fato para registrar a quantidade de cenários e (2) outro para registrar o valor das métricas.
 
 
 \subsection{Modelagem Dimensional}
 
-A modelagem dimensional é uma técnica de modelagem de banco de dados para auxílio a consultas do DW. Ela é de grande importância, se não a principal etapa de desenvolvimento de um ambiente de DWing, pois é nessa etapa que os resquisitos de negócio são tranduzidos em um modelo de dados que permitirá realizar as consultas desejadas. Uma boa modelagem irá permitir um bom desenpenho, intuitividade e escalabilidade de um DW.
+A modelagem dimensional é uma técnica de modelagem de banco de dados para auxílio a consultas do DW. Ela é de grande importância, se não a principal etapa de desenvolvimento de um ambiente de \emph{DWing}, pois é nessa etapa que os resquisitos de negócio são tranduzidos em um modelo de dados que permitirá realizar as consultas desejadas. Uma boa modelagem irá permitir um bom desenpenho, intuitividade e escalabilidade de um DW.
+
+%
+Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessidades do negócio. No caso dessa monografia, queremos conseguir monitorar e visualizar quais os cenários estão ocorrendo no projeto e também monitorar o valor de suas métricas que estão envolvidas nos cenários, de modo que, ao identificar que um determinado cenário está acontecendo, eu possa também identificar as métricas que estão relacionadas com a ocorrência do cenário, ajudando assim a identificar quais ações devemos tomar para solucionar essa ocorrência. Também queremos observar esses cenários ao longo do tempo, permindo a realização de análises por sprint, mês, etc. Dessa forma, temos dois fatos claros: (1) um fato para registrar a quantidade de cenários e (2) outro para registrar o valor das métricas.
+
+ \begin{figure}[H]
+ 	\centering
+ 		\includegraphics[scale=0.5]{figuras/dw-f-scenarios}
+ 		\caption{Modelo dimensional do fato \emph{f\_qtd\_scenarios} que irá armazenar os cenários identificados no projeto.}
+ 		\label{dw-model1}
+ \end{figure}
+
+ 
+
+ \begin{figure}[H]
+ 	\centering
+ 		\includegraphics[scale=0.5]{figuras/dw-fato-design-metrics}
+ 		\caption{Modelo dimensional do fato \emph{f\_design\_metrics\_values} que irá armazenar os valores das métricas de cada classe do projeto.}
+ 		\label{dw-model2}
+ \end{figure}
+
+ 
+
+ \begin{figure}[H]
+ 	\centering
+ 		\includegraphics[scale=0.5]{figuras/dw-fato-security-metrics}
+ 		\caption{Modelo dimensional do fato \emph{f\_security\_metrics\_values} que irá armazenar os valores das métricas de segurança de cada arquivo do projeto.}
+ 		\label{dw-model3}
+ \end{figure}
+
+ 
+
+No trabalho de Rego \citeyear{rego2014} observamos que a modelagem proposta pelo autor está proxima de atender as necessidades dessa monografia. A modelagem de Rego \citeyear{rego2014} permite que o usuário possa identificar cenários de limpeza ao nível de classe de código fonte e também monitorar os percentis dos valores de métricas de qualidade do projeto. Baseado nisso, chegamos na modelagem mostrada nas Figuras (\ref{dw-model1}) (\ref{dw-model2}) e (\ref{dw-model3}) para o DW deste trabalho.
 
 
-No trabalho de Rego \citeyear{rego2014} observamos que a modelagem proposta pelo autor está proxima de atender as necessidades dessa monografia. A modelagem de Rego \citeyear{rego2014} permite que o usuário possa identificar cenários de limpeza ao nível de classe de código fonte e também monitorar os percentis dos valores de métricas de qualidade do projeto. Baseado nisso, chegamos a essa modelagem mostrada na figura TAL para o DW deste trabalho.
+Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluidas para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários (\emph{f\_qtd\_scenarios}) que pode ser vista na Figura \ref{dw-model1}  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de sprints. Uma das principais características de um ambiente de \emph{DWing} é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão sprint permitirá o usuário a fazer análise da quantidade de cenários por sprint. 
 
-=================COLOCAR FIGURA dos esquemas ====================
-
-
-Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluidas para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários  (CITAR O NOME DA TABELA NO MODELO)  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de sprints. Uma das principais características de um ambiente de DWing é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão sprint permitirá o usuário a fazer análise da quantidade de cenários por sprint. 
-
-Outra modificação importante foi feita na dimensão "cenários". Novos atributos foram inclusos para contemplar a estrutura de cenários de decisões proposta nessa monografia. Foram inclusos os atributos tipo do cenário, métricas envolvidas, formula e uma descrição. Uma limitação do trabalho de Rego foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou  metadados para definir quais métricas estavam envolvidas a cada cenário e automatizar de maneira mais eficiente a identificação de novos cenários. No nosso caso, levamos em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo "metricas\_envolvidas" e "formula" na dimensao d\_scenario, permitindo assim que o usuári possa saber quais métricas compõe cada cenário e como elas definem a existência ou não do cenário. Como se trata de um atributo de natureza descritiva, podemos ter cenários que possuem várias métricas envolvidas.
+Outra modificação importante foi feita na dimensão \emph{d\_scenarios}. Novos atributos foram inclusos para contemplar a estrutura de cenários de decisões proposta nessa monografia. Foram inclusos os atributos tipo do cenário, métricas envolvidas, fórmula e uma descrição. Uma limitação do trabalho de Rego (\citeyear{rego2014}) foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou  metadados para definir quais métricas estavam envolvidas a cada cenário e automatizar de maneira mais eficiente a identificação de novos cenários. No nosso caso, levamos em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo \emph{involved\_metrics} e \emph{formula} na dimensao \emph{d\_scenario}, permitindo assim que o usuári possa saber quais métricas compõe cada cenário e como elas definem a existência ou não do cenário. Como se trata de um atributo de natureza descritiva, podemos ter cenários que possuem várias métricas envolvidas.
 
 
-Rego também criou outro fato para armazenar os valores percentis das métricas de um determindado projeto. Para este trabalho, achamos que seria melhor o fato relacionado aos valores das métricas ser a nível de módulo. Dessa forma, o usuário tem mais insumo para identificar a causa de um cenário em uma classe especifica. Por exemplo, suponhamos que o usuário tenha identificado a ocorrencia do cenário "Ponto crítico de falha" em uma determinada classe. Posteriormente, o usuário pode verificar qual foi o valor das métricas ACC e NOC nesse módulo e tomar uma decisão de refatoração baseado nos valores dessas métricas. No trabalho de Rego, como os valores das métricas estariam disponíveis ao nível de projeto apenas, esse tipo de análise não poderia ser feito.
+Rego também criou outro fato para armazenar os valores percentis das métricas de um determindado projeto. Para este trabalho, achamos que seria melhor o fato relacionado aos valores das métricas ser a nível de módulo. Dessa forma, o usuário tem mais insumo para identificar a causa de um cenário em uma classe especifica. Por exemplo, suponhamos que o usuário tenha identificado a ocorrencia do cenário \emph{Ponto crítico de falha} em uma determinada classe. Posteriormente, o usuário pode verificar qual foi o valor das métricas ACC e NOC nesse módulo e tomar uma decisão de refatoração baseado nos valores dessas métricas. No trabalho de Rego (\citeyear{rego2014}), como os valores das métricas estariam disponíveis ao nível de projeto apenas, esse tipo de análise não poderia ser feito.
 
-Em nossa modelagem, preferimos semparar em duas tablas fatos as métricas de qualidade e as métricas de segurança. A motivação foi que esses dois tipos de métricas possuem natureza diferente. Métricas de vulnerabilidade contam o número de ocorrência de uma determinada vulnerabilidade no código. Logo, podemos realizar agregações e descobrir a quantidade de vulnerabilidade do mesmo tipo por arquivo, por projeto, etc. Já com métricas de qualidade, não podemos fazer agregações. Não faz sentido, por exemplo, somar o valor de complexidade ciclomatica de todas os módulos para obter o valor total do projeto. A média seria a único tipo de agregação que poderia ser feita, porém o uso da média é confrontado pela tese de Meireles, fazendo que nem esse tipo de agregação não seja muito representativo. Outro aspecto desses dois fatos é que, como discutido no capítulo de CENÀRIOS, não temos um índice de qualidade para métricas de vulnerabilidade, fazendo que essa dimensão não seja utilizada na fato f\_security\_metrics. Por outro lado, é possível chegar ao nível de linha para caracterizar uma vulnerabilidade, incluindo então a dimensão d\_line\_number a esse fato.
+Em nossa modelagem, preferimos semparar em duas tablas fatos as métricas de qualidade e as métricas de segurança. A motivação foi que esses dois tipos de métricas possuem natureza diferente. Métricas de vulnerabilidade contam o número de ocorrência de uma determinada vulnerabilidade no código. Logo, podemos realizar agregações e descobrir a quantidade de vulnerabilidade do mesmo tipo por arquivo, por projeto, etc. Já com métricas de qualidade, não podemos fazer agregações. Não faz sentido, por exemplo, somar o valor de complexidade ciclomatica de todas os módulos para obter o valor total do projeto. A média seria a único tipo de agregação que poderia ser feita, porém o uso da média é confrontado pela tese de Meireles, fazendo que nem esse tipo de agregação não seja muito representativo. Outro aspecto desses dois fatos é que, como discutido no capítulo \ref{cap-cenarios}, não temos um índice de qualidade para métricas de vulnerabilidade, fazendo que essa dimensão não seja utilizada na fato \emph{f\_security\_metrics\_values}. Por outro lado, é possível chegar ao nível de linha para caracterizar uma vulnerabilidade, incluindo então a dimensão \emph{d\_line\_number} a esse fato.
 
 Dado o modelo, decidimos por usar o banco de dados MariaDB para a implementação deste.
 
 
-\subsection{Criação do ambiente de DWing}
+\subsection{Criação do ambiente de \emph{DWing}}
 
-O ambiente de DWing foi criado conforme a Figura \ref{dw_components}.
+O ambiente de \emph{DWing} foi criado conforme a Figura \ref{dw_components}.
 
- \begin{figure}[!htb]
+ \begin{figure}[H]
  	\centering
  		\includegraphics[scale=0.5]{figuras/dw_components}
  		\caption{Ferramentas utilizadas para o desenvolvimento do ambiente de \emph{DWing}.}
@@ -232,26 +255,26 @@ Como podemos ver na Figura \ref{dw_components}, as métricas foram coletadas do 
 Os dados são disponibilizados na forma de arquivos CSV, por parte do Analizo, e HTML, por parte do clang. O relatória de métricas do clang. Porém, a fim de facilitar a extração desses dados, foi criado um parser para transformar esse relatório HTML para um arquivo CSV de estrutura parecida com o relatório do Analizo.
 
 
-Para o processo de ETL foi utilizado uma ferramenta da suíte de ferramentas Pentaho, chamada de \emph{Pentaho Data Integration} (PDI). O PDI aceita diversos formatos de entrada de Dados, além de fazer integração com diversos banco de dados, incluindo o MariaDB, que foi utilizado para a implementação do DW. É no processo de ETL que são identificados os cenários de decisão. Diferente do Mezuro, que são feitas configurações na própria ferramenta para que ela possa identificar os cenários de decisão, no DWing o processo de ETL já identifica o cenário e já passa a informação pronta para ser a armazenada do \emph{Data Warehouse} (qual a classe, release, projeto, entre outros atributos que estão envolvidos com a identificação daquele cenário).
+Para o processo de ETL foi utilizado uma ferramenta da suíte de ferramentas Pentaho, chamada de \emph{Pentaho Data Integration} (PDI). O PDI aceita diversos formatos de entrada de Dados, além de fazer integração com diversos banco de dados, incluindo o MariaDB, que foi utilizado para a implementação do DW. É no processo de ETL que são identificados os cenários de decisão. Diferente do Mezuro, que são feitas configurações na própria ferramenta para que ela possa identificar os cenários de decisão, no \emph{DWing} o processo de ETL já identifica o cenário e já passa a informação pronta para ser a armazenada do \emph{Data Warehouse} (qual a classe, release, projeto, entre outros atributos que estão envolvidos com a identificação daquele cenário).
 
 
-\begin{figure}[!htb]
+\begin{figure}[H]
  	\centering
  		\includegraphics[scale=0.5]{figuras/dw-etlpdi}
  		\caption{Processo de ETL para identificação dos cenários de decisão feito no PDI}
  		\label{dw-etl-pdi}
  \end{figure}
 
-Na Figura \ref{dw-etl-pdi} é demonstrado o processo de ETL, elaborado na ferramenta PDI através de uma transformation, responsável por extrair os dados, identificar os cenários e carregar a informação no DW. De maneira resumida, os dados são extraidos de arquivos CSV. Esses dados contém informações a respeito das classes e arquivos, e o valor das métricas diversas métricas suportadas pelas ferramentas para cada classe. Para cada cenário, são selecionadas apenas as métricas de interesse para então verificar se o cenário existe o não em determinada classse. É no step "formula" (steps caracterizados pelo "Fx") onde colocamos a regra de identificação do cenário. Dessa forma, quando o cenário é identificado, este é atribuído a aquela classe. Nos passso posteriores os dados são limpos e preparados até formarem uma tupla que será carregada na tabela de fatos. Mais detalhes sobre o processo de ETL pode ser vista no apendice TAL.
+Na Figura \ref{dw-etl-pdi} é demonstrado o processo de ETL, elaborado na ferramenta PDI através de uma transformation, responsável por extrair os dados, identificar os cenários e carregar a informação no DW. De maneira resumida, os dados são extraidos de arquivos CSV. Esses dados contém informações a respeito das classes e arquivos, e o valor das métricas diversas métricas suportadas pelas ferramentas para cada classe. Para cada cenário, são selecionadas apenas as métricas de interesse para então verificar se o cenário existe o não em determinada classse. É no step \emph{formula} (steps caracterizados pelo \emph{Fx}) onde colocamos a regra de identificação do cenário. Dessa forma, quando o cenário é identificado, este é atribuído a aquela classe. Nos passso posteriores os dados são limpos e preparados até formarem uma tupla que será carregada na tabela de fatos. %Mais detalhes sobre o processo de ETL pode ser vista no apendice TAL.
 
 
 Os processos de ETL para carregar os fatos relacionado aos valores das métricas foram mais simples, pois consitiu basicamente em armazenar o relatório fornecido pelas ferramentas. Apenas as métricas que compõe os cenários criados foram selecionadas para serem armazenadas do DW.
 
 
-Os dados são armazenados no Data Warehouse, implementado em um banco de dados Maria DB. Foi utilizado o MysqWorkbench para criação dos modelos e das tabelas.
+Os dados são armazenados no \emph{Data Warehouse}, implementado em um banco de dados MariaDB. Foi utilizado o \emph{MySql Workbench} para criação dos modelos e das tabelas.
 
 
-Para visualizar os dados, realizar consultas OLAP e gerar relatórios, foi utilizado a ferramenta Pentaho Business Inteligence Server (conhecida como BI sever). Essa ferramenta ainda inclui a tecnologia de cliente e servidor, possibilitando o acesso de diversos usuários a um sistema de consultas e análise em rede. Ela conta com diversos plugins que realizam diversas operações, tais como, geração de gráficos, visualização de dados em tabelas, etc. O Plugin utilizado para a visualizãção dos dados e geração de consultas OLAP foi o Saiku Analytics.
+Para visualizar os dados, realizar consultas OLAP e gerar relatórios, foi utilizado a ferramenta \emph{Pentaho Business Inteligence Server} (conhecida como BI sever). Essa ferramenta ainda inclui a tecnologia de cliente e servidor, possibilitando o acesso de diversos usuários a um sistema de consultas e análise em rede. Ela conta com diversos plugins que realizam diversas operações, tais como, geração de gráficos, visualização de dados em tabelas, etc. O Plugin utilizado para a visualizãção dos dados e geração de consultas OLAP foi o \emph{Saiku Analytics}.
 
 Porém, antes visualizar os dados, é necessário primeiramente criar cubos de dados.Para criação e publicação do cubos de dados, foi utilizado a ferramenta mondrian. Esta gera um arquivo XML com todas as configurações definidas do cubo, que é usado pelo BI server para gerar os relatórios e fazer as conultas OLAP à base de dados. É nessa etapa onde definimos quais são as hierarquias e agregações que poderão feitas em cima dos dados no momento das análise.
 
@@ -292,18 +315,18 @@ O Synergy é um programa escrito em C++ que permite compartilhamento de mouse e 
 
 A documentação oficial pode ser encontrada em sua wiki através da url: \url{http://synergy-project.org/wiki/Main_Page}
 
-Este projeto será analizado somente no ambiente de DWing.
+Este projeto será analizado somente no \emph{DWing}.
 
 \section{Coleta de Dados}
 \label{data-colect}
 
-O Mezuro já trabalha em conjunto com o Analizo\footnote{\url{http://www.analizo.org/}}. O Analizo é uma ferramenta de análise estática de código e dá suporte a diversas métricas, inclusive as métricas discutidas no cápitulo 2, tanto de \emph{design} quanto de vulnerabilidade. Um ambiente de DW não está atrelado a apenas uma fonte de dados, podendo utilizar diversas fontes. Dessa forma, utilizamos o Analizo para coletar as métricas e gerar o insumo para a análise dos cenários em ambas as ferramentas.
+O Mezuro já trabalha em conjunto com o Analizo\footnote{\url{http://www.analizo.org/}}. O Analizo é uma ferramenta de análise estática de código e dá suporte a diversas métricas, inclusive as métricas discutidas no cápitulo 2, tanto de \emph{design} quanto de vulnerabilidade. Um \emph{DWing} não está atrelado a apenas uma fonte de dados, podendo utilizar diversas fontes. Dessa forma, utilizamos o Analizo para coletar as métricas e gerar o insumo para a análise dos cenários em ambas as ferramentas.
 
 Porém, identificamos um problema com o Analizo em relação as coleta de métricas de vulnerabilidade. Para projetos pequenos e simples as métricas de vulnerabilidade podem ser coletadas.  Contudo, para projetos maiores e mais complexos, com arquitetura bem definida, o Analizo não consegue gerar tais métricas. Isso se deve ao fato do Analizo utilizar o \emph{Clang Static Analizer}\footnote{\url{http://clang-analyzer.llvm.org/}}, que é outra ferramenta livre que faz análise estática para identificação de bugs em projetos C/C++, para a geração das métricas de vulnerabilidade. A utilização do \emph{clang} consiste em chamar o comando \emph{scan-build}  e o comando de compilação do programa, por exemplo \emph{\"scan-build gcc myprog.c\"}. Foi verificado que o Analizo chama o \emph{clang} em seu código para cada arquivo, usando apenas o comando \emph{gcc} em cada um deles. Isso pode funcionar para projetos simples, porém projetos mais complexos são compilados geralmente com \emph{\"Makefile\"}, com diversas linhas de compilação. Não consguindo compilar o código, o \emph{clang} não consegue executar, fazendo com que o Analizo, por sua vez, não consiga extrair as métricas de vulnerabilidade. 
 
-Grandes alterações deveriam ser feitas para fazer com que o Analizo pudesse gerar os valores dessas métricas para projetos grantes, não cabendo ao escopo e tempo desta monografia. Esse problema afeta diretamente ao Mezuro, pois, dependente do relatório gerado pelo Analizo, não consegue os valores de métricas de vulnerabilidade para projetos maiores. Como o ambiente de DWing pode ter diversas fontes de dados, podemos recorrer a outra fonte de dados que ofereça apenas as métricas de segurança.
+Grandes alterações deveriam ser feitas para fazer com que o Analizo pudesse gerar os valores dessas métricas para projetos grantes, não cabendo ao escopo e tempo desta monografia. Esse problema afeta diretamente ao Mezuro, pois, dependente do relatório gerado pelo Analizo, não consegue os valores de métricas de vulnerabilidade para projetos maiores. Como o ambiente de \emph{DWing} pode ter diversas fontes de dados, podemos recorrer a outra fonte de dados que ofereça apenas as métricas de segurança.
 
-Dessa forma, decidimos em usar o \emph{clang} para extrair as métricas de vulnerabilidade. O \emph{clang} gera um relatório no formato HTML. Foi feito um parser para transformar o HTML em um arquivo CSV, com a mesma estrutura fornecida pelo Analizo. Assim, o ambiente de DWing pode utilizar desse arquivo CSV gerado pelo parser para se alimentar das métricas de vulnerabildade da mesma maneira que trata o CSV gerado pelo próŕio Analizo. O parser foi desenvolvido na linguagem perl justamente para aproveitarmos das lógicas de programação e códigos do próprio Analizo.
+Dessa forma, decidimos em usar o \emph{clang} para extrair as métricas de vulnerabilidade. O \emph{clang} gera um relatório no formato HTML. Foi feito um parser para transformar o HTML em um arquivo CSV, com a mesma estrutura fornecida pelo Analizo. Assim, o ambiente de \emph{DWing} pode utilizar desse arquivo CSV gerado pelo parser para se alimentar das métricas de vulnerabildade da mesma maneira que trata o CSV gerado pelo próŕio Analizo. O parser foi desenvolvido na linguagem perl justamente para aproveitarmos das lógicas de programação e códigos do próprio Analizo.
 
 ======== EXPLICAR COMO O MEZURO UTILIZA OS DADOS do Analizo, Como funciona a Integração(brevemente)=====
 

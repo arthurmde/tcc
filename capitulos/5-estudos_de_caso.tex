@@ -467,6 +467,65 @@ A visualização da ocorrência dos cenários dentro de cada classe se torna bem
 \subsection{Visualização no DWing}
 \label{vision-dw}
 
+A visualização dos cenários no \emph{DWing} é feita com o uso do pluguin \emph{Saiku Analytics} disponível na ferramenta \emph{BI server}. Para utilizar o \emph{Saiku Analytics}, depois de logado no \emph{BI server}, deve-se clicar na opção \emph{Create New} -> \emph{New Saiku Analytics}. O \emph{Saiku Analytics} permite o acesso a um cubo de dados publicado e a realização de consultas OLAP em cima dos dados de maneira bem intuitiva, ou , pela criação de \emph{querys} MDX
+\footnote{O MDX (\emph{Multidimensional Expression}) é uma linguagem que foi criada com o propósito de manipular dados Multidemensionals. Possui uma sintaxe semelhante ao SQL}
+. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{figuras/dw-workspace-biserver}
+	\caption{Workspace do plugin \emph{Saiku Analytics} no BI server}
+	\label{dw-workspace-biserver}
+\end{figure}
+
+
+Na Figura \ref{dw-workspace-biserver} podemos ver a área de trabalho do \emph{Saiku Analytics}. Na área demarcada como 1, podemos escolher os cubos que serão analisados. Na área demarcada como 2, é onde podemos ver as dimensões e medidas do cubo escolhido. Ali podemos ver todos os atributos de cada dimensão. É nessa área que selecionamos quais atributos deverãover no relaório disposto na área 3. Na área 3 é apresentado o relatório, que é totalmente customizado de acordo com a maneira que os atributos são colocados nos campos "Colunas", "Linhas" e "Filtros".
+
+
+Para gerar um relatório deve haver pelo menos uma medida envolvida. A partir disso, basta o usuário escolher quais atributos ele quer visualizar, selecionando-os na área 2 e arrastando para os campos "Colunas", "Linhas" e "Filtros" na área 3.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{figuras/dw-hierarquias}
+	\caption{Atributos que forma as hierarquias para fazer agregações de dados.}
+	\label{dw-hierarquias}
+\end{figure}
+
+As atributos das dimensões são mostrados de maneira hierárquica em relação a granularidade, sendo que o primeiro atributo mostrado detém menor nível de detalhe e o ultimo atributo mostrado detem o maior nível de detalhe. Na figura \ref{dw-hierarquias} podemos ver a hierárquia da dimensão tempo, que possui vários níveis de detalhe. Porém, existem também dimensões que possuem relações hierárquicas, como a dimensão projeto e a dimensão modulo. Isso permite que eu possa analisar os cenários a nível de projeto (mais alto nível) ou a nível de classe , ou arquivo (mais baixo nível), trazendo mais nível de detalhe. As hierárquias são importantes pois os dados podem ser mostrados de forma agregada dependendo do nível de detalhe desejado.
+
+
+A primeira vista, podemos na Figura \ref{dw-workspace-biserver} que foram encontrados muitos cenários nos projetos. Como os projetos possuem muitas classes e arquivos e que também existem muitas bibliotecas utilizadas e também um framework por parte do \emph{synegy}, gerar um relatório a nível de classe não seria muito interessante, pois este ficaria muito grande. Nesse sentido, as operações OLAP de \emph{Slice and Dice} podem ser feitas através dos filtros. Isso permite que seja selecionados os dados de apenas uma release específica, como também classes específicas, arquivos específicos. Permite também analisar apenas os dados relativos a um tipo de cenário. Enfim, com os filtros, diferentes inúmeras consultas podem ser feitos e relátórios de diversas naturezas podem ser gerados.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{figuras/dw-graficos-cenarios}
+	\caption{Gráfico gerado pelo \emph{Saiku Analytics} que permite ver a quantidade de ceários de decisões ao logo de cada release}
+	\label{dw-graficos-cenarios}
+\end{figure}
+
+Outra funcionalidade interessante é a possibilidade de geração de gráficos a partir do relatório criado. Na Figura \ref{dw-graficos-cenarios} podemos ver o comportamento da quantidade de cenários de decisões encontrados no projeto octave ao longo de suas releases. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figuras/dw-relatorio-octave}
+	\caption{Relatório com a quantidade de vulnerabilidades por release e por tipo de vulnerabilidade específica encontradas no Octave}
+	\label{dw-relatorio-octave}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figuras/dw-sec-octave}
+	\caption{Relatório que verifica quais as vulnerabilidades foram encontradas no arquivo \emph{CSparse.cc}, indicando também a linha de ocorrência}
+	\label{dw-sec-octave}
+\end{figure}
+
+As mesmas operações e manipulações dos dados podem ser feitas no cubo que armazena as métricas de segurança. Como a natureza das métricas de vulnerabilidades é contar a quantidade de ocorrências de uma vulnerabilidades específica, esse tipo de métrica pode ser agregada com a operação de soma. Dessa forma, podemos ver o total de vulnerabilidades existente no projeto. A Figura \ref{dw-relatorio-octave} mostra o relatório com o total de vulnerabilidades de cada tipo encontradas nas releases do octave observadas. Realizando operalçoes de \emph{Drill down}, podemos chegar até na linha que foi encontrada uma vulnerabilidade específica, como mostrado na Figura \ref{dw-sec-octave}. Isso é bom pois é apontado o local que se encontra a vulnerabilidade e que deve ser refatorado. Não foram encontradas vulnerabilidades específicas no synergy, apenas no Octave.
+
+
 \subsection{Análise e Discussão}
 \label{ana-disc}
 

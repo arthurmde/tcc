@@ -1,4 +1,4 @@
-\chapter{Considerações Finais}
+\chapter{Conclusão}
 \label{cap-consideracoesFinais}
 
 Métricas são ferramentas importantes que podem ser utilizadas em projetos de software, sendo também muito estudadas na academia e utilizadas na Engenharia de Software Experimental. Entretanto, ainda existem muitas dificuldades inerentes a adoção de métricas nesses projetos. Neste trabalho buscamos apresentar a técnica de Cenários de Decisões como alternativa para monitoramento através de métricas de código-fonte e utilizá-la a partir da evolução e adaptação de duas ferramentas.
@@ -21,11 +21,11 @@ Com esse estudo, averigou-se que métricas de \emph{design} de código podem ter
 
 %
 
-Neste sentido, quatro cenários foram propostos para monitorar a segurança de projetos de software a partir de métricas de \emph{design} e outros cinco cenários foram criados para monitorar a segurança do código-fonte a partir de métricas específicas de vulnerabilidades, para os quais foram definidos os valores de refêrencia para softwares desenvolvidos em C++. O primeiro conjunto de cenários pode ser utilizado em diversos contextos, uma vez que as métricas envolvidas são extraídas por vários extratores e não dependem da linguagem de programação do projeto. Por outro lado, o segundo conjunto de cenários são específicos para projetos em C/C++ e tratam de problemas de segurança diretamente.
+Neste sentido, quatro cenários foram propostos para monitorar a segurança de projetos de software a partir de métricas de \emph{design} e outros cinco cenários foram criados para monitorar a segurança do código-fonte a partir de métricas específicas de vulnerabilidades, para os quais foram definidos os valores de refêrencia para softwares desenvolvidos em C++. O primeiro conjunto de cenários pode ser utilizado em diversos contextos, uma vez que as métricas envolvidas são extraídas por vários extratores e não dependem da linguagem de programação do projeto. Por outro lado, o segundo conjunto de cenários são específicos para projetos em C/C++ e tratam de problemas de segurança diretamente ligados a essa linguagem.
 
 %
 
-Observamos ao longo desta monografia que, para o contexto de vulnerabilidade de software, métricas relacionadas ao \emph{design} de código podem ser mais facilmente agrupadas em Cenários de Decisão do que métricas de vulnerabilidades específicas. Isto acontece pois as métricas de vulnerabilidades identificam ocorrências específicas das mesmas, sendo difícil relacionar uma métrica com outra. Além disso, cada uma dessas vulnerabilidades são documentadas por CWE's específicas e, portanto, suas ocorrências e soluções são bem definidas.
+Observamos ao longo desta monografia que, para o contexto de vulnerabilidade de software, métricas relacionadas ao \emph{design} de código podem ser mais facilmente agrupadas em Cenários de Decisão do que métricas de vulnerabilidades específicas. Isto acontece pois as métricas de vulnerabilidades identificam ocorrências específicas das mesmas, sendo difícil relacionar uma métrica com outra. Além disso, cada uma dessas vulnerabilidades são documentadas por CWE's específicas e, portanto, suas ocorrências e soluções são bem definidas. Entretando, o estudo sobre taxonomias de vulnerabildiades sugeriu uma maneira de agrupar algumas vulnerabilidades específicas em vulnerabilidades mais alto nível. Um exemplo disso é a vulnerabilidade \emph{Buffer Overflow}, que pode ocorrer de diferentes formas, como uso de funções como \emph{gets()}, ou pela má manipulação de \emph{arrays}, etc. Baseado nisso,  buscou aplicar esse tipo de conceito na criação dos cenários de decisão para vulnerabilidades específicas.
 
 %
 
@@ -40,49 +40,25 @@ Tanto as evoluções e cenários criados no Mezuro podem ser utilizados pela com
 
 %===============================================
 
-\section{Evolução do Trabalho}
+
+
+\section{Trabalhos Futuros}
+
+Quanto aos trabalhos futuros, gostaríamos de estudar e validar a correlação existente entre métricas de \emph{design} com métricas de vulnerabilidades específicas. A idéia seria verificar através de estudos estatísticos a partir de análise de diversos softwares se de fato métricas de \emph{design} tem relação direta com vulnerabilidades específicas e também que se para projetos não críticos, o cuidado com o \emph{design} e a aplicação de princípios de \emph{design} seguros são o suficiente para termos softwares seguros. 
+
+Outra possibilidade de evolução deste trabalho seria também a validação da utilização da técnica Cenário de Decisão. Esse estudo poderia se basear em um estudo de caso real, onde seria verificado há resultados significativos em relação a qualidade de código se for feito o monitoramento baseado em Cenários de Decisões. Este estudo poderia buscar integrar as duas abordagens de monitoramento apresentado nessa monografia (Mezuro e \emph{DWing}) e utilizar das propostas de Medição Rápida e Medição de Projetos apresentado na Figura \ref{fig:agile-design-metrics}.
 
 %
 
-Para contemplar os objetivos desta monografia apresentamos nesta seção um planejamento macro relacionado à segunda etapa deste trabalho, que pode ser observado na Tabela \ref{tab:cronograma}.
+%Atualmente, a evolução do Mezuro está no ponto de finalização do módulo Kalibro Processor. Portanto, pretendemos contribuir para com a evolução do Mezuro como plataforma independente em diferentes níveis. Dada os objetivos tecnológicos e de pequisa expostos no Capítulo \ref{cap-introducao}, essas contribuições devem ser realizadas nos diferentes módulos que compõem a plataforma, contemplando a inserção de novos coletores de métricas sob o Kalibro, assim como melhorias relacionadas as formas de acompanhamento e configuração de métricas. Essas contribuições serão pertinentes para esta monografia, assim como para a evolução do Mezuro, uma vez que as decisões serão compartilhadas com a comunidade de desenvolvedores e as contribuições em código terão impactos importantes e comuns quando se trata de software livre. Portanto, as contribuições irão ajudar para melhor compreensão da utilização do Mezuro e suas funcionalidades. Além disso, algumas das evoluções desejadas e destacadas no Capítulo \ref{cap-introducao} podem se tornar fundamentais para que o Mezuro possa se tornar não só uma ferramenta com viés acadêmico, mas que também contemple diferentes objetivos dentro de projetos de software. Pretendemos adicionar novos coletores de métricas ao Mezuro, o torando ainda mais flexível e aumentando seu potencial de uso.
 
 %
 
-
-	\begin{table}[H]
-	\begin{center}
-	    \begin{tabular}{ | p{5cm} | c | c |  c |  c |  c |}
-	    \hline
-	    Atividade & Julho & Agosto & Setembro & Outrubro & Novembro \\ \hline
-	    Contribuições com Mezuro & x & x & x & x &  \\ \hline
-	    Criar Ambiente DW & x & x & x & x & \\ \hline
-	    Contribuições com Analizo & x & x &  &  & \\ \hline
-	    Criação e Refinamento de Cenários de Decisões & x & x & x & x & x\\ \hline
-	    Criar protocolo de Estudo de Caso de análise das ferramentas & x & x &  &  & \\ \hline
-	    Criar protocolo de estudo de correlação entre métricas de código-fonte e de vulnerabilidade & x & x &  &  & \\ \hline
-	    Aplicar estudo estatístico de correlação &  &  & x & x & \\ \hline
-	    Aplicar Estudo de Caso sobre as ferramentas &  &  & x & x & \\ \hline
-	    Análise de dados e resultados &  &  &  & x & x\\ \hline
-	    Relatar contribuições &  &  &  & x & x\\ \hline
-	    \end{tabular}
-	    \caption{Cronograma para o TCC 2}
-	    \label{tab:cronograma}
-	\end{center}
-	\end{table}
-
-Durante os quatro próximos meses de trabalho serão realizadas as atividades técnicas de Engenharia de Software para evolução do Mezuro e construção do ambiente DWing, bem como, a medida que for necessário, evoluir a ferramenta de cóleta de métricas de código-fonte Analizo. Algumas contribuições com o Analizo já foram feitas durante a disciplina de Manutenção e Evolução de Software, na qual, em conjunto com outros alunos, contribuimos com a inserção de algumas métricas de vulnerabilidade e com uma funcionalidade que permite identificar a linha em que a vulnerabilidade está ocorrendo, sendo essa última uma funcionalidade que pode ser muito útil para a criação dos ambientes e auxiliar na tomada de decisão para solucioná-la.
+%A construção de um ambiente de DWing também é um dos principais objetivos desta monografia. Assim como o Mezuro, o ambiente de DWing tem como objetivo ser construído para auxiliar no monitoramento de cenários de vulnerabilidade de software em que uma aplicação se encontra e dar suporte a tomada de decisão. Dessa forma, deverá ser desenvolvida todas as tarefas descritas no ciclo de de vida de desenvolvimento de um DWing (seção \ref{sec-lifecycleDw}), desde a modelagem dimensional, processo de ETL e visualização das informações obtidas para a realização de análises. A fonte de entrada de dados será ferramentas de análise estática de código e a periodicidade de coleta será definida durante a modelagem, pois nesse processo que será definido a granularidade das informações.
 
 %
 
-Atualmente, a evolução do Mezuro está no ponto de finalização do módulo Kalibro Processor. Portanto, pretendemos contribuir para com a evolução do Mezuro como plataforma independente em diferentes níveis. Dada os objetivos tecnológicos e de pequisa expostos no Capítulo \ref{cap-introducao}, essas contribuições devem ser realizadas nos diferentes módulos que compõem a plataforma, contemplando a inserção de novos coletores de métricas sob o Kalibro, assim como melhorias relacionadas as formas de acompanhamento e configuração de métricas. Essas contribuições serão pertinentes para esta monografia, assim como para a evolução do Mezuro, uma vez que as decisões serão compartilhadas com a comunidade de desenvolvedores e as contribuições em código terão impactos importantes e comuns quando se trata de software livre. Portanto, as contribuições irão ajudar para melhor compreensão da utilização do Mezuro e suas funcionalidades. Além disso, algumas das evoluções desejadas e destacadas no Capítulo \ref{cap-introducao} podem se tornar fundamentais para que o Mezuro possa se tornar não só uma ferramenta com viés acadêmico, mas que também contemple diferentes objetivos dentro de projetos de software. Pretendemos adicionar novos coletores de métricas ao Mezuro, o torando ainda mais flexível e aumentando seu potencial de uso.
-
+%A fim de comparar as duas soluções para responder a algumas das questões de pesquisa definidas neste trabalho, será elaborado um protocolo de estudo de caso. Este protocolo será projetado durante os dois primeiros meses de trabalho (Julho e Agosto) para que a sua aplicação seja realizada nos dois meses posteriores (Setembro e Outubro).
 %
-
-A construção de um ambiente de DWing também é um dos principais objetivos desta monografia. Assim como o Mezuro, o ambiente de DWing tem como objetivo ser construído para auxiliar no monitoramento de cenários de vulnerabilidade de software em que uma aplicação se encontra e dar suporte a tomada de decisão. Dessa forma, deverá ser desenvolvida todas as tarefas descritas no ciclo de de vida de desenvolvimento de um DWing (seção \ref{sec-lifecycleDw}), desde a modelagem dimensional, processo de ETL e visualização das informações obtidas para a realização de análises. A fonte de entrada de dados será ferramentas de análise estática de código e a periodicidade de coleta será definida durante a modelagem, pois nesse processo que será definido a granularidade das informações.
-
-%
-
-A fim de comparar as duas soluções para responder a algumas das questões de pesquisa definidas neste trabalho, será elaborado um protocolo de estudo de caso. Este protocolo será projetado durante os dois primeiros meses de trabalho (Julho e Agosto) para que a sua aplicação seja realizada nos dois meses posteriores (Setembro e Outubro).
-%
-Durante todo o período de construção da segunda etapa deste trabalho, queremos refinar e identificar outros Cenários de Decisões. O estudo de correlação entre métricas de \emph{design} e vulnerabilidades de software, assim como mais estudos teóricos são fundamentais para evolução e criação desses cenários. Para tanto, projetaremos e realizaremos o experimento que avaliará a correlação estatística entre as métricas estudadas. Por fim, os dois últimos meses serão destinados a análise dos dados e relato de resultados obtidos. 
+%Durante todo o período de construção da segunda etapa deste trabalho, queremos refinar e identificar outros Cenários de Decisões. O estudo de correlação entre métricas de \emph{design} e vulnerabilidades de software, assim como mais estudos teóricos são fundamentais para evolução e criação desses cenários. Para tanto, projetaremos e realizaremos o experimento que avaliará a correlação estatística entre as métricas estudadas. Por fim, os dois últimos meses serão destinados a análise dos dados e relato de resultados obtidos. 
 	

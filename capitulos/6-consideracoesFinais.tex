@@ -21,7 +21,7 @@ Com esse estudo, averigou-se que métricas de \emph{design} de código podem ter
 
 %
 
-Neste sentido, quatro cenários foram propostos para monitorar a segurança de projetos de software a partir de métricas de \emph{design} e outros cinco cenários foram criados para monitorar a segurança do código-fonte a partir de métricas específicas de vulnerabilidades, para os quais foram definidos os valores de refêrencia para softwares desenvolvidos em C++. O primeiro conjunto de cenários pode ser utilizado em diversos contextos, uma vez que as métricas envolvidas são extraídas por vários extratores e não dependem da linguagem de programação do projeto. Por outro lado, o segundo conjunto de cenários são específicos para projetos em C/C++ e tratam de problemas de segurança diretamente ligados a essa linguagem.
+Neste sentido, quatro cenários foram propostos para monitorar a segurança de projetos de software a partir de métricas de \emph{design} e outros cinco cenários foram criados para monitorar a segurança do código-fonte a partir de métricas específicas de vulnerabilidades, para os quais foram definidos os valores de refêrencia para softwares desenvolvidos em C++. O primeiro conjunto de cenários pode ser utilizado em diversos contextos, uma vez que as métricas envolvidas são extraídas por vários extratores e não dependem da linguagem de programação do projeto. Por outro lado, o segundo conjunto de cenários são específicos para projetos em C/C++ e tratam de problemas de segurança diretamente ligados a essa linguagem. Nesse sentido, pode ser criado um catálogo de cenários de decisões envolvendo outros aspectos como a qualidade, manutenabilidade, entre outros, que podem ser aplicados para todas as linguagens, como também nesse catálogo pode conter seções para cenários específicos para cada linguagem ou paradigma de programação. A idéia é que uma instância de cenários de decisões possa ser utilizado em diferentes contextos e projetos, desde que a natureza dos projetos (linguagem, paradigma) sejam as mesmas.
 
 %
 
@@ -40,6 +40,13 @@ Tanto as evoluções e cenários criados no Mezuro podem ser utilizados pela com
 
 %===============================================
 
+\section{Limitações}
+
+Tivemos algumas limitações nessa monografia.
+O fato do Analizo não estar preparado para receber projetos maiores para a geração de métricas de vulnerabilidades não permitiu que o Mezuro tivesse exito na análise dos Cenários de Decisões de vulnerabilidades específicas.
+
+
+Outra limitação que tivemos foi a não automatização da coleta de dados com o \emph{DWing}. Dessa forma, o ambiente fica dependente do relatório da ferramenta para poder então fazer a análise dos dados. Outro aspecto está na utilização dos metadados, fazendo com que todas as informações e configurações das instâncias dos cenários de decisões fiquem no meio do processo de ETL, e não rgistrado em uma base de metadados.
 
 
 \section{Trabalhos Futuros}

@@ -1,4 +1,4 @@
-\chapter{Conclusão}
+\chapter{Conclusões}
 \label{cap-consideracoesFinais}
 
 Métricas são ferramentas importantes que podem ser utilizadas em projetos de software, sendo também muito estudadas na academia e utilizadas na Engenharia de Software Experimental. Entretanto, ainda existem muitas dificuldades inerentes a adoção de métricas nesses projetos. Neste trabalho buscamos apresentar a técnica de Cenários de Decisões como alternativa para monitoramento através de métricas de código-fonte e utilizá-la a partir da evolução e adaptação de duas ferramentas.
@@ -37,7 +37,6 @@ O segundo estudo consistiu na evolução de um modelo e ambiente de DW para obse
 
 Tanto as evoluções e cenários criados no Mezuro podem ser utilizados pela comunidade para o monitoramento de outros projetos. Da mesma forma, o modelo e ambiente DWing criado é reprodutível e pode ser adaptado à outros contextos para monitoramento de projetos reais.
 
-
 Apesar do objetivo da realização dos estudos de caso não ser realizar comparações entre as ferramentas, observou-se que as duas podem ser utilizadas em conjunto para apoiar o monitoramento de código-fonte. Isso se deve ao fato do Mezuro prover mecanismos de rápido e fácil monitoramento de projetos e ser excelente para análises individuais dos módulos do projeto e do ambiente DWing prover um conjunto de mecanismos que facilitam o planejamento e tomada de decisões gerenciais. Em outras palavras, a utilização de Cenários de Decisões no DWing poderia ser utilizado para a realização da prática Medição do Projeto, enquanto o Mezuro poderia apoiar a prática Medição Rápida, ambas descritas na Figura~\ref{fig:agile-design-metrics}.
 
 
@@ -45,18 +44,23 @@ Apesar do objetivo da realização dos estudos de caso não ser realizar compara
 
 \section{Limitações}
 
-Tivemos algumas limitações nessa monografia.
-O fato do Analizo não estar preparado para receber projetos maiores para a geração de métricas de vulnerabilidades não permitiu que o Mezuro tivesse exito na análise dos Cenários de Decisões de vulnerabilidades específicas.
+O Analizo foi utilizado como extrator de métricas, tanto para o Mezuro quanto para o ambiente \emph{DWing}. Porém, o Analizo não estava preparado para realizar a coleta de métricas de vulnerabilidades, não permitindo que o Mezuro tivesse êxito na análise dos Cenários de Decisões de vulnerabilidades específicas. 
 
+Além disso, algumas melhorias previamente pensadas para o Mezuro não puderam ser implementadas no contexto desta monografia. Destaca-se a não criação de uma estrutura separada para os Cenários de Decisões para a utilização de métricas compostas. Assim, apesar da flexibilidade e outros ganhos relacionados à esta adaptação, também foram herdados as limitações inerentes à natura das métricas compostas.
 
-Outra limitação que tivemos foi a não automatização da coleta de dados com o \emph{DWing}. Dessa forma, o ambiente fica dependente do relatório da ferramenta para poder então fazer a análise dos dados. Outro aspecto está na utilização dos metadados, fazendo com que todas as informações e configurações das instâncias dos cenários de decisões fiquem no meio do processo de ETL, e não rgistrado em uma base de metadados.
+Outra limitação a ser destaca foi a não automatização da coleta de dados com o \emph{DWing}. Dessa forma, o ambiente fica dependente do relatório da ferramenta para poder então fazer a análise dos dados. Outro aspecto está na utilização dos metadados, fazendo com que todas as informações e configurações das instâncias dos cenários de decisões fiquem no meio do processo de ETL, e não rgistrado em uma base de metadados.
 
+Quanto à definição de valores de métricas, limitou-se à instanciação de cenários para a linguagem C++. Para as métricas de vulnerabilidades, diferentemente das de \emph{design}, não foram encontrados valores de referências que pudessem ser aproveitados. Além disso, não foi possível realizar um estudo estatístico para comprovar a relação de causa e efeito das métricas de \emph{design} sobre as de vulnerabilidade.
+
+Por fim, vale ressaltar que, apesar dos estudos de casos realizados sobre duas ferramentas de tomada de decisão, não foi escopo do trabalho compará-las e discutir a eficiência das mesmas em relação à observação de cenários. Limitamos à suportar tecnologicamente a técnica de Cenários de Decisões e demonstrar as alternativas geradas por cada ferramenta evoluída.
 
 \section{Trabalhos Futuros}
 
-Quanto aos trabalhos futuros, gostaríamos de estudar e validar a correlação existente entre métricas de \emph{design} com métricas de vulnerabilidades específicas. A idéia seria verificar através de estudos estatísticos a partir de análise de diversos softwares se de fato métricas de \emph{design} tem relação direta com vulnerabilidades específicas e também que se para projetos não críticos, o cuidado com o \emph{design} e a aplicação de princípios de \emph{design} seguros são o suficiente para termos softwares seguros. 
+Quanto aos trabalhos futuros, espera-se realizar um estudo e validar a correlação existente entre métricas de \emph{design} com métricas de vulnerabilidades específicas. A idéia seria verificar através de estudos de correlação estatística a partir de análise de diversos softwares livres para verificar se de fato métricas de \emph{design} tem relação direta com vulnerabilidades específicas. Além disso, com esse estudo também seria possível averiguar se para projetos não críticos, o cuidado com o \emph{design} e a aplicação de princípios de \emph{design} seguros são o suficiente para termos softwares seguros. 
 
-Outra possibilidade de evolução deste trabalho seria também a validação da utilização da técnica Cenário de Decisão. Esse estudo poderia se basear em um estudo de caso real, onde seria verificado há resultados significativos em relação a qualidade de código se for feito o monitoramento baseado em Cenários de Decisões. Este estudo poderia buscar integrar as duas abordagens de monitoramento apresentado nessa monografia (Mezuro e \emph{DWing}) e utilizar das propostas de Medição Rápida e Medição de Projetos apresentado na Figura \ref{fig:agile-design-metrics}.
+Outra possibilidade de evolução deste trabalho seria também a validação da utilização da técnica Cenário de Decisão. Esse estudo poderia se basear em um estudo de caso real, onde seria verificado os resultados significativos em relação a qualidade de código a partir do monitoramento baseado em Cenários de Decisões. Este estudo poderia buscar integrar as duas abordagens de monitoramento apresentado nessa monografia (Mezuro e \emph{DWing}) e utilizar das propostas de Medição Rápida e Medição de Projetos apresentado na Figura \ref{fig:agile-design-metrics}. Pode-se também verificar se para os cenários propostos o conjunto de ações relacionadas realmente são efetivas na remoção das inconformidades identificadas.
+
+Além disso, muito se tem para contribuir com a busca de valores de referências para métricas, principalmente para métricas vulnerabilidades e o desenvolvimento de ferramentas livres que apoiam a utilização de métricas de código-fonte no desenvolvimento de software.
 
 %
 

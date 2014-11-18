@@ -137,7 +137,7 @@ Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de 
 
 \item \textbf{DUPV (\emph{Dereference of undefined pointer value } - Acessar o valor de um ponteiro não definido)}:
 %
-Esta vulnerabilidade ocorre quando um ponteiro que não foi inicializado é acessado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo, uma vez que não foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
+Esta vulnerabilidade ocorre quando é feito o acesso ao valor de um ponteiro cujo estado é indefinido. Isso ocorre, por exemplo, quando este ponteiro aponta para um ponteiro que não foi inicializado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo, uma vez que não foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
 
 \item \textbf{DBZ (\emph{Divisions by zero } - Divisão por zero)}:
 %
@@ -157,7 +157,7 @@ Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada 
 
 \item \textbf{AUV (\emph{Assigned value is garbage or undefined} - Valor atribuído é lixo ou indefinido}):
 %
-Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido existe. Esta vulnerabilidade ocorre quando uma variável recebe um valor cujo a origem vem de entrada do usuário no sistema. Caso não seja feito a verificação desse parâmetro de entrada, a variável poderá receber lixo ou um valor indefinido e sua posterior utilização pode causar desde quebra da aplicação como também resultados inesperados de comportamento de software.
+Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido é válido. Por exemplo, uma varíavel recebe outra que não foi inicializada. Ou também quando uma variável recebe um valor composto por outras duas, como por exemplo uma soma, porém, uma das variáveis envolvidas na soma também não foi inicializado. Ou seja, essa métrica está relacionada a atribuições com valores inválidos ou indefinidos.
 
 \end{itemize}
 

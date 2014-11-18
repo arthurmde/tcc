@@ -236,7 +236,7 @@ Quadro resumo:
 \item \textbf{Nome}: Uso de Variáveis não Inicializadas
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: UAV (\emph{Uninitialized Argument Value}), ROGU (\emph{Result of operation is garbage or undefined}), AUV (\emph{Assinged Value is garbage or undefined});
-\item \textbf{Nível}: Método;
+\item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informação não autorizado.
 \item \textbf{Caracterização com Métricas}: AUV + UAV + ROGU >= 1
 	\begin{itemize}
@@ -273,7 +273,7 @@ Quadro resumo:
 \item \textbf{Nome}: Alta possibilidade de Falha por mau uso de ponteiros
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: DNP (\emph{Dereference of null pointer}); DF (\emph{Double free}); AUF (\emph{Use After free}); DUPV (\emph{Dereference of undefined pointer value}); BD (\emph{Bad deallocator});
-\item \textbf{Nível}: Método;
+\item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar o uso de ponteiros de maneira não segura, que podem gerar falha na aplicação.
 \item \textbf{Caracterização com Métricas}: NP + DF + AUF + DUPV + BD >=1
 	\begin{itemize}
@@ -302,7 +302,7 @@ Quadro resumo:
 \item \textbf{Nome}: \emph{Buffer Overflow}
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: FGBO (\emph{Potential buffer overflow in call to \"gets\"}) e ASOM (\emph{Allocator sizeof operand mismatch})
-\item \textbf{Nível}: Método;
+\item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar situações no código fonte que podem gerar a vulnerabilidade de \emph{Buffer Overflow} (Estouro de memória);
 \item \textbf{Caracterização com Métricas}: ASOM + FGBO >=1
 	\begin{itemize}
@@ -330,7 +330,7 @@ Quadro resumo:
 \item \textbf{Nome}: \emph{Confidencialidade Ameaçada}
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) 
-\item \textbf{Nível}: Método;
+\item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar trechos de código fonte que podem fornecer informações não autorizadas, impactando na confidencialidade do sistema. O acesso a informação não autorizada se dá pela leitura de regiões de memória que não estão no contexto da variável em questão.
 \item \textbf{Caracterização com Métricas}: OBAA + DUPV >=1
 	\begin{itemize}
@@ -376,8 +376,8 @@ A métrica ROGU busca identificar operações em que o resultado pode ser lixo o
 \item \textbf{Nome}: \emph{Operações lógicas (somas, divisoes) com integridade ameaçada}
 \item \textbf{Classificação}: Composta;
 \item \textbf{Métricas Envolvidas}: DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) 
-\item \textbf{Nível}: Método;
-\item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variáveis indefinidas ou não inicializadas, compromentendo então a integridade da operação.
+\item \textbf{Nível}: Arquivo;
+\item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variáveis indefinidas ou não inicializadas, comprometendo então a integridade da operação.
 \item \textbf{Caracterização com Métricas}: DBZ + ROGU >=1
 	\begin{itemize}
 	\item Este cenário ocorre quando é encontrado pelo menos uma ocorrência de uma dessas vulnerabilidades.
@@ -385,7 +385,7 @@ A métrica ROGU busca identificar operações em que o resultado pode ser lixo o
 \item \textbf{Ações sugeridas}: 
 	\begin{itemize}
 	\item \textbf{Verificar divisor antes da operação} - Verificar se o divisor é zero antes de realizar a operação;  
-	\item \textbf{Ínicializar variáveis antes de operações} - Garantir que todas as variáveis estão pelo menos pré-inicializadas antes de participarem de uma operação 
+	\item \textbf{Inicializar variáveis antes de operações} - Garantir que todas as variáveis estão pelo menos pré-inicializadas antes de participarem de uma operação 
 	 
 	\end{itemize}
 \end{itemize}
@@ -397,38 +397,49 @@ A seguir, foi montado uma tabela resumo com todos o cenários propostos até o m
 
 \begin{landscape}
 
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|p{2,5cm}| p{3cm} | p{2cm} | p{5.5cm} | p{3.5cm}  | p{6cm}  |}
+\hline
+Cenário                                        & Tipo                & Nível  & Descrição                                                                                                                                                                                 & Fórmula                                    & Ações Sugeridas                                                                                                                                                                                                                                     \\ \hline
+Alta Superficie de Ataque a Atributos Internos & Qualidade de código & Classe & Esse cenário busca identificar classes que possuem muita exposição devido ao alto número de atributos públicos, violando o princípio de design seguro Redução de Superfície de Ataque     & NPA/NOA \textgreater 0.2                   & Refatorações aplicáveis: Encapsulate Field; Princípios: Princípio e Redução de Superfície de Ataque; Princípio de Encapsulamento;                                                                                                                   \\ \hline
+Alta Superfície de Ataque Operacional          & Qualidade de código & Classe & Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio Mediate Completely devido à grande exposição da classe em termos operacionais. & NPM \textgreater 10 || ANPM \textgreater 3 & Refatorações: Hide Method; Remove Parameter;Princípios: Princípio e Redução de Superfície de Ataque; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP; Padrões: Facade;\\ \hline
+Ponto Crítico de Falha                         & Qualidade de código & Classe & Esse cenário busca identificar classes que potencialmente são pontos críticos do projeto de software.                                                                                     & ACC + NOC \textgreater 5                   & Refatorações: Extract Class; Move Method; Push Down Method;Princípios: Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP                                                         \\ \hline
+\end{tabular}
+\caption{Parte I - Resumo de todos os cenários}
+		    \label{tab:resumo1}
+\end{center}
+\end{table}
+
+
+
 	\begin{table}[H]
 		\begin{center}
-	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{5cm}  | p{5cm}  |}
+	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{3.5cm}  | p{6.5cm}  |}
 	    \hline
-	    \textbf{Cenário} & \textbf{Caracterização} & \textbf{Nível do} & \textbf{Descrição} & \textbf{Caracterização} & \textbf{Ações Sugeridas} \\
-	      & \textbf{do cenário} & \textbf{cenário} &  & \textbf{com Métricas} & \\ 	\hline
-	    Alta Superfície de Ataque a Atributos Internos & Qualidade de código & Classe & Busca diminuir a exposição da classes em relação aos seus atributos públicos & Valor alto de NPA/NOA &  \textbf{Refatorações}: Encapsulate Field; \textbf{Aplicar Princípios}:Redução da superfície de ataque, Princípio de encapsulamento \\ \hline
-
-	    Alta Superfície de Ataque Operacional & Qualidade de código & Classe & Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio Mediate Completely devido à grande exposição da classe em termos operacionais.& Valor alto de número NPM e MNPM & \textbf{Refatorações}: Hide Method; Remove Parameter; \textbf{Aplicar Princípios}:Princípio e Redução de Superfície de Ataque;
-Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP; \textbf{Aplicar padõres}: Padrão facade\\ \hline
-
-	    \end{tabular}
-		    \caption{Parte I - Resumo de todos os cenários}
-		    \label{tab:resumoI}
+Cenário                                              & Tipo                       & Nível   & Descrição                                                                                                                                                       & Fórmula                                     & Ações Sugeridas                                                                                                                                                                                                                                                      \\ \hline
+Risco Elevado de Segurança                           & Qualidade de código        & Classe  & Esse cenário busca identificar métodos que aumentam o risco de problemas de segurança e bugs no código-fonte devido sua complexidade e difícil manutenção.      & ACCM \textgreater 4 || MLOC \textgreater 10 & Refatorações aplicáveis: Extract Method, Extract Surrounding Method, Replace Conditional with Polymorphism, Replace Nested Conditional with Guard Clauses , Substitute Algorithm; Princípios:Princípio de Economia de Mecanismos; Princípio da Simplicidade ou KISS; \\ \hline
+Uso de variáveis não inicializadasl                  & Vulnerabilidade específica & Arquivo & Este cenário busca identificar o uso de variáveis não inicializadas, pois isso pode causar desde falhas na aplicação quanto acesso a informação não autorizado. & AUV + UAV + ROGU \textgreater= 1            & Refatorações: Criar mecanismos para garantir que a variável será inicializada antes de ser usada; Princípios: Fail Securery                                                                                                                                          \\ \hline
+Alta possibilidade de Falha por mau uso de ponteiros & Vulnerabilidade específica & Arquivo & Este cenário busca identificar o uso de ponteiros de maneira não segura, que podem gerar falha na aplicação.                                                    & NP + DF + AUF + DUPV + BD \textgreater=1    & Refatorações: Extract Class; Move Method; Push Down Method;Princípios: Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP                                                                          \\ \hline
+\end{tabular}
+		    \caption{Parte II - Resumo de todos os cenários}
+		    \label{tab:resumo2}
 		\end{center}
 	\end{table}
 
 	\begin{table}[H]
 		\begin{center}
-	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{5cm}  | p{5cm}  |}
+	    \begin{tabular}{ |p{2,5cm}| p{3cm} | p{2cm} | p{5cm} | p{3.5cm}  | p{6.5cm}  |}
 	    \hline
-	    \textbf{Cenário} & \textbf{Caracterização} & \textbf{Nível do} & \textbf{Descrição} & \textbf{Caracterização} & \textbf{Ações Sugeridas} \\
-	      & \textbf{do cenário} & \textbf{cenário} &  & \textbf{com Métricas} & \\ 	\hline
-	    
-	    Ponto Crítico de Falha & Qualidade de código & Classe & Este cenário busca identificar classes muito acopladas, que representam pontos críticos da aplicação & Alto valor de ACC+NOC & \textbf{Refatorações}: Extract Class, Move Method, Push Down Method; \textbf{Aplicar Princípios}:Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \\
-	 \hline
-	    Entradas não validadas  & Vulnerabilidade específica & Método & Busca indentificar a não ocorrencia de validação de variáveis de entrada por outros mecanismos e também pelo uso da função \emph{gets} & Ao menos uma ocorrência da métrica FGBO ou AUV & Implementar mecanismos validação de entrada de usuário ; substituir função \emph{gets} pela \emph{fgets} \\ \hline
-	    Variáveis não inicializadas  & Vulnerabilidade específica & Método & Variáveis não inicializadas podem causar falha da aplicação ou acesso não autorizado de informações caso sejam utilizadas & Ao menos uma ocorrência da métrica UAV & Inicializar variáveis sempre que criar uma\\ \hline
-
-	    \end{tabular}
-		    \caption{Parte II - Resumo de todos os cenários}
-		    \label{tab:resumo2}
+Cenário                                                      & Tipo                       & Nível   & Descrição                                                                                                                                                                                                                                                                          & Fórmula                    & Ações Sugeridas                                                                                                                                                                                         \\ \hline
+Buffer Overflow                                              & Vulnerabilidade específica & Arquivo & Este cenário busca identificar situações no código fonte que podem gerar a vulnerabilidade de Buffer Overflow (Estouro de memória);                                                                                                                                                & ASOM + FGBO \textgreater=1 & Refatorações: Substituir chamadas para a função "gets" ; Fazer match dos operadores de alocação de memória;                                                                                             \\ \hline
+Confidencialidade Ameaçada                                   & Vulnerabilidade específica & Arquivo & Este cenário busca identificar trechos de código fonte que podem fornecer informações não autorizadas, impactando na confidencialidade do sistema.  & OBAA + DUPV \textgreater=1 & Refatorações: Especificar e verificar o range o array antes de acessa-lo; Garantir que o ponteiro não seja indefinido antes de desreferencia-lo                                                         \\ \hline
+Operações lógicas (somas, divisoes) com integridade ameaçada & Vulnerabilidade específica & Arquivo & Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variáveis indefinidas ou não inicializadas, comprometendo então a integridade da operação.                                                             & DBZ + ROGU \textgreater=1  & Para cada métrica, deve se tomar uma ação específica para resolve-la. Então, caso ocorra este cenário, devemos observar qual das vulnerabilidades ocorreu trabalhar para reduzir o valor dessa métrica. \\ \hline
+\end{tabular}
+		    \caption{Parte III - Resumo de todos os cenários}
+		    \label{tab:resumo3}
 		\end{center}
 	\end{table}
 

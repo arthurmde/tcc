@@ -322,14 +322,16 @@ Os dados são disponibilizados na forma de arquivos CSV, por parte do Analizo, e
 
 Para o processo de ETL foi utilizado uma ferramenta da suíte de ferramentas Pentaho, chamada de \emph{Pentaho Data Integration}\footnote{\url{http://community.pentaho.com/projects/data-integration/}} (PDI). O PDI aceita diversos formatos de entrada de Dados, além de fazer integração com diversos banco de dados, incluindo o MariaDB \footnote{\url{https://mariadb.org/pt-br/}}, que foi o SGBD utilizado para a implementação do DW. É no processo de ETL que são identificados os cenários de decisão. Diferente do Mezuro, que são feitas configurações na própria ferramenta para que ela possa identificar os cenários de decisão, no \emph{DWing} o processo de ETL já identifica o cenário e já passa a informação pronta para ser a armazenada do \emph{Data Warehouse} (qual a classe, release, projeto, entre outros atributos que estão envolvidos com a identificação daquele cenário).
 
+\begin{landscape}
 
 \begin{figure}[H]
  	\centering
- 		\includegraphics[scale=0.5]{figuras/dw-etlpdi}
+ 		\includegraphics[scale=0.7]{figuras/dw-etlpdi}
  		\caption{Processo de ETL para identificação dos cenários de decisão feito no PDI}
  		\label{dw-etl-pdi}
  \end{figure}
 
+\end{landscape}
 Na Figura \ref{dw-etl-pdi} é demonstrado o processo de ETL, elaborado na ferramenta PDI através de uma \emph{transformation}, responsável por extrair os dados, identificar os cenários e carregar a informação no DW. De maneira resumida, os dados são extraidos de arquivos CSV. Esses dados contém informações a respeito das classes e arquivos, e o valor das diversas métricas suportadas pelas ferramentas para cada classe. Para cada cenário, são selecionadas apenas as métricas de interesse para então verificar se o cenário existe o não em determinada classse. É no step \emph{formula} (steps caracterizados pelo \emph{Fx}) onde colocamos a regra de identificação do cenário. Dessa forma, quando o cenário é identificado, este é atribuído a aquela classe. Nos passso posteriores os dados são limpos e preparados até formarem uma tupla que será carregada na tabela de fatos.
 
 

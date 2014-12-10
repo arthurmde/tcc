@@ -22,7 +22,7 @@ Algumas características importantes ajudam a classificar as métricas de códig
 
 %
 
-No contexto desta monografia estamos interessados principalmente na análise estática de códigos-fontes. Nesse sentido, a análise estática é definida como o processo de avaliar um sistema ou seus componentes baseados em suas formas, estruturas, conteúdo ou documentação que podem gerar insumos para compreensão da qualidade de \emph{design} do código assim como enderaçar suas principais vulnerabilidades, podendo ser realizada sobre módulos e até mesmo sobre códigos ainda não finalizados \cite{black2009}. Esta análise pode ser realizada manualmente, tal como é feita em inspeções de código e com \emph{pair programming} ou de maneira automatizada através de ferramentas desenvolvidas para tal fim.
+No contexto desta monografia estamos interessados principalmente na análise estática de códigos-fontes. Nesse sentido, a análise estática é definida como o processo de avaliar um sistema ou seus componentes baseados em suas formas, estruturas, conteúdo ou documentação que podem gerar insumos para compreensão da qualidade de \emph{design} do código assim como endereçar suas principais vulnerabilidades, podendo ser realizada sobre módulos e até mesmo sobre códigos ainda não finalizados \cite{black2009}. Esta análise pode ser realizada manualmente, tal como é feita em inspeções de código e com \emph{pair programming} ou de maneira automatizada através de ferramentas desenvolvidas para tal fim.
 
 %
 
@@ -85,16 +85,16 @@ As últimas métricas que serão apresentadas nesta seção buscam medir caracte
 \item \textbf{ACC (\emph{Afferent Connections per Class} - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
 \item \textbf{CBO (\emph{Coupling Between Objects} - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
 \item \textbf{COF (\emph{Coupling Factor} - Fator de Acoplamento)}: Esta métrica é a razão entre o número acoplamento existente que não sejam provindos de herança e do número total de possíveis acoplamentos. O máximo de acoplamento possível acontece quando todas as classes estão e são acopladas com as outras classes do projeto.
-\item \textbf{LCOM4 (\emph{Lack of Cohesion in Methods} - Ausência de Coesões em Métodos)}: Esta métrica cálcula o número de componentes conectados em uma classe. Um componente conectado consiste em um conjunto de métodos relacionados. Dois métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um método invoca ao outro.
+\item \textbf{LCOM4 (\emph{Lack of Cohesion in Methods} - Ausência de Coesões em Métodos)}: Esta métrica calcula o número de componentes conectados em uma classe. Um componente conectado consiste em um conjunto de métodos relacionados. Dois métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um método invoca ao outro.
 \end{itemize}
 
 
 \section{Métricas Estáticas de Segurança}
 \label{subsec-security-metrics}
 
-Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de divesas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na Seção \ref{sec-metrics-security}, o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer Overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer Overflow}, dessa forma, cada maneira diferente compõe uma vulnerabilidade específica. As ferramentas de análise estática buscam  encontrar essas vulnerabilidades específicas e quantificar o seu número de ocorrências. 
+Atualmente existem várias ferramentas de análise estática que detectam vulnerabilidades no código fonte. Essas ferramentas utilizam de diversas técnicas de detecção e buscam encontrar tipos específicos de vulnerabilidades. Como visto na Seção \ref{sec-metrics-security}, o projeto CWE busca definir  e classificar vulnerabilidades descobertas pela comunidade levando em consideração os detalhes de como essa vulnerabilidade ocorre no código para a geração de um erro. Considerando como referência o projeto CWE, vamos tomar como exemplo o erro de \emph{Buffer Overflow}. Existem várias CWEs que especificam uma maneira diferente de se ter o erro de \emph{Buffer Overflow}, dessa forma, cada maneira diferente compõe uma vulnerabilidade específica. As ferramentas de análise estática buscam  encontrar essas vulnerabilidades específicas e quantificar o seu número de ocorrências. 
 
-O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades, como bem explanado em \cite{chess2007}, é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha (\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade indentificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
+O uso de ferramentas de análise estática de código para a identificação de vulnerabilidades, como bem explanado em \cite{chess2007}, é uma alternativa muito interessante para o desenvolvedor, visto que é muito difícil para alguém que não tem muito conhecimento a respeito de vulnerabilidades de código fonte saber se está inserindo ou não uma vulnerabilidade no software. O trabalho de Aranha (\citeyear{aranha2012}) mostra claramente a importância do uso de ferramentas de análise estática para a identificação de vulnerabilidades, visto que uma vulnerabilidade identificada no software da urna eletrônica utilizadas em votações no Brasil podia ter sido facilmente identificada e tratada se fossem utilizadas ferramentas de análise estática de código durante o desenvolvimento.
 
 %
 
@@ -111,7 +111,7 @@ Nesse contexto, em termos de métricas, ferramentas de análise estáticas podem
 
 %
 %metricas do analizo
-Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a itrodução de vulnerabilidades.
+Abaixo seguem algumas vulnerabilidades que podem ser encontradas e quantificadas por ferramentas de análise estática de código para linguagem C e C++, linguagens que oferecem uma grande flexibilidade ao programador, favorecendo a introdução de vulnerabilidades.
 
 \begin{itemize}
 
@@ -121,9 +121,9 @@ Esta métrica conta as variáveis não inicializadas no código. As linguagens C
 
 \item \textbf{ RSVA (\emph{Return of stack variable address} - Retorno de endereço de uma variável de pilha)}:
 %
-Esta vulnerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variáveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriomente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vulnerabilidade é dificil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
+Esta vulnerabilidade acontece quando uma função retorna um endereço para uma variável que está alocada na pilha (stack). A pilha é o local onde variáveis temporárias são armazenadas, como por exemplo variáveis declaradas dentro de funções. Se uma função declara uma variável dentro de seu escopo e usa esta mesma para seu retorno, temos o retorno de uma variável alocada na pilha. Ao termino da execução da função, a área de memória utilizada por ela fica disponível. Dessa forma, a próxima função chamada pode utilizar esse espaço de memória, sobrescrevendo o conteúdo que anteriormente foi retornado pela função anterior. Logo, o ponteiro retornado pela primeira função pode ter o valor alterado, podendo gerar comportamento inesperado no sistema ou até a quebra da aplicação. Este tipo de vulnerabilidade é difícil de se identificar, sendo aconselhável o uso de ferramentas de análise estática de código.
 
-\item \textbf{PITFC (\emph{Potential insecure temporary file in call "mktemp" } - Arquivo temporário pontencialmente inseguro pelo uso da chamada "mktemp")}:
+\item \textbf{PITFC (\emph{Potential insecure temporary file in call "mktemp" } - Arquivo temporário potencialmente inseguro pelo uso da chamada "mktemp")}:
 %
 Esta vulnerabilidade ocorre quando um arquivo temporário inseguro é criado e usado pela aplicação, tornando a aplicação e o sistema de dados vulneráveis a ataques. Um arquivo criado pela aplicação é considerado inseguro quando ele é criado por mecanismos (funções específicas de APIs) que não geram arquivos com nomes únicos ou com nomes de randomização fraca. A função "mktemp" é um exemplo de mecanismo de geração de arquivos temporários que gera um nome único para um arquivo com base em um prefixo definido no código fonte. Porém, essa randomização gerada pelo mktemp é fraca, de maneira que outra aplicação maliciosa pode usar o mktemp passando o mesmo prefixo e conseguir gerar um arquivo com o mesmo nome que pode conter código malicioso, ou mesmo utilizar deste arquivo para obter as informações que seriam salvas pela aplicação original.
 
@@ -136,15 +136,15 @@ Esta vulnerabilidade consiste em passar o operador inadequado para o tamanho de 
 
 \item \textbf{DUPV (\emph{Dereference of undefined pointer value } - Acessar o valor de um ponteiro não definido)}:
 %
-Esta vulnerabilidade ocorre quando é feito o acesso ao valor de um ponteiro cujo estado é indefinido. Isso ocorre, por exemplo, quando este ponteiro aponta para um ponteiro que não foi inicializado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefindo, uma vez que não foi inicializado. Portanto, as consequencias podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
+Esta vulnerabilidade ocorre quando é feito o acesso ao valor de um ponteiro cujo estado é indefinido. Isso ocorre, por exemplo, quando este ponteiro aponta para um ponteiro que não foi inicializado. Esta vulnerabilidade está relacionada a CWE 457 (Use Unitialized of variable) pois o ponteiro está indefinido, uma vez que não foi inicializado. Portanto, as consequências podem ser desde a leitura de lixo de memória até mesmo a falha da aplicação.
 
 \item \textbf{DBZ (\emph{Divisions by zero } - Divisão por zero)}:
 %
-Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de previnir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de exceções.
+Esta vulnerabilidade acontece quando existe uma divisão de um valor por zero. Quando temos essa situação, o programa para de funcionar. Essa vulnerabilidade geralmente acontece quando um valor inesperado é passado para divisor do cálculo ou ocorre algum erro que gere este valor. O melhor jeito de prevenir é a realizar uma verificação que cheque se o divisor não é zero, e caso seja, deve-se implementar um tratamento, como por exemplo, o lançamento de exceções.
 
 \item \textbf{MLK (\emph{Memory leak } - Estouro de memória)}:
 %
-O software não gerencia o uso de memória, provocando o consumo exessivo desta, podendo haver a falta de memória para a aplicação. Sem memória, a aplicação consegue funcionar corretamente, podendo gerar resultados inesperados como também a falha da aplicação.
+O software não gerencia o uso de memória, provocando o consumo excessivo desta, podendo haver a falta de memória para a aplicação. Sem memória, a aplicação consegue funcionar corretamente, podendo gerar resultados inesperados como também a falha da aplicação.
 
 \item \textbf{OBAA (\emph{Out-of-bound array access } - Acesso de posição de um \emph{array} fora do \emph{range})}:
 %
@@ -152,11 +152,11 @@ Esta vulnerabilidade acontece quando a aplicação tenta acessar um índice de \
 
 \item \textbf{DF (\emph{Double free } - Liberar memória duas vezes)}:
 %
-Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construidas.
+Esta vulnerabilidade ocorre na linguagem C, quando o programa realiza a chamada free() duas vezes para o mesmo ponteiro. Chamar duas vezes o free() para o mesmo ponteiro pode corromper a estrutura de dados do programa que gerencia a memória. Esse erro ocorre normalmente em encadeamentos de estruturas condicionais má construídas.
 
 \item \textbf{AUV (\emph{Assigned value is garbage or undefined} - Valor atribuído é lixo ou indefinido}):
 %
-Esta vunerabilidade ocorre quando não temos certeza que o valor atribuido é válido. Por exemplo, uma varíavel recebe outra que não foi inicializada. Ou também quando uma variável recebe um valor composto por outras duas, como por exemplo uma soma, porém, uma das variáveis envolvidas na soma também não foi inicializado. Ou seja, essa métrica está relacionada a atribuições com valores inválidos ou indefinidos.
+Esta vulnerabilidade ocorre quando não temos certeza que o valor atribuído é válido. Por exemplo, uma variável recebe outra que não foi inicializada. Ou também quando uma variável recebe um valor composto por outras duas, como por exemplo uma soma, porém, uma das variáveis envolvidas na soma também não foi inicializado. Ou seja, essa métrica está relacionada a atribuições com valores inválidos ou indefinidos.
 
 \end{itemize}
 
@@ -190,11 +190,11 @@ Acreditamos que o monitoramento do código através de métricas deva ser utiliz
 
 %
 
-A prática Medição do Projeto, apresentada na Figura~\ref{fig:agile-design-metrics}, propõe o monitoramento detalhado do código a cada iteração de desenvolvimento. Através desse monitoramento a equipe de desenvolvimento e gestores podem definir e priorizar um conjunto de requisitos técnicos para a próxima iteração que visam atacar os mals cheiros de código identificados, problemas de segurança ou violações do \emph{design}.
+A prática Medição do Projeto, apresentada na Figura~\ref{fig:agile-design-metrics}, propõe o monitoramento detalhado do código a cada iteração de desenvolvimento. Através desse monitoramento a equipe de desenvolvimento e gestores podem definir e priorizar um conjunto de requisitos técnicos para a próxima iteração que visam atacar os mau cheiros de código identificados, problemas de segurança ou violações do \emph{design}.
 
 %
 
-Na Figura~\ref{fig:agile-design-metrics} ainda propomos a prática Medição Rápida como uma prática a ser utilizada constamente pelo Engenheiro de Software ao evoluir e estender o código. As modificações realizadas durante o desenvolvimento podem gerar incoformidades técnicas indesejadas para o bem estar do código, que por sua vez podem ser identificadas através de métricas. Assim, o Engenheiro de Software teria um melhor suporte para escolher quais são os seus próximos passos, como por exemplo, analisando qual seria a melhor refatoração a ser aplicada. Portanto, a prática de Medição Rápida poderia ser utilizada várias vezes ao longo do desenvolvimento, proporcionando a melhoria contínua do código.
+Na Figura~\ref{fig:agile-design-metrics} ainda propomos a prática Medição Rápida como uma prática a ser utilizada constantemente pelo Engenheiro de Software ao evoluir e estender o código. As modificações realizadas durante o desenvolvimento podem gerar inconformidades técnicas indesejadas para o bem estar do código, que por sua vez podem ser identificadas através de métricas. Assim, o Engenheiro de Software teria um melhor suporte para escolher quais são os seus próximos passos, como por exemplo, analisando qual seria a melhor refatoração a ser aplicada. Portanto, a prática de Medição Rápida poderia ser utilizada várias vezes ao longo do desenvolvimento, proporcionando a melhoria contínua do código.
 
 %
 

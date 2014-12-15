@@ -3,11 +3,11 @@
 
 %
 
-Neste capítulo será apresentada a utilização dos Cenários de Decisões em projetos reais, com o principal objetivo de demonstrar a reprodução de cenários em ambientes de tomada de decisão. Assim, este Capítulo é destinado ao Estudo de Caso de utilização da ferramenta Mezuro e de um ambiente \emph{DWing} para observação de Cenários de Decisões em projetos de software.
+Neste Capítulo será apresentada a utilização dos Cenários de Decisões em projetos reais, com o principal objetivo de demonstrar a reprodução de cenários em ambientes de tomada de decisão. Assim, este Capítulo é destinado ao Estudo de Caso de utilização da ferramenta Mezuro e de um ambiente \emph{DWing} para observação de Cenários de Decisões em projetos de software.
 
 Para tanto, será explorada a avaliação de três projetos de software livre em C++. Além disso, iremos explicar os passos necessários para reproduzir a estrutura de cenários nos dois ambientes de tomadas de decisões abordados nesta monografia. Assim, serão apresentadas as principais evoluções e adaptação de cada ferramenta e os detalhes específicos da observação de cada cenário.
 
-O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta Figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e \emph{DWing}. Esta mesma metodologia pode ser usada para o desenvolvimento de estudos de casos semelhantes com outras ferramentas ou até mesmo reproduzir os estudos de casos que serão apresentados neste capítulo.
+O método de execução desses estudos de casos é apresentado na Figura~\ref{method}. Nesta Figura são descritos os passos necessários para reproduzir cenários em ferramentas que apoiam a tomada de decisões baseados em métricas de software que, no contexto desta monografia, consiste no Mezuro e \emph{DWing}. Esta mesma metodologia pode ser usada para o desenvolvimento de estudos de casos semelhantes com outras ferramentas ou até mesmo reproduzir os estudos de casos que serão apresentados neste Capítulo.
 
 \graphicspath{{figuras/}}
 \begin{figure}[h]
@@ -147,7 +147,7 @@ else
 \label{cenario_completo}
 \end{figure}
 
-Após criada a métrica composta para um cenário, a última etapa que resta é associar os valores que podem ser obtidos pela métrica composta às interpretações qualitativas do \emph{Reading Group} criado na primeira etapa descrita na presente seção. Portanto, associaremos os valor obtido 1 ao grupo \emph{Existint Scenario} (em vermelho) e o valor 0 ao grupo \emph{Inexistint Scenario} (em verde) que podem ser vistos na Figura \ref{reading_group}.
+Após criada a métrica composta para um cenário, a última etapa que resta é associar os valores que podem ser obtidos pela métrica composta às interpretações qualitativas do \emph{Reading Group} criado na primeira etapa descrita na presente Seção. Portanto, associaremos os valor obtido 1 ao grupo \emph{Existint Scenario} (em vermelho) e o valor 0 ao grupo \emph{Inexistint Scenario} (em verde) que podem ser vistos na Figura \ref{reading_group}.
 
 Para realizar esta etapa basta ir na visualização pública da métrica composta criada e adicionar dois intervalos, como mencionado. Como pode ser observado na Figura \ref{cenario_completo}, para o valor qualitativo \emph{Inexistint Scenario} definiu-se o valor -0.9 à 0.1, enquanto para o valor \emph{Existint Scenario} definiu-se o intervalo de 0.9 à 1.1. Essa definição de intervalos é necessária uma vez o Mezuro não suporta valores de métricas booleanos, conforme discutido anteriormente. A Figura \ref{cenario_completo} apresenta a visualização pública de um Cenário de Decisão criado através de uma métrica composta no Mezuro.
 
@@ -255,7 +255,7 @@ Nesse sentido, foram encontrados alguns trabalhos na literatura que utilizaram u
 % 
 O fato de o DW oferecer um alto poder de análise e permitir o tratamento de uma grande quantidade de dados nos faz ter uma expectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. 
 
-Nesta seção, apresentamos a execução das etapas Adaptar e Evoluir Ferramentas e Reproduzir Cenários de Segurança para o estudo de caso sobre o ambiente \emph{DWing}.
+Nesta Seção, apresentamos a execução das etapas Adaptar e Evoluir Ferramentas e Reproduzir Cenários de Segurança para o estudo de caso sobre o ambiente \emph{DWing}.
 
 \subsection{Modelagem Dimensional}
 
@@ -314,7 +314,7 @@ O ambiente de \emph{DWing} foi criado conforme a Figura \ref{dw_components}.
  \end{figure}
 
 
-Como podemos ver na Figura \ref{dw_components}, as métricas foram coletadas do Analizo e do \emph{Clang static Analyzer}. O uso do Analizo por si só deveria ser o suficiente, pois este oferece valores de métricas tando de design quanto de vulnerabilidade. Porém, foi identificado um problema com o Analizo que não consegue gerar métricas de vulnerabilidade para projetos maiores. Esse problema será melhor explicado mais adiante na seção (\ref{data-colect}). Dessa forma, foi utilizado o \emph{Clang-Static-Analyzer}\footnote{\url{http://clang-analyzer.llvm.org/}} para coletar apenas as métricas de vulnerabilidades.
+Como podemos ver na Figura \ref{dw_components}, as métricas foram coletadas do Analizo e do \emph{Clang static Analyzer}. O uso do Analizo por si só deveria ser o suficiente, pois este oferece valores de métricas tando de design quanto de vulnerabilidade. Porém, foi identificado um problema com o Analizo que não consegue gerar métricas de vulnerabilidade para projetos maiores. Esse problema será melhor explicado mais adiante na Seção (\ref{data-colect}). Dessa forma, foi utilizado o \emph{Clang-Static-Analyzer}\footnote{\url{http://clang-analyzer.llvm.org/}} para coletar apenas as métricas de vulnerabilidades.
 
 %
 Os dados são disponibilizados na forma de arquivos CSV, por parte do Analizo, e HTML, por parte do clang. Porém, a fim de facilitar a extração desses dados, foi criado um parser para transformar esse relatório HTML para um arquivo CSV de estrutura parecida com o relatório do Analizo.
@@ -405,7 +405,7 @@ No \emph{DWing}, uma vez criado o mecanismo de ETL, utilizando a ferramenta PDI,
 
 \section{Análise dos Cenários nas Ferramentas}
 
-Nesta seção será apresentada a visualização dos cenários nas duas ferramentas apresentadas através do monitoramento dos projetos apresentados na Seção \ref{cap-projects}.
+Nesta Seção será apresentada a visualização dos cenários nas duas ferramentas apresentadas através do monitoramento dos projetos apresentados na Seção \ref{cap-projects}.
 
 O projeto GNU Octave foi monitorado através do Mezuro e do ambiente DWing. O projeto Athom Shell foi analisado somente através do Mezuro, enquanto o projeto Synergy foi monitorado somente através do ambiente DWing.
 

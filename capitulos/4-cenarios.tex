@@ -1,7 +1,7 @@
 \chapter{Cenários de Decisões}
 \label{cap-cenarios}
 
-Neste Capítulo será apresentado o conceito de Cenários de Decisões, que visa contemplar um dos objetivos principais da presente monografia: Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte. No Capítulo \ref{cap-metrics} foi apresentada a importância do \emph{design} de software. Além disso, discutimos o papel do Engenheiro de Software no desenvolvimento de códigos com \emph{design} robusto, limpo e seguro, explorando os principais conceitos, problemas, princípios e práticas que este profissional deve conhecer para alcançar esse objetivo. 
+Neste Capítulo será apresentado o conceito de Cenários de Decisões, que visa contemplar um dos objetivos principais da presente monografia: Definição de cenários a partir de estudos teóricos para melhorar a interpretação e tomada de decisão sobre métricas estáticas de código-fonte. No Capítulo \ref{cap-metrics} foi apresentada a importância do \emph{design} de software. Além disso, discutimos o papel do Engenheiro de Software no desenvolvimento de códigos com \emph{design} robusto, limpo e seguro, explorando os principais conceitos, problemas, princípios e práticas que este profissional deve conhecer para alcançar esse objetivo.
 
 Na Seção \ref{sec-metrics-security} ainda foram introduzidos temas relacionados ao monitoramento de código-fonte, métricas de \emph{design} de software e métricas de vulnerabilidades. Aferimos que apesar de vários estudos relacionados à utilização de métricas de código-fonte ainda existem muitas dificuldades da adoção prática de métricas de código-fonte em projetos reais de Software. Deve-se enfatizar que métricas não resolvem problemas e sim as pessoas \cite{westfall2005}. Métricas de software atuam como indicadores para prover informação, entendimento, avaliação, controle e predição para que as pessoas possam fazer escolhas e ações. Nesse sentido, no presente Capítulo buscamos reduzir a distância entre a medição do código-fonte e tomada de decisões por Engenheiros de Software através da proposta de Cenários de Decisões.
 
@@ -14,7 +14,7 @@ A ideia de definição de cenários para tomada de decisões é advinda do estud
 
 \item \textbf{Nível}: Define o nível de abstração de software que pode ser caracterizada pelo cenário, por exemplo: Projeto; Estrutura de Herança; Classe; Método;
 
-\item \textbf{Descrição}: Discuti os problemas, princípios envolvidos e a caracterização
+\item \textbf{Descrição}: Discute os problemas, princípios envolvidos e a caracterização
 
 \item \textbf{Caracterização com Métricas}: Define matematicamente como caracterizar o cenário com as métricas envolvidas. Pode definir a composição destas métricas ou a interpretação conjunta necessária.
 
@@ -26,7 +26,7 @@ Cenários de Decisões ainda podem ser classificados de três formas diferentes 
 \begin{itemize}
 \item \textbf{Monométrico\footnote{Monométrico: de uma só medida}}: Classificação de cenário que pode ser caracterizado por apenas uma métrica, não havendo a necessidade de observação de outras variáveis para que o cenário seja identificado.
 
-\item \textbf{Polimétrico\footnote{Polimétrico: que apresenta ou emprega uma variedade de medidas}}: Classificação de cenário que precisa da interpretação de duas ou mais métricas para ser caracterizado. Cenários polimétricos são menos acoplados a escolha de métricas uma vez que sua identificação depende de mais de uma métrica, podendo ser uma caracterização mais completa de um cenário monométrico. 
+\item \textbf{Polimétrico\footnote{Polimétrico: que apresenta ou emprega uma variedade de medidas}}: Classificação de cenário que precisa da interpretação de duas ou mais métricas para ser caracterizado. Cenários polimétricos são menos acoplados a escolha de métricas uma vez que sua identificação depende de mais de uma métrica, podendo ser uma caracterização mais completa de um cenário monométrico.
 
 \item \textbf{Composto\footnote{Composto: formado de diversas partes}}: Classificação de cenário que é caracterizado a partir de uma métrica composta por outras métricas a partir de fórmulas matemáticas.
 \end{itemize}
@@ -72,16 +72,16 @@ Dessa forma, decidimos por usar a linguagem C++ como base para instanciação do
 \subsection{Cenários de Decisão para Caracterização da Qualidade do Código }
 \label{cenarios-design}
 
-A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}). Nesta Seção propomos quatro Cenários de Decisões. 
+A seguir serão apresentados instâncias de cenários de decisões que visam identificar características de qualidade de código que impactam na segurança. Os cenários a seguir podem ser aplicados a programas que utilizam o paradigma OO, porém, os valores utilizados para as métricas que compõe os cenários foram definidos para projetos C++. Tais valores foram retirados do estudo de Meirelles (\citeyear{meirelles2013metrics}). Nesta Seção propomos quatro Cenários de Decisões.
 
 \subsubsection{Alta Superfície de Ataque a Atributos Internos}
 %-------------------------------------------------------------------------------
 
-Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos atributos de um objeto. 
+Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos atributos de um objeto.
 %
-Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de \emph{design}, diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe. 
+Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação a interações externas. Em termos de \emph{design}, diminuição do acesso as informações internas da classe podem ser obtidos a partir de um maior grau de encapsulamento das estruturas que compõem esta classe.
 %
-Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque aos atributos de uma classe. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de atributos públicos. 
+Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque aos atributos de uma classe. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de atributos públicos.
 
 %
 
@@ -107,9 +107,9 @@ Quadro resumo:
 \subsubsection{Alta Superfície de Ataque Operacional}
 %-------------------------------------------------------------------------------
 
-Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}) e aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança. 
+Este cenário busca identificar a violação do princípio de \emph{design} de segurança Redução da Superfície de Ataque (Seção \ref{sec-security-principles}) em relação aos métodos de uma classe. Este princípio se baseia fundamentalmente na redução da exposição das estruturas do sistema em relação as manipulações e operações realizadas pelos métodos da classe. Em termos de \emph{design}, quanto maior a quantidade de métodos públicos, maior a quantidade de interações possíveis com um objeto o que dificulta a aplicação do princípio \emph{Mediate Completely} (Seção \ref{sec-security-principles}) e aumenta a vulnerabilidade das operações. Além disso, a dependência de parâmetros externos para realização de operações internas pode expor maiores detalhes dos mecanismos e algoritmos das classes de um projeto, sendo resultado do baixo grau de encapsulamento das operações, além de aumentar riscos de ataques e dificuldades de correção de problemas de segurança.
 
-Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque através de operações acessíveis de uma classe e os parâmetros necessários para sua realização. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos públicos e que tenham grande quantidade de parâmetros. 
+Em termos de métricas de código-fonte, este cenário busca medir o tamanho da superfície de ataque através de operações acessíveis de uma classe e os parâmetros necessários para sua realização. Estão inclusos nesse cenário classes ou módulos que tenham um alto valor de quantidade de métodos públicos e que tenham grande quantidade de parâmetros.
 
 %
 
@@ -118,15 +118,15 @@ Quadro resumo:
 \begin{itemize}
 \item \textbf{Nome}: Alta Superfície de Ataque Operacional
 \item \textbf{Classificação}: Polimétrico;
-\item \textbf{Métricas Envolvidas}: NPM (Número de Métodos Públicos), ANPM (Média de Parâmetros por Método); 
+\item \textbf{Métricas Envolvidas}: NPM (Número de Métodos Públicos), ANPM (Média de Parâmetros por Método);
 \item \textbf{Nível}: Classe;
 \item \textbf{Descrição}: Esse cenário busca identificar classes que devem receber maior atenção em relação à aplicação do princípio \emph{Mediate Completely} devido à grande exposição da classe em termos operacionais. Este cenário indica que a aplicação do princípio de \emph{design} seguro Redução de Superfície de Ataque pode melhorar o \emph{design} da classe uma vez que as definições e abstrações de seus métodos são reestruturadas.
 \item \textbf{Caracterização com Métricas}: NPM > npm\_value || ANPM > anpm\_value
 	\begin{itemize}
 	\item \textbf{NPM} - Caracteriza a quantidade de interações possíveis para as quais o princípio \emph{Mediate Completely} deve ser aplicado. Para projetos em C++, o valor de npm\_value pode ser 10;
-	\item \textbf{ANPM} - Caracteriza a quantidade de informações que poderiam ser verificadas para evitar ataques externos. Para projetos em C++, o valor de anpm\_value pode ser 3; 
+	\item \textbf{ANPM} - Caracteriza a quantidade de informações que poderiam ser verificadas para evitar ataques externos. Para projetos em C++, o valor de anpm\_value pode ser 3;
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
 	\item \textbf{Refatorações aplicáveis aos métodos da classe} - \emph{Hide Method}\footnote{\url{http://refactoring.com/catalog/hideMethod.html}}; \emph{Remove Parameter}\footnote{\url{http://refactoring.com/catalog/removeParameter.html}};
 	\item \textbf{Princípios aplicáveis à classe} - Princípio e Redução de Superfície de Ataque; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \cite{larman2007};
@@ -139,7 +139,7 @@ Quadro resumo:
 
 Este cenário busca identificar a ocorrência de classes ou módulos que concentram muitas responsabilidades das quais muitas outras classes dependem. Este cenário é problemático uma vez que a classe das quais muitas outras classes dependem, em caso de falhas e exploração de vulnerabilidades tendem a afetar muitas outras estruturas do projeto. Além disso, a alta concentração de dependências em uma classe pode ser devido a inadequada distribuição de responsabilidades entre os módulos que compõem o projeto.
 
-Em termos de métricas de código-fonte, este cenário é caracterizado a partir da medição da quantidade de classes que dependem da classe em análise. Esta dependência deve ser considerada em termos de acesso à métodos, acesso à atributos e herança. 
+Em termos de métricas de código-fonte, este cenário é caracterizado a partir da medição da quantidade de classes que dependem da classe em análise. Esta dependência deve ser considerada em termos de acesso à métodos, acesso à atributos e herança.
 
 Quadro resumo:
 
@@ -153,7 +153,7 @@ Quadro resumo:
 	\begin{itemize}
 	\item As duas métricas são utilizadas para Caracterizar a quantidade de classes acopladas à classe em análise, tanto em termos de acesso à métodos e atributos quanto em termos de herança. Este cenário existe quando o valor calculado através desta composição é maior do que estipulado. Para projetos em C++, o value pode ser 5.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
 	\item \textbf{Refatorações aplicáveis aos métodos da classe} - \emph{Extract Class}\footnote{\url{http://refactoring.com/catalog/extractClass.html}}, \emph{Move Method}\footnote{\url{http://refactoring.com/catalog/moveMethod.html}}, \emph{Push Down Method}\footnote{\url{http://refactoring.com/catalog/pushDownMethod.html}};
 	\item \textbf{Princípios aplicáveis à classe} - Princípios de bom \emph{design}: Modularização, Baixo Acoplamento; Princípio de Encapsulamento; Princípios de Distribuição de Responsabilidades GRASP \cite{larman2007};
@@ -178,7 +178,7 @@ O problema com a complexidade de módulos do software está diretamente relacion
 
 %
 
-Em termos de métricas de código-fonte, este cenário busca medir a complexidade dos métodos das classes do projeto de software. Idealmente, este cenário poderia ser caracterizado à nível de método, porém, optou-se por manter a nível de classe. Estão inclusos nesse cenário classes com métodos com alta complexidade. 
+Em termos de métricas de código-fonte, este cenário busca medir a complexidade dos métodos das classes do projeto de software. Idealmente, este cenário poderia ser caracterizado à nível de método, porém, optou-se por manter a nível de classe. Estão inclusos nesse cenário classes com métodos com alta complexidade.
 
 %
 
@@ -224,7 +224,7 @@ Este cenário busca identificar o uso de variáveis não inicializadas. Este cen
 %
 A declaração de variáveis em algumas linguagens, como C, Perl e PHP, não as pré-inicializam com valores padrão. Com isso, variáveis que são criadas na pilha de memória podem conter em seus valores lixo ou até comandos, bem como valores de outras funções e variáveis que também utilizaram da mesma área de memória em outro momento de execução da aplicação.
 %
-Essa situação é perigosa, pois tanto a aplicação pode apresentar resultados inesperados como também um atacante pode visualizar informações contidas nessa variável que ele não estaria autorizado a ver. 
+Essa situação é perigosa, pois tanto a aplicação pode apresentar resultados inesperados como também um atacante pode visualizar informações contidas nessa variável que ele não estaria autorizado a ver.
 
 Muitas vezes podem ocorrer de existir uma estrutura de controle de fluxo de execução de código (como \emph{if else} e \emph{switch case}) que definem a situação em que a variável irá ser inicializada e, ao sair dessa estrutura de controle de fluxo, a variável é finalmente utilizada. Nessa situação, pode ocorrer da aplicação não passar pelo fluxo que inicializa a variável. Dessa forma, ao sair do fluxo, o programa irá usar a variável que não foi inicializada.
 
@@ -242,7 +242,7 @@ Quadro resumo:
 	\begin{itemize}
 	\item Este cenário ocorre quando qualquer uma dessas métricas é maior ou igual a um, caracterizando a ocorrência de pelo menos uma vulnerabilidade relacionada ao conceito do cenário.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
 	\item \textbf{Princípios aplicáveis} - \emph{Fail Securery} criando verificações para que não haja erros nem quebra da aplicação por utilizar uma variável não inicializada .
 	\item \textbf{Refatorações}: Criar mecanismos para garantir que a variável será inicializada antes de ser usada.
@@ -252,7 +252,7 @@ Quadro resumo:
 
 \subsubsection{Alta possibilidade de Falha por mau uso de ponteiros}
 %-------------------------------------------------------------------------------
-Este cenário busca identificar possíveis locais no código fonte em que é feito o mau uso de ponteiros, e que consequentemente podem gerar falhas na aplicação. 
+Este cenário busca identificar possíveis locais no código fonte em que é feito o mau uso de ponteiros, e que consequentemente podem gerar falhas na aplicação.
 
 Nos fóruns de dúvidas relacionados a computação e programação, é muito comum identificar relatos de erros de várias pessoas relacionado a falhas de ponteiros que geram o famoso \emph{"segmentation fault"}. Ponteiros, se não utilizados corretamente, podem gerar falhas e são muito difíceis de se identificar. Além disso, existem diferentes situações em que o desenvolvedor pode estar gerando uma falha por mau uso de ponteiros.
 
@@ -279,7 +279,7 @@ Quadro resumo:
 	\begin{itemize}
 	\item Este cenário ocorre quando há a ocorrência de pelo menos uma dessas vulnerabilidade.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
 	\item \textbf{Refatorações}: Para cada métrica, deve se tomar uma ação específica para resolvê-la. Então, caso ocorra este cenário, devemos observar qual das vulnerabilidades ocorreu trabalhar para reduzir o valor dessa métrica. Por exemplo, se a métrica encontrada for a DNP, sabemos que existe um ponteiro nulo que está sendo desreferenciado, então deve-se tomar providências, de acordo com cada lógica de programa para que isso não aconteça.
 		\begin{itemize}
@@ -308,10 +308,10 @@ Quadro resumo:
 	\begin{itemize}
 	\item Este cenários ocorre quando pelo menos uma dessas vulnerabilidades ocorrem no código.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
-	\item \textbf{Substituir chamadas para a função \emph{"gets"}} - a função \emph{"fgets()"} pode ser utilizada no lugar da função  \emph{"gets"}, pois aquela possui um parâmetro em sua chamada que indica o tamanho máximo do \emph{buffer}.  
-	\item \textbf{Fazer \emph{match} dos operadores de alocação de memória} - Refatorar os trechos de código atribuindo o operador correto para a alocação de memória; 
+	\item \textbf{Substituir chamadas para a função \emph{"gets"}} - a função \emph{"fgets()"} pode ser utilizada no lugar da função  \emph{"gets"}, pois aquela possui um parâmetro em sua chamada que indica o tamanho máximo do \emph{buffer}.
+	\item \textbf{Fazer \emph{match} dos operadores de alocação de memória} - Refatorar os trechos de código atribuindo o operador correto para a alocação de memória;
 	\end{itemize}
 \end{itemize}
 
@@ -322,25 +322,25 @@ Este cenário busca identificar situações no código fonte onde informações 
 
 Um código seguro não pode dar brecha para que o atacante ou qualquer outro usuário possa ver informações que não eram para serem vistas. Alguns erros na codificação, como por exemplo, acessar uma posição de uma \emph{array} fora de seu intervalo, podem acabar mostrando informações de outras regiões de memória, podendo ser essa informação crítica ou não para a segurança do sistema.
 
-Em termos de métricas de código fonte, as métricas OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) buscam identificar situações de código fonte em que podem ser expostas informações não autorizadas pelo sistema. A métrica OBAA identifica justamente o acesso de indices que não pertencem ao \emph{array}, podendo assim vazar a informação contida na região de memória adjacente a região do \emph{array}. A métrica DUPV identifica situações onde um ponteiro indefinido é desreferenciado, ou seja, quando é lido o valor de um ponteiro que está indefinido. Dessa forma, ele pode estar apontando para uma posição de memória a qual não sabemos, e , consequentemente, vazando alguma informação não autorizada. 
+Em termos de métricas de código fonte, as métricas OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) buscam identificar situações de código fonte em que podem ser expostas informações não autorizadas pelo sistema. A métrica OBAA identifica justamente o acesso de indices que não pertencem ao \emph{array}, podendo assim vazar a informação contida na região de memória adjacente a região do \emph{array}. A métrica DUPV identifica situações onde um ponteiro indefinido é desreferenciado, ou seja, quando é lido o valor de um ponteiro que está indefinido. Dessa forma, ele pode estar apontando para uma posição de memória a qual não sabemos, e , consequentemente, vazando alguma informação não autorizada.
 
 Quadro resumo:
 
 \begin{itemize}
 \item \textbf{Nome}: \emph{Confidencialidade Ameaçada}
 \item \textbf{Classificação}: Composta;
-\item \textbf{Métricas Envolvidas}: OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value}) 
+\item \textbf{Métricas Envolvidas}: OBAA (\emph{Out-of-bound array access}) e DUPV (\emph{Dereference of undefined pointer value})
 \item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar trechos de código fonte que podem fornecer informações não autorizadas, impactando na confidencialidade do sistema. O acesso a informação não autorizada se dá pela leitura de regiões de memória que não estão no contexto da variável em questão.
 \item \textbf{Caracterização com Métricas}: OBAA + DUPV >=1
 	\begin{itemize}
 	\item Este cenário ocorre quando pelo menos uma dessas vulnerabilidades é encontrada.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
-	\item \textbf{Especificar e verificar o range o \emph{array} antes de acessa-lo} - identificar o trecho de código que métrica OBAA aponta e criar mecanismos que garantem o limite do índice de acesso do array, dessa forma iremos garantir que somente a região de memória pertencente ao \emph{array} é acessada e lida.  
-	\item \textbf{Garantir que o ponteiro não seja indefinido antes de desreferencia-lo} - Identificar locais em que ponteiros indefinidos são desreferenciados e garantir que eles tenham um valor no momento da leitura.  
-	 
+	\item \textbf{Especificar e verificar o range o \emph{array} antes de acessa-lo} - identificar o trecho de código que métrica OBAA aponta e criar mecanismos que garantem o limite do índice de acesso do array, dessa forma iremos garantir que somente a região de memória pertencente ao \emph{array} é acessada e lida.
+	\item \textbf{Garantir que o ponteiro não seja indefinido antes de desreferencia-lo} - Identificar locais em que ponteiros indefinidos são desreferenciados e garantir que eles tenham um valor no momento da leitura.
+
 	\end{itemize}
 \end{itemize}
 
@@ -364,7 +364,7 @@ Este cenário busca identificar no código fonte ocorrência de operações lóg
 
 Dessa forma, o software pode ter um comportamento diferente do esperado, pois o resultado da operação é indefinido, podendo levar o fluxo da aplicação para outro rumo ou fornecendo resultados errados ao usuário.
 
-Em termos de métricas, as métricas DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) buscam identificar ocorrências desse cenário no código fonte. 
+Em termos de métricas, as métricas DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) buscam identificar ocorrências desse cenário no código fonte.
 
 As divisões por zero, na linguagem C/C++, podem causar falha na aplicação, afetando sua disponibilidade. Esta vulnerabilidade é até definida pela CWE 396 \footnote{http://cwe.mitre.org/data/definitions/369.html}. Sugere-se verificar se o divisor é zero antes de se realizar a operação.
 
@@ -375,18 +375,18 @@ A métrica ROGU busca identificar operações em que o resultado pode ser lixo o
 \begin{itemize}
 \item \textbf{Nome}: \emph{Operações lógicas (somas, divisões) com integridade ameaçada}
 \item \textbf{Classificação}: Composta;
-\item \textbf{Métricas Envolvidas}: DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined}) 
+\item \textbf{Métricas Envolvidas}: DBZ (\emph{Division by zero}) e ROGU (\emph{Result of operation is garbage or Undefined})
 \item \textbf{Nível}: Arquivo;
 \item \textbf{Descrição}: Este cenário busca identificar no código fonte ocorrência de operações lógicas que podem estar comprometidas por utilizarem variáveis indefinidas ou não inicializadas, comprometendo então a integridade da operação.
 \item \textbf{Caracterização com Métricas}: DBZ + ROGU >=1
 	\begin{itemize}
 	\item Este cenário ocorre quando é encontrado pelo menos uma ocorrência de uma dessas vulnerabilidades.
 	\end{itemize}
-\item \textbf{Ações sugeridas}: 
+\item \textbf{Ações sugeridas}:
 	\begin{itemize}
-	\item \textbf{Verificar divisor antes da operação} - Verificar se o divisor é zero antes de realizar a operação;  
-	\item \textbf{Inicializar variáveis antes de operações} - Garantir que todas as variáveis estão pelo menos pré-inicializadas antes de participarem de uma operação 
-	 
+	\item \textbf{Verificar divisor antes da operação} - Verificar se o divisor é zero antes de realizar a operação;
+	\item \textbf{Inicializar variáveis antes de operações} - Garantir que todas as variáveis estão pelo menos pré-inicializadas antes de participarem de uma operação
+
 	\end{itemize}
 \end{itemize}
 

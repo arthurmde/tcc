@@ -12,7 +12,7 @@ Com isso, tanto do ponto de vista processo quanto do produto de software, prazos
 
 %
 
-O \emph{design} ganha um grau de importância maior a medida que a complexidade dos softwares aumentam durante o desenvolvimento, pois suas consequências são diretas sobre os atributos de qualidade do software tais como flexibilidade, testabilidade, manutenibilidade, desempenho e segurança. Em projetos de software livre, por exemplo, esses atributos de qualidade são fatores fundamentais na atratividade de colaboradores para os projetos, onde observa-se uma correlação entre métricas de qualidade de código-fonte com a atratividade desses projetos \cite{meirelles2010sbes}. 
+O \emph{design} ganha um grau de importância maior à medida que a complexidade dos softwares aumentam durante o desenvolvimento, pois suas consequências são diretas sobre os atributos de qualidade do software tais como flexibilidade, testabilidade, manutenibilidade, desempenho e segurança. Em projetos de software livre, por exemplo, esses atributos de qualidade são fatores fundamentais na atratividade de colaboradores para os projetos, onde observa-se uma correlação entre métricas de qualidade de código-fonte com a atratividade desses projetos \cite{meirelles2010sbes}.
 
 
 Visando amenizar os riscos de se construir um sistema que não alcance seus objetivos, a arquitetura do software tem recebida uma maior atenção através dos métodos, práticas de desenvolvimento e estudos acadêmicos.
@@ -71,7 +71,7 @@ As consequências do alto acoplamento estão principalmente nas dificuldades de 
 Além disso, algumas mudanças tendem a deixar de serem simples, pois ocorrem em mais de um lugar, o que pode dificultar, por exemplo, a criação de testes unitários, uma vez que os componentes tendem a não poder serem testados isoladamente \cite{martensson2005}.
 
 
-Os problemas elencados acima, assim como outras características indesejadas para o código-fonte são evitadas a partir da adoção de princípios reconhecidos e propostos através de diversos trabalhos para concepção de bons \emph{designs} \cite{martin2002} \cite{lakos1996} \cite{demeyer2002} \cite{lieberherr1996}. 
+Os problemas elencados acima, assim como outras características indesejadas para o código-fonte são evitadas a partir da adoção de princípios reconhecidos e propostos através de diversos trabalhos para concepção de bons \emph{designs} \cite{martin2002} \cite{lakos1996} \cite{demeyer2002} \cite{lieberherr1996}.
 %
 Esses princípios podem ser genéricos, como características desejáveis em qualquer código-fonte, ou podem estar relacionados com um paradigma específico, acoplado as estruturas introduzidas pelo próprio paradigma.
 %
@@ -139,11 +139,11 @@ A segurança de software está relacionada com o contínuo processo de manter a 
 
 %
 
-Problemas de segurança são recorrentes em diversos tipos de sistemas podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das corporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Esse estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Sistemas está em fase intermediária de desenvolvimento \cite{pascoa2002}. Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software. 
+Problemas de segurança são recorrentes em diversos tipos de sistemas podendo gerar perdas materiais e humanas em diferentes proporções. Vulnerabilidades em softwares são as maiores causas de infecção de computadores das corporações e perda de dados importantes segundo a pesquisa Global Corporate IT Security Risks 2013 conduzido por B2B International em colaboração com Kaspersky Lab \cite{b2binternational2013}. Esse estudo aponta que aproximadamente 85\% das empresas reportaram incidentes internos de segurança de TI. Mesmo com o grande esforço destinado a aspectos de segurança, tais problemas são difíceis de solucionar, pois a Engenharia de Segurança de Sistemas está em fase intermediária de desenvolvimento \cite{pascoa2002}. Gandhi e colaboradores (\citeyear{gandhi2013}) realçam as dificuldades de se detectar vulnerabilidades no estágio operacional do software, pois os problemas de segurança não são endereçados ou suficientemente conhecidos nas fases iniciais do desenvolvimento de software.
 
 %
 
-Formalmente, uma vulnerabilidade pode ser definida como uma instância de uma falha na especificação, desenvolvimento ou configuração do software de tal forma que a sua execução pode violar políticas de segurança, implícita ou explícita \cite{krsul1998}. Vulnerabilidades podem ser maliciosamente exploradas para permitir acesso não autorizado, modificações de privilégios e negação de serviço. A exploração maliciosa de vulnerabilidades em grade parte são realizadas através de \emph{Exploits}, ferramentas ou scripts desenvolvidos para este propósito, que se baseiam extensivamente nas vulnerabilidades mais comuns tal como \emph{buffer-overflow}. 
+Formalmente, uma vulnerabilidade pode ser definida como uma instância de uma falha na especificação, desenvolvimento ou configuração do software de tal forma que a sua execução pode violar políticas de segurança, implícita ou explícita \cite{krsul1998}. Vulnerabilidades podem ser maliciosamente exploradas para permitir acesso não autorizado, modificações de privilégios e negação de serviço. A exploração maliciosa de vulnerabilidades em grade parte são realizadas através de \emph{Exploits}, ferramentas ou scripts desenvolvidos para este propósito, que se baseiam extensivamente nas vulnerabilidades mais comuns tal como \emph{buffer-overflow}.
 
 %
 
@@ -179,12 +179,12 @@ Algumas das vulnerabilidades mais comuns estão listada abaixo:
 
 \begin{itemize}
 \item \textbf{\emph{Buffer overflow}}: caso comum de violação de segurança da memória que ocorre normalmente quando dados são escritos em \emph{buffers} de tamanhos fixos e ultrapassam os limites de memória definidos para eles. Como consequência, pode gerar mal funcionamento do sistema, já que o dado escrito pode corromper os dados de outros \emph{buffers} ou até mesmo de outros processos, erros de acesso à memória, resultados incorretos e até mesmo interromper a execução do software. Esta vulnerabilidade também pode ser explorada para injetar códigos maliciosos, alterando a ordem de execução do programa para que o código malicioso tome controle do sistema. Algumas linguagens de programação oferecem mecanismos de proteção contra acesso ou sobrescrita da dados em qualquer parte da memória indesejada. Contudo, \emph{buffer ovewflows} ocorrem principalmente com programas escritos em C e C++ que não realizam a verificação automática se o dado a ser escrito em um \emph{array} cabe dentro dos limites de memória do mesmo.
-%Podemos criar listagem de código 
+%Podemos criar listagem de código
 
-\item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para esse processo. Como consequência, o sistema operacional pode realocar essa posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados inconsistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente esse endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de inconsistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}. 
+\item \textbf{\emph{Dangling pointer}}: vulnerabilidade de violação de segurança da memória que ocorre quando um ponteiro não aponta para um objeto ou destino válido. Esta vulnerabilidade acontece ao se deletar um objeto ou desalocar a memória de um ponteiro sem modificar, entretanto, o valor deste ponteiro. Como resultado, o ponteiro ainda aponta para a mesma posição de memória que, por sua vez, já não está mais alocada para esse processo. Como consequência, o sistema operacional pode realocar essa posição de memória para outro processo que, se acessado novamente pelo primeiro processo, irá conter dados inconsistentes com o esperado. Em C e C++ esta vulnerabilidade existe também quando o ponteiro de um endereço de memória é declarado somente no escopo de um função e retornado por esta função. Muito provavelmente esse endereço de memória será sobrescrito na pilha de alocação do processo pela chamada de funções posteriores. Além de inconsistência de dados, esta vulnerabilidade pode ainda ser a causa de quebras de programas, como falhas de segmentação e pode ser explorada por ataques de injeção de código \cite{afek2007}. Algumas linguagens de programação como Java, Python e Ruby possuem um mecanismo de gerenciamento de destruição de objetos chamado \emph{Garbage Collector}\footnote{\url{http://www.informit.com/articles/article.aspx?p=30309&seqNum=6}}.
 %informações importantes sobre esta vulnerabilidade: https://www.usenix.org/legacy/events/sec10/tech/full_papers/Akritidis.pdf
 %Seria interessante manter este footnote ou melhor referenciar como um Pattern do livro: http://www.informit.com/store/real-time-design-patterns-robust-scalable-architecture-9780201699562?w_ptgrevartcl=Real-Time+Design+Patterns%3a+Memory+Patterns_30309
-%Listagem do código 
+%Listagem do código
 
 \item \textbf{\emph{Strings} formatadas não-controladas}: vulnerabilidade decorrida do tratamento inadequado das entradas do usuário sobre o software que, quando explorada, o dado submetido por uma \emph{string} de entrada é avaliado como um comando pela aplicação. Uma \emph{string} formatada pode conter dois tipos de dados: caracteres imprimíveis e diretivas de formatação de caracteres. Na linguagem C, funções de \emph{strings} formatadas tal como o \emph{printf} recebem um número variável de argumentos, dos quais uma \emph{string}  formatada é obrigatória. Para acessar o restante dos parâmetros que a chamada da função colocou na pilha, a função de \emph{string} formatada analiza a sequência de formatação e interpreta as diretrizes do formato a medida que realiza sua leitura \cite{lhee2002}.
 
@@ -202,7 +202,7 @@ O primeiro passo para que o desenvolvedor consiga cuidar de vulnerabilidades no 
 
 %
 
-O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE\footnote{\url{http://www.mitre.org/}} com o objetivo de enumerar as vulnerabilidades descobertas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em \cite{cve2001martin}, antigamente cada organização nomeava de sua maneira uma vulnerabilidade, de forma que uma mesma vulnerabilidade era referenciada de maneira completamente distinta entra as organizações. 
+O CVE (\emph{Common Vunerabilities and Exposures}) é um projeto criado pelo MITRE\footnote{\url{http://www.mitre.org/}} com o objetivo de enumerar as vulnerabilidades descobertas pela comunidade para facilitar o compartilhamento de informações. Como é mostrado em \cite{cve2001martin}, antigamente cada organização nomeava de sua maneira uma vulnerabilidade, de forma que uma mesma vulnerabilidade era referenciada de maneira completamente distinta entra as organizações.
 
 %
 
@@ -242,7 +242,7 @@ O CLASP não é apenas uma taxonomia de categorização de vulnerabilidades, mas
 
 \begin{itemize}
 \item Erros de tipo e de Range
-\item Problemas no ambiente 
+\item Problemas no ambiente
 \item Erros de sincronização e de temporização
 \item Erros de protocolo
 \item Erros de lógica

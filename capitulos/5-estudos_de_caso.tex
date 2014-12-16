@@ -26,7 +26,7 @@ Os passos da Figura~\ref{method} são melhor descritos a seguir:
 \item \textbf{Obter Código-Fonte} - Uma vez selecionados os projetos, o próximo passo é obter o código-fonte referente aos projetos escolhidos. Algumas ferramentas. como o Mezuro, já possuem bom suporte para automatizar esse passo.
 \item \textbf{Executar Coleta} - Esta etapa consiste na obtenção dos valores de métricas dos códigos-fontes dos projetos selecionados que deve ser automatizado. A saída desta etapa deverá ser processada pelas ferramentas trabalhadas para proporcionar a análise dos projetos. O esforço nessa etapa deve-se reduzir a coletar somente as métricas necessárias para composição dos Cenários de Decisão utilizados.
 \item \textbf{Analisar Cenários} - A partir dos resultados obtidos, deve-se utilizar os Cenários de Decisão para observar as características do estado atual do projeto analisado. No contexto desse trabalho, esta etapa consiste em analisar quais os principais módulos oferecem riscos de segurança ao software. Porém, como o principal interesse é apresentar a utilização de cenários em ferramentas de tomada de decisões, esta etapa não será explorada detalhadamente.
-\item \textbf{Realizar Conclusões} - Esta etapa final consiste em realizar ações a partir da compreensão dos Cenários observados, seja para fins de estudos ou para fins de desenvolvimento do software. 
+\item \textbf{Realizar Conclusões} - Esta etapa final consiste em realizar ações a partir da compreensão dos Cenários observados, seja para fins de estudos ou para fins de desenvolvimento do software.
 \end{enumerate}
 
 
@@ -52,11 +52,11 @@ A arquitetura do Mezuro atual é composta por vários serviços. Essa arquitetur
 
 Uma explicação mais detalhada desta arquitetura e de cada serviço pode ser obtida no Apêndice \ref{Att:mezuro}.
 
-Dois destes serviços agregam conceitos fundamentais dentro da plataforma, que também serão muito importantes para a representação de cenários. 
+Dois destes serviços agregam conceitos fundamentais dentro da plataforma, que também serão muito importantes para a representação de cenários.
 
-O Kalibro Configuration contempla o conceito de configuração que é um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Uma configuração consiste, portanto, na composição de métricas cujos valores de referência são flexíveis e podem ser determinados separadamente para cada configuração criada. Associado ao conceito de configuração, está a criação de intervalos qualitativos associado a valores de métricas. Este módulo ainda é complementado por \emph{Reading Gropus} que são grupos de leituras definidos por usuários que associam nomes qualitativos à cores que podem ser utilizados em configurações a partir na definição de intervalos de valores. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim. Assim, tem-se a flexibilidade de ter parâmetros que variam de acordo com a linguagem, natureza do software, dentre outras coisas, apenas pela criação de diferentes configurações. 
+O Kalibro Configuration contempla o conceito de configuração que é um conjunto de métricas e parâmetros que podem ser utilizadas para a avaliação de um projeto. Uma configuração consiste, portanto, na composição de métricas cujos valores de referência são flexíveis e podem ser determinados separadamente para cada configuração criada. Associado ao conceito de configuração, está a criação de intervalos qualitativos associado a valores de métricas. Este módulo ainda é complementado por \emph{Reading Gropus} que são grupos de leituras definidos por usuários que associam nomes qualitativos à cores que podem ser utilizados em configurações a partir na definição de intervalos de valores. Esta característica é muito importante para a utilização das métricas, uma vez que abstraem a interpretação direta dos valores obtidos para definições mais simples como bom, regular e ruim. Assim, tem-se a flexibilidade de ter parâmetros que variam de acordo com a linguagem, natureza do software, dentre outras coisas, apenas pela criação de diferentes configurações.
 
-O Kalibro Processor contempla o módulo de extração e processamento de métricas de código-fonte. Para que esse processamento seja realizado, o Kalibro Processor realiza o download de projetos que estão em repositórios GIT ou SVN e utiliza uma ou mais ferramentas de extração de métricas, como mencionado anteriormente. Assim, obtem-se a partir da análise estática do código-fonte um conjunto de métricas nativas que podem ser compostas para formular métricas mais complexas e de maior valor interpretativo. Dentro do Mezuro, esta abordagem é realizada através da criação de métricas compostas as quais serão muito importantes para a definição de Cenários de Decisões. 
+O Kalibro Processor contempla o módulo de extração e processamento de métricas de código-fonte. Para que esse processamento seja realizado, o Kalibro Processor realiza o download de projetos que estão em repositórios GIT ou SVN e utiliza uma ou mais ferramentas de extração de métricas, como mencionado anteriormente. Assim, obtem-se a partir da análise estática do código-fonte um conjunto de métricas nativas que podem ser compostas para formular métricas mais complexas e de maior valor interpretativo. Dentro do Mezuro, esta abordagem é realizada através da criação de métricas compostas as quais serão muito importantes para a definição de Cenários de Decisões.
 
 Atualmente, o Mezuro pode monitorar projetos em C, C++ e Java uma vez que utiliza o Analizo como seu principal extrator de métricas. Entretanto, com a evolução da plataforma, pretende-se acoplar novos extratores na ferramenta para outras linguagens de programação.
 
@@ -78,7 +78,7 @@ A criação de um \emph{Reading Group} para abstrair a interpretação do cenár
 
 Nesta etapa deve-se criar uma configuração onde serão definidos todos os cenários que queremos avaliar em conjunto. No contexto do Mezuro, os cenários serão definidos a partir do recurso de criação de Métricas Compostas que será explicado adiante.
 
-Uma configuração, portanto, vai conter um conjunto de métricas e cenários caracterizados a partir dessas métricas. Como alternativas de criação de configurações como agregadores de cenários, teríamos a opção de criar uma única configuração que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro caso o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração. 
+Uma configuração, portanto, vai conter um conjunto de métricas e cenários caracterizados a partir dessas métricas. Como alternativas de criação de configurações como agregadores de cenários, teríamos a opção de criar uma única configuração que contemple todos os Cenários de Segurança que usam métricas de \emph{design} (\ref{cenarios-design}) e os Cenários de Segurança que usam métricas de vulnerabilidade (\ref{cenarios-vulnerabilidades}), da mesma forma que poderíamos criar uma configuração separada para cada tipo de cenário. O que mudaria é que, no primeiro caso o projeto seria monitorado uma única vez, enquanto no segundo o projeto deveria ser monitorado duas vezes, uma para cada configuração.
 
 Sugere-se que a segunda abordagem seja utilizada, pois flexibiliza mais o monitoramento a partir de cenários, uma vez que existem diversos projetos com diversos interesses diferentes. Além disso, vale ressaltar que uma configuração deve contemplar apenas uma linguagem de programação e domínio, uma vez que os parâmetros de avaliação dos Cenários irão variar de acordo com o contexto.
 
@@ -92,9 +92,9 @@ A criação de uma configuração é bem simples, pois deve-se informar apenas o
 \label{cenario_design}
 \end{figure}
 
-Na visualização de uma configuração pode-se também ver a lista de métricas que compõem a configuração. Caso o usuário logado no Mezuro tenha a permissão  necessária de edição de uma determinada configuração, na tela de apresentação ainda pode ser vista a opção de Adicionar Métrica (\emph{Add Metric}), assim como apresentada na Figura \ref{cenario_design}. 
+Na visualização de uma configuração pode-se também ver a lista de métricas que compõem a configuração. Caso o usuário logado no Mezuro tenha a permissão  necessária de edição de uma determinada configuração, na tela de apresentação ainda pode ser vista a opção de Adicionar Métrica (\emph{Add Metric}), assim como apresentada na Figura \ref{cenario_design}.
 
-A opção de Adicionar Métrica é fundamental para a segunda etapa da criação da configuração. Portanto, após criada uma configuração, deve-se adicionar todas as métricas básicas que são utilizadas nas caracterizações dos cenários que irão compor essa configuração. Para isso, basta ir em \emph{Add Metric} na página da configuração, onde será aberta a lista de ferramentas coletoras utilizadas pelo Mezuro e as respectivas métricas suportadas por cada uma dessas ferramentas. 
+A opção de Adicionar Métrica é fundamental para a segunda etapa da criação da configuração. Portanto, após criada uma configuração, deve-se adicionar todas as métricas básicas que são utilizadas nas caracterizações dos cenários que irão compor essa configuração. Para isso, basta ir em \emph{Add Metric} na página da configuração, onde será aberta a lista de ferramentas coletoras utilizadas pelo Mezuro e as respectivas métricas suportadas por cada uma dessas ferramentas.
 
 No contexto da configuração criada para esta monografia foram adicionadas todas as métricas envolvidas nos Cenários de Decisões listados em (\ref{cenarios-design}). Todas as métricas escolhidas utilizam o Analizo como ferramenta extratora. A própria definição da métrica escolhida a partir de uma ferramenta também já define o escopo da métrica e as linguagens de programação para as quais a métrica pode ser calculada, conforme demonstrado na Figura \ref{metric_example}.
 
@@ -116,7 +116,7 @@ Dentro da ferramenta, métricas compostas são métricas que podem ser criadas a
 
 Para a definição de como a métrica composta deve ser calculada, o usuário deve escrever um \emph{script} simples em Javascript que retorne o valor desejado. Como é definido um identificador para cada métrica básica adicionada na configuração (campo \emph{Code} visível na Figura \ref{metric_example}), nos \emph{scripts} para métricas compostas pode-se acessar os valores das métricas extraídas a partir de uma chamada de método cujo nome é o mesmo do código da métrica. Para exemplo, dentro do \emph{script} poderia-se acessar o valor da métrica \emph{Number of Children} através da chamada \emph{noc()}, onde \emph{noc} é o código dessa métrica.
 
-Além da utilização de \emph{scripts}, assim como as métricas básicas, as métricas compostas ainda possuem informações de nome e descrição que são essenciais para a definição do quadro resumo do cenário. A utilização de heranças e polimorfismo relacionados às métricas no \emph{design} do Mezuro são muito importantes para a extensão de outros tipos de métricas. Neste sentido, algumas contribuições foram realizadas ao serviço Prezento relacionadas à refatorações que apoiam a extensão de outros tipos de métricas. 
+Além da utilização de \emph{scripts}, assim como as métricas básicas, as métricas compostas ainda possuem informações de nome e descrição que são essenciais para a definição do quadro resumo do cenário. A utilização de heranças e polimorfismo relacionados às métricas no \emph{design} do Mezuro são muito importantes para a extensão de outros tipos de métricas. Neste sentido, algumas contribuições foram realizadas ao serviço Prezento relacionadas à refatorações que apoiam a extensão de outros tipos de métricas.
 
 No futuro, com a adoção de novos extratores na plataforma e novas métricas, será necessário o estabelecimento de um novo tipo de métrica (\emph{hot spot}) cuja natureza não está na quantificação e sim na existência ou não de determinada característica no código-fonte. Exemplos desse novo tipo de métrica são métricas de vulnerabilidade e até mesmo os Cenários de Decisões. Entretanto, como dito anteriormente, optou-se por utilização de métricas compostas para a definição dos cenários e não na criação de um novo tipo de métrica.
 
@@ -158,14 +158,14 @@ A seguir será apresentado os scripts utilizadas na criação de cada Cenário d
 \end{description}
 
 \begin{lstlisting}[caption={\emph{Script} do Cenário \emph{High Surface Attack to Internal Attributes}}, label=hsaia]
-if(noa() == 0) 
+if(noa() == 0)
 {
   return 0;
 }
 else
 {
   var result = npa()/noa();
-  var value = (result < 0.2) ? 0 : 1; 
+  var value = (result < 0.2) ? 0 : 1;
   return value;
 };
 \end{lstlisting}
@@ -238,22 +238,22 @@ else
 \section{Cenários de Decisão e \emph{Data Warehousing}}
 \label{dw-cenarios}
 
-\emph{Data Warehousing} (\emph{DWing}) é um ambiente constituído pelo \emph{Data Warehouse} (\emph{DW}) e as demais ferramentas relacionadas a manipulação de dados, desde a extração até a visualização. Um ambiente de \emph{DWing} não se diz respeito apenas das tecnologias envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de \emph{DWing} são SGBDs, Sistemas de conversão e transformação de dados (ferramentas de ETL), tecnologias cliente e servidor para dar acesso aos dados a múltiplos clientes e ferramentas de análise e geração de relatórios.
+\emph{Data Warehousing} (\emph{DWing}) é um ambiente constituído pelo \emph{Data Warehouse} (\emph{DW}) e as demais ferramentas relacionadas a manipulação de dados, desde a extração até a visualização. Um ambiente de \emph{DWing} não diz respeito apenas das tecnologias envolvidas e sim uma arquitetura que requer o suporte de diferentes tipos de tecnologias \cite{inmon2002}.  As principais tecnologias envolvidas em um ambiente de \emph{DWing} são SGBDs, Sistemas de conversão e transformação de dados (ferramentas de ETL), tecnologias cliente e servidor para dar acesso aos dados a múltiplos clientes e ferramentas de análise e geração de relatórios.
 
-Como o nome sugere, um \emph{Data Warehouse} , em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma corporação que tem como objetivo dar suporte a tomada de decisão. 
+Como o nome sugere, um \emph{Data Warehouse} , em português, significa armazém de dados. Segundo Inmon (\citeyear{inmon2002}) um \emph{Data Warehouse} é uma coleção de dados de uma corporação que tem como objetivo dar suporte a tomada de decisão.
 %
 O DW possibilita a análise de grandes volumes de dados, fazendo com que ele seja o núcleo de muitas soluções de \emph{Business intelligence} (BI)
 %
-\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferecendo suporte a gestão de negócios}. 
+\footnote{\emph{Business intelligence} é o processo de coleta, organização, análise, compartilhamento e monitoramento de informações, oferecendo suporte a gestão de negócios}.
 %
 Uma explicação mais detalhada sobre os  conceitos relacionados a um ambiente de \emph{DWing} pode ser obtida no  apêndice \ref{Att:dw}.
 
-Neste trabalho procuramos desenvolver mecanismos que nos permitam monitorar e analisar o código fonte através de métricas de forma automatizada e que nos auxilie na tomada de decisão de refatorar ou não refatorar determinadas partes do código. 
+Neste trabalho procuramos desenvolver mecanismos que nos permitam monitorar e analisar o código fonte através de métricas de forma automatizada e que nos auxilie na tomada de decisão de refatorar ou não refatorar determinadas partes do código.
 %
 Nesse sentido, foram encontrados alguns trabalhos na literatura que utilizaram um \emph{DWing} para monitorar métricas de processos e produtos de software \cite{Folleco2007} \cite{Silveira2010}\cite{mazuco2011} \cite{rego2014}. Dentre estes, o trabalho que se destaca e que serviu como ponto de partida para a criação do modelo dimensional do DW desta monografia foi o trabalho de Rego (\citeyear{rego2014}). Nele, o autor propõe um \emph{DWing} que além de monitorar métricas de um projeto,  identifica e monitora cenários de limpeza de código fonte compostos por métricas relacionados a qualidade de software.
 
-% 
-O fato de o DW oferecer um alto poder de análise e permitir o tratamento de uma grande quantidade de dados nos faz ter uma expectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão. 
+%
+O fato de o DW oferecer um alto poder de análise e permitir o tratamento de uma grande quantidade de dados nos faz ter uma expectativa de que esse ambiente pode ser uma solução mais completa em termos de monitoramento e auxílio na tomada de decisão.
 
 Nesta Seção, apresentamos a execução das etapas Adaptar e Evoluir Ferramentas e Reproduzir Cenários de Segurança para o estudo de caso sobre o ambiente \emph{DWing}.
 
@@ -271,7 +271,7 @@ Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessi
  		\label{dw-model1}
  \end{figure}
 
- 
+
 
  \begin{figure}[H]
  	\centering
@@ -280,7 +280,7 @@ Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessi
  		\label{dw-model2}
  \end{figure}
 
- 
+
 
  \begin{figure}[H]
  	\centering
@@ -292,7 +292,7 @@ Antes partirmos para modelagem de nosso DW,  precisamos ter definidas as necessi
 
 No trabalho de Rego \citeyear{rego2014} observamos que a modelagem proposta pelo autor está próxima de atender as necessidades dessa monografia. A modelagem de Rego \citeyear{rego2014} permite que o usuário possa identificar cenários de limpeza ao nível de classe de código fonte e também monitorar os percentis dos valores de métricas \emph{design} do projeto. Baseado nisso, chegamos na modelagem mostrada nas Figuras (\ref{dw-model1}) (\ref{dw-model2}) e (\ref{dw-model3}) para o DW deste trabalho.
 
-Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluídos para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários (\emph{f\_qtd\_scenarios}) que pode ser vista na Figura \ref{dw-model1}  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de \emph{sprints}. Uma das principais características de um ambiente de \emph{DWing} é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão \emph{sprint} permitirá o usuário a fazer análise da quantidade de cenários por \emph{sprint}. 
+Alguns aspectos da modelagem do trabalho de Rego (\citeyear{rego2014}) foram modificados e evoluídos para atender melhor a definição dos cenários de decisões proposta nessa monografia. A tabela fato de cenários (\emph{f\_qtd\_scenarios}) que pode ser vista na Figura \ref{dw-model1}  foi modelada de maneira muito semelhante. Porém, foram adicionadas a dimensão tempo e de \emph{sprints}. Uma das principais características de um ambiente de \emph{DWing} é permitir a análise temporal dos dados, logo viu-se interessante a inclusão da dimensão tempo. Da mesma forma, a dimensão \emph{sprint} permitirá o usuário a fazer análise da quantidade de cenários por \emph{sprint}.
 
 Outra modificação importante foi feita na dimensão \emph{d\_scenarios}. Novos atributos foram incluídos para contemplar a estrutura de cenários de decisões proposta nessa monografia. Foram inclusos os atributos tipo do cenário, métricas envolvidas, fórmula e uma descrição. Uma limitação do trabalho de Rego (\citeyear{rego2014}) foi que os cenários só podiam ser compostos por no máximo duas métricas. Isso se dá ao fato de que Rego utilizou  metadados para definir quais métricas estavam envolvidas a cada cenário e automatizar de maneira mais eficiente a identificação de novos cenários. Neste trabalho, levamos em conta que  metadados não são disponibilizados para o usuário, preferimos criar o atributo \emph{involved\_metrics} e \emph{formula} na dimensão \emph{d\_scenario}, permitindo assim que o usuário possa saber quais métricas compõe cada cenário e como elas definem a existência ou não do cenário. Como se trata de um atributo de natureza descritiva, podemos ter cenários que possuem várias métricas envolvidas.
 
@@ -389,7 +389,7 @@ Este projeto será analisado somente no \emph{DWing}.
 
 O Mezuro já trabalha em conjunto com o Analizo\footnote{\url{http://www.analizo.org/}}. O Analizo é uma ferramenta de análise estática de código e dá suporte a diversas métricas, inclusive as métricas discutidas no capitulo 2, tanto de \emph{design} quanto de vulnerabilidade. Um \emph{DWing} não está atrelado a apenas uma fonte de dados, podendo utilizar diversas fontes. Dessa forma, utilizamos o Analizo para coletar as métricas e gerar o insumo para a análise dos cenários em ambas as soluções.
 
-Porém, foi identificado um problema com o Analizo em relação as coleta de métricas de vulnerabilidade. Para projetos pequenos e simples as métricas de vulnerabilidade podem ser coletadas.  Contudo, para projetos maiores e mais complexos, com arquitetura bem definida, o Analizo não consegue gerar tais métricas. Isso se deve ao fato do Analizo utilizar o \emph{Clang Static Analizer}\footnote{\url{http://clang-analyzer.llvm.org/}}, que é outra ferramenta livre que faz análise estática para identificação de bugs em projetos C/C++, para a geração das métricas de vulnerabilidade. A utilização do \emph{Clang} consiste em chamar o comando \emph{scan-build}  e o comando de compilação do programa, por exemplo " \emph{scan-build gcc myprog.c} ". O Analizo chama o \emph{clang} em seu código para cada arquivo, usando apenas o comando  de compilação \emph{gcc} em cada um deles. Isso pode funcionar para projetos simples, porém projetos mais complexos possuem linhas de compilação mais complexas, geralmente gerenciadas em um \emph{Makefile}, com diversas linhas de compilação. Não conseguindo compilar o código, o \emph{Clang} não consegue executar, fazendo com que o Analizo, por sua vez, não consiga extrair as métricas de vulnerabilidade. 
+Porém, foi identificado um problema com o Analizo em relação as coleta de métricas de vulnerabilidade. Para projetos pequenos e simples as métricas de vulnerabilidade podem ser coletadas.  Contudo, para projetos maiores e mais complexos, com arquitetura bem definida, o Analizo não consegue gerar tais métricas. Isso se deve ao fato do Analizo utilizar o \emph{Clang Static Analizer}\footnote{\url{http://clang-analyzer.llvm.org/}}, que é outra ferramenta livre que faz análise estática para identificação de bugs em projetos C/C++, para a geração das métricas de vulnerabilidade. A utilização do \emph{Clang} consiste em chamar o comando \emph{scan-build}  e o comando de compilação do programa, por exemplo " \emph{scan-build gcc myprog.c} ". O Analizo chama o \emph{clang} em seu código para cada arquivo, usando apenas o comando  de compilação \emph{gcc} em cada um deles. Isso pode funcionar para projetos simples, porém projetos mais complexos possuem linhas de compilação mais complexas, geralmente gerenciadas em um \emph{Makefile}, com diversas linhas de compilação. Não conseguindo compilar o código, o \emph{Clang} não consegue executar, fazendo com que o Analizo, por sua vez, não consiga extrair as métricas de vulnerabilidade.
 
 Grandes alterações deveriam ser feitas para que o Analizo pudesse gerar os valores dessas métricas para projetos grandes, não cabendo ao escopo e tempo desta monografia. Esse problema afeta diretamente ao Mezuro, pois, dependente do relatório gerado pelo Analizo, não consegue os valores de métricas de vulnerabilidade para projetos maiores. Como o ambiente de \emph{DWing} pode ter diversas fontes de dados, podemos recorrer a outra fonte de dados que ofereça apenas as métricas de vulnerabilidade.
 
@@ -414,7 +414,7 @@ O projeto GNU Octave foi monitorado através do Mezuro e do ambiente DWing. O pr
 
 A visualização de qualquer monitoramento realizado no Mezuro segue uma apresentação semelhante. Primeiro são apresentadas as informações do projeto, seguido das informações sobre o \emph{status} do monitoramento e data de realização (Figura \ref{proc_info}). Logo após é apresentada uma árvore contendo os módulos e classes do projeto e o resultado agregado das métricas medidas  (Figura \ref{modules_info}). A medida que se realiza uma navegação sobre a árvore de módulos, diminui-se a granularidade dos resultados e tem-se os resultados das medições para cada unidade de software analisada (Figura \ref{metrics_info}).
 
-Caso algum erro ocorre durante o processo de medição, o erro será informado na aba \emph{Processing information}, apresentada na Figura \ref{proc_info}. 
+Caso algum erro ocorre durante o processo de medição, o erro será informado na aba \emph{Processing information}, apresentada na Figura \ref{proc_info}.
 
 \begin{figure}[H]
 	\centering
@@ -432,7 +432,7 @@ A segunda aba \emph{Modules Tree}, destacada na Figura \ref{modules_info}, apres
 		\label{modules_info}
 \end{figure}
 
-A última aba \emph{Metrics Results}, apresentada na Figura \ref{metrics_info}, lista as métricas básicas medidas e as métricas compostas, com seus resultados agregados, no caso de visualização de pacotes, ou com seus resultados medidos, no caso de visualização de unidades ou classes. 
+A última aba \emph{Metrics Results}, apresentada na Figura \ref{metrics_info}, lista as métricas básicas medidas e as métricas compostas, com seus resultados agregados, no caso de visualização de pacotes, ou com seus resultados medidos, no caso de visualização de unidades ou classes.
 
 \begin{figure}
 	\centering
@@ -441,11 +441,11 @@ A última aba \emph{Metrics Results}, apresentada na Figura \ref{metrics_info}, 
 		\label{metrics_info}
 \end{figure}
 
-No Mezuro, o conceito de agregação é aplicado nas métricas básicas, mas não nas métricas compostas. Na visualização de um pacote (root, da Figura \ref{modules_info}), os valores das métricas básicas são agregadas de acordo com a escolha feita na criação de cada uma (média, mediana, desvio padrão, máximo e mínimo). Entretanto, as métricas compostas, como não possuem agregação, são calculadas sobre os valores agregados das métricas bases que elas utilizam. Para os Cenários de Decisões esta característica não é muito interessante uma vez que pode apresentar falsos negativos. Como exemplo, se o valor agregado das métricas básicas utilizadas por um cenário não corresponderem à existência do cenário, na visualização geral será informado que o cenário não existe, enquanto na verdade ele pode existir em alguns poucos módulos do software. 
+No Mezuro, o conceito de agregação é aplicado nas métricas básicas, mas não nas métricas compostas. Na visualização de um pacote (root, da Figura \ref{modules_info}), os valores das métricas básicas são agregadas de acordo com a escolha feita na criação de cada uma (média, mediana, desvio padrão, máximo e mínimo). Entretanto, as métricas compostas, como não possuem agregação, são calculadas sobre os valores agregados das métricas bases que elas utilizam. Para os Cenários de Decisões esta característica não é muito interessante uma vez que pode apresentar falsos negativos. Como exemplo, se o valor agregado das métricas básicas utilizadas por um cenário não corresponderem à existência do cenário, na visualização geral será informado que o cenário não existe, enquanto na verdade ele pode existir em alguns poucos módulos do software.
 
 Por outro lado, como pode ser observado na Figura \ref{metrics_info}, o cenário Alta Superfície de Ataque a Atributos Internos é o único que é apresentado como existente no projeto, pois as métricas de Atributos Públicos tiveram uma média alta. Nesse sentido, esse cenário deve ser recorrente no projeto e deve ser o foco de melhorias futuras, uma vez que deve se repetir em várias classes. Entretanto, para esse tipo de análise, seria mais interessante ter-se utilizado a agregação por mediana nas métricas básicas, identificando mais adequadamente se os cenários ocorrem na maior parte das classes.
 
-O mais adequado seria o Mezuro apresentar quantas ocorrências do cenário existem para um pacote, ou seja, as métricas compostas terem suas próprias agregações do tipo SOMA. Alguns passos foram dados no contexto do presente trabalho, onde implementamos o suporte à esse tipo de agregação dentro do Kalibro Processor. 
+O mais adequado seria o Mezuro apresentar quantas ocorrências do cenário existem para um pacote, ou seja, as métricas compostas terem suas próprias agregações do tipo SOMA. Alguns passos foram dados no contexto do presente trabalho, onde implementamos o suporte à esse tipo de agregação dentro do Kalibro Processor.
 
 \begin{figure}
 	\centering
@@ -463,7 +463,7 @@ A visualização da ocorrência dos cenários dentro de cada classe se torna bem
 
 A visualização dos cenários no \emph{DWing} é feita com o uso do plugin \emph{Saiku Analytics} disponível na ferramenta \emph{BI server}. Para utilizar o \emph{Saiku Analytics}, depois de logado no \emph{BI server}, deve-se clicar na opção \emph{Create New} -> \emph{New Saiku Analytics}. O \emph{Saiku Analytics} permite o acesso a um cubo de dados publicado e a realização de consultas OLAP em cima dos dados de maneira bem intuitiva, ou , pela criação de \emph{querys} MDX
 \footnote{O MDX (\emph{Multidimensional Expression}) é uma linguagem que foi criada com o propósito de manipular dados Multidemensionals. Possui uma sintaxe semelhante ao SQL}
-. 
+.
 
 \begin{figure}[H]
 	\centering
@@ -500,7 +500,7 @@ A primeira vista, podemos na Figura \ref{dw-workspace-biserver} que foram encont
 	\label{dw-graficos-cenarios}
 \end{figure}
 
-Outra funcionalidade interessante é a possibilidade de geração de gráficos a partir do relatório criado. Na Figura \ref{dw-graficos-cenarios} podemos ver o comportamento da quantidade de cenários de decisões encontrados no projeto Octave ao longo de suas releases. 
+Outra funcionalidade interessante é a possibilidade de geração de gráficos a partir do relatório criado. Na Figura \ref{dw-graficos-cenarios} podemos ver o comportamento da quantidade de cenários de decisões encontrados no projeto Octave ao longo de suas releases.
 
 
 \begin{figure}[H]
@@ -523,7 +523,7 @@ As mesmas operações e manipulações dos dados podem ser feitas no cubo que ar
 \subsection{Análise e Discussão}
 \label{ana-disc}
 
-Os dois estudos de casos desenvolvidos no contexto deste trabalho tiverem como objetivo representar os Cenários de Decisões em ferramentas de tomada de decisão. O primeiro estudo foi baseado no projeto Mezuro, enquanto o segundo foi baseado em um ambiente DWing para os quais a mesma metodologia de desenvolvimento de estudo de caso foi aplicada. 
+Os dois estudos de casos desenvolvidos no contexto deste trabalho tiverem como objetivo representar os Cenários de Decisões em ferramentas de tomada de decisão. O primeiro estudo foi baseado no projeto Mezuro, enquanto o segundo foi baseado em um ambiente DWing para os quais a mesma metodologia de desenvolvimento de estudo de caso foi aplicada.
 
 O Mezuro, sendo uma plataforma já utilizada para monitoramento de projetos livres, foi adaptada para suportar os cenários a partir da evolução das métricas compostas, funcionalidade já existente no Mezuro. Esta evolução se apresentou como uma boa opção dado o tempo e complexidade de se implementar uma estrutura completa de Cenário de Decisão na ferramenta. Além disso, as métricas compostas contém informações fundamentais para a identificação e descrição dos cenários, além de oferecer o recurso de criação de \emph{scripts} para definição dos cenários.
 
